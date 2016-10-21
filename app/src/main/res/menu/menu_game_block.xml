@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nextTippOrErgebnis"
+        android:title="@string/next_tipp"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/changeNames"
+        android:title="@string/change_names"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/changeTippOrResult"
+        android:title="@string/changeTipps"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/startNewGame"
+        android:title="@string/start_new_game"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+
+</menu>
