@@ -38,14 +38,12 @@
        android:layout_marginLeft="20dp"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/information"
+    <ImageView
+        android:id="@+id/facebookLike"
+        android:layout_height="50dp"
+        android:src="@drawable/facebooklike"
         android:layout_below="@id/info"
-        android:layout_marginTop="20dp"
-        android:text="@string/information"
-        android:layout_centerHorizontal="true"/>
+        android:layout_width="wrap_content"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +53,7 @@
         android:textColor="@color/colorBlueText"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/information"/>
+        android:layout_below="@id/facebookLike"/>
 
     <TextView
         android:layout_width="wrap_content"

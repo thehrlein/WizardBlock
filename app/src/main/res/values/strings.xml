@@ -17,30 +17,30 @@
     <string name="stitches_cant_be_equal">Der letzte Spieler muss so viele Stiche ansagen, dass die Gesamtanzahl
                                         Stiche ungleich der Anzahl Spiele ist</string>
     <string name="next">Weiter</string>
-    <string name="game_settings_explaination">Bitte geben Sie dem Spiel einen Namen und wählen Sie die Anzahl Spieler</string>
-    <string name="no_game_name">Bitte geben Sie ein Spielname ein</string>
+    <string name="game_settings_explaination">Bitte gib dem Spiel einen Namen und wählen die Anzahl Spieler</string>
+    <string name="no_game_name">Bitte gebe ein Spielname ein</string>
     <string name="display_always_on">Soll das Display immer aktiv sein?</string>
 
-    <string name="can_first_round_be_equal">Sie haben ausgewählt, dass die Anzahl der Tipps nicht gleich der möglichen Stiche sein darf. Möchten Sie aber
+    <string name="can_first_round_be_equal">Du hast ausgewählt, dass die Anzahl der Tipps nicht gleich der möglichen Stiche sein darf. Möchtest du aber
     die Variante spielen, in der diese Regel bei der ersten Runde ausgesetzt ist?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
 
     <!-- PlayerSettings -->
     <string name="player_settings">Spieler</string>
-    <string name="player_name_give_in">Bitte geben Sie die Namen aller Spieler an</string>
+    <string name="player_name_give_in">Bitte gebe die Namen aller Spieler an</string>
     <string name="player_name_one">Spieler 1</string>
     <string name="player_name_two">Spieler 2</string>
     <string name="player_name_three">Spieler 3</string>
     <string name="player_name_four">Spieler 4</string>
     <string name="player_name_five">Spieler 5</string>
     <string name="player_name_six">Spieler 6</string>
-    <string name="player_name_not_entered">Sie haben diesem Spieler keinen Namen gegeben</string>
+    <string name="player_name_not_entered">Du hast diesem Spieler keinen Namen gegeben</string>
 
     <!-- GameBlock -->
     <string name="game_block">Block</string>
     <string name="backpress">Ein erneuter Klick beendet die App</string>
-    <string name="really_want_to_start_new_game">Wollen Sie wirklich ein neues Spiel starten?\nDas aktuelle Spiel können Sie jederzeit unter \"Spiel laden\" fortsetzen!</string>
+    <string name="really_want_to_start_new_game">Willst du wirklich ein neues Spiel starten?\nDas aktuelle Spiel kannst du jederzeit unter \"Spiel laden\" fortsetzen!</string>
     <string name="game_over">Das Spiel ist vorbei</string>
     <string name="start_a_new_game">Neues Spiel starten</string>
     <string name="cancel">Abbrechen</string>
@@ -79,7 +79,7 @@
     <!-- App Info -->
     <string name="information">Entwickelt von Tobias</string>
     <string name="email"><u>tobi.applications@gmail.com</u></string>
-    <string name="feedback">Über ein Feedback (Kritik, Wünsche, Anregungen, Lob) oder eine positive Bewertung im Play Store würde ich mich sehr freuen :)</string>
+    <string name="feedback">Über ein Feedback (Kritik, Wünsche, Anregungen, Lob), ein Like auf Facebook oder eine positive Bewertung im Play Store würde ich mich sehr freuen :)</string>
     <string name="hello_tobias">Hallo Tobias,\n\n</string>
 
     <!-- Highscores -->
@@ -110,6 +110,7 @@
     <string name="tutorial">Tutorial erneut ansehen</string>
     <string name="displayOn">Display bleibt aktiv</string>
     <string name="displayOff">Display geht aus</string>
+    <string name="facebook_app_id">287788674952926</string>
 
 
     <!-- Cover Page -->

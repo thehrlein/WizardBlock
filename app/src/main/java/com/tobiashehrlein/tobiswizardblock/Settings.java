@@ -5,6 +5,8 @@ package com.tobiashehrlein.tobiswizardblock;
         import android.content.Context;
         import android.content.Intent;
         import android.content.SharedPreferences;
+        import android.content.pm.PackageManager;
+        import android.net.Uri;
         import android.os.Bundle;
         import android.preference.Preference;
         import android.preference.PreferenceFragment;
@@ -17,6 +19,7 @@ package com.tobiashehrlein.tobiswizardblock;
         import android.view.MenuItem;
         import android.view.View;
         import android.view.WindowManager;
+        import android.widget.ImageView;
         import android.widget.TextView;
 
 
@@ -26,11 +29,15 @@ public class Settings extends ActionBarActivity
     private static Context context;
     public static boolean displayActive;
     private TextView email;
+    private ImageView facebookLike;
+    public static String FACEBOOK_URL = "https://www.facebook.com/wizard.block";
+    public static String FACEBOOK_PAGE_ID = "WizardBlock";
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+
 
         setContentView(R.layout.settings);
 
@@ -57,6 +64,16 @@ public class Settings extends ActionBarActivity
             }
         });
 
+        facebookLike = (ImageView) findViewById(R.id.facebookLike);
+        facebookLike.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/wizard.block"));
+                startActivity(browserIntent);
+            }
+        });
     }
 
 
