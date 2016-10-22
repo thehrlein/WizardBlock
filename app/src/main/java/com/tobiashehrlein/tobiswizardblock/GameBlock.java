@@ -85,6 +85,7 @@ public class GameBlock extends AppCompatActivity
 
         RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
                 .name("myRealm")
+                .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration);
 
@@ -891,6 +892,7 @@ public class GameBlock extends AppCompatActivity
     {
         RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
                 .name("highscoreRealm")
+                .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration);
 
@@ -911,6 +913,7 @@ public class GameBlock extends AppCompatActivity
 
         RealmConfiguration configuration2 = new RealmConfiguration.Builder(getApplicationContext())
                 .name("myRealm")
+                .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration2);
 

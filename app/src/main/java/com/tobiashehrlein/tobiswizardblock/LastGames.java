@@ -150,6 +150,7 @@ public class LastGames extends AppCompatActivity implements
     {
         RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
                 .name("myRealm")
+                .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration);
     }

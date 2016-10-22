@@ -131,6 +131,7 @@ public class HighScore extends AppCompatActivity implements
     {
         RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
                 .name("highscoreRealm")
+                .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration);
 
