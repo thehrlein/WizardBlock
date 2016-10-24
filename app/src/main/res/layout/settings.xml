@@ -43,7 +43,8 @@
         android:layout_height="50dp"
         android:src="@drawable/facebooklike"
         android:layout_below="@id/info"
-        android:layout_width="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:contentDescription="facebooklike"/>
 
     <TextView
         android:layout_width="wrap_content"
