@@ -4,9 +4,15 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'io.fabric.tools:gradle:1.22.1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.13"
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,7 +26,9 @@ allprojects {
     }
 }
 
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+apply plugin: "net.ltgt.apt"
+

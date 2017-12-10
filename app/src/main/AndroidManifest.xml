@@ -1,65 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.tobiashehrlein.tobiswizardblock">
+    package="com.tobiashehrlein.tobiswizardblock">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
-    <application android:name=".UrbanAirship"
+    <application
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/wizard"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.google.android.gms.version"
-                   android:value="@integer/google_play_services_version" />
-
-        <activity
-            android:name=".GameInfoSlideActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".CoverPageActivity"
-            android:screenOrientation="portrait">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".StartActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".old.GameInfoSlideActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".GameSettings"
+            android:name=".old.CoverPageActivity"
             android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".PlayerSettings"
-            android:screenOrientation="portrait">
+
         </activity>
         <activity
-            android:name=".Tipps"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".old.StartActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".LastGames"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".old.GameSettings"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".GameBlock"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".old.PlayerSettings"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".HighScore"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".Settings"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".old.Tipps"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".old.LastGames"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".old.GameBlock"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".old.HighScore"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".old.Settings"
+            android:screenOrientation="portrait"></activity>
+
+
+
+
+        <!-- HockeyApp -->
+        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
+        <!-- Fabric -->
+        <meta-data android:name="io.fabric.ApiKey" android:value="cb067624f4391de0e2250d9459d7be8690fa3c8a" />
+
+
     </application>
 
 </manifest>

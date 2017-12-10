@@ -1,119 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- General -->
     <string name="app_name">Wizard Block</string>
+    <string name="app_name_toolbar">Wizard Block - %1$s</string>
 
-    <!-- StartActivity -->
-    <string name="welcome">Willkommen beim Wizard Block!</string>
-    <string name="newGameOrLoad">Möchtest du ein neues Spiel starten, ein vorheriges laden, um dort weiter zu spielen, wo du aufgehört hast, oder deine Highscore ansehen? </string>
-    <string name="new_game">Neues Spiel</string>
-    <string name="load_game">Spiel laden</string>
+    <!-- Main Activity -->
+    <string name="back_press_dialog_title">Do you want to quit this game?</string>
+    <string name="back_press_dialog_text">If you press OK, this game will be closed and you will return back to main page. Do not be afraid, your game is saved.</string>
+
+    <!-- Game Settings -->
+    <string name="title_game_settings">Game Settings</string>
+    <string name="switch_stitches_question">tipps equal possible stitches?</string>
+    <string name="hint_game_name">Gamename</string>
+    <string name="title_info_dialog">Info</string>
+    <string name="stitches_can_be_equal_tipps">Tipps can be equal stitches</string>
+    <string name="stitches_can_be_equal_tipps_info">If enabled, your tipps can be equal possible stitches (e.g. Round 2 = all tipps combined can be 2).\n\nIf not,
+        tipps can not be equal to possible stitches. That means, the last player has to say one tipp more or less, if all tipps combined would be equal to possible stitches.</string>
+    <string name="stitches_can_be_equal_in_first_round_text">Exception: enable for first round</string>
+    <string name="stitches_can_be_equal_in_first_round_info">If enabled, previous rule is disabled for first round.\n\nThis does not affect all other rounds.</string>
+    <string name="anniversary_option_stitches_can_be_less">Advanced: anniversary option</string>
+    <string name="anniversary_option_stitches_can_be_less_info">If enabled, you can play with the anniversary version, which means, your stitches combined can be less than possible stitches.</string>
+    <string name="gamename_info">This name is used to identify this gameSettings to save in your local database.\nYou can pause and continue this gameSettings anytime.</string>
+    <string name="player_hint_placeholder">Player %1$d</string>
+    <string name="round">Round</string>
+    <string name="enter_tipps">Enter your tipps</string>
+    <string name="enter_results">Enter your results</string>
+
+
+
+
+
+    <string name="activated">selected</string>
+    <string name="backpress">Push back again to exit the App</string>
+    <string name="blocktext">Example Round 2: Maxi said he\'ll make 2 but did just 1, so he get -10 and has 10 points now.</string>
+    <string name="can_first_round_be_equal">You say, that all tipps combined shoudn\'t be equal possible stitches. Should this rule be disabled in the first round?</string>
+    <string name="cancel">Cancel</string>
+    <string name="change">Change</string>
+    <string name="changeResults">Change Results</string>
+    <string name="changeTipps">Change Tipps</string>
+    <string name="change_names">Change Player Names</string>
+    <string name="clock">o\'clock</string>
+    <string name="congratulations">Well done</string>
+    <string name="displayOff">Display tuns off</string>
+    <string name="displayOn">Display stays active</string>
+    <string name="display_always_on">Should your display always be active?</string>
+    <string name="error">Error</string>
+    <string name="explaination">Don\'t want to write all your results on your block? That\'s no problem with the Wizard Block Application!</string>
+    <string name="feedback">I\'m very happy to get feedback from you. Please mail to me.</string>
+    <string name="from">from</string>
+    <string name="game_over">Game Over</string>
+    <string name="game_settings_explaination">Choose a name for this gameSettings and how much players.</string>
+    <string name="gamesettingstext">Choose a name for this gameSettings and how much players.</string>
+    <string name="gofurther">Go</string>
+    <string name="hello_tobias">Hello Tobias,\n\n</string>
+    <string name="how_many_stitches">How much stitches you\'ll make?</string>
+    <string name="how_many_stitches_result">Stitches made:</string>
+    <string name="information">Developed by Tobias</string>
+    <string name="last_games">Last Games</string>
+    <string name="last_one_more_or_less">Last player must say 1 more or less.</string>
+    <string name="letsgo">Let\'s go</string>
+    <string name="load_game">Load Game</string>
+    <string name="newGameOrLoad">Do you want to start a new gameSettings, load a gameSettings or look up your highscores?</string>
+    <string name="new_game">New Game</string>
+    <string name="next">Next</string>
+    <string name="next_result">Confirm Results</string>
+    <string name="no">No</string>
+    <string name="no_game_name">Choose a name for this gameSettings</string>
+    <string name="no_old_games">No old games</string>
+    <string name="no_old_highscores">No old highscores</string>
+    <string name="onewinner">you have won with</string>
+    <string name="player_name_five">Player 5</string>
+    <string name="player_name_four">Player 4</string>
+    <string name="player_name_give_in">Type in all player names</string>
+    <string name="player_name_not_entered">You haven\'t set a gameSettings name</string>
+    <string name="player_name_one">Player 1</string>
+    <string name="player_name_six">Player 6</string>
+    <string name="player_name_three">Player 3</string>
+    <string name="player_name_two">Player 2</string>
+    <string name="player_settings">Player</string>
+    <string name="playersettingstext">Type in all player names.</string>
+    <string name="points">Points</string>
+    <string name="really_want_to_start_new_game">Do you really want to start a new gameSettings? You can continue this gameSettings later.</string>
+    <string name="scoreboard">Scoreboard</string>
+    <string name="settings">Settings</string>
+    <string name="settingstext">You can change player names or your tipps and results from last round.</string>
+    <string name="start_a_new_game">New Game</string>
+    <string name="start_new_game">New Game</string>
+    <string name="startscreentext">You choose weather to start a new gameSettings, load an old gameSettings or your highscores.</string>
+    <string name="tipps_can_not_be_equal_round">Tipps equal stitches.</string>
+    <string name="tipps_error">Stitches made not equal possible stitches</string>
+    <string name="tippstext">You can choose the amount of tipps and results.</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="tutorialexplaination"><![CDATA[In this little tutorial everything will be explained to you. Swipe to the left or push >]]></string>
+    <string name="twowinner">you have won with</string>
+    <string name="welcome">Welcome to Wizard Block!</string>
+    <string name="win">:-)</string>
+    <string name="yes">yes</string>
+    <string name="covername">Wizard Block</string>
     <string name="highscore">Highscore</string>
-
-    <!-- GameSettings -->
-    <string name="game_settings">Spieleinstellungen</string>
-    <string name="game_name">Spielname</string>
-    <string name="stitches">Dürfen Stiche aufgehen?</string>
-    <string name="stitches_can_equal">Die Gesamtzahl der Stiche darf der Anzahl Spiele entsprechen</string>
-    <string name="stitches_cant_be_equal">Der letzte Spieler muss so viele Stiche ansagen, dass die Gesamtanzahl
-                                        Stiche ungleich der Anzahl Spiele ist</string>
-    <string name="next">Weiter</string>
-    <string name="game_settings_explaination">Bitte gib dem Spiel einen Namen und wählen die Anzahl Spieler</string>
-    <string name="no_game_name">Bitte gebe ein Spielname ein</string>
-    <string name="display_always_on">Soll das Display immer aktiv sein?</string>
-
-    <string name="can_first_round_be_equal">Du hast ausgewählt, dass die Anzahl der Tipps nicht gleich der möglichen Stiche sein darf. Möchtest du aber
-    die Variante spielen, in der diese Regel bei der ersten Runde ausgesetzt ist?</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nein</string>
-
-    <!-- PlayerSettings -->
-    <string name="player_settings">Spieler</string>
-    <string name="player_name_give_in">Bitte gebe die Namen aller Spieler an</string>
-    <string name="player_name_one">Spieler 1</string>
-    <string name="player_name_two">Spieler 2</string>
-    <string name="player_name_three">Spieler 3</string>
-    <string name="player_name_four">Spieler 4</string>
-    <string name="player_name_five">Spieler 5</string>
-    <string name="player_name_six">Spieler 6</string>
-    <string name="player_name_not_entered">Du hast diesem Spieler keinen Namen gegeben</string>
-
-    <!-- GameBlock -->
-    <string name="game_block">Block</string>
-    <string name="backpress">Ein erneuter Klick beendet die App</string>
-    <string name="really_want_to_start_new_game">Willst du wirklich ein neues Spiel starten?\nDas aktuelle Spiel kannst du jederzeit unter \"Spiel laden\" fortsetzen!</string>
-    <string name="game_over">Das Spiel ist vorbei</string>
-    <string name="start_a_new_game">Neues Spiel starten</string>
-    <string name="cancel">Abbrechen</string>
-    <string name="error">Fehler</string>
-    <string name="congratulations">Herzlichen Glückwunsch</string>
-    <string name="onewinner">du hast mit</string>
-    <string name="twowinner">ihr habt mit</string>
-    <string name="win">Punkten gewonnen :-)</string>
-    <string name="scoreboard">Scoreboard anschauen</string>
-
-    <!-- Tipps -->
-    <string name="round">Runde</string>
-    <string name="how_many_stitches">Wie viele Stiche werdet ihr machen?</string>
-    <string name="how_many_stitches_result">Anzahl gemachter Stiche:</string>
-    <string name="tipps_error">Anzahl gemachter Stiche ungleich möglicher Stiche</string>
-    <string name="tipps_can_not_be_equal_round">Anzahl Tipps gleich Anzahl Runden.</string>
-    <string name="last_one_more_or_less">Der letzte Spieler muss 1 Stich mehr oder weniger tippen.</string>
-
-
-    <!-- Menu Game Block -->
-    <string name="next_tipp">Tipps eintragen</string>
-    <string name="next_result">Ergebnis eintragen</string>
-    <string name="change_names">Spielernamen ändern</string>
-    <string name="start_new_game">Neues Spiel</string>
-    <string name="changeTipps">Tipps korrigieren</string>
-    <string name="changeResults">Ergebnisse korrigieren</string>
-    <string name="change">Korrigieren</string>
-    <string name="settings">Einstellungen</string>
-
-    <!-- Last Games -->
-    <string name="no_old_games">Keine vergangenen Spiele verfügbar</string>
-    <string name="last_games">Letzte Spiele</string>
-    <string name="clock">Uhr</string>
-    <string name="delete">Delete</string>
-
-    <!-- App Info -->
-    <string name="information">Entwickelt von Tobias</string>
     <string name="email"><u>tobi.applications@gmail.com</u></string>
-    <string name="feedback">Über ein Feedback (Kritik, Wünsche, Anregungen, Lob), ein Like auf Facebook oder eine positive Bewertung im Play Store würde ich mich sehr freuen :)</string>
-    <string name="hello_tobias">Hallo Tobias,\n\n</string>
-
-    <!-- Highscores -->
-    <string name="no_old_highscores">Keine vergangenen Highscores verfügbar</string>
-    <string name="from">vom</string>
-    <string name="activated">ausgewählt</string>
-    <string name="points">Punkte</string>
-
-    <!-- GameInfoSlide -->
-    <string name="letsgo">Los geht\'s</string>
-    <string name="gofurther">Überspringen</string>
-    <string name="blocktext">Beispiel Runde 2: Maxi hat 2 Stiche vorausgesagt aber nur 1 Stich gemacht, somit bekommt er
-    -10 und steht nun bei 10 Punkten.</string>
-    <string name="gamesettingstext">Gib deinem Spiel einen Namen und wähle die Anzahl der Spieler.</string>
-    <string name="settingstext">Du kannst jederzeit die Spielernamen ändern oder versehentlich falsch eingetragene Tipps oder Ergebnisse ändern.</string>
-    <string name="playersettingstext">Gib im folgenden Bild die Namen aller Spieler ein.</string>
-    <string name="tippstext">Über die jeweiligen Regler kannst du deine Anzahl Tipps bzw. gemachten Stiche eintragen.</string>
-    <string name="startscreentext">Am Anfang wählst du aus, ob du ein neues Spiel beginnen, ein altes laden oder die Highscore einsehen möchtest.</string>
-    <string name="explaination">Du bist genervt die Spielergebnisse von Wizard auf den Block zu schreiben? Oder sind deine
-    Zettel ständig voll und du benötigst neue?\n\nKein Problem!\n\nMit dem Wizard Block kannst du ganz bequem deine Daten in die
-    App eintragen und endlos Wizard spielen :-)</string>
-    <string name="tutorialexplaination">In diesem kleinen Tutorial wird dir alles erklärt. Swipe mit dem Finger
-    nach links oder klicke auf \'>\'.</string>
-    <string name="arrow">&gt;</string>
-
-
-    <!-- Settings Test -->
-    <string name="tutorial">Tutorial erneut ansehen</string>
-    <string name="displayOn">Display bleibt aktiv</string>
-    <string name="displayOff">Display geht aus</string>
+    <string name="arrow"><![CDATA[>]]></string>
+    <string name="game_block">Block</string>
+    <string name="delete">Delete</string>
     <string name="facebook_app_id">287788674952926</string>
-
-
-    <!-- Cover Page -->
-    <string name="covername">Der Wizard Block</string>
-
 </resources>

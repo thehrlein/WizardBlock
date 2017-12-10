@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLightGrey">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:paddingTop="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/button_layout"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:paddingTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="15sp"
+                    android:text="@string/game_settings_explaination"
+                    android:id="@+id/tvGameSettingsExplaination"
+                    android:gravity="center"/>
+
+                <LinearLayout
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/login_text_input_layout"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_game_name">
+
+                        <EditText
+                            android:id="@+id/game_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:maxLines="1"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/game_name_info"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/ic_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.tobiashehrlein.tobiswizardblock.ui.views.PlayerChooseView
+                    android:id="@+id/player_chooser"
+                    android:layout_marginTop="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_player_choose_view"
+                    android:divider="@color/colorPrimary"
+                    android:showDividers="middle"/>
+
+                <com.tobiashehrlein.tobiswizardblock.ui.views.PlayerNameGroup
+                    android:id="@+id/playerNameGroup"
+                    android:layout_marginTop="48dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/switchInfoLayout"
+                    android:layout_marginTop="48dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <View
+            android:layout_below="@id/scroll_view"
+            android:background="@color/colorGrey"
+            android:layout_width="match_parent"
+            android:layout_height="2dp" />
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.tobiashehrlein.tobiswizardblock.ui.views.PrimaryButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/next"
+                android:id="@+id/btNext"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</layout>

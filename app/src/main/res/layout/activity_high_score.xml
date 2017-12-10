@@ -16,7 +16,7 @@
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
               android:id="@+id/listviewHighscore"
-              tools:context="com.tobiashehrlein.tobiswizardblock.HighScore"
+              tools:context="com.tobiashehrlein.tobiswizardblock.old.HighScore"
               android:layout_gravity="center">
 
     </ListView>
