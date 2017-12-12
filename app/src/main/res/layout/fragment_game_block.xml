@@ -13,7 +13,8 @@
             android:paddingEnd="12dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="7">
 
             <TextView
                 android:id="@+id/round_headline"
@@ -51,6 +52,12 @@
             </LinearLayout>
 
         </ScrollView>
+
+        <View
+            android:layout_above="@id/button_layout"
+            android:background="@drawable/shadow_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="4dp" />
 
         <LinearLayout
             android:id="@+id/button_layout"

@@ -22,6 +22,7 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     private List<TippStitchSeekBarLayout> tippStitchesLayouts;
     private GameSettings gameSettings;
     private int round;
+    private @Constants.EnterType int enterType;
 
     public TippResultPresenter() {
         tippStitchesLayouts = new ArrayList<>();
@@ -32,8 +33,13 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
         this.listener = listener;
         parseArguments(arguments);
         createEnteringControls();
-
+        setUpFragmentBasedOnEnterType();
         listener.setBackPressEnabled(true);
+
+        if (isAttached()) {
+            getView().initializeToolbar();
+            getView().setListener();
+        }
     }
 
     private void parseArguments(Bundle arguments) {
@@ -47,6 +53,10 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
 
         if (arguments.containsKey(Constants.ROUND)) {
             this.round = arguments.getInt(Constants.ROUND);
+        }
+
+        if (arguments.containsKey(Constants.ENTER_TYPE)) {
+            enterType = arguments.getInt(Constants.ENTER_TYPE);
         }
     }
 
@@ -66,5 +76,25 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
                 tippStitchesLayouts.add(layout);
             }
         }
+    }
+
+    private void setUpFragmentBasedOnEnterType() {
+        if (enterType == Constants.EnterType.TIPPS) {
+            if (isAttached()) {
+                getView().setTippsToolbar();
+                getView().setTippsButton();
+            }
+        } else {
+            if (isAttached()) {
+                getView().setResultsToolbar();
+                getView().setResultsButton();
+
+            }
+        }
+    }
+
+    @Override
+    public void onEnterButtonClicked() {
+
     }
 }

@@ -27,8 +27,14 @@
     <string name="enter_tipps">Enter your tipps</string>
     <string name="enter_results">Enter your results</string>
 
+    <!-- Game Block -->
+    <string name="title_tipps">Tipps</string>
+    <string name="title_results">Results</string>
 
 
+    <!-- Tipps Results -->
+    <string name="confirm_tipps">Confirm tipps</string>
+    <string name="confirm_results">Confirm results</string>
 
 
     <string name="activated">selected</string>

@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.activity;
 
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -52,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         }
 
         transaction.commit();
+    }
+
+    @Override
+    public void showDialog(DialogFragment dialogFragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        dialogFragment.show(transaction, "");
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.activity;
 
+import android.support.v4.app.DialogFragment;
+
 import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderListener;
@@ -18,6 +20,7 @@ public interface MainActivityContract {
     }
 
     interface View extends BaseView, CoverPageListener, FragmentNavigationListener, DialogBuilderListener {
+
         void hideToolbar();
         void showToolbar();
     }

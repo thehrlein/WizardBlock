@@ -105,10 +105,10 @@
         </ScrollView>
 
         <View
-            android:layout_below="@id/scroll_view"
-            android:background="@color/colorGrey"
+            android:layout_above="@id/button_layout"
+            android:background="@drawable/shadow_bottom"
             android:layout_width="match_parent"
-            android:layout_height="2dp" />
+            android:layout_height="4dp" />
 
         <LinearLayout
             android:id="@+id/button_layout"

@@ -76,7 +76,7 @@ public class PlayerNameGroup extends LinearLayout {
             return playerNames;
         }
 
-        for (int i = 0; i < currentPlayerCount; i++) {
+        for (int i = 0; i <= currentPlayerCount; i++) {
             playerNames.add(players.get(i).getInput());
         }
 

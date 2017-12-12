@@ -60,7 +60,7 @@ public class TippStitchSeekBarLayout extends LinearLayout {
 
     private void setLayoutParams(Context context) {
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        int marginTop = GeneralUtils.pxFromDp(context, 16);
+        int marginTop = GeneralUtils.pxFromDp(context, 32);
         layoutParams.setMargins(0, marginTop, 0, 0);
         setLayoutParams(layoutParams);
 

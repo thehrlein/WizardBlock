@@ -1,13 +1,16 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
+import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentTippsResultsBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
@@ -18,18 +21,19 @@ import com.tobiashehrlein.tobiswizardblock.utils.Constants;
  * Created by Tobias Hehrlein on 08.12.2017.
  */
 
-public class TippResultFragment extends Fragment implements TippResultContract.View {
+public class TippResultFragment extends DialogFragment implements TippResultContract.View {
 
     private FragmentTippsResultsBinding bind;
     private TippResultContract.Presenter presenter;
     private FragmentNavigationListener listener;
     private Context context;
 
-    public static TippResultFragment newInstance(GameSettings gameSettings, int round) {
+    public static TippResultFragment newInstance(GameSettings gameSettings, int round, @Constants.EnterType int enterType) {
         TippResultFragment tippResultFragment = new TippResultFragment();
         Bundle args = new Bundle();
         args.putSerializable(Constants.GAME_SETTINGS, gameSettings);
         args.putInt(Constants.ROUND, round);
+        args.putInt(Constants.ENTER_TYPE, enterType);
         tippResultFragment.setArguments(args);
         return tippResultFragment;
     }
@@ -43,28 +47,39 @@ public class TippResultFragment extends Fragment implements TippResultContract.V
         }
     }
 
+    @NonNull
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        presenter = new TippResultPresenter();
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
         bind = FragmentTippsResultsBinding.inflate(inflater);
 
-        return bind.getRoot();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.SlidingDialogTheme);
+        builder.setOnKeyListener((dialogInterface, keyCode, keyEvent) -> {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                dismissOverlay();
+                return true;
+            }
+            return false;
+        });
+
+        builder.setView(bind.getRoot());
+
+        context = getContext();
+        initializePresenter();
+
+        return builder.create();
+    }
+
+    private void initializePresenter() {
+        presenter = new TippResultPresenter();
+        presenter.attach(this);
+        presenter.init(listener, getArguments());
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        context = getContext();
-        presenter.attach(this);
-        presenter.init(listener, getArguments());
+    public void initializeToolbar() {
+        bind.toolbar.setNavigationIcon(R.drawable.ic_close);
+        bind.toolbar.setNavigationOnClickListener(view -> dismissOverlay());
     }
 
     @Override
@@ -77,25 +92,32 @@ public class TippResultFragment extends Fragment implements TippResultContract.V
         return seekBarLayout;
     }
 
-    //    @NonNull
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        context = getContext();
-//        bind = FragmentTippsResultsBinding.inflate(getLayoutInflater());
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.SlidingDialogTheme);
-//        builder.setOnKeyListener(((dialog, keyCode, keyEvent) -> {
-//            if (keyCode == KeyEvent.KEYCODE_BACK) {
-//                dismissOverlay();
-//                return true;
-//            }
-//            return false;
-//        }));
-//        builder.setView(bind.getRoot());
-//
-//        return builder.create();
-//    }
+    @Override
+    public void setListener() {
+        bind.enterButton.setOnClickListener(view -> presenter.onEnterButtonClicked());
+    }
 
-//    private void dismissOverlay() {
-//        new Handler().postDelayed(this::dismiss, 200);
-//    }
+    @Override
+    public void setTippsToolbar() {
+        bind.toolbarText.setText(context.getString(R.string.title_tipps));
+    }
+
+    @Override
+    public void setResultsToolbar() {
+        bind.toolbarText.setText(context.getString(R.string.title_results));
+    }
+
+    @Override
+    public void setTippsButton() {
+        bind.enterButton.setText(context.getString(R.string.enter_tipps));
+    }
+
+    @Override
+    public void setResultsButton() {
+        bind.enterButton.setText(context.getString(R.string.enter_results));
+    }
+
+    private void dismissOverlay() {
+        new Handler().postDelayed(this::dismiss, 200);
+    }
 }

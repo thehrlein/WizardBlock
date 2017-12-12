@@ -31,7 +31,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     public static GameBlockFragment newInstance(GameSettings gameSettings) {
         GameBlockFragment gameBlockFragment = new GameBlockFragment();
         Bundle args = new Bundle();
-        args.putSerializable(Constants.GAME, gameSettings);
+        args.putSerializable(Constants.GAME_SETTINGS, gameSettings);
         gameBlockFragment.setArguments(args);
         return gameBlockFragment;
     }

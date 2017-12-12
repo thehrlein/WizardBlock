@@ -149,7 +149,7 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
     @Override
     public List<String> getPlayerNames() {
-        return bind.playerNameGroup.getPlayerNames(bind.playerChooser.getCurrentPlayerCount());
+        return bind.playerNameGroup.getPlayerNames(bind.playerChooser.getCurrentPlayerCount() - 1);
     }
 
     @Override

@@ -17,10 +17,17 @@ public interface TippResultContract {
     interface Presenter extends BaseMvpPresenter<View> {
 
         void init(FragmentNavigationListener listener, Bundle arguments);
+        void onEnterButtonClicked();
     }
 
     interface View extends BaseView {
 
         TippStitchSeekBarLayout createTippStitchesLayout(String gameSettings, int round);
+        void setTippsButton();
+        void setResultsButton();
+        void setListener();
+        void initializeToolbar();
+        void setTippsToolbar();
+        void setResultsToolbar();
     }
 }

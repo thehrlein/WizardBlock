@@ -1,6 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
@@ -50,15 +51,15 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     private void parseArguments(Bundle arguments) {
-        if (arguments.containsKey(Constants.GAME)) {
-            gameSettings = (GameSettings) arguments.getSerializable(Constants.GAME);
+        if (arguments.containsKey(Constants.GAME_SETTINGS)) {
+            gameSettings = (GameSettings) arguments.getSerializable(Constants.GAME_SETTINGS);
         }
     }
 
     @Override
     public void openTippsResult() {
         if (listener != null) {
-            listener.replaceFragment(TippResultFragment.newInstance(gameSettings, round), true);
+            listener.showDialog(TippResultFragment.newInstance(gameSettings, round, enterType));
         }
     }
 }
