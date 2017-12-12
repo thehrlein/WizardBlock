@@ -85,11 +85,11 @@ public class GameBlock extends AppCompatActivity
 
         Log.d("GameBlock", "onCreate displayActive: " + displayActive);
 
-        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
-                .name("myRealm")
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+//        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
+//                .name("myRealm")
+//                .deleteRealmIfMigrationNeeded()
+//                .build();
+//        Realm.setDefaultConfiguration(configuration);
 
         findMyViews();
         getMyIntent();
@@ -895,11 +895,11 @@ public class GameBlock extends AppCompatActivity
 
     private void safeWinnerScoreIntoNewRealm()
     {
-        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
-                .name("highscoreRealm")
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+//        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
+//                .name("highscoreRealm")
+//                .deleteRealmIfMigrationNeeded()
+//                .build();
+//        Realm.setDefaultConfiguration(configuration);
 
         myRealm = Realm.getDefaultInstance();
 
@@ -916,11 +916,11 @@ public class GameBlock extends AppCompatActivity
 
         checkIfWinnerScoreAlreadyInDataBase();
 
-        RealmConfiguration configuration2 = new RealmConfiguration.Builder(getApplicationContext())
-                .name("myRealm")
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(configuration2);
+//        RealmConfiguration configuration2 = new RealmConfiguration.Builder(getApplicationContext())
+//                .name("myRealm")
+//                .deleteRealmIfMigrationNeeded()
+//                .build();
+//        Realm.setDefaultConfiguration(configuration2);
 
     }
 

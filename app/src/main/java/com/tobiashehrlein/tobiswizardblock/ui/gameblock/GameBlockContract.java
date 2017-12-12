@@ -16,7 +16,7 @@ public interface GameBlockContract {
 
     interface Presenter extends BaseMvpPresenter<View> {
 
-        void init(FragmentNavigationListener listener, Bundle arguments);
+        void init(FragmentNavigationListener listener);
         void openTippsResult();
     }
 

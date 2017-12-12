@@ -17,6 +17,11 @@ import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
 import com.tobiashehrlein.tobiswizardblock.utils.Constants;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.RealmList;
+
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
  */
@@ -26,14 +31,13 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     private FragmentTippsResultsBinding bind;
     private TippResultContract.Presenter presenter;
     private FragmentNavigationListener listener;
+    private List<TippStitchSeekBarLayout> seekBarLayouts;
     private Context context;
 
-    public static TippResultFragment newInstance(GameSettings gameSettings, int round, @Constants.EnterType int enterType) {
+    public static TippResultFragment newInstance(boolean isTippMode) {
         TippResultFragment tippResultFragment = new TippResultFragment();
         Bundle args = new Bundle();
-        args.putSerializable(Constants.GAME_SETTINGS, gameSettings);
-        args.putInt(Constants.ROUND, round);
-        args.putInt(Constants.ENTER_TYPE, enterType);
+        args.putBoolean(Constants.ISTIPPMODE, isTippMode);
         tippResultFragment.setArguments(args);
         return tippResultFragment;
     }
@@ -65,15 +69,16 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         builder.setView(bind.getRoot());
 
         context = getContext();
+        seekBarLayouts = new ArrayList<>();
         initializePresenter();
 
         return builder.create();
     }
 
     private void initializePresenter() {
-        presenter = new TippResultPresenter();
+        presenter = new TippResultPresenter(getArguments());
         presenter.attach(this);
-        presenter.init(listener, getArguments());
+        presenter.init(listener);
     }
 
     @Override
@@ -88,7 +93,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         seekBarLayout.setPlayerName(playerName);
         seekBarLayout.setMax(round);
         bind.tippStitchesLayout.addView(seekBarLayout);
-
+        seekBarLayouts.add(seekBarLayout);
         return seekBarLayout;
     }
 
@@ -117,7 +122,18 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         bind.enterButton.setText(context.getString(R.string.enter_results));
     }
 
-    private void dismissOverlay() {
+    @Override
+    public void dismissOverlay() {
         new Handler().postDelayed(this::dismiss, 200);
+    }
+
+    @Override
+    public RealmList<Integer> getSeekBarValues() {
+        RealmList<Integer> values = new RealmList<>();
+        for (TippStitchSeekBarLayout seekBarLayout : seekBarLayouts) {
+            values.add(seekBarLayout.getValue());
+        }
+
+        return values;
     }
 }

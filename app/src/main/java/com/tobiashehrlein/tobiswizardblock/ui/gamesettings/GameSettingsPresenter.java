@@ -4,9 +4,12 @@ import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Settings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.ui.gameblock.GameBlockFragment;
+import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 import java.util.List;
+
+import io.realm.RealmList;
 
 /**
  * Created by Tobias Hehrlein on 27.11.2017.
@@ -15,8 +18,6 @@ import java.util.List;
 public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.View> implements GameSettingsContract.Presenter {
 
     private FragmentNavigationListener listener;
-    private boolean tippsEqualStitches;
-    private boolean tippsEqualStitchesInFirstRound;
 
     @Override
     public void init(FragmentNavigationListener listener) {
@@ -36,8 +37,6 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
 
     @Override
     public void setTippsEqualStitches(boolean tippsEqualStitches) {
-        this.tippsEqualStitches = tippsEqualStitches;
-
         if (isAttached()) {
             if (tippsEqualStitches) {
                 getView().hideFirstRoundExceptionOption();
@@ -49,23 +48,19 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
     }
 
     @Override
-    public void setTippsEqualStitchesInFirstRound(boolean tippsEqualStitchesInFirstRound) {
-        this.tippsEqualStitchesInFirstRound = tippsEqualStitchesInFirstRound;
-    }
-
-    @Override
     public void startNewGame() {
-        GameSettings gameSettings = null;
         if (isAttached()) {
             String gameName = getView().getGameName();
-            List<String> playerNames = getView().getPlayerNames();
+            RealmList<String> playerNames = getView().getPlayerNames();
             Settings settings = getView().getSettings();
 
-            gameSettings = GameSettings.create(gameName, playerNames, settings);
+            GameSettings gameSettings = new GameSettings(gameName, playerNames, settings);
+
+            Storage.getInstance().setGameSettings(gameSettings);
         }
 
-        if (gameSettings != null && listener != null) {
-            GameBlockFragment gameBlockFragment = GameBlockFragment.newInstance(gameSettings);
+        if (listener != null) {
+            GameBlockFragment gameBlockFragment = GameBlockFragment.newInstance();
             listener.replaceFragment(gameBlockFragment, true);
         }
     }

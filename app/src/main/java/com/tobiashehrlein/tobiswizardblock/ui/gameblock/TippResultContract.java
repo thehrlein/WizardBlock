@@ -8,6 +8,8 @@ import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseView;
 
+import io.realm.RealmList;
+
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
  */
@@ -16,7 +18,7 @@ public interface TippResultContract {
 
     interface Presenter extends BaseMvpPresenter<View> {
 
-        void init(FragmentNavigationListener listener, Bundle arguments);
+        void init(FragmentNavigationListener listener);
         void onEnterButtonClicked();
     }
 
@@ -29,5 +31,7 @@ public interface TippResultContract {
         void initializeToolbar();
         void setTippsToolbar();
         void setResultsToolbar();
+        void dismissOverlay();
+        RealmList<Integer> getSeekBarValues();
     }
 }

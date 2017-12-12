@@ -25,8 +25,6 @@ import java.util.HashMap;
 import java.util.Set;
 
 import io.realm.Realm;
-import io.realm.RealmBaseAdapter;
-import io.realm.RealmConfiguration;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
@@ -37,7 +35,7 @@ public class LastGames extends AppCompatActivity implements
 
     private TextView tvNoGames;
     private ListView listView;
-    MyAdapter myAdapter;
+//    MyAdapter myAdapter;
 
     private Realm myRealm;
     RealmResults<GameRealm> results;
@@ -113,13 +111,13 @@ public class LastGames extends AppCompatActivity implements
         if (checked)
         {
             nr++;
-            myAdapter.setNewSelection(position, checked);
+//            myAdapter.setNewSelection(position, checked);
           //  Log.d("Nr", "Ausgewählte Elemente: " + nr);
         }
         else
         {
             nr--;
-            myAdapter.removeSelection(position);
+//            myAdapter.removeSelection(position);
            // Log.d("Nr", "Ausgewählte Elemente: " + nr);
         }
         mode.setTitle(nr + " " + getString(R.string.activated));
@@ -144,26 +142,26 @@ public class LastGames extends AppCompatActivity implements
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item)
     {
-        myAdapter.deleteFromRealm();
-        myAdapter.clearSelection();
-        mode.finish();
+//        myAdapter.deleteFromRealm();
+//        myAdapter.clearSelection();
+//        mode.finish();
         return false;
     }
 
     private void setUpRealmDatabase()
     {
-        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
-                .name("myRealm")
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+//        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
+//                .name("myRealm")
+//                .deleteRealmIfMigrationNeeded()
+//                .build();
+//        Realm.setDefaultConfiguration(configuration);
     }
 
 
     @Override
     public void onDestroyActionMode(ActionMode mode)
     {
-        myAdapter.clearSelection();
+//        myAdapter.clearSelection();
     }
 
     private void checkRealmResults()
@@ -189,9 +187,9 @@ public class LastGames extends AppCompatActivity implements
             {
                 myGameList.add(c);
             }
-
-            myAdapter = new MyAdapter(getApplicationContext(), results);
-            listView.setAdapter(myAdapter);
+//
+//            myAdapter = new MyAdapter(getApplicationContext(), results);
+//            listView.setAdapter(myAdapter);
 
         }
     }
@@ -246,11 +244,11 @@ public class LastGames extends AppCompatActivity implements
 
     private void deleteRealmDatabase()
     {
-        myRealm.beginTransaction();
-        myRealm.clear(GameRealm.class);
-        myRealm.commitTransaction();
-
-        myAdapter.notifyDataSetChanged();
+//        myRealm.beginTransaction();
+//        myRealm.clear(GameRealm.class);
+//        myRealm.commitTransaction();
+//
+//        myAdapter.notifyDataSetChanged();
         invalidateOptionsMenu();
         Log.d("Delete", "alle Spiele gelöscht");
         checkRealmResults();
@@ -295,104 +293,104 @@ public class LastGames extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    public class MyAdapter extends RealmBaseAdapter //ArrayAdapter<GameRealm>
-    {
-        private RealmResults<GameRealm> results;
-        private Context context;
-        private HashMap<Integer, Boolean> mSelection = new HashMap<Integer, Boolean>();
-
-        public MyAdapter(Context context, RealmResults<GameRealm> results)
-        {
-            super(context, results, true);
-            this.results = results;
-            this.context = context;
-        }
-
-        public void setNewSelection(int position, boolean value)
-        {
-            mSelection.put(position, value);
-            notifyDataSetChanged();
-          //  Log.d("Ausgewählt", "Ausgewählt: " + mSelection.toString());
-        }
-
-        public boolean isPositionChecked(int position)
-        {
-            Boolean result = mSelection.get(position);
-         //   Log.d("Checked", "Checked: " + position + " = " + result);
-            return result == null ? false : result;
-        }
-
-        public Set<Integer> getCurrentCheckedPosition()
-        {
-            return mSelection.keySet();
-        }
-
-        public void removeSelection(int position)
-        {
-            mSelection.remove(position);
-            notifyDataSetChanged();
-        }
-
-
-        public void clearSelection()
-        {
-            mSelection = new HashMap<>();
-            notifyDataSetChanged();
-        }
-
-        public void deleteFromRealm()
-        {
-            myRealm.beginTransaction();
-            Log.d("Test", "Resultssize: " + results.size());
-            int length = results.size();
-
-            for (int i = length - 1; i >= 0; i--)
-            {
-              //  Log.d("Test", "For Schleife: " + i);
-                if (isPositionChecked(i))
-                {
-                //    Log.d("Test", "mSelection an Stelle " + i + " ist ausgewählt");
-                    results.remove(i);
-
-                }
-                else
-                {
-                    Log.d("Test", "mSelection an Stelle " + i + " ist nicht ausgewählt");
-
-                }
-            }
-            myRealm.commitTransaction();
-            notifyDataSetChanged();
-            invalidateOptionsMenu();
-            checkRealmResults();
-
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            if (convertView == null)
-            {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.row_layout, parent, false);
-            }
-
-            convertView.setBackgroundColor(getResources().getColor(android.R.color.background_light));
-            if (mSelection.get(position) != null)
-            {
-                convertView.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-            }
-
-            TextView gameName = (TextView) convertView.findViewById(R.id.gameName);
-            TextView gameDate = (TextView) convertView.findViewById(R.id.gamedate);
-            TextView player = (TextView) convertView.findViewById(R.id.players);
-
-            GameRealm gameRealm = results.get(position);
-
-            gameName.setText(gameRealm.getGameName());
-            gameDate.setText(gameRealm.getGameDate() + " " + getString(R.string.clock));
-            player.setText(gameRealm.getCountPlayers() + " " + getString(R.string.player_settings));
-
-            return convertView;
-        }
-    }
+//    public class MyAdapter extends RealmBaseAdapter //ArrayAdapter<GameRealm>
+//    {
+//        private RealmResults<GameRealm> results;
+//        private Context context;
+//        private HashMap<Integer, Boolean> mSelection = new HashMap<Integer, Boolean>();
+//
+//        public MyAdapter(Context context, RealmResults<GameRealm> results)
+//        {
+//            super(context, results, true);
+//            this.results = results;
+//            this.context = context;
+//        }
+//
+//        public void setNewSelection(int position, boolean value)
+//        {
+//            mSelection.put(position, value);
+//            notifyDataSetChanged();
+//          //  Log.d("Ausgewählt", "Ausgewählt: " + mSelection.toString());
+//        }
+//
+//        public boolean isPositionChecked(int position)
+//        {
+//            Boolean result = mSelection.get(position);
+//         //   Log.d("Checked", "Checked: " + position + " = " + result);
+//            return result == null ? false : result;
+//        }
+//
+//        public Set<Integer> getCurrentCheckedPosition()
+//        {
+//            return mSelection.keySet();
+//        }
+//
+//        public void removeSelection(int position)
+//        {
+//            mSelection.remove(position);
+//            notifyDataSetChanged();
+//        }
+//
+//
+//        public void clearSelection()
+//        {
+//            mSelection = new HashMap<>();
+//            notifyDataSetChanged();
+//        }
+//
+//        public void deleteFromRealm()
+//        {
+//            myRealm.beginTransaction();
+//            Log.d("Test", "Resultssize: " + results.size());
+//            int length = results.size();
+//
+//            for (int i = length - 1; i >= 0; i--)
+//            {
+//              //  Log.d("Test", "For Schleife: " + i);
+//                if (isPositionChecked(i))
+//                {
+//                //    Log.d("Test", "mSelection an Stelle " + i + " ist ausgewählt");
+//                    results.remove(i);
+//
+//                }
+//                else
+//                {
+//                    Log.d("Test", "mSelection an Stelle " + i + " ist nicht ausgewählt");
+//
+//                }
+//            }
+//            myRealm.commitTransaction();
+//            notifyDataSetChanged();
+//            invalidateOptionsMenu();
+//            checkRealmResults();
+//
+//        }
+//
+//        public View getView(int position, View convertView, ViewGroup parent)
+//        {
+//            if (convertView == null)
+//            {
+//                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                convertView = inflater.inflate(R.layout.row_layout, parent, false);
+//            }
+//
+//            convertView.setBackgroundColor(getResources().getColor(android.R.color.background_light));
+//            if (mSelection.get(position) != null)
+//            {
+//                convertView.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+//            }
+//
+//            TextView gameName = (TextView) convertView.findViewById(R.id.gameName);
+//            TextView gameDate = (TextView) convertView.findViewById(R.id.gamedate);
+//            TextView player = (TextView) convertView.findViewById(R.id.players);
+//
+//            GameRealm gameRealm = results.get(position);
+//
+//            gameName.setText(gameRealm.getGameName());
+//            gameDate.setText(gameRealm.getGameDate() + " " + getString(R.string.clock));
+//            player.setText(gameRealm.getCountPlayers() + " " + getString(R.string.player_settings));
+//
+//            return convertView;
+//        }
+//    }
 }

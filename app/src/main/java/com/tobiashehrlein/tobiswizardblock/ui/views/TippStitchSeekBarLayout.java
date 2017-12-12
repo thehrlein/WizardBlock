@@ -82,4 +82,8 @@ public class TippStitchSeekBarLayout extends LinearLayout {
     public void setMax(int round) {
         tippsStitchesControl.setMax(round);
     }
+
+    public Integer getValue() {
+        return tippsStitchesControl.getProgress();
+    }
 }

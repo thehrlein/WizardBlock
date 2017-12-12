@@ -19,6 +19,8 @@ import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
 
 import java.util.List;
 
+import io.realm.RealmList;
+
 /**
  * Created by Tobias Hehrlein on 27.11.2017.
  */
@@ -104,7 +106,6 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
         disableRuleInFirstRound.setText(context.getString(R.string.stitches_can_be_equal_in_first_round_text));
         disableRuleInFirstRound.setChecked(false);
         disableRuleInFirstRound.setInfoText(context.getString(R.string.stitches_can_be_equal_in_first_round_info));
-        disableRuleInFirstRound.addOnSwitchCheckListener((compoundButton, checked) -> setTippsEqualStitchesInFirstRound(checked));
 
         bind.switchInfoLayout.addView(disableRuleInFirstRound);
     }
@@ -121,10 +122,6 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
     private void setTippsEqualStitches(boolean tippsEqualStitches) {
         presenter.setTippsEqualStitches(tippsEqualStitches);
-    }
-
-    private void setTippsEqualStitchesInFirstRound(boolean tippsEqualStitchesInFirstRound) {
-        presenter.setTippsEqualStitchesInFirstRound(tippsEqualStitchesInFirstRound);
     }
 
     @Override
@@ -148,7 +145,7 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
     }
 
     @Override
-    public List<String> getPlayerNames() {
+    public RealmList<String> getPlayerNames() {
         return bind.playerNameGroup.getPlayerNames(bind.playerChooser.getCurrentPlayerCount() - 1);
     }
 
@@ -157,6 +154,6 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
         boolean easyMode = tippsEqualStitches.isChecked();
         boolean easyModeFirstRound = disableRuleInFirstRound.isChecked();
         boolean anniversaryMode = anniveraryOption.isChecked();
-        return Settings.create(easyMode, easyModeFirstRound, anniversaryMode);
+        return new Settings(easyMode, easyModeFirstRound, anniversaryMode);
     }
 }

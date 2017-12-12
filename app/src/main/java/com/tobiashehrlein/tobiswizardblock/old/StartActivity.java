@@ -44,11 +44,11 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
     private void setUpRealmDatabase()
     {
-        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
-                .deleteRealmIfMigrationNeeded()
-                .name("myRealm")
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+//        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
+//                .deleteRealmIfMigrationNeeded()
+//                .name("myRealm")
+//                .build();
+//        Realm.setDefaultConfiguration(configuration);
     }
 
 

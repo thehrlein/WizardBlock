@@ -61,10 +61,10 @@ public class CoverPageActivity extends AppCompatActivity
 
     private void setUpRealmDatabase()
     {
-        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
-                .name("tutorial")
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+//        RealmConfiguration configuration = new RealmConfiguration.Builder(getApplicationContext())
+//                .name("tutorial")
+//                .build();
+//        Realm.setDefaultConfiguration(configuration);
 
         myRealm = Realm.getDefaultInstance();
         results = myRealm.where(RealmInt.class).findAll();

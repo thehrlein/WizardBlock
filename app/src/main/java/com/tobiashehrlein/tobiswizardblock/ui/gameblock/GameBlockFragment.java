@@ -28,12 +28,8 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     private FragmentNavigationListener listener;
     private Context context;
 
-    public static GameBlockFragment newInstance(GameSettings gameSettings) {
-        GameBlockFragment gameBlockFragment = new GameBlockFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(Constants.GAME_SETTINGS, gameSettings);
-        gameBlockFragment.setArguments(args);
-        return gameBlockFragment;
+    public static GameBlockFragment newInstance() {
+        return new GameBlockFragment();
     }
 
     @Override
@@ -65,7 +61,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
         context = bind.getRoot().getContext();
         presenter.attach(this);
-        presenter.init(listener, getArguments());
+        presenter.init(listener);
     }
 
     @Override

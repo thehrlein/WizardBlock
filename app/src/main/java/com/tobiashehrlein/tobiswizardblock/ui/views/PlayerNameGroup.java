@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmList;
+
 /**
  * Created by Tobias Hehrlein on 05.12.2017.
  */
@@ -70,8 +72,8 @@ public class PlayerNameGroup extends LinearLayout {
         }
     }
 
-    public List<String> getPlayerNames(int currentPlayerCount) {
-        List<String> playerNames = new ArrayList<>();
+    public RealmList<String> getPlayerNames(int currentPlayerCount) {
+        RealmList<String> playerNames = new RealmList<>();
         if (players == null || players.isEmpty() || currentPlayerCount >= players.size()) {
             return playerNames;
         }

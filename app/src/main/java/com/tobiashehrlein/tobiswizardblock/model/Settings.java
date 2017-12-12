@@ -1,19 +1,37 @@
 package com.tobiashehrlein.tobiswizardblock.model;
 
-import com.google.auto.value.AutoValue;
+
+import io.realm.RealmObject;
 
 /**
  * Created by Tobias Hehrlein on 06.12.2017.
  */
 
-@AutoValue
-public abstract class Settings {
+public class Settings extends RealmObject {
 
-    public abstract boolean isEasyMode();
-    public abstract boolean isEasyModeFirstRound();
-    public abstract boolean isAnniveraryMode();
+    private boolean easyMode;
+    private boolean easyModeInFirstRound;
+    private boolean anniversaryMode;
 
-    public static Settings create(boolean easyMode, boolean easyModeFirstRound, boolean anniversaryMode) {
-        return new AutoValue_Settings(easyMode, easyModeFirstRound, anniversaryMode);
+    public Settings() {
+
+    }
+
+    public Settings(boolean easyMode, boolean easyModeInFirstRound, boolean anniversaryMode) {
+        this.easyMode = easyMode;
+        this.easyModeInFirstRound = easyModeInFirstRound;
+        this.anniversaryMode = anniversaryMode;
+    }
+
+    public boolean isEasyMode() {
+        return easyMode;
+    }
+
+    public boolean isEasyModeInFirstRound() {
+        return easyModeInFirstRound;
+    }
+
+    public boolean isAnniversaryMode() {
+        return anniversaryMode;
     }
 }

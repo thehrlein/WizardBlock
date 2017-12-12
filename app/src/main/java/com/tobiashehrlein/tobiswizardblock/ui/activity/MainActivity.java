@@ -12,8 +12,6 @@ import android.view.View;
 
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.ActivityMainBinding;
-import com.tobiashehrlein.tobiswizardblock.ui.gameblock.TippResultFragment;
-import com.tobiashehrlein.tobiswizardblock.ui.navigation.NavigationFragment;
 import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
 
 import net.hockeyapp.android.CrashManager;

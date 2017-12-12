@@ -7,6 +7,8 @@ import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseView;
 
 import java.util.List;
 
+import io.realm.RealmList;
+
 /**
  * Created by Tobias Hehrlein on 27.11.2017.
  */
@@ -17,7 +19,6 @@ public interface GameSettingsContract {
 
         void init(FragmentNavigationListener listener);
         void setTippsEqualStitches(boolean tippsEqualStitches);
-        void setTippsEqualStitchesInFirstRound(boolean tippsEqualStitchesInFirstRound);
         void startNewGame();
     }
 
@@ -32,7 +33,7 @@ public interface GameSettingsContract {
         void createAnniversaryStitchesCanBeLessOption();
         void setListener();
         String getGameName();
-        List<String> getPlayerNames();
+        RealmList<String> getPlayerNames();
         Settings getSettings();
     }
 }

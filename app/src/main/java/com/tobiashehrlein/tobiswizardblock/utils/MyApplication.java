@@ -8,6 +8,7 @@ import com.facebook.stetho.Stetho;
 import com.tobiashehrlein.tobiswizardblock.BuildConfig;
 
 import io.fabric.sdk.android.Fabric;
+import io.realm.Realm;
 import timber.log.Timber;
 
 /**
@@ -22,7 +23,7 @@ public class MyApplication extends Application {
 
         connectWithStetho(this);
         Fabric.with(this, new Crashlytics());
-
+        Realm.init(this);
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }

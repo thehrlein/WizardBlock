@@ -1,11 +1,12 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
+import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Constants;
+import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 /**
@@ -15,19 +16,18 @@ import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> implements GameBlockContract.Presenter {
 
     private FragmentNavigationListener listener;
-    private GameSettings gameSettings;
-    private @Constants.EnterType int enterType;
-    private int round;
+    private WizardGame wizardGame;
+    private boolean isTippMode;
 
     public GameBlockPresenter() {
-        this.enterType = Constants.EnterType.TIPPS;
-        round = 1;
+        wizardGame = Storage.getInstance().getWizardGame();
+        isTippMode = true;
     }
 
     @Override
-    public void init(FragmentNavigationListener listener, Bundle arguments) {
+    public void init(FragmentNavigationListener listener) {
         this.listener = listener;
-        parseArguments(arguments);
+
         initTitle();
         initHeader();
 
@@ -36,8 +36,8 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     private void initTitle() {
-        if (gameSettings != null && listener != null) {
-            listener.setToolbarTitle(gameSettings.getGamename());
+        if (listener != null) {
+            listener.setToolbarTitle(wizardGame.getGameSettings().getGameName());
         }
     }
 
@@ -45,21 +45,15 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         if (isAttached()) {
             getView().setButtonTipps();
             getView().initRoundHeadline();
-            getView().initHeader(gameSettings.getPlayerNames());
+            getView().initHeader(wizardGame.getGameSettings().getPlayerNames());
             getView().setListener();
-        }
-    }
-
-    private void parseArguments(Bundle arguments) {
-        if (arguments.containsKey(Constants.GAME_SETTINGS)) {
-            gameSettings = (GameSettings) arguments.getSerializable(Constants.GAME_SETTINGS);
         }
     }
 
     @Override
     public void openTippsResult() {
         if (listener != null) {
-            listener.showDialog(TippResultFragment.newInstance(gameSettings, round, enterType));
+            listener.showDialog(TippResultFragment.newInstance(isTippMode));
         }
     }
 }

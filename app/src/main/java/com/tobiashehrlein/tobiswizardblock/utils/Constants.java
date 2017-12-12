@@ -11,9 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 
 public final class Constants {
 
-    public static final String GAME_SETTINGS = "player_count";
-    public static final String ROUND = "round";
-    public static final String ENTER_TYPE = "enter_type";
+    public static final String ISTIPPMODE = "is_tipp_mode";
 
     @IntDef({EnterType.TIPPS, EnterType.RESULTS})
     @Retention(RetentionPolicy.CLASS)
