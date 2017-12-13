@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentTippsResultsBinding;
+import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
-import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
 import com.tobiashehrlein.tobiswizardblock.utils.Constants;
 
@@ -33,6 +33,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     private FragmentNavigationListener listener;
     private List<TippStitchSeekBarLayout> seekBarLayouts;
     private Context context;
+    private DialogDismissListener dismissListener;
 
     public static TippResultFragment newInstance(boolean isTippMode) {
         TippResultFragment tippResultFragment = new TippResultFragment();
@@ -60,7 +61,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.SlidingDialogTheme);
         builder.setOnKeyListener((dialogInterface, keyCode, keyEvent) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK) {
-                dismissOverlay();
+                dismissOverlay(false);
                 return true;
             }
             return false;
@@ -75,16 +76,20 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         return builder.create();
     }
 
+    public void setOnDismissListener(DialogDismissListener dismissListener) {
+        this.dismissListener = dismissListener;
+    }
+
     private void initializePresenter() {
-        presenter = new TippResultPresenter(getArguments());
+        presenter = new TippResultPresenter();
         presenter.attach(this);
-        presenter.init(listener);
+        presenter.init(listener, getArguments());
     }
 
     @Override
     public void initializeToolbar() {
         bind.toolbar.setNavigationIcon(R.drawable.ic_close);
-        bind.toolbar.setNavigationOnClickListener(view -> dismissOverlay());
+        bind.toolbar.setNavigationOnClickListener(view -> dismissOverlay(false));
     }
 
     @Override
@@ -123,7 +128,10 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     }
 
     @Override
-    public void dismissOverlay() {
+    public void dismissOverlay(boolean enteredTippsOrResults) {
+        if (enteredTippsOrResults && dismissListener != null) {
+            dismissListener.onDismiss();
+        }
         new Handler().postDelayed(this::dismiss, 200);
     }
 

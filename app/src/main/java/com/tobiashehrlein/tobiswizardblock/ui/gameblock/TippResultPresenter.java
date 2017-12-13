@@ -26,10 +26,22 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     private WizardGame wizardGame;
     private boolean isTippMode;
 
-    public TippResultPresenter(Bundle arguments) {
-        parseArguments(arguments);
+    public TippResultPresenter() {
         tippStitchesLayouts = new ArrayList<>();
         wizardGame = Storage.getInstance().getWizardGame();
+    }
+
+    @Override
+    public void init(FragmentNavigationListener listener, Bundle arguments) {
+        parseArguments(arguments);
+        createEnteringControls();
+        setUpFragmentBasedOnEnterType();
+        listener.setBackPressEnabled(true);
+
+        if (isAttached()) {
+            getView().initializeToolbar();
+            getView().setListener();
+        }
     }
 
     private void parseArguments(Bundle arguments) {
@@ -39,18 +51,6 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
 
         if (arguments.containsKey(Constants.ISTIPPMODE)) {
             isTippMode = arguments.getBoolean(Constants.ISTIPPMODE);
-        }
-    }
-
-    @Override
-    public void init(FragmentNavigationListener listener) {
-        createEnteringControls();
-        setUpFragmentBasedOnEnterType();
-        listener.setBackPressEnabled(true);
-
-        if (isAttached()) {
-            getView().initializeToolbar();
-            getView().setListener();
         }
     }
 
@@ -64,8 +64,10 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
         RealmList<Round> results = wizardGame.getResults();
         if (results == null) {
             currentRound = 1;
-        } else {
+        } else if (isTippMode){
             currentRound = results.size() + 1;
+        } else {
+            currentRound = results.size();
         }
 
         for (int i = 0; i < playerNames.size(); i++) {
@@ -99,21 +101,21 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
             saveMadeTipps();
         }
         if (isAttached()) {
-            getView().dismissOverlay();
+            getView().dismissOverlay(true);
         }
     }
 
     private void saveAnnouncedTipps() {
         if (isAttached()) {
             RealmList<Integer> announcedTipps = getView().getSeekBarValues();
-            Round round = new Round();
-            round.setAnnouncedTipps(announcedTipps);
-
             Storage.getInstance().setAnnouncedTipps(announcedTipps);
         }
     }
 
     private void saveMadeTipps() {
-
+        if (isAttached()) {
+            RealmList<Integer> madeTipps = getView().getSeekBarValues();
+            Storage.getInstance().setMadeStitches(madeTipps);
+        }
     }
 }

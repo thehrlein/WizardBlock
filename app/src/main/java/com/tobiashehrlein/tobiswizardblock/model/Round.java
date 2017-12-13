@@ -1,8 +1,5 @@
 package com.tobiashehrlein.tobiswizardblock.model;
 
-import java.io.Serializable;
-import java.util.Map;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -15,12 +12,15 @@ public class Round extends RealmObject {
 
     private String roundCount;
     private RealmList<Integer> announcedTipps;
-    private RealmList<Integer> madeTipps;
+    private RealmList<Integer> madeStitches;
     private RealmList<Integer> pointsAdded;
     private RealmList<Integer> pointsTotal;
 
     public Round() {
-
+        announcedTipps = new RealmList<>();
+        madeStitches = new RealmList<>();
+        pointsAdded= new RealmList<>();
+        pointsTotal = new RealmList<>();
     }
 
     public String getRoundCount() {
@@ -39,12 +39,12 @@ public class Round extends RealmObject {
         this.announcedTipps = announcedTipps;
     }
 
-    public RealmList<Integer> getMadeTipps() {
-        return madeTipps;
+    public RealmList<Integer> getMadeStitches() {
+        return madeStitches;
     }
 
-    public void setMadeTipps(RealmList<Integer> madeTipps) {
-        this.madeTipps = madeTipps;
+    public void setMadeStitches(RealmList<Integer> madeStitches) {
+        this.madeStitches = madeStitches;
     }
 
     public RealmList<Integer> getPointsAdded() {

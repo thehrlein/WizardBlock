@@ -53,7 +53,13 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     @Override
     public void openTippsResult() {
         if (listener != null) {
-            listener.showDialog(TippResultFragment.newInstance(isTippMode));
+            TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode);
+            tippResultFragment.setOnDismissListener(() -> backFromTippsResults());
+            listener.showDialog(tippResultFragment);
         }
+    }
+
+    private void backFromTippsResults() {
+        isTippMode = !isTippMode;
     }
 }

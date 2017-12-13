@@ -18,7 +18,7 @@ public interface TippResultContract {
 
     interface Presenter extends BaseMvpPresenter<View> {
 
-        void init(FragmentNavigationListener listener);
+        void init(FragmentNavigationListener listener, Bundle arguments);
         void onEnterButtonClicked();
     }
 
@@ -31,7 +31,7 @@ public interface TippResultContract {
         void initializeToolbar();
         void setTippsToolbar();
         void setResultsToolbar();
-        void dismissOverlay();
+        void dismissOverlay(boolean b);
         RealmList<Integer> getSeekBarValues();
     }
 }
