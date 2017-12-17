@@ -83,39 +83,77 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
             if (isAttached()) {
                 getView().setTippsToolbar();
                 getView().setTippsButton();
+                getView().setTippsHeadline();
             }
         } else {
             if (isAttached()) {
                 getView().setResultsToolbar();
                 getView().setResultsButton();
-
+                getView().setResultsHeadline();
             }
         }
     }
 
     @Override
     public void onEnterButtonClicked() {
+        boolean success;
         if (isTippMode) {
-            saveAnnouncedTipps();
+            success = saveAnnouncedTipps();
         } else {
-            saveMadeTipps();
+            success = saveMadeTipps();
         }
-        if (isAttached()) {
+        if (success && isAttached()) {
             getView().dismissOverlay(true);
+        } else if (isAttached()) {
+            getView().displayInvalidInput();
         }
     }
 
-    private void saveAnnouncedTipps() {
+    private boolean saveAnnouncedTipps() {
         if (isAttached()) {
             RealmList<Integer> announcedTipps = getView().getSeekBarValues();
-            Storage.getInstance().setAnnouncedTipps(announcedTipps);
+            if (validInput(announcedTipps, false)) {
+                Storage.getInstance().setAnnouncedTipps(announcedTipps);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean validInput(RealmList<Integer> announcedTipps, boolean mustBeEqual) {
+        int combinedTippsCount = 0;
+        for (Integer value : announcedTipps) {
+            combinedTippsCount += value;
+        }
+
+        int maxStitches = getMaxStitchesPossible();
+
+        if (mustBeEqual) {
+            return combinedTippsCount == maxStitches;
+        } else {
+            return combinedTippsCount != maxStitches;
         }
     }
 
-    private void saveMadeTipps() {
+    private int getMaxStitchesPossible() {
+        if (isTippMode) {
+            return wizardGame.getResults().size();
+        } else {
+            return wizardGame.getResults().size() + 1;
+        }
+    }
+
+    private boolean saveMadeTipps() {
         if (isAttached()) {
             RealmList<Integer> madeTipps = getView().getSeekBarValues();
-            Storage.getInstance().setMadeStitches(madeTipps);
+
+            if (validInput(madeTipps, true)) {
+                Storage.getInstance().setMadeStitches(madeTipps);
+                return true;
+            }
         }
+
+        return false;
     }
 }

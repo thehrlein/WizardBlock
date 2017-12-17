@@ -17,7 +17,7 @@ import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
  * Created by Tobias Hehrlein on 02.12.2017.
  */
 
-public class PlayerSelectionView extends RelativeLayout {
+public class PlayerChooseSingleView extends RelativeLayout {
 
     private RelativeLayout wrapperLayout;
     private TextView numberTextView;
@@ -27,17 +27,17 @@ public class PlayerSelectionView extends RelativeLayout {
     private int backgroundNormal;
     private int number;
 
-    public PlayerSelectionView(Context context) {
+    public PlayerChooseSingleView(Context context) {
         super(context);
         init(context);
     }
 
-    public PlayerSelectionView(Context context, AttributeSet attrs) {
+    public PlayerChooseSingleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public PlayerSelectionView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PlayerChooseSingleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }

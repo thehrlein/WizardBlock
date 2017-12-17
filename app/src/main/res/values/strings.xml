@@ -35,6 +35,9 @@
     <!-- Tipps Results -->
     <string name="confirm_tipps">Confirm tipps</string>
     <string name="confirm_results">Confirm results</string>
+    <string name="how_many_stitches">How much stitches you\'ll make?</string>
+    <string name="how_many_stitches_result">Stitches made:</string>
+
 
 
     <string name="activated">selected</string>
@@ -60,8 +63,6 @@
     <string name="gamesettingstext">Choose a name for this gameSettings and how much players.</string>
     <string name="gofurther">Go</string>
     <string name="hello_tobias">Hello Tobias,\n\n</string>
-    <string name="how_many_stitches">How much stitches you\'ll make?</string>
-    <string name="how_many_stitches_result">Stitches made:</string>
     <string name="information">Developed by Tobias</string>
     <string name="last_games">Last Games</string>
     <string name="last_one_more_or_less">Last player must say 1 more or less.</string>

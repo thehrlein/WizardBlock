@@ -49,11 +49,11 @@ public class WizardGame extends RealmObject {
         }
 
         results.remove(results.size() - 1);
-        round = calculateResults(round);
+        calculateResults(round);
         results.add(round);
     }
 
-    private Round calculateResults(Round round) {
+    private void calculateResults(Round round) {
         RealmList<Integer> tippsList = round.getAnnouncedTipps();
         RealmList<Integer> stitchesList = round.getMadeStitches();
         RealmList<Integer> pointsAddList = round.getPointsAdded();
@@ -73,15 +73,22 @@ public class WizardGame extends RealmObject {
             pointsAddList.add(pointsAdd);
             pointsTotalList.add(getLastRoundTotalPoints(i) + pointsAdd);
         }
-        return round;
     }
 
     private int getLastRoundTotalPoints(int i) {
-        if (results.size() == 0) {
+        if (results == null || results.isEmpty()) {
+            return 0;
+        }
+        Round round = results.get(results.size() - 1);
+        if (round == null) {
             return 0;
         }
 
-        return results.get(results.size() - 1).getPointsTotal().get(i);
+        RealmList<Integer> totalPoints = round.getPointsTotal();
+        if (totalPoints == null || totalPoints.isEmpty() || i >= totalPoints.size()) {
+            return 0;
+        }
+        return totalPoints.get(i);
     }
 
     private int getPointsToAdd(int stitch) {

@@ -13,7 +13,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="?android:attr/actionBarSize"
                 android:background="@color/colorPrimary">
 
                 <TextView
@@ -47,9 +46,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/how_many_stitches"
-                        android:id="@+id/tvUeberschrift"
+                        android:textSize="16sp"
+                        android:id="@+id/headline"
                         android:layout_marginTop="26dp"/>
 
                     <LinearLayout

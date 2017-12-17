@@ -13,11 +13,9 @@ import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameSettingsBinding;
 import com.tobiashehrlein.tobiswizardblock.model.Settings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
-import com.tobiashehrlein.tobiswizardblock.ui.views.PlayerSelectionView;
+import com.tobiashehrlein.tobiswizardblock.ui.views.PlayerChooseSingleView;
 import com.tobiashehrlein.tobiswizardblock.ui.views.SwitchTextInfoView;
 import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
-
-import java.util.List;
 
 import io.realm.RealmList;
 
@@ -85,7 +83,7 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
         bind.gameNameInfo.setOnClickListener(view -> infoDialog.show());
         bind.btNext.setOnClickListener(view -> presenter.startNewGame());
-        bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerSelectionView) view).getNumber()));
+        bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerChooseSingleView) view).getNumber()));
         bind.playerChooser.initStandardPlayers();
     }
 

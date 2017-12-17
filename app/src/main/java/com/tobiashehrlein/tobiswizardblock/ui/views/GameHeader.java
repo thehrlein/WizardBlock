@@ -36,8 +36,7 @@ public class GameHeader extends LinearLayout {
     private void init(Context context) {
         this.context = context;
         setOrientation(HORIZONTAL);
-        LayoutParams headerParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 6);
-        setLayoutParams(headerParams);
+        setLayoutParams(new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 8));
     }
 
     public void setPlayerNames(List<String> playerNames) {

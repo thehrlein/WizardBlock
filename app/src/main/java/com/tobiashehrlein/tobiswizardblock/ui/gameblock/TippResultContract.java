@@ -33,5 +33,8 @@ public interface TippResultContract {
         void setResultsToolbar();
         void dismissOverlay(boolean b);
         RealmList<Integer> getSeekBarValues();
+        void setTippsHeadline();
+        void setResultsHeadline();
+        void displayInvalidInput();
     }
 }

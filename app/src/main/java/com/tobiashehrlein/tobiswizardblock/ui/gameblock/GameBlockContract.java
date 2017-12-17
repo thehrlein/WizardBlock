@@ -8,6 +8,8 @@ import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseView;
 
 import java.util.List;
 
+import io.realm.RealmList;
+
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
  */
@@ -27,5 +29,8 @@ public interface GameBlockContract {
         void setButtonTipps();
         void setButtonResults();
         void setListener();
+        void addRound(RealmList<Integer> tippsAnnounced, RealmList<Integer> stitchesMade, RealmList<Integer> pointsAdded, RealmList<Integer> pointsTotal);
+        void addRoundNumbersFor(int roundsToPlay);
+        void clearBlock();
     }
 }

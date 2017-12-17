@@ -116,7 +116,7 @@ public class Tipps extends AppCompatActivity   implements
     // show title depnding on tippsOrResult and find all views
     private void setUpTitleAndViews()
     {
-        ueberschrift = (TextView) findViewById(R.id.tvUeberschrift);
+        ueberschrift = (TextView) findViewById(R.id.headline);
         if (tippsOrResult.equalsIgnoreCase("Ergebnis"))
         {
             ueberschrift.setText(R.string.how_many_stitches_result);

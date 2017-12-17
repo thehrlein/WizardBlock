@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
@@ -119,12 +120,12 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
     @Override
     public void setTippsButton() {
-        bind.enterButton.setText(context.getString(R.string.enter_tipps));
+        bind.enterButton.setText(context.getString(R.string.confirm_tipps));
     }
 
     @Override
     public void setResultsButton() {
-        bind.enterButton.setText(context.getString(R.string.enter_results));
+        bind.enterButton.setText(context.getString(R.string.confirm_results));
     }
 
     @Override
@@ -143,5 +144,20 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         }
 
         return values;
+    }
+
+    @Override
+    public void setTippsHeadline() {
+        bind.headline.setText(context.getString(R.string.how_many_stitches));
+    }
+
+    @Override
+    public void setResultsHeadline() {
+        bind.headline.setText(context.getString(R.string.how_many_stitches_result));
+    }
+
+    @Override
+    public void displayInvalidInput() {
+        Snackbar.make(bind.getRoot(), "Please check your input", Snackbar.LENGTH_LONG).show();
     }
 }

@@ -14,25 +14,25 @@ import java.util.ArrayList;
  * Created by Tobias Hehrlein on 02.12.2017.
  */
 
-public class PlayerChooseView extends LinearLayout {
+public class PlayerChooseGroupView extends LinearLayout {
 
     private final int MIN_PLAYERS = 3;
     private final int MAX_PLAYERS = 6;
-    private ArrayList<PlayerSelectionView> playerViews;
+    private ArrayList<PlayerChooseSingleView> playerViews;
     private OnClickListener listener;
     private int currentPlayerCount;
 
-    public PlayerChooseView(Context context) {
+    public PlayerChooseGroupView(Context context) {
         super(context);
         init(context);
     }
 
-    public PlayerChooseView(Context context, @Nullable AttributeSet attrs) {
+    public PlayerChooseGroupView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public PlayerChooseView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PlayerChooseGroupView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -46,13 +46,13 @@ public class PlayerChooseView extends LinearLayout {
 
     private void createNewPlaySelection(Context context, int i) {
         int id = View.generateViewId();
-        PlayerSelectionView playerSelectionView = new PlayerSelectionView(context);
-        playerSelectionView.setNumber(i);
-        playerSelectionView.setId(id);
-        playerSelectionView.setMinimumHeight(GeneralUtils.pxFromDp(context, 50));
-        playerSelectionView.setOnClickListener(view -> setSelection(id));
-        playerViews.add(playerSelectionView);
-        addView(playerSelectionView);
+        PlayerChooseSingleView playerChooseSingleView = new PlayerChooseSingleView(context);
+        playerChooseSingleView.setNumber(i);
+        playerChooseSingleView.setId(id);
+        playerChooseSingleView.setMinimumHeight(GeneralUtils.pxFromDp(context, 50));
+        playerChooseSingleView.setOnClickListener(view -> setSelection(id));
+        playerViews.add(playerChooseSingleView);
+        addView(playerChooseSingleView);
     }
 
     public void setPlayerChooseListener(OnClickListener onClickListener) {
@@ -64,7 +64,7 @@ public class PlayerChooseView extends LinearLayout {
     }
 
     private void setSelection(int id) {
-        for (PlayerSelectionView player : playerViews) {
+        for (PlayerChooseSingleView player : playerViews) {
             if (player.getId() == id) {
                 player.setSelected();
                 currentPlayerCount = player.getNumber();

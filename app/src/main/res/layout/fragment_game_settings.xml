@@ -27,7 +27,6 @@
                     android:paddingTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="15sp"
                     android:text="@string/game_settings_explaination"
                     android:id="@+id/tvGameSettingsExplaination"
@@ -74,7 +73,7 @@
 
                 </LinearLayout>
 
-                <com.tobiashehrlein.tobiswizardblock.ui.views.PlayerChooseView
+                <com.tobiashehrlein.tobiswizardblock.ui.views.PlayerChooseGroupView
                     android:id="@+id/player_chooser"
                     android:layout_marginTop="48dp"
                     android:layout_width="match_parent"
@@ -90,9 +89,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <TextView
+                    android:text="@string/settings"
+                    android:layout_marginTop="32dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <LinearLayout
                     android:id="@+id/switchInfoLayout"
-                    android:layout_marginTop="48dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

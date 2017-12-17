@@ -4,10 +4,13 @@ import android.os.Bundle;
 
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
+import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Constants;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
+
+import io.realm.RealmList;
 
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
@@ -15,6 +18,7 @@ import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> implements GameBlockContract.Presenter {
 
+    public static final int CARD_COUNT = 60;
     private FragmentNavigationListener listener;
     private WizardGame wizardGame;
     private boolean isTippMode;
@@ -30,9 +34,22 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
         initTitle();
         initHeader();
+        initRoundNumbers();
+        setAllPreviousTippsAndResults();
 
         listener.setBackPressEnabled(false);
+    }
 
+    private void initRoundNumbers() {
+        if (isAttached()) {
+            int roundsToPlay = getHowMuchRoundsToPlay();
+            getView().addRoundNumbersFor(roundsToPlay);
+        }
+    }
+
+    private int getHowMuchRoundsToPlay() {
+        int playerCount = wizardGame.getGameSettings().getPlayerNames().size();
+        return CARD_COUNT / playerCount;
     }
 
     private void initTitle() {
@@ -43,10 +60,37 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     private void initHeader() {
         if (isAttached()) {
-            getView().setButtonTipps();
             getView().initRoundHeadline();
             getView().initHeader(wizardGame.getGameSettings().getPlayerNames());
             getView().setListener();
+        }
+
+        setEnterButton();
+    }
+
+    private void setAllPreviousTippsAndResults() {
+        if (wizardGame == null) {
+            return;
+        }
+
+        RealmList<Round> results = wizardGame.getResults();
+        if (results == null || results.isEmpty()) {
+            return;
+        }
+
+        if (isAttached()) {
+            getView().clearBlock();
+        }
+
+        for (Round round : results) {
+            RealmList<Integer> tippsAnnounced = round.getAnnouncedTipps();
+            RealmList<Integer> stitchesMade = round.getMadeStitches();
+            RealmList<Integer> pointsAdded = round.getPointsAdded();
+            RealmList<Integer> pointsTotal = round.getPointsTotal();
+
+            if (isAttached()) {
+                getView().addRound(tippsAnnounced, stitchesMade, pointsAdded, pointsTotal);
+            }
         }
     }
 
@@ -54,12 +98,26 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     public void openTippsResult() {
         if (listener != null) {
             TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode);
-            tippResultFragment.setOnDismissListener(() -> backFromTippsResults());
+            tippResultFragment.setOnDismissListener(this::backFromTippsResults);
             listener.showDialog(tippResultFragment);
         }
     }
 
     private void backFromTippsResults() {
         isTippMode = !isTippMode;
+        setAllPreviousTippsAndResults();
+        setEnterButton();
+
+        if (listener != null) {
+            listener.setBackPressEnabled(false);
+        }
+    }
+
+    private void setEnterButton() {
+        if (isTippMode && isAttached()) {
+            getView().setButtonTipps();
+        } else if (isAttached()) {
+            getView().setButtonResults();
+        }
     }
 }
