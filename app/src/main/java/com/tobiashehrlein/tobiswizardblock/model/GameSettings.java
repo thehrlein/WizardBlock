@@ -3,6 +3,9 @@ package com.tobiashehrlein.tobiswizardblock.model;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
+import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
+import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
+
 /**
  * Created by Tobias Hehrlein on 06.12.2017.
  */
@@ -11,16 +14,16 @@ public class GameSettings extends RealmObject {
 
     private String gameName;
     private RealmList<String> playerNames;
-    private Settings settings;
+    private @SettingsFactory.SettingsType int settingsType;
 
     public GameSettings() {
 
     }
 
-    public GameSettings(String gameName, RealmList<String> playerNames, Settings settings) {
+    public GameSettings(String gameName, RealmList<String> playerNames, @SettingsFactory.SettingsType int settingsType) {
         this.gameName = gameName;
         this.playerNames = playerNames;
-        this.settings = settings;
+        this.settingsType = settingsType;
     }
 
     public String getGameName() {
@@ -31,7 +34,7 @@ public class GameSettings extends RealmObject {
         return playerNames;
     }
 
-    public Settings getSettings() {
-        return settings;
+    public @SettingsFactory.SettingsType int getSettings() {
+        return settingsType;
     }
 }

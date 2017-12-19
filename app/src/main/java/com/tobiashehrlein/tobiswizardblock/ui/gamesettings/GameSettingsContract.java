@@ -1,11 +1,11 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gamesettings;
 
-import com.tobiashehrlein.tobiswizardblock.model.Settings;
+import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseView;
 
-import java.util.List;
 
 import io.realm.RealmList;
 
@@ -34,6 +34,6 @@ public interface GameSettingsContract {
         void setListener();
         String getGameName();
         RealmList<String> getPlayerNames();
-        Settings getSettings();
+        @SettingsFactory.SettingsType int getSettings();
     }
 }

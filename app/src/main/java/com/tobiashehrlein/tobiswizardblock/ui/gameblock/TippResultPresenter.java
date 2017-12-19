@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
+import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
+import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
 import com.tobiashehrlein.tobiswizardblock.utils.Constants;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
@@ -25,6 +27,7 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     private List<TippStitchSeekBarLayout> tippStitchesLayouts;
     private WizardGame wizardGame;
     private boolean isTippMode;
+    private int currentRound;
 
     public TippResultPresenter() {
         tippStitchesLayouts = new ArrayList<>();
@@ -60,7 +63,6 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
             return;
         }
 
-        int currentRound;
         RealmList<Round> results = wizardGame.getResults();
         if (results == null) {
             currentRound = 1;
@@ -112,7 +114,7 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     private boolean saveAnnouncedTipps() {
         if (isAttached()) {
             RealmList<Integer> announcedTipps = getView().getSeekBarValues();
-            if (validInput(announcedTipps, false)) {
+            if (validInput(announcedTipps)) {
                 Storage.getInstance().setAnnouncedTipps(announcedTipps);
                 return true;
             }
@@ -121,34 +123,17 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
         return false;
     }
 
-    private boolean validInput(RealmList<Integer> announcedTipps, boolean mustBeEqual) {
-        int combinedTippsCount = 0;
-        for (Integer value : announcedTipps) {
-            combinedTippsCount += value;
-        }
-
-        int maxStitches = getMaxStitchesPossible();
-
-        if (mustBeEqual) {
-            return combinedTippsCount == maxStitches;
-        } else {
-            return combinedTippsCount != maxStitches;
-        }
-    }
-
-    private int getMaxStitchesPossible() {
-        if (isTippMode) {
-            return wizardGame.getResults().size();
-        } else {
-            return wizardGame.getResults().size() + 1;
-        }
+    private boolean validInput(RealmList<Integer> input) {
+        SettingsFactory settingsFactory = new SettingsFactory();
+        Settings settings = settingsFactory.getSettings(wizardGame.getGameSettings().getSettings());
+        return settings.validInput(input, currentRound, isTippMode);
     }
 
     private boolean saveMadeTipps() {
         if (isAttached()) {
             RealmList<Integer> madeTipps = getView().getSeekBarValues();
 
-            if (validInput(madeTipps, true)) {
+            if (validInput(madeTipps)) {
                 Storage.getInstance().setMadeStitches(madeTipps);
                 return true;
             }

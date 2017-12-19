@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameSettingsBinding;
-import com.tobiashehrlein.tobiswizardblock.model.Settings;
+import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.ui.views.PlayerChooseSingleView;
 import com.tobiashehrlein.tobiswizardblock.ui.views.SwitchTextInfoView;
 import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
@@ -148,10 +149,12 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
     }
 
     @Override
-    public Settings getSettings() {
+    public @SettingsFactory.SettingsType int getSettings() {
         boolean easyMode = tippsEqualStitches.isChecked();
         boolean easyModeFirstRound = disableRuleInFirstRound.isChecked();
         boolean anniversaryMode = anniveraryOption.isChecked();
-        return new Settings(easyMode, easyModeFirstRound, anniversaryMode);
+
+        SettingsFactory settingsFactory = new SettingsFactory();
+        return settingsFactory.getSettings(easyMode, easyModeFirstRound, anniversaryMode);
     }
 }

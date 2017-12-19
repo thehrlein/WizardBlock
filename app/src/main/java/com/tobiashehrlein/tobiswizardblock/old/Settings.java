@@ -115,14 +115,14 @@ public class Settings extends AppCompatActivity
         editor.putBoolean("displayActive", displayActive);
         editor.apply();
 
-        Log.d("Settings", "safeDisplayActiveStatus displayActive: " + displayActive);
+        Log.d("BaseSettings", "safeDisplayActiveStatus displayActive: " + displayActive);
     }
 
     private static void checkDisplayActiveStatus()
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         displayActive = preferences.getBoolean("displayActive", false);
-        Log.d("Settings", "checkDisplayActiveStatus displayActive: " + displayActive);
+        Log.d("BaseSettings", "checkDisplayActiveStatus displayActive: " + displayActive);
     }
 
 
@@ -189,7 +189,7 @@ public class Settings extends AppCompatActivity
         public boolean onPreferenceClick(Preference preference)
         {
             String key = preference.getKey();
-            Log.d("Settings", "clicked: " + key);
+            Log.d("BaseSettings", "clicked: " + key);
 
             switch (key)
             {
@@ -197,7 +197,7 @@ public class Settings extends AppCompatActivity
                     displayActive = !displayActive;
                     Settings.setDisplayActive(displayActive);
                     pref_switch_display_active.setChecked(displayActive);
-                    Log.d("Settings", "onPrefClick displayAcitve: " + displayActive);
+                    Log.d("BaseSettings", "onPrefClick displayAcitve: " + displayActive);
                     Settings.safeDisplayActitveStatus(displayActive);
                     break;
                 case "tutorial":
