@@ -37,7 +37,10 @@
     <string name="confirm_results">Confirm results</string>
     <string name="how_many_stitches">How much stitches you\'ll make?</string>
     <string name="how_many_stitches_result">Stitches made:</string>
-
+    <string name="validation_valid">Valid</string>
+    <string name="validation_tipp_can_not_be_equal_stitches">Tipp can not be equal stitsches</string>
+    <string name="validation_stitches_must_be_equal_rounds">Stitches must be equal rounds</string>
+    <string name="validation_stitches_can_not_be_more_than_rounds">Stitches can not be more than rounds</string>
 
 
     <string name="activated">selected</string>

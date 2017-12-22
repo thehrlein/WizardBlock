@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     private FragmentNavigationListener listener;
     private Context context;
     private LinearLayout.LayoutParams roundViewParams;
+    boolean enterClickable;
 
     public static GameBlockFragment newInstance() {
         return new GameBlockFragment();
@@ -73,6 +75,8 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
         presenter.attach(this);
         presenter.init(listener);
+
+        enterClickable = true;
     }
 
     @Override
@@ -142,7 +146,13 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
     @Override
     public void setListener() {
-        bind.enterButton.setOnClickListener(view -> presenter.openTippsResult());
+        bind.enterButton.setOnClickListener(view -> {
+            if (enterClickable) {
+                presenter.openTippsResult();
+                enterClickable = false;
+                new Handler().postDelayed(() -> enterClickable = true, 1000);
+            }
+        });
     }
 
 

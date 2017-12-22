@@ -1,17 +1,16 @@
 package com.tobiashehrlein.tobiswizardblock.model.settings;
 
-import io.realm.RealmList;
-import io.realm.RealmModel;
-import io.realm.RealmObject;
-import io.realm.annotations.RealmClass;
+import android.support.annotation.StringRes;
 
+import io.realm.RealmList;
+import static com.tobiashehrlein.tobiswizardblock.utils.Constants.Validation.*;
 /**
  * Created by Tobias Hehrlein on 19.12.2017.
  */
 
 public interface Settings {
 
-    boolean validInput(RealmList<Integer> input, int round, boolean isTippMode);
+    @StringRes int validInput(RealmList<Integer> input, int round, boolean isTippMode);
 
     default int getCombinedInput(RealmList<Integer> inputs) {
         int combined = 0;
@@ -21,5 +20,9 @@ public interface Settings {
         }
 
         return combined;
+    }
+
+    default @StringRes int validAnniversaryResults(int combinedInput, int round) {
+        return combinedInput <= round ? VALID.stringResId : STITCHES_CAN_NOT_BE_MORE_THAN_ROUNDS.stringResId;
     }
 }

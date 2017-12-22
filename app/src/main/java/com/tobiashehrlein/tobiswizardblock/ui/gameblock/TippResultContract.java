@@ -1,6 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
@@ -35,6 +36,6 @@ public interface TippResultContract {
         RealmList<Integer> getSeekBarValues();
         void setTippsHeadline();
         void setResultsHeadline();
-        void displayInvalidInput();
+        void displayInvalidInput(@StringRes int message);
     }
 }

@@ -36,13 +36,21 @@ public class Storage {
         return wizardGame;
     }
 
-    public void setAnnouncedTipps(RealmList<Integer> announcedTipps) {
+    public void saveInput(RealmList<Integer> input, boolean isTippMode) {
+        if (isTippMode) {
+            setAnnouncedTipps(input);
+        } else {
+            setMadeStitches(input);
+        }
+    }
+
+    private void setAnnouncedTipps(RealmList<Integer> announcedTipps) {
         Round round = new Round();
         round.setAnnouncedTipps(announcedTipps);
         wizardGame.addRound(round);
     }
 
-    public void setMadeStitches(RealmList<Integer> madeStitches) {
+    private void setMadeStitches(RealmList<Integer> madeStitches) {
         Round round = wizardGame.getLastRound();
         round.setMadeStitches(madeStitches);
         wizardGame.addMadeStitches(round);

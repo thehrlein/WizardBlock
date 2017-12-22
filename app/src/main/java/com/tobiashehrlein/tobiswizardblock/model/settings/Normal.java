@@ -1,7 +1,13 @@
 package com.tobiashehrlein.tobiswizardblock.model.settings;
 
+import android.support.annotation.StringRes;
+
+import com.tobiashehrlein.tobiswizardblock.utils.Constants;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
+
+import static com.tobiashehrlein.tobiswizardblock.utils.Constants.Validation.*;
 
 /**
  * Created by Tobias Hehrlein on 19.12.2017.
@@ -10,7 +16,7 @@ import io.realm.RealmObject;
 public class Normal implements Settings {
 
     @Override
-    public boolean validInput(RealmList<Integer> input, int round, boolean isTippMode) {
+    public @StringRes int validInput(RealmList<Integer> input, int round, boolean isTippMode) {
         int combinedInput = getCombinedInput(input);
         if (isTippMode) {
             return validTippInput(combinedInput, round);
@@ -19,11 +25,11 @@ public class Normal implements Settings {
         }
     }
 
-    private boolean validTippInput(int combinedInput, int round) {
-        return combinedInput != round;
+    private @StringRes int validTippInput(int combinedInput, int round) {
+        return combinedInput != round ? VALID.stringResId : TIPPS_CAN_NOT_BE_EQUAL_STITCHES.stringResId;
     }
 
-    private boolean validResultInput(int combinedInput, int round) {
-        return combinedInput == round;
+    private @StringRes int validResultInput(int combinedInput, int round) {
+        return combinedInput == round ? VALID.stringResId : STITCHES_MUST_BE_EQUAL_ROUNDS.stringResId;
     }
 }

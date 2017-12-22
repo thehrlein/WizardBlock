@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -157,7 +158,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     }
 
     @Override
-    public void displayInvalidInput() {
-        Snackbar.make(bind.getRoot(), "Please check your input", Snackbar.LENGTH_LONG).show();
+    public void displayInvalidInput(@StringRes int message) {
+        Snackbar.make(bind.getRoot(), context.getString(message), Snackbar.LENGTH_LONG).show();
     }
 }

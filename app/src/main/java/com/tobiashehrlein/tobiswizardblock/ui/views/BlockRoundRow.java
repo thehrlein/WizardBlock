@@ -1,8 +1,10 @@
 package com.tobiashehrlein.tobiswizardblock.ui.views;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
 
 import io.realm.RealmList;
@@ -30,6 +33,9 @@ public class BlockRoundRow extends LinearLayout {
     private LinearLayout resultLayout;
     private LayoutParams blockViewParams;
     private Context context;
+    private int textBlack;
+    private int textGreen;
+    private int textRed;
 
     public BlockRoundRow(Context context) {
         super(context);
@@ -55,6 +61,10 @@ public class BlockRoundRow extends LinearLayout {
         setOrientation(VERTICAL);
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         blockViewParams = new LinearLayout.LayoutParams(0, GeneralUtils.pxFromDp(context, 30), 1);
+
+        textBlack = ContextCompat.getColor(context, R.color.colorBlack);
+        textGreen = ContextCompat.getColor(context, R.color.colorGreen);
+        textRed = ContextCompat.getColor(context, R.color.colorRed);
     }
 
     public void setData(RealmList<Integer> tippsAnnounced, RealmList<Integer> stitchesMade, RealmList<Integer> pointsAdded, RealmList<Integer> pointsTotal) {
@@ -76,7 +86,7 @@ public class BlockRoundRow extends LinearLayout {
             if (!secondColumnList.isEmpty() || i < secondColumnList.size()) {
                 layout.addView(createTextView(secondColumnList.get(i), false, showBold));
             } else {
-                layout.addView(createTextView(EMPTY_STRING));
+                layout.addView(createTextView(EMPTY_STRING, textBlack));
             }
         }
 
@@ -85,9 +95,15 @@ public class BlockRoundRow extends LinearLayout {
 
     private View createTextView(Integer value, boolean showPlusSign, boolean showBold) {
         SpannableStringBuilder text;
+        int textColor;
         if (value > 0 && showPlusSign) {
             text = new SpannableStringBuilder(PLUS_SIGN + value);
+            textColor = textGreen;
+        } else if (showPlusSign){
+            textColor = textRed;
+            text = new SpannableStringBuilder(String.valueOf(value));
         } else {
+            textColor = textBlack;
             text = new SpannableStringBuilder(String.valueOf(value));
         }
 
@@ -96,12 +112,13 @@ public class BlockRoundRow extends LinearLayout {
             text.setSpan(bold, 0, text.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         }
 
-        return createTextView(text);
+        return createTextView(text, textColor);
     }
 
-    private TextView createTextView(SpannableStringBuilder value) {
+    private TextView createTextView(SpannableStringBuilder value, int textColor) {
         TextView textView = new TextView(context);
         textView.setText(value);
+        textView.setTextColor(textColor);
         textView.setGravity(Gravity.CENTER);
         textView.setLayoutParams(blockViewParams);
         return textView;

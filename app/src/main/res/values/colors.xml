@@ -7,6 +7,8 @@
     <color name="colorBlueText">#2178b8</color>
     <color name="colorGrey">#d1d1d1</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorGreen">#7AB51D</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBackGroundGrey">#808080</color>
     <color name="colorStatusBarGrey">#666666</color>

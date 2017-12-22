@@ -1,6 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
@@ -98,47 +99,28 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
 
     @Override
     public void onEnterButtonClicked() {
-        boolean success;
-        if (isTippMode) {
-            success = saveAnnouncedTipps();
-        } else {
-            success = saveMadeTipps();
-        }
-        if (success && isAttached()) {
-            getView().dismissOverlay(true);
-        } else if (isAttached()) {
-            getView().displayInvalidInput();
-        }
-    }
-
-    private boolean saveAnnouncedTipps() {
         if (isAttached()) {
-            RealmList<Integer> announcedTipps = getView().getSeekBarValues();
-            if (validInput(announcedTipps)) {
-                Storage.getInstance().setAnnouncedTipps(announcedTipps);
-                return true;
-            }
-        }
+            RealmList<Integer> input = getView().getSeekBarValues();
+            @StringRes int message = validInput(input);
 
-        return false;
+            if (message == Constants.Validation.VALID.stringResId) {
+                saveInput(input);
+                getView().dismissOverlay(true);
+            } else {
+                getView().displayInvalidInput(message);
+            }
+
+        }
     }
 
-    private boolean validInput(RealmList<Integer> input) {
+    private @StringRes int validInput(RealmList<Integer> input) {
         SettingsFactory settingsFactory = new SettingsFactory();
         Settings settings = settingsFactory.getSettings(wizardGame.getGameSettings().getSettings());
         return settings.validInput(input, currentRound, isTippMode);
     }
 
-    private boolean saveMadeTipps() {
-        if (isAttached()) {
-            RealmList<Integer> madeTipps = getView().getSeekBarValues();
-
-            if (validInput(madeTipps)) {
-                Storage.getInstance().setMadeStitches(madeTipps);
-                return true;
-            }
-        }
-
-        return false;
+    private void saveInput(RealmList<Integer> input) {
+        Storage.getInstance().saveInput(input, isTippMode);
     }
+
 }
