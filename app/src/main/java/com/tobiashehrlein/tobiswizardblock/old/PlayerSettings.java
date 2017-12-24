@@ -108,15 +108,15 @@ public class PlayerSettings extends AppCompatActivity implements View.OnClickLis
                 etPlayers[i].setText(playerNames.get(i).getVal());
             }
         }
-        switch (currentPlayers)
-        {
-            case 6:
-                etPlayers[5].setVisibility(View.VISIBLE);
-            case 5:
-                etPlayers[4].setVisibility(View.VISIBLE);
-            case 4:
-                etPlayers[3].setVisibility(View.VISIBLE);
-        }
+//        switch (currentPlayers)
+//        {
+//            case 6:
+//                etPlayers[5].setVisibility(View.VISIBLE);
+//            case 5:
+//                etPlayers[4].setVisibility(View.VISIBLE);
+//            case 4:
+//                etPlayers[3].setVisibility(View.VISIBLE);
+//        }
     }
 
     @Override
@@ -304,7 +304,7 @@ public class PlayerSettings extends AppCompatActivity implements View.OnClickLis
     public boolean onCreateOptionsMenu(Menu menu)
     {
 
-        getMenuInflater().inflate(R.menu.menu_players, menu);
+//        getMenuInflater().inflate(R.menu.menu_players, menu);
         invalidateOptionsMenu();
 
 
@@ -321,8 +321,8 @@ public class PlayerSettings extends AppCompatActivity implements View.OnClickLis
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.goFurther:
-                onClick(item.getActionView());
+//            case R.id.goFurther:
+//                onClick(item.getActionView());
         }
         return super.onOptionsItemSelected(item);
     }

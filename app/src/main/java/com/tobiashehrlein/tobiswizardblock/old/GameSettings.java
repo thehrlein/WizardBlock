@@ -193,7 +193,7 @@ public class GameSettings extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu)
     {
 
-        getMenuInflater().inflate(R.menu.menu_players, menu);
+//        getMenuInflater().inflate(R.menu.menu_players, menu);
         invalidateOptionsMenu();
 
 
@@ -209,9 +209,9 @@ public class GameSettings extends AppCompatActivity implements
                 Intent intent = new Intent(this, StartActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.goFurther:
-                onClick(item.getActionView());
-                break;
+//            case R.id.goFurther:
+//                onClick(item.getActionView());
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }

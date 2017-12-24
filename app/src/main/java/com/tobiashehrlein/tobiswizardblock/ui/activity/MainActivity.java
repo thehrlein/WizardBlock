@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
@@ -68,6 +69,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         } else {
             bind.toolbarText.setText(getString(R.string.app_name_toolbar, title));
         }
+    }
+
+    @Override
+    public void inflateToolbarMenu() {
+        bind.toolbar.inflateMenu(R.menu.menu_game_block);
+    }
+
+    @Override
+    public void disableToolbarMenu() {
+        bind.toolbar.getMenu().clear();
     }
 
     @Override

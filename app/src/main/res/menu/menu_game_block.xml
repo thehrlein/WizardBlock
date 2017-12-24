@@ -3,11 +3,6 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/nextTippOrErgebnis"
-        android:title="@string/next_tipp"
-        app:showAsAction="ifRoom|withText" />
-
-    <item
         android:id="@+id/changeNames"
         android:title="@string/change_names"
         app:showAsAction="never" />

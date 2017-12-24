@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -54,6 +56,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         presenter = new GameBlockPresenter();
     }
 
@@ -154,6 +157,4 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
             }
         });
     }
-
-
 }

@@ -40,7 +40,6 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     private List<TippStitchSeekBarLayout> seekBarLayouts;
     private Context context;
     private DialogDismissListener dismissListener;
-    private Dialog failureDialog;
 
     public static TippResultFragment newInstance(boolean isTippMode) {
         TippResultFragment tippResultFragment = new TippResultFragment();
@@ -167,7 +166,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         String title = context.getString(R.string.error_title);
         String text = context.getString(message);
 
-        failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text);
+        Dialog failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text);
         failureDialog.show();
     }
 }

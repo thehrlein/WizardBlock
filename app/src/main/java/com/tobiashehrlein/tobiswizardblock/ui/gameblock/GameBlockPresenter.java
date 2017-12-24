@@ -37,6 +37,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         initRoundNumbers();
         setAllPreviousTippsAndResults();
 
+        listener.inflateToolbarMenu();
         listener.setBackPressEnabled(false);
     }
 

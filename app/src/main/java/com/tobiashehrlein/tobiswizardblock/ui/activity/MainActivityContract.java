@@ -20,7 +20,6 @@ public interface MainActivityContract {
     }
 
     interface View extends BaseView, CoverPageListener, FragmentNavigationListener, DialogTwoButtonListener {
-
         void hideToolbar();
         void showToolbar();
     }

@@ -1029,7 +1029,7 @@ public class GameBlock extends AppCompatActivity
     {
         if (tippsSaved)
         {
-            menu.findItem(R.id.nextTippOrErgebnis).setTitle(R.string.next_result);
+//            menu.findItem(R.id.nextTippOrErgebnis).setTitle(R.string.next_result);
             menu.findItem(R.id.changeTippOrResult).setTitle(R.string.changeTipps);
         }
         else
@@ -1046,12 +1046,12 @@ public class GameBlock extends AppCompatActivity
 
             if (currentGameRound <= maxGameRounds)
             {
-                menu.findItem(R.id.nextTippOrErgebnis).setTitle(R.string.next_tipp);
+//                menu.findItem(R.id.nextTippOrErgebnis).setTitle(R.string.next_tipp);
 
             }
             else
             {
-                menu.findItem(R.id.nextTippOrErgebnis).setEnabled(false);
+//                menu.findItem(R.id.nextTippOrErgebnis).setEnabled(false);
                // Toast.makeText(GameBlock.this, R.string.game_over, Toast.LENGTH_LONG).show();
                 if (showWinner)
                 {
@@ -1070,17 +1070,17 @@ public class GameBlock extends AppCompatActivity
     {
         switch (item.getItemId())
         {
-            case R.id.nextTippOrErgebnis:
-                changeTippsOrResult = false;
-                if (tippsSaved)
-                {
-                    openTippsOrResultActivity(OPEN_RESULTS);
-                }
-                else if (resultEntered)
-                {
-                    openTippsOrResultActivity(OPEN_TIPPS);
-                }
-                break;
+//            case R.id.nextTippOrErgebnis:
+//                changeTippsOrResult = false;
+//                if (tippsSaved)
+//                {
+//                    openTippsOrResultActivity(OPEN_RESULTS);
+//                }
+//                else if (resultEntered)
+//                {
+//                    openTippsOrResultActivity(OPEN_TIPPS);
+//                }
+//                break;
             case R.id.changeNames:
                 changePlayerNames();
                 break;

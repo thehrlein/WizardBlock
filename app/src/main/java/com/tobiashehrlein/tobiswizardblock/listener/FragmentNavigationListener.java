@@ -12,9 +12,10 @@ public interface FragmentNavigationListener {
 
     void replaceFragment(Fragment fragment, boolean addToStack);
     void showDialog(DialogFragment dialogFragment);
-
     void setToolbarTitle(String title);
     void setToolbarBackButtonEnabled();
     void setToolbarBackButtonDisabled();
     void setBackPressEnabled(boolean enabled);
+    void inflateToolbarMenu();
+    void disableToolbarMenu();
 }

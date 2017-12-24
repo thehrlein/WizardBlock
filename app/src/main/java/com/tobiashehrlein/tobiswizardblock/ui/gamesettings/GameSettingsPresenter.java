@@ -34,6 +34,7 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
         }
 
         listener.setBackPressEnabled(true);
+        listener.disableToolbarMenu();
     }
 
     @Override
