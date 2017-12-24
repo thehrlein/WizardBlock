@@ -26,7 +26,7 @@ public interface TippResultContract {
         void onEnterButtonClicked();
     }
 
-    interface View extends BaseView, DialogOneButtonListener {
+    interface View extends BaseView {
 
         TippStitchSeekBarLayout createTippStitchesLayout(String gameSettings, int round);
         void setTippsButton();

@@ -167,14 +167,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         String title = context.getString(R.string.error_title);
         String text = context.getString(message);
 
-        failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text, false, this);
+        failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text);
         failureDialog.show();
-    }
-
-    @Override
-    public void onConfirm() {
-        if (isDialogShowing(failureDialog)) {
-
-        }
     }
 }
