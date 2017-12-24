@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.coverpage;
 
+import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 /**
  * Created by Tobias Hehrlein on 27.11.2017.

@@ -3,11 +3,14 @@ package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 
+import com.tobiapplications.thutils.dialog.DialogOneButtonListener;
+import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
+import com.tobiapplications.thutils.mvp.BaseView;
+import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseMvpPresenter;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseView;
 
 import io.realm.RealmList;
 
@@ -23,7 +26,7 @@ public interface TippResultContract {
         void onEnterButtonClicked();
     }
 
-    interface View extends BaseView {
+    interface View extends BaseView, DialogOneButtonListener {
 
         TippStitchSeekBarLayout createTippStitchesLayout(String gameSettings, int round);
         void setTippsButton();

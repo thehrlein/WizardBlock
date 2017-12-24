@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
+import com.tobiapplications.thutils.GeneralUtils;
 
 import java.util.ArrayList;
 

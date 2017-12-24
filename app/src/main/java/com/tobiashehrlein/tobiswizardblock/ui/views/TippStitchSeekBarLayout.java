@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
+import com.tobiapplications.thutils.GeneralUtils;
 
 
 /**

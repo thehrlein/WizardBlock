@@ -1,10 +1,10 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gamesettings;
 
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
+import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseMvpPresenter;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BaseView;
 
 
 import io.realm.RealmList;

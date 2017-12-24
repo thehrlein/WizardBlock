@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tobiapplications.thutils.GeneralUtils;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameBlockBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.ui.views.BlockRoundRow;
 import com.tobiashehrlein.tobiswizardblock.ui.views.GameHeader;
-import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
 
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         context = bind.getRoot().getContext();

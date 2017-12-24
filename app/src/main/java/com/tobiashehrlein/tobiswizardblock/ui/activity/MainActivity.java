@@ -10,14 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.ActivityMainBinding;
-import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
 
 import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
 
-import static com.tobiashehrlein.tobiswizardblock.utils.NullPointerUtils.*;
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
+import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogNotShowing;
+import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogShowing;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
 
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     @Override
     public void setToolbarTitle(String title) {
-        if (nullOrEmpty(title)) {
+        if (isNullOrEmpty(title)) {
             bind.toolbarText.setText(getString(R.string.app_name));
         } else {
             bind.toolbarText.setText(getString(R.string.app_name_toolbar, title));
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     private void showBackPressDialog() {
-        if (backPressDialog != null && !backPressDialog.isShowing()) {
+        if (isDialogNotShowing(backPressDialog)) {
             backPressDialog.show();
         }
     }
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     private void dismissBackPressDialog() {
-        if (backPressDialog != null && backPressDialog.isShowing()) {
+        if (isDialogShowing(backPressDialog)) {
             backPressDialog.dismiss();
         }
     }

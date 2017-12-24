@@ -1,12 +1,12 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gamesettings;
 
+import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
 import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.ui.gameblock.GameBlockFragment;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 import java.util.List;
 

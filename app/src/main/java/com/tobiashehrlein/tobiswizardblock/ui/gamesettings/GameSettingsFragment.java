@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameSettingsBinding;
 import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
@@ -17,9 +18,10 @@ import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.ui.views.PlayerChooseSingleView;
 import com.tobiashehrlein.tobiswizardblock.ui.views.SwitchTextInfoView;
-import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
 
 import io.realm.RealmList;
+
+import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogNotShowing;
 
 /**
  * Created by Tobias Hehrlein on 27.11.2017.
@@ -81,12 +83,18 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
     @Override
     public void setListener() {
-        infoDialog = DialogBuilderUtil.createDialog(context, context.getString(R.string.title_info_dialog), context.getString(R.string.gamename_info), true);
+        infoDialog = DialogBuilderUtil.createOneButtonDialog(context, context.getString(R.string.title_info_dialog), context.getString(R.string.gamename_info));
 
-        bind.gameNameInfo.setOnClickListener(view -> infoDialog.show());
+        bind.gameNameInfo.setOnClickListener(view -> showInfoDialog());
         bind.btNext.setOnClickListener(view -> presenter.startNewGame());
         bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerChooseSingleView) view).getNumber()));
         bind.playerChooser.initStandardPlayers();
+    }
+
+    private void showInfoDialog() {
+        if (isDialogNotShowing(infoDialog)) {
+            infoDialog.show();
+        }
     }
 
     @Override

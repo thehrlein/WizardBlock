@@ -12,6 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 
+import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
+import com.tobiapplications.thutils.dialog.DialogUtils;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentTippsResultsBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
@@ -23,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
+
+import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogShowing;
 
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
@@ -36,6 +40,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     private List<TippStitchSeekBarLayout> seekBarLayouts;
     private Context context;
     private DialogDismissListener dismissListener;
+    private Dialog failureDialog;
 
     public static TippResultFragment newInstance(boolean isTippMode) {
         TippResultFragment tippResultFragment = new TippResultFragment();
@@ -159,6 +164,17 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
     @Override
     public void displayInvalidInput(@StringRes int message) {
-        Snackbar.make(bind.getRoot(), context.getString(message), Snackbar.LENGTH_LONG).show();
+        String title = context.getString(R.string.error_title);
+        String text = context.getString(message);
+
+        failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text, false, this);
+        failureDialog.show();
+    }
+
+    @Override
+    public void onConfirm() {
+        if (isDialogShowing(failureDialog)) {
+
+        }
     }
 }

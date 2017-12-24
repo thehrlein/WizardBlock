@@ -1,8 +1,8 @@
 package com.tobiashehrlein.tobiswizardblock.ui.navigation;
 
+import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.ui.gamesettings.GameSettingsFragment;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 /**
  * Created by Tobias Hehrlein on 26.11.2017.

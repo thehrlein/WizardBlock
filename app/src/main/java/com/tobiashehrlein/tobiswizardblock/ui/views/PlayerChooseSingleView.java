@@ -4,14 +4,13 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.tobiapplications.thutils.GeneralUtils;
 import com.tobiashehrlein.tobiswizardblock.R;
-import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
 
 /**
  * Created by Tobias Hehrlein on 02.12.2017.

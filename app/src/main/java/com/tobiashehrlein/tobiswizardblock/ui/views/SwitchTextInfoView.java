@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -15,9 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.tobiapplications.thutils.GeneralUtils;
+import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
 import com.tobiashehrlein.tobiswizardblock.R;
-import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
-import com.tobiashehrlein.tobiswizardblock.utils.dialog.DialogBuilderUtil;
 
 /**
  * Created by Tobias Hehrlein on 02.12.2017.
@@ -85,7 +84,7 @@ public class SwitchTextInfoView extends LinearLayout {
     public void setInfoText(String text) {
         infoImage.setVisibility(View.VISIBLE);
         String title = context.getString(R.string.title_info_dialog);
-        infoDialog = DialogBuilderUtil.createDialog(context, title, text, true);
+        infoDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text);
         infoImage.setOnClickListener(view -> infoDialog.show());
     }
 

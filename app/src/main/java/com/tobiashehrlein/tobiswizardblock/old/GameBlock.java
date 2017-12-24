@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
@@ -612,7 +611,7 @@ public class GameBlock extends AppCompatActivity
         }
         else
         {
-            Toast.makeText(GameBlock.this, R.string.error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameBlock.this, R.string.error_title, Toast.LENGTH_SHORT).show();
         }
 
     }

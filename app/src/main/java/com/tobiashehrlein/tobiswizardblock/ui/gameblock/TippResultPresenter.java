@@ -3,6 +3,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 
+import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
@@ -11,7 +12,6 @@ import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
 import com.tobiashehrlein.tobiswizardblock.utils.Constants;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
-import com.tobiashehrlein.tobiswizardblock.utils.mvp.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;

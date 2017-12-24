@@ -1,7 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.views;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -15,11 +14,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tobiapplications.thutils.GeneralUtils;
 import com.tobiashehrlein.tobiswizardblock.R;
-import com.tobiashehrlein.tobiswizardblock.utils.GeneralUtils;
 
 import io.realm.RealmList;
-import timber.log.Timber;
 
 /**
  * Created by Tobias Hehrlein on 16.12.2017.
