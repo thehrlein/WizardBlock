@@ -1,13 +1,11 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
-import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
-import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
-import com.tobiashehrlein.tobiswizardblock.utils.Constants;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import io.realm.RealmList;
@@ -39,6 +37,11 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
         listener.inflateToolbarMenu();
         listener.setBackPressEnabled(false);
+        listener.setToolbarMenuItemListener(this::onMenuItemClicked);
+    }
+
+    private boolean onMenuItemClicked(MenuItem item) {
+        return isAttached() && getView().onMenuItemClicked(item.getItemId());
     }
 
     private void initRoundNumbers() {
@@ -119,6 +122,13 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
             getView().setButtonTipps();
         } else if (isAttached()) {
             getView().setButtonResults();
+        }
+    }
+
+    @Override
+    public void changePlayerNames() {
+        if (isAttached()) {
+            getView().openChangePlayerNamesDialog(wizardGame.getGameSettings().getPlayerNames());
         }
     }
 }

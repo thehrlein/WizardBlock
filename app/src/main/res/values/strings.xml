@@ -30,7 +30,9 @@
     <!-- Game Block -->
     <string name="title_tipps">Tipps</string>
     <string name="title_results">Results</string>
-
+    <string name="title_change_player_names">Edit player names and hit enter</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Tipps Results -->
     <string name="confirm_tipps">Confirm tipps</string>
@@ -48,7 +50,6 @@
     <string name="backpress">Push back again to exit the App</string>
     <string name="blocktext">Example Round 2: Maxi said he\'ll make 2 but did just 1, so he get -10 and has 10 points now.</string>
     <string name="can_first_round_be_equal">You say, that all tipps combined shoudn\'t be equal possible stitches. Should this rule be disabled in the first round?</string>
-    <string name="cancel">Cancel</string>
     <string name="change">Change</string>
     <string name="changeResults">Change Results</string>
     <string name="changeTipps">Change Tipps</string>

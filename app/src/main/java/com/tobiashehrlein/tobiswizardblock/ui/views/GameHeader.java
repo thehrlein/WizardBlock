@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
+
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
  */
@@ -40,11 +42,13 @@ public class GameHeader extends LinearLayout {
     }
 
     public void setPlayerNames(List<String> playerNames) {
-        if (playerNames == null || playerNames.isEmpty()) {
+        if (isNullOrEmpty(playerNames)) {
             return;
         }
 
         LayoutParams textViewParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+
+        removeAllViews();
 
         for (String name : playerNames) {
             TextView textView = new TextView(context);

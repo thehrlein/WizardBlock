@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -21,11 +23,15 @@ import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameBlockBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.ui.views.BlockRoundRow;
+import com.tobiashehrlein.tobiswizardblock.ui.views.ChangePlayerNamesDialog;
 import com.tobiashehrlein.tobiswizardblock.ui.views.GameHeader;
+import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.List;
 
 import io.realm.RealmList;
+
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
 
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
@@ -38,7 +44,9 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     private FragmentNavigationListener listener;
     private Context context;
     private LinearLayout.LayoutParams roundViewParams;
-    boolean enterClickable;
+    private boolean enterClickable;
+    private ChangePlayerNamesDialog playerDialog;
+    private GameHeader gameHeader;
 
     public static GameBlockFragment newInstance() {
         return new GameBlockFragment();
@@ -56,7 +64,6 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         presenter = new GameBlockPresenter();
     }
 
@@ -89,7 +96,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
     @Override
     public void initHeader(List<String> playerNames) {
-        GameHeader gameHeader = new GameHeader(context);
+        gameHeader = new GameHeader(context);
         gameHeader.setPlayerNames(playerNames);
         bind.header.addView(gameHeader);
     }
@@ -156,5 +163,56 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
                 new Handler().postDelayed(() -> enterClickable = true, 1000);
             }
         });
+    }
+
+    @Override
+    public boolean onMenuItemClicked(int itemId) {
+        switch (itemId) {
+            case R.id.changeNames:
+                changePlayerNames();
+                return true;
+            case R.id.changeTippOrResult:
+                changeTippsOrResults();
+                return true;
+            case R.id.startNewGame:
+                startNewGame();
+                return true;
+            case R.id.settings:
+                openSettings();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void changePlayerNames() {
+        if (isNotNull(presenter)) {
+            presenter.changePlayerNames();
+        }
+    }
+
+    @Override
+    public void openChangePlayerNamesDialog(RealmList<String> playerNames) {
+        playerDialog = new ChangePlayerNamesDialog(context, R.style.Theme_Transparent_Full_Width);
+        playerDialog.setPlayerNames(playerNames);
+        playerDialog.setPlayerNameChangeListener(this::saveNewPlayerNames);
+        playerDialog.show();
+    }
+
+    private void saveNewPlayerNames(RealmList<String> newPlayerName) {
+        Storage.getInstance().savePlayerNames(newPlayerName);
+        gameHeader.setPlayerNames(newPlayerName);
+    }
+
+    private void changeTippsOrResults() {
+
+    }
+
+    private void startNewGame() {
+
+    }
+
+    private void openSettings() {
+
     }
 }

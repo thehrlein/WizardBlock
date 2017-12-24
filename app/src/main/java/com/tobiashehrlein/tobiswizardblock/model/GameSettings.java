@@ -37,4 +37,8 @@ public class GameSettings extends RealmObject {
     public @SettingsFactory.SettingsType int getSettings() {
         return settingsType;
     }
+
+    public void setPlayerNames(RealmList<String> playerNames) {
+        this.playerNames = playerNames;
+    }
 }

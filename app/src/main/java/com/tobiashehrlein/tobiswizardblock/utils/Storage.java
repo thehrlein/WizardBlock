@@ -55,4 +55,8 @@ public class Storage {
         round.setMadeStitches(madeStitches);
         wizardGame.addMadeStitches(round);
     }
+
+    public void savePlayerNames(RealmList<String> newPlayerName) {
+        wizardGame.getGameSettings().setPlayerNames(newPlayerName);
+    }
 }

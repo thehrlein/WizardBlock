@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.listener;
 
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 
 
 /**
@@ -18,4 +19,6 @@ public interface FragmentNavigationListener {
     void setBackPressEnabled(boolean enabled);
     void inflateToolbarMenu();
     void disableToolbarMenu();
+    void setToolbarMenuItemListener(Toolbar.OnMenuItemClickListener listener);
+
 }

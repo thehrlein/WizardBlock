@@ -51,6 +51,10 @@ public class PlayerNameInput extends TextInputLayout {
         setHint(context.getString(R.string.player_hint_placeholder, playerNumber));
     }
 
+    public void setText(String text) {
+        input.setText(text);
+    }
+
     public String getInput() {
         return input.getText().toString();
     }
