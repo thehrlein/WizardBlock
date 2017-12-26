@@ -54,4 +54,17 @@ public class SeekBarControl extends AppCompatSeekBar implements SeekBar.OnSeekBa
     public void setOnSeekBarValueChangeListener(SeekBarValueListener valueListener) {
         this.valueListener = valueListener;
     }
+
+
+    public void increaseValue() {
+        if (getProgress() < getMax()) {
+            setProgress(getProgress() + 1);
+        }
+    }
+
+    public void decreaseValue() {
+        if (getProgress() > 0) {
+            setProgress(getProgress() - 1);
+        }
+    }
 }

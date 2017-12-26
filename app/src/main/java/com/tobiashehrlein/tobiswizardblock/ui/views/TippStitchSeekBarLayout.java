@@ -2,12 +2,16 @@ package com.tobiashehrlein.tobiswizardblock.ui.views;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tobiapplications.thutils.GeneralUtils;
+import com.tobiashehrlein.tobiswizardblock.R;
 
 
 /**
@@ -16,11 +20,11 @@ import com.tobiapplications.thutils.GeneralUtils;
 
 public class TippStitchSeekBarLayout extends LinearLayout {
 
+    private final String INITIAL_VALUE = "0";
     private TextView playerName;
     private SeekBarControl tippsStitchesControl;
     private TextView tippsStitchesText;
     private TextView announcedTipps;
-    private final String INITIAL_VALUE = "0";
 
     public TippStitchSeekBarLayout(Context context) {
         super(context);
@@ -41,6 +45,7 @@ public class TippStitchSeekBarLayout extends LinearLayout {
         setOrientation(HORIZONTAL);
         createViews(context);
         setLayoutParams(context);
+        setGravity(Gravity.CENTER);
 
         tippsStitchesControl.setOnSeekBarValueChangeListener(value -> tippsStitchesText.setText(String.valueOf(value)));
     }
@@ -50,12 +55,40 @@ public class TippStitchSeekBarLayout extends LinearLayout {
         tippsStitchesControl = new SeekBarControl(context);
         tippsStitchesText = new TextView(context);
         tippsStitchesText.setText(INITIAL_VALUE);
+        tippsStitchesText.setPadding(GeneralUtils.pxFromDp(context, 16), 0, 0, 0);
         announcedTipps = new TextView(context);
+        Button plusButton = createButton(context, "+");
+        Button minusButton = createButton(context, "-");
+
+        plusButton.setOnClickListener(v -> increaseValue());
+        minusButton.setOnClickListener(v -> decreaseValue());
 
         addView(playerName);
+        addView(minusButton);
         addView(tippsStitchesControl);
+        addView(plusButton);
         addView(tippsStitchesText);
         addView(announcedTipps);
+    }
+
+    private Button createButton(Context context, String text) {
+        Button button = new Button(context);
+        button.setText(text);
+        int buttonHeightWidth = GeneralUtils.pxFromDp(context, 40);
+        LayoutParams buttonParams = new LayoutParams(buttonHeightWidth, buttonHeightWidth);
+        button.setLayoutParams(buttonParams);
+        button.setBackground(ContextCompat.getDrawable(context, R.drawable.border_player_choose_view));
+        button.setGravity(Gravity.CENTER);
+        button.setPadding(0, 0, 0, 0);
+        return button;
+    }
+
+    private void increaseValue() {
+        tippsStitchesControl.increaseValue();
+    }
+
+    private void decreaseValue() {
+        tippsStitchesControl.decreaseValue();
     }
 
     private void setLayoutParams(Context context) {
