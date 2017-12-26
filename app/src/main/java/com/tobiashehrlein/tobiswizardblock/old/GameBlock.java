@@ -542,7 +542,7 @@ public class GameBlock extends AppCompatActivity
     private void reallyWantToStartNewGame()
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(R.string.really_want_to_start_new_game);
+        builder1.setMessage(R.string.action_start_new_game);
         builder1.setCancelable(true);
 
 

@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gamesettings;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
     private GameSettingsContract.Presenter presenter;
     private FragmentNavigationListener listener;
     private Context context;
-    private Dialog infoDialog;
+    private AlertDialog infoDialog;
     private SwitchTextInfoView disableRuleInFirstRound;
     private SwitchTextInfoView anniveraryOption;
     private SwitchTextInfoView tippsEqualStitches;

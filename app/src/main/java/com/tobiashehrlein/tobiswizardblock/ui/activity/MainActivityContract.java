@@ -20,7 +20,7 @@ public interface MainActivityContract {
         void onCoverPageWaitCompleted();
     }
 
-    interface View extends BaseView, CoverPageListener, FragmentNavigationListener, DialogTwoButtonListener {
+    interface View extends BaseView, CoverPageListener, FragmentNavigationListener {
         void hideToolbar();
         void showToolbar();
     }

@@ -22,7 +22,7 @@ public interface GameBlockContract {
         void init(FragmentNavigationListener listener);
         void openTippsResult();
         void changePlayerNames();
-
+        void startNewGame();
     }
 
     interface View extends BaseView {

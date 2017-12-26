@@ -10,6 +10,8 @@ import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import io.realm.RealmList;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
+
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
  */
@@ -129,6 +131,13 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     public void changePlayerNames() {
         if (isAttached()) {
             getView().openChangePlayerNamesDialog(wizardGame.getGameSettings().getPlayerNames());
+        }
+    }
+
+    @Override
+    public void startNewGame() {
+        if (isNotNull(listener)) {
+            listener.startNewGame();
         }
     }
 }

@@ -20,5 +20,5 @@ public interface FragmentNavigationListener {
     void inflateToolbarMenu();
     void disableToolbarMenu();
     void setToolbarMenuItemListener(Toolbar.OnMenuItemClickListener listener);
-
+    void startNewGame();
 }

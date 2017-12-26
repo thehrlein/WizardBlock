@@ -14,8 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
+import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.ActivityMainBinding;
+import com.tobiashehrlein.tobiswizardblock.ui.gamesettings.GameSettingsFragment;
 
 import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
@@ -44,7 +46,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         presenter.attach(this);
         presenter.init();
 
-        backPressDialog = DialogBuilderUtil.createDialog(this, getString(R.string.back_press_dialog_title), getString(R.string.back_press_dialog_text), false, this);
+        backPressDialog = DialogBuilderUtil.createDialog(this, getString(R.string.back_press_dialog_title), getString(R.string.back_press_dialog_text), false, new DialogTwoButtonListener() {
+            @Override
+            public void onCancel() {
+                dismissBackPressDialog();
+            }
+
+            @Override
+            public void onConfirm() {
+                dismissBackPressDialog();
+                closeUntilNavigationFragment();
+            }
+        });
     }
 
     @Override
@@ -134,13 +147,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         }
     }
 
-    @Override
-    public void onConfirm() {
-        dismissBackPressDialog();
-
-        closeUntilNavigationFragment();
-    }
-
     private void closeUntilNavigationFragment() {
         FragmentManager fm = getSupportFragmentManager();
         int count = fm.getBackStackEntryCount();
@@ -149,15 +155,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         }
     }
 
-    @Override
-    public void onCancel() {
-        dismissBackPressDialog();
-    }
-
     private void dismissBackPressDialog() {
         if (isDialogShowing(backPressDialog)) {
             backPressDialog.dismiss();
         }
+    }
+
+    @Override
+    public void startNewGame() {
+        closeUntilNavigationFragment();
+        replaceFragment(GameSettingsFragment.newInstance(), true);
     }
 
     @Override

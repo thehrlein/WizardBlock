@@ -10,15 +10,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tobiapplications.thutils.GeneralUtils;
+import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
+import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameBlockBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
@@ -46,6 +45,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     private LinearLayout.LayoutParams roundViewParams;
     private boolean enterClickable;
     private ChangePlayerNamesDialog playerDialog;
+    private Dialog startNewGameDialog;
     private GameHeader gameHeader;
 
     public static GameBlockFragment newInstance() {
@@ -175,7 +175,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
                 changeTippsOrResults();
                 return true;
             case R.id.startNewGame:
-                startNewGame();
+                openStartNewGameDialog();
                 return true;
             case R.id.settings:
                 openSettings();
@@ -208,8 +208,23 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
     }
 
-    private void startNewGame() {
+    private void openStartNewGameDialog() {
+        String title = context.getString(R.string.action_title_are_you_sure);
+        String message = context.getString(R.string.action_start_new_game);
+        startNewGameDialog = DialogBuilderUtil.createDialog(context, title, message, new DialogTwoButtonListener() {
+            @Override
+            public void onConfirm() {
+                if (isNotNull( presenter)) {
+                    presenter.startNewGame();
+                }
+            }
 
+            @Override
+            public void onCancel() {
+
+            }
+        });
+        startNewGameDialog.show();
     }
 
     private void openSettings() {
