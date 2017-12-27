@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     private WizardGame wizardGame;
     private boolean isTippMode;
     private int roundsToPlay;
+    private boolean gameOver;
 
     public GameBlockPresenter() {
         wizardGame = Storage.getInstance().getWizardGame();
@@ -111,6 +113,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         }
 
         if (finished(results) && isAttached()) {
+            gameOver = true;
             getView().disableEnterButton();
             getView().showWinnerDialog(getWinner(results));
         }
@@ -168,7 +171,10 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     private void backFromTippsResults() {
         isTippMode = !isTippMode;
         setAllPreviousTippsAndResults();
-        setEnterButton();
+
+        if (!gameOver) {
+            setEnterButton();
+        }
 
         if (listener != null) {
             listener.setBackPressEnabled(false);
@@ -195,5 +201,20 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         if (isNotNull(listener)) {
             listener.startNewGame();
         }
+    }
+
+    @Override
+    public StringBuilder getCompleteWinnerString(List<String> winnerNames) {
+        final String appending = " & ";
+        StringBuilder completeWinnerNames = new StringBuilder();
+        Iterator<String> iterator = winnerNames.iterator();
+
+        completeWinnerNames.append(iterator.next());
+        while (iterator.hasNext()) {
+            completeWinnerNames.append(appending);
+            completeWinnerNames.append(iterator.next());
+        }
+
+        return completeWinnerNames;
     }
 }

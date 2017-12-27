@@ -1,8 +1,5 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
-import android.os.Bundle;
-
-import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
@@ -24,6 +21,7 @@ public interface GameBlockContract {
         void openTippsResult();
         void changePlayerNames();
         void startNewGame();
+        StringBuilder getCompleteWinnerString(List<String> winnerNames);
     }
 
     interface View extends BaseView {

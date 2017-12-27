@@ -34,6 +34,7 @@ import java.util.Map;
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
 
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
@@ -239,7 +240,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
         bind.enterButton.setEnabled(false);
         bind.enterButton.setText(context.getString(R.string.start_new_game));
         bind.enterButton.setOnClickListener(v -> openStartNewGameDialog());
-        new Handler().postDelayed(() -> bind.enterButton.setEnabled(true), 2000);
+        new Handler().postDelayed(() -> bind.enterButton.setEnabled(true), 3000);
     }
 
     @Override
@@ -252,25 +253,11 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
             message = context.getString(R.string.winner_message_single, firstWinnerName, winnerPoints);
         } else {
             ArrayList<String> winnerNames = new ArrayList<>(winner.keySet());
-            StringBuilder completeWinnerNames = getCompleteWinnerString(winnerNames);
+            StringBuilder completeWinnerNames = let(presenter, p -> p.getCompleteWinnerString(winnerNames));
             message = context.getString(R.string.winner_message_multipe, completeWinnerNames, winnerPoints);
         }
 
         Dialog winnerDialog = DialogBuilderUtil.createOneButtonDialog(context, title, message);
         winnerDialog.show();
-    }
-
-    private StringBuilder getCompleteWinnerString(ArrayList<String> winnerNames) {
-        final String appending = " & ";
-        StringBuilder completeWinnerNames = new StringBuilder();
-        Iterator<String> iterator = winnerNames.iterator();
-
-        completeWinnerNames.append(iterator.next());
-        while (iterator.hasNext()) {
-            completeWinnerNames.append(appending);
-            completeWinnerNames.append(iterator.next());
-        }
-
-        return completeWinnerNames;
     }
 }
