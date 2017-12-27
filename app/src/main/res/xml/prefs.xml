@@ -3,7 +3,7 @@
 
 
     <PreferenceCategory
-        android:title="@string/settings">
+        android:title="@string/action_about">
 
         <SwitchPreference
             android:title="@string/display_always_on"

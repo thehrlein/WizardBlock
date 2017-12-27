@@ -1030,18 +1030,18 @@ public class GameBlock extends AppCompatActivity
         if (tippsSaved)
         {
 //            menu.findItem(R.id.nextTippOrErgebnis).setTitle(R.string.next_result);
-            menu.findItem(R.id.changeTippOrResult).setTitle(R.string.changeTipps);
+            menu.findItem(R.id.action_change_last_tipps_or_results).setTitle(R.string.changeTipps);
         }
         else
         {
             if (currentGameRound != 1)
             {
-                menu.findItem(R.id.changeTippOrResult).setTitle(R.string.changeResults);
+                menu.findItem(R.id.action_change_last_tipps_or_results).setTitle(R.string.changeResults);
             }
             else
             {
-                menu.findItem(R.id.changeTippOrResult).setTitle(R.string.change);
-                menu.findItem(R.id.changeTippOrResult).setEnabled(false);
+                menu.findItem(R.id.action_change_last_tipps_or_results).setTitle(R.string.change);
+                menu.findItem(R.id.action_change_last_tipps_or_results).setEnabled(false);
             }
 
             if (currentGameRound <= maxGameRounds)
@@ -1081,16 +1081,16 @@ public class GameBlock extends AppCompatActivity
 //                    openTippsOrResultActivity(OPEN_TIPPS);
 //                }
 //                break;
-            case R.id.changeNames:
+            case R.id.action_change_player_names:
                 changePlayerNames();
                 break;
-            case R.id.startNewGame:
+            case R.id.action_new_game:
                 reallyWantToStartNewGame();
                 break;
-            case R.id.changeTippOrResult:
+            case R.id.action_change_last_tipps_or_results:
                 changeTippsOrResult();
                 break;
-            case R.id.settings:
+            case R.id.action_about:
                 openSettings();
                 break;
 

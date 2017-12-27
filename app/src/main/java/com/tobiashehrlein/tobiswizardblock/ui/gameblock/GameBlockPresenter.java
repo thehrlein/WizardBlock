@@ -161,7 +161,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     @Override
     public void openTippsResult() {
-        if (listener != null) {
+        if (isNotNull(listener)) {
             TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode);
             tippResultFragment.setOnDismissListener(this::backFromTippsResults);
             listener.showDialog(tippResultFragment);
@@ -216,5 +216,13 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         }
 
         return completeWinnerNames;
+    }
+
+    @Override
+    public void openAbout() {
+        if (isNotNull(listener)) {
+            AboutFragment aboutFragment = AboutFragment.newInstance();
+            listener.replaceFragment(aboutFragment, true);
+        }
     }
 }

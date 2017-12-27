@@ -22,6 +22,7 @@ public interface GameBlockContract {
         void changePlayerNames();
         void startNewGame();
         StringBuilder getCompleteWinnerString(List<String> winnerNames);
+        void openAbout();
     }
 
     interface View extends BaseView {

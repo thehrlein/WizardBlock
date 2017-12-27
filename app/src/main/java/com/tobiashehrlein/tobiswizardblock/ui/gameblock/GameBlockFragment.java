@@ -27,7 +27,6 @@ import com.tobiashehrlein.tobiswizardblock.ui.views.GameHeader;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +34,7 @@ import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
@@ -172,17 +172,17 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     @Override
     public boolean onMenuItemClicked(int itemId) {
         switch (itemId) {
-            case R.id.changeNames:
+            case R.id.action_change_player_names:
                 changePlayerNames();
                 return true;
-            case R.id.changeTippOrResult:
+            case R.id.action_change_last_tipps_or_results:
                 changeTippsOrResults();
                 return true;
-            case R.id.startNewGame:
+            case R.id.action_new_game:
                 openStartNewGameDialog();
                 return true;
-            case R.id.settings:
-                openSettings();
+            case R.id.action_about:
+                openAbout();
                 return true;
             default:
                 return false;
@@ -218,9 +218,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
         startNewGameDialog = DialogBuilderUtil.createDialog(context, title, message, new DialogTwoButtonListener() {
             @Override
             public void onConfirm() {
-                if (isNotNull( presenter)) {
-                    presenter.startNewGame();
-                }
+                letVoid(presenter, GameBlockContract.Presenter::startNewGame);
             }
 
             @Override
@@ -231,8 +229,8 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
         startNewGameDialog.show();
     }
 
-    private void openSettings() {
-
+    private void openAbout() {
+        letVoid(presenter, p -> p.openAbout());
     }
 
     @Override

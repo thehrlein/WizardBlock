@@ -43,7 +43,7 @@ public class Settings extends AppCompatActivity
 
         setContentView(R.layout.settings);
 
-        setTitle(R.string.settings);
+        setTitle(R.string.action_about);
 
         checkDisplayActiveStatus();
         setDisplayAlwaysActive(displayActive);

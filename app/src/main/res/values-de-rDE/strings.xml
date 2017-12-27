@@ -68,7 +68,7 @@
     <string name="changeTipps">Tipps korrigieren</string>
     <string name="changeResults">Ergebnisse korrigieren</string>
     <string name="change">Korrigieren</string>
-    <string name="settings">Einstellungen</string>
+    <string name="action_about">Einstellungen</string>
 
     <!-- Last Games -->
     <string name="no_old_games">Keine vergangenen Spiele verfügbar</string>
