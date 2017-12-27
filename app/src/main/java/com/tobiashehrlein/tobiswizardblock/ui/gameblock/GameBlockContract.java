@@ -8,6 +8,7 @@ import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 
 import java.util.List;
+import java.util.Map;
 
 import io.realm.RealmList;
 
@@ -37,5 +38,7 @@ public interface GameBlockContract {
         void clearBlock();
         boolean onMenuItemClicked(int itemId);
         void openChangePlayerNamesDialog(RealmList<String> playerNames);
+        void showWinnerDialog(Map<String, Integer> winner);
+        void disableEnterButton();
     }
 }

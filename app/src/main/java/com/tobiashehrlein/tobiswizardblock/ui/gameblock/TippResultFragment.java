@@ -26,8 +26,6 @@ import java.util.List;
 
 import io.realm.RealmList;
 
-import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogShowing;
-
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
  */
@@ -63,6 +61,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         bind = FragmentTippsResultsBinding.inflate(inflater);
+        enableEnterButtonDelayed();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.SlidingDialogTheme);
         builder.setOnKeyListener((dialogInterface, keyCode, keyEvent) -> {
@@ -80,6 +79,11 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         initializePresenter();
 
         return builder.create();
+    }
+
+    private void enableEnterButtonDelayed() {
+        bind.enterButton.setEnabled(false);
+        new Handler().postDelayed(() -> bind.enterButton.setEnabled(true), 1000);
     }
 
     public void setOnDismissListener(DialogDismissListener dismissListener) {

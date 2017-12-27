@@ -35,6 +35,9 @@
     <string name="cancel">Cancel</string>
     <string name="action_title_are_you_sure">Are you sure?</string>
     <string name="action_start_new_game">Do you really want to start a new game? This game is saved and you can continue it later.</string>
+    <string name="winner_title">Congratulation</string>
+    <string name="winner_message_single">%1$s has won with %2$d points!</string>
+    <string name="winner_message_multipe">%1$s have won with %2$d points!</string>
 
     <!-- Tipps Results -->
     <string name="confirm_tipps">Confirm tipps</string>

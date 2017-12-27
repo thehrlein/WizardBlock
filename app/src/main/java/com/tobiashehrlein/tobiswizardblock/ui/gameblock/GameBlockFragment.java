@@ -26,7 +26,10 @@ import com.tobiashehrlein.tobiswizardblock.ui.views.ChangePlayerNamesDialog;
 import com.tobiashehrlein.tobiswizardblock.ui.views.GameHeader;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import io.realm.RealmList;
 
@@ -160,7 +163,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
             if (enterClickable) {
                 presenter.openTippsResult();
                 enterClickable = false;
-                new Handler().postDelayed(() -> enterClickable = true, 1000);
+                new Handler().postDelayed(() -> enterClickable = true, 2000);
             }
         });
     }
@@ -229,5 +232,45 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
     private void openSettings() {
 
+    }
+
+    @Override
+    public void disableEnterButton() {
+        bind.enterButton.setEnabled(false);
+        bind.enterButton.setText(context.getString(R.string.start_new_game));
+        bind.enterButton.setOnClickListener(v -> openStartNewGameDialog());
+        new Handler().postDelayed(() -> bind.enterButton.setEnabled(true), 2000);
+    }
+
+    @Override
+    public void showWinnerDialog(Map<String, Integer> winner) {
+        String title = context.getString(R.string.winner_title);
+        String message;
+        String firstWinnerName = new ArrayList<>(winner.keySet()).get(0);
+        int winnerPoints = winner.get(firstWinnerName);
+        if (winner.size() == 1) {
+            message = context.getString(R.string.winner_message_single, firstWinnerName, winnerPoints);
+        } else {
+            ArrayList<String> winnerNames = new ArrayList<>(winner.keySet());
+            StringBuilder completeWinnerNames = getCompleteWinnerString(winnerNames);
+            message = context.getString(R.string.winner_message_multipe, completeWinnerNames, winnerPoints);
+        }
+
+        Dialog winnerDialog = DialogBuilderUtil.createOneButtonDialog(context, title, message);
+        winnerDialog.show();
+    }
+
+    private StringBuilder getCompleteWinnerString(ArrayList<String> winnerNames) {
+        final String appending = " & ";
+        StringBuilder completeWinnerNames = new StringBuilder();
+        Iterator<String> iterator = winnerNames.iterator();
+
+        completeWinnerNames.append(iterator.next());
+        while (iterator.hasNext()) {
+            completeWinnerNames.append(appending);
+            completeWinnerNames.append(iterator.next());
+        }
+
+        return completeWinnerNames;
     }
 }

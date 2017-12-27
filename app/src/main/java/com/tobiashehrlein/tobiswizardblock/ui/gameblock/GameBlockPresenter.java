@@ -8,9 +8,19 @@ import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
+import static com.tobiapplications.thutils.NullPointerUtils.isNull;
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
@@ -22,6 +32,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     private FragmentNavigationListener listener;
     private WizardGame wizardGame;
     private boolean isTippMode;
+    private int roundsToPlay;
 
     public GameBlockPresenter() {
         wizardGame = Storage.getInstance().getWizardGame();
@@ -48,7 +59,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     private void initRoundNumbers() {
         if (isAttached()) {
-            int roundsToPlay = getHowMuchRoundsToPlay();
+            roundsToPlay = getHowMuchRoundsToPlay();
             getView().addRoundNumbersFor(roundsToPlay);
         }
     }
@@ -98,6 +109,51 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
                 getView().addRound(tippsAnnounced, stitchesMade, pointsAdded, pointsTotal);
             }
         }
+
+        if (finished(results) && isAttached()) {
+            getView().disableEnterButton();
+            getView().showWinnerDialog(getWinner(results));
+        }
+    }
+
+    private Map<String, Integer> getWinner(RealmList<Round> results) {
+        Round lastRound = results.get(results.size() - 1);
+        RealmList<Integer> totalPoints = lastRound.getPointsTotal();
+        Map<String, Integer> winners = new HashMap<>();
+        RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
+        winners.put(playerNames.first(), totalPoints.first());
+
+        for (int i = 1; i < totalPoints.size(); i++) {
+            int previousScore = totalPoints.get(i - 1);
+            int currentScore = totalPoints.get(i);
+            String currentPlayerName = playerNames.get(i);
+            if (currentScore > previousScore) {
+                winners.clear();
+                winners.put(currentPlayerName, currentScore);
+            } else if (currentScore == previousScore) {
+                winners.put(currentPlayerName, currentScore);
+            }
+        }
+
+        return winners;
+    }
+
+    private boolean finished(RealmList<Round> results) {
+        if (isNullOrEmpty(results)) {
+            return false;
+        }
+
+        Round lastRound = results.get(results.size() - 1);
+        if (isNull(lastRound)) {
+            return false;
+        }
+
+        RealmList<Integer> totalPoints = lastRound.getPointsTotal();
+        if (isNullOrEmpty(totalPoints)) {
+            return false;
+        }
+
+        return results.size() == roundsToPlay;
     }
 
     @Override

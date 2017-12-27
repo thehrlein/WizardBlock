@@ -13,6 +13,11 @@ import com.tobiashehrlein.tobiswizardblock.R;
 
 public class PrimaryButton extends AppCompatButton {
 
+    private int backgroundNormal;
+    private int backgroundDisabled;
+    private int textNormal;
+    private int textDisabled;
+
     public PrimaryButton(Context context) {
         super(context);
         init(context);
@@ -30,8 +35,25 @@ public class PrimaryButton extends AppCompatButton {
 
     private void init(Context context) {
         setAllCaps(false);
-        setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary));
-        setTextColor(ContextCompat.getColor(context, R.color.colorWhite));
+        backgroundNormal = ContextCompat.getColor(context, R.color.colorPrimary);
+        backgroundDisabled = ContextCompat.getColor(context, R.color.colorGrey);
+        textNormal = ContextCompat.getColor(context, R.color.colorWhite);
+        textDisabled = ContextCompat.getColor(context, R.color.colorBlack);
+
+        setBackgroundColor(backgroundNormal);
+        setTextColor(textNormal);
         setTextSize(18);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (enabled) {
+            setBackgroundColor(backgroundNormal);
+            setTextColor(textNormal);
+        } else {
+            setBackgroundColor(backgroundDisabled);
+            setTextColor(textDisabled);
+        }
+        super.setEnabled(enabled);
     }
 }
