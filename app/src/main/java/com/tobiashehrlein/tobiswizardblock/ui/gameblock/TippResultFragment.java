@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
-import com.tobiapplications.thutils.dialog.DialogUtils;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentTippsResultsBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
@@ -25,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
+
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
 
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
@@ -139,8 +139,10 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
     @Override
     public void dismissOverlay(boolean enteredTippsOrResults) {
-        if (enteredTippsOrResults && dismissListener != null) {
-            dismissListener.onDismiss();
+        if (enteredTippsOrResults && isNotNull(dismissListener)) {
+            dismissListener.onDismissInputValid();
+        } else if (isNotNull(dismissListener)) {
+            dismissListener.onCloseInputInvalid();
         }
         new Handler().postDelayed(this::dismiss, 200);
     }

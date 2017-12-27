@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
 
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;
+import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import io.realm.RealmList;
 
 public interface GameBlockContract {
 
-    interface Presenter extends BaseMvpPresenter<View> {
+    interface Presenter extends BaseMvpPresenter<View>, DialogDismissListener {
 
         void init(FragmentNavigationListener listener);
         void openTippsResult();

@@ -22,6 +22,7 @@ import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 07.12.2017.
@@ -163,7 +164,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     public void openTippsResult() {
         if (isNotNull(listener)) {
             TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode);
-            tippResultFragment.setOnDismissListener(this::backFromTippsResults);
+            tippResultFragment.setOnDismissListener(this);
             listener.showDialog(tippResultFragment);
         }
     }
@@ -224,5 +225,15 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
             AboutFragment aboutFragment = AboutFragment.newInstance();
             listener.replaceFragment(aboutFragment, true);
         }
+    }
+
+    @Override
+    public void onDismissInputValid() {
+        backFromTippsResults();
+    }
+
+    @Override
+    public void onCloseInputInvalid() {
+        letVoid(listener, l -> l.setBackPressEnabled(false));
     }
 }

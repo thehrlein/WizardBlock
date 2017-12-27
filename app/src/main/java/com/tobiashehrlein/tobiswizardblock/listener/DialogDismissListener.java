@@ -6,5 +6,6 @@ package com.tobiashehrlein.tobiswizardblock.listener;
 
 public interface DialogDismissListener {
 
-    void onDismiss();
+    void onDismissInputValid();
+    void onCloseInputInvalid();
 }
