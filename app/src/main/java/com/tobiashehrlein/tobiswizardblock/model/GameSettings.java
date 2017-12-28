@@ -20,9 +20,11 @@ public class GameSettings extends RealmObject {
 
     }
 
-    public GameSettings(String gameName, RealmList<String> playerNames, @SettingsFactory.SettingsType int settingsType) {
+    public void setGameName(String gameName) {
         this.gameName = gameName;
-        this.playerNames = playerNames;
+    }
+
+    public void setSettingsType(int settingsType) {
         this.settingsType = settingsType;
     }
 

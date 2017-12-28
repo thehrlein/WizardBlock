@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.model;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -10,7 +11,6 @@ import io.realm.RealmObject;
 
 public class Round extends RealmObject {
 
-    private String roundCount;
     private RealmList<Integer> announcedTipps;
     private RealmList<Integer> madeStitches;
     private RealmList<Integer> pointsAdded;
@@ -21,14 +21,6 @@ public class Round extends RealmObject {
         madeStitches = new RealmList<>();
         pointsAdded= new RealmList<>();
         pointsTotal = new RealmList<>();
-    }
-
-    public String getRoundCount() {
-        return roundCount;
-    }
-
-    public void setRoundCount(String roundCount) {
-        this.roundCount = roundCount;
     }
 
     public RealmList<Integer> getAnnouncedTipps() {

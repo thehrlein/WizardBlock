@@ -1,14 +1,10 @@
 package com.tobiashehrlein.tobiswizardblock.ui.gamesettings;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
-import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
-import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
 import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 import com.tobiashehrlein.tobiswizardblock.ui.gameblock.GameBlockFragment;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
-
-import java.util.List;
 
 import io.realm.RealmList;
 
@@ -55,10 +51,7 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
             String gameName = getView().getGameName();
             RealmList<String> playerNames = getView().getPlayerNames();
             @SettingsFactory.SettingsType int settingsType = getView().getSettings();
-
-            GameSettings gameSettings = new GameSettings(gameName, playerNames, settingsType);
-
-            Storage.getInstance().setGameSettings(gameSettings);
+            Storage.getInstance().setGameSettings(gameName, playerNames, settingsType);
         }
 
         if (listener != null) {

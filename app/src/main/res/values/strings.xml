@@ -21,7 +21,7 @@
     <string name="stitches_can_be_equal_in_first_round_info">If enabled, previous rule is disabled for first round.\n\nThis does not affect all other rounds.</string>
     <string name="anniversary_option_stitches_can_be_less">Advanced: anniversary option</string>
     <string name="anniversary_option_stitches_can_be_less_info">If enabled, you can play with the anniversary version, which means, your stitches combined can be less than possible stitches.</string>
-    <string name="gamename_info">This name is used to identify this gameSettings to save in your local database.\nYou can pause and continue this gameSettings anytime.</string>
+    <string name="gamename_info">This name is used to identify this game to save in your local database.\nYou can pause and continue this game anytime.</string>
     <string name="player_hint_placeholder">Player %1$d</string>
     <string name="round">Round</string>
     <string name="enter_tipps">Enter your tipps</string>
@@ -80,8 +80,8 @@
     <string name="feedback">I\'m very happy to get feedback from you. Please mail to me.</string>
     <string name="from">from</string>
     <string name="game_over">Game Over</string>
-    <string name="game_settings_explaination">Choose a name for this gameSettings and how much players.</string>
-    <string name="gamesettingstext">Choose a name for this gameSettings and how much players.</string>
+    <string name="game_settings_explaination">Choose a name for this game and how much players.</string>
+    <string name="gamesettingstext">Choose a name for this game and how much players.</string>
     <string name="gofurther">Go</string>
     <string name="hello_tobias">Hello Tobias,\n\n</string>
     <string name="information">Developed by Tobias</string>
@@ -94,14 +94,14 @@
     <string name="next">Next</string>
     <string name="next_result">Confirm Results</string>
     <string name="no">No</string>
-    <string name="no_game_name">Choose a name for this gameSettings</string>
+    <string name="no_game_name">Choose a name for this game</string>
     <string name="no_old_games">No old games</string>
     <string name="no_old_highscores">No old highscores</string>
     <string name="onewinner">you have won with</string>
     <string name="player_name_five">Player 5</string>
     <string name="player_name_four">Player 4</string>
     <string name="player_name_give_in">Type in all player names</string>
-    <string name="player_name_not_entered">You haven\'t set a gameSettings name</string>
+    <string name="player_name_not_entered">You haven\'t set a game name</string>
     <string name="player_name_one">Player 1</string>
     <string name="player_name_six">Player 6</string>
     <string name="player_name_three">Player 3</string>
@@ -113,7 +113,7 @@
     <string name="settingstext">You can change player names or your tipps and results from last round.</string>
     <string name="start_a_new_game">New Game</string>
     <string name="start_new_game">New Game</string>
-    <string name="startscreentext">You choose weather to start a new gameSettings, load an old gameSettings or your highscores.</string>
+    <string name="startscreentext">You choose weather to start a new game, load an old game or your highscores.</string>
     <string name="tipps_can_not_be_equal_round">Tipps equal stitches.</string>
     <string name="tipps_error">Stitches made not equal possible stitches</string>
     <string name="tippstext">You can choose the amount of tipps and results.</string>

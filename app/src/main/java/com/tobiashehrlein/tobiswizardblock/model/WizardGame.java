@@ -15,11 +15,6 @@ public class WizardGame extends RealmObject {
     private RealmList<Round> results;
 
     public WizardGame() {
-
-    }
-
-    public WizardGame(GameSettings gameSettings) {
-        this.gameSettings = gameSettings;
         results = new RealmList<>();
     }
 
@@ -107,5 +102,9 @@ public class WizardGame extends RealmObject {
     public void clearLastRound() {
         Round round = results.get(results.size() - 1);
         results.remove(results.indexOf(round));
+    }
+
+    public void setGameSettings(GameSettings gameSettings) {
+        this.gameSettings = gameSettings;
     }
 }

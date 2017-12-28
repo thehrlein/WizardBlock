@@ -4,6 +4,7 @@ import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
@@ -19,6 +20,7 @@ public class Storage {
 
     private static Storage instance;
     private WizardGame wizardGame;
+    private Realm realm;
 
     public static Storage getInstance() {
         if (instance == null) {
@@ -29,12 +31,18 @@ public class Storage {
     }
 
     private Storage() {
-
+        realm = Realm.getDefaultInstance();
     }
 
-
-    public void setGameSettings(GameSettings gameSettings) {
-        wizardGame = new WizardGame(gameSettings);
+    public void setGameSettings(String gameName, RealmList<String> playerNames, int settingsType) {
+        realm.beginTransaction();
+        wizardGame = realm.createObject(WizardGame.class);
+        GameSettings gameSettings = realm.createObject(GameSettings.class);
+        gameSettings.setPlayerNames(playerNames);
+        gameSettings.setSettingsType(settingsType);
+        gameSettings.setGameName(gameName);
+        wizardGame.setGameSettings(gameSettings);
+        realm.commitTransaction();
     }
 
     public WizardGame getWizardGame() {
@@ -50,19 +58,25 @@ public class Storage {
     }
 
     private void setAnnouncedTipps(RealmList<Integer> announcedTipps) {
-        Round round = new Round();
+        realm.beginTransaction();
+        Round round = realm.createObject(Round.class);
         round.setAnnouncedTipps(announcedTipps);
         wizardGame.addRound(round);
+        realm.commitTransaction();
     }
 
     private void setMadeStitches(RealmList<Integer> madeStitches) {
+        realm.beginTransaction();
         Round round = wizardGame.getLastRound();
         round.setMadeStitches(madeStitches);
         wizardGame.addMadeStitches(round);
+        realm.commitTransaction();
     }
 
     public void savePlayerNames(RealmList<String> newPlayerName) {
+        realm.beginTransaction();
         wizardGame.getGameSettings().setPlayerNames(newPlayerName);
+        realm.commitTransaction();
     }
 
     public void clearLastInput() {
@@ -71,6 +85,8 @@ public class Storage {
             return;
         }
 
+        realm.beginTransaction();
+
         if (isNullOrEmpty(round.getMadeStitches())) {
             letVoid(wizardGame, WizardGame::clearLastRound);
         } else {
@@ -78,5 +94,7 @@ public class Storage {
             round.getPointsAdded().clear();
             round.getPointsTotal().clear();
         }
+
+        realm.commitTransaction();
     }
 }
