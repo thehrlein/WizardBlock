@@ -161,8 +161,8 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     public void setListener() {
         bind.enterButton.setOnClickListener(view -> {
             if (enterClickable) {
-                letVoid(presenter, GameBlockContract.Presenter::openNextInputEntering);
                 enterClickable = false;
+                letVoid(presenter, GameBlockContract.Presenter::openNextInputEntering);
                 new Handler().postDelayed(() -> enterClickable = true, 2000);
             }
         });

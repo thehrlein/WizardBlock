@@ -39,6 +39,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     private List<TippStitchSeekBarLayout> seekBarLayouts;
     private Context context;
     private DialogDismissListener dismissListener;
+    private boolean enterClickable;
 
     public static TippResultFragment newInstance(boolean isTippMode, boolean changeLastRoundInput) {
         TippResultFragment tippResultFragment = new TippResultFragment();
@@ -79,6 +80,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         context = getContext();
         seekBarLayouts = new ArrayList<>();
         initializePresenter();
+        enterClickable = true;
 
         return builder.create();
     }
@@ -116,7 +118,13 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
     @Override
     public void setListener() {
-        bind.enterButton.setOnClickListener(view -> presenter.onEnterButtonClicked());
+        bind.enterButton.setOnClickListener(view -> {
+            if (enterClickable) {
+                enterClickable = false;
+                letVoid(presenter, TippResultContract.Presenter::onEnterButtonClicked);
+                new Handler().postDelayed(() -> enterClickable = true, 2000);
+            }
+        });
     }
 
     @Override
