@@ -74,7 +74,7 @@ public class LastGamesFragment extends Fragment implements LastGamesContract.Vie
     @Override
     public void setUpRecyclerViewAndAdapter() {
         bind.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new LastGamesAdapter();
+        adapter = new LastGamesAdapter(listener);
         bind.recyclerView.setAdapter(adapter);
     }
 

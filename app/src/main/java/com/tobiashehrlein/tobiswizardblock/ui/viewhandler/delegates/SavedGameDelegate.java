@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.tobiashehrlein.tobiswizardblock.R;
+import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 import com.tobiashehrlein.tobiswizardblock.ui.viewholder.LastGameHolder;
@@ -21,6 +22,12 @@ import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 
 public class SavedGameDelegate extends AdapterDelegate<List<DisplayableItem>> {
 
+    private final FragmentNavigationListener listener;
+
+    public SavedGameDelegate(FragmentNavigationListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     protected boolean isForViewType(@NonNull List<DisplayableItem> items, int position) {
         return items.get(position) instanceof SavedGame;
@@ -29,7 +36,7 @@ public class SavedGameDelegate extends AdapterDelegate<List<DisplayableItem>> {
     @NonNull
     @Override
     protected RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
-        return new LastGameHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_last_games, parent, false));
+        return new LastGameHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_last_games, parent, false), listener);
     }
 
     @Override

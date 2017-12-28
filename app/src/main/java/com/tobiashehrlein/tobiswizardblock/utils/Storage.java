@@ -58,6 +58,10 @@ public class Storage {
         return wizardGame;
     }
 
+    public void setWizardGame(WizardGame wizardGame) {
+        this.wizardGame = wizardGame;
+    }
+
     public void saveInput(RealmList<Integer> input, boolean isTippMode) {
         if (isTippMode) {
             setAnnouncedTipps(input);
@@ -108,7 +112,7 @@ public class Storage {
     }
 
     public List<DisplayableItem> getSavedGames() {
-        RealmResults<WizardGame> realmResults = realm.where(WizardGame.class).findAll();
+        RealmResults<WizardGame> realmResults = getWizardGames();
         List<DisplayableItem> savedGames = new ArrayList<>();
         if (realmResults.isEmpty()) {
             return savedGames;
@@ -119,5 +123,19 @@ public class Storage {
         }
 
         return savedGames;
+    }
+
+    private RealmResults<WizardGame> getWizardGames() {
+        return realm.where(WizardGame.class).findAll();
+    }
+
+    public void initizalizeGameWithThisDate(String gameDate) {
+        RealmResults<WizardGame> realmResults = getWizardGames();
+        for (WizardGame game : realmResults) {
+            if (game.getGameDate().equals(gameDate)) {
+                wizardGame = game;
+                break;
+            }
+        }
     }
 }

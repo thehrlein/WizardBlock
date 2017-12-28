@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegatesManager;
+import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.Divider;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
@@ -24,11 +25,11 @@ public class LastGamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private List<DisplayableItem> itemList;
     private AdapterDelegatesManager<List<DisplayableItem>> delegatesManager;
 
-    public LastGamesAdapter() {
+    public LastGamesAdapter(FragmentNavigationListener listener) {
         itemList = new ArrayList<>();
 
         delegatesManager = new AdapterDelegatesManager<>();
-        delegatesManager.addDelegate(new SavedGameDelegate());
+        delegatesManager.addDelegate(new SavedGameDelegate(listener));
         delegatesManager.addDelegate(new DividerDelegate());
     }
 
