@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
 
 import io.realm.RealmList;
 
@@ -120,31 +121,11 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
         if (finished(results) && isAttached()) {
             gameOver = true;
+            Storage.getInstance().saveHighscores();
             getView().disableEnterButton();
-            getView().showWinnerDialog(getWinner(results));
+            Map<String, Integer> winners = Storage.getInstance().getWinner();
+            getView().showWinnerDialog(winners);
         }
-    }
-
-    private Map<String, Integer> getWinner(RealmList<Round> results) {
-        Round lastRound = results.get(results.size() - 1);
-        RealmList<Integer> totalPoints = lastRound.getPointsTotal();
-        Map<String, Integer> winners = new HashMap<>();
-        RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
-        winners.put(playerNames.first(), totalPoints.first());
-
-        for (int i = 1; i < totalPoints.size(); i++) {
-            int previousScore = totalPoints.get(i - 1);
-            int currentScore = totalPoints.get(i);
-            String currentPlayerName = playerNames.get(i);
-            if (currentScore > previousScore) {
-                winners.clear();
-                winners.put(currentPlayerName, currentScore);
-            } else if (currentScore == previousScore) {
-                winners.put(currentPlayerName, currentScore);
-            }
-        }
-
-        return winners;
     }
 
     private boolean finished(RealmList<Round> results) {

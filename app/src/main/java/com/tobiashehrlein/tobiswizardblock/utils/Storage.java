@@ -5,11 +5,15 @@ import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
+import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -26,6 +30,7 @@ import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.l
 
 public class Storage {
 
+    public static final int MAX_HIGHSCORES = 10;
     private static Storage instance;
     private WizardGame wizardGame;
     private Realm realm;
@@ -112,7 +117,7 @@ public class Storage {
     }
 
     public List<DisplayableItem> getSavedGames() {
-        RealmResults<WizardGame> realmResults = getWizardGames();
+        RealmResults<WizardGame> realmResults = getAllSavedWizardGames();
         List<DisplayableItem> savedGames = new ArrayList<>();
         if (realmResults.isEmpty()) {
             return savedGames;
@@ -125,17 +130,79 @@ public class Storage {
         return savedGames;
     }
 
-    private RealmResults<WizardGame> getWizardGames() {
+    private RealmResults<WizardGame> getAllSavedWizardGames() {
         return realm.where(WizardGame.class).findAll();
     }
 
-    public void initizalizeGameWithThisDate(String gameDate) {
-        RealmResults<WizardGame> realmResults = getWizardGames();
+    public void initializeGameWithThisDate(String gameDate) {
+        RealmResults<WizardGame> realmResults = getAllSavedWizardGames();
         for (WizardGame game : realmResults) {
             if (game.getGameDate().equals(gameDate)) {
                 wizardGame = game;
                 break;
             }
         }
+    }
+
+    public List<Highscore> getHighscores() {
+        List<Highscore> highscores;
+
+        RealmResults<Highscore> realmResults = realm.where(Highscore.class).findAll();
+        highscores = realm.copyFromRealm(realmResults);
+        Collections.sort(highscores, (o1, o2) -> o1.getScore() > o2.getScore() ? -1 : 1);
+
+        if (realmResults.size() <= MAX_HIGHSCORES) {
+            return highscores;
+        }
+
+        for (int i = 0; i < MAX_HIGHSCORES; i++) {
+            highscores.add(realmResults.get(i));
+        }
+
+        return highscores;
+    }
+
+    public Map<String, Integer> getWinner() {
+        Round lastRound = wizardGame.getLastRound();
+        RealmList<Integer> totalPoints = lastRound.getPointsTotal();
+        Map<String, Integer> winners = new HashMap<>();
+        RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
+        winners.put(playerNames.first(), totalPoints.first());
+
+        for (int i = 1; i < totalPoints.size(); i++) {
+            int previousScore = totalPoints.get(i - 1);
+            int currentScore = totalPoints.get(i);
+            String currentPlayerName = playerNames.get(i);
+            if (currentScore > previousScore) {
+                winners.clear();
+                winners.put(currentPlayerName, currentScore);
+            } else if (currentScore == previousScore) {
+                winners.put(currentPlayerName, currentScore);
+            }
+        }
+
+        return winners;
+    }
+
+    public void saveHighscores() {
+        Round lastRound = wizardGame.getLastRound();
+        RealmList<Integer> totalPoints = lastRound.getPointsTotal();
+        RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
+
+        if (totalPoints.size() != playerNames.size()) {
+            return;
+        }
+
+        realm.beginTransaction();
+
+        List<Highscore> highscores = new ArrayList<>();
+        for (int i = 0; i < playerNames.size(); i++) {
+            Highscore newScore = realm.createObject(Highscore.class);
+            newScore.setScore(totalPoints.get(i));
+            newScore.setPlayerName(playerNames.get(i));
+            highscores.add(newScore);
+        }
+
+        realm.commitTransaction();
     }
 }

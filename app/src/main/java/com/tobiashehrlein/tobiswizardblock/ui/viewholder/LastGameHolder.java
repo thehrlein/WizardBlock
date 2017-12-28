@@ -32,7 +32,7 @@ public class LastGameHolder extends RecyclerView.ViewHolder {
     }
 
     private void loadThisGame() {
-        Storage.getInstance().initizalizeGameWithThisDate(gameDate);
+        Storage.getInstance().initializeGameWithThisDate(gameDate);
         GameBlockFragment gameBlockFragment = GameBlockFragment.newInstance();
         letVoid(listener, l -> l.replaceFragment(gameBlockFragment, true));
     }

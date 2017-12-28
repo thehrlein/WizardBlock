@@ -1,5 +1,10 @@
 package com.tobiashehrlein.tobiswizardblock.model;
 
+import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 

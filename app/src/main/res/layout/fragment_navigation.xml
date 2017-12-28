@@ -78,7 +78,7 @@
 
             <com.tobiashehrlein.tobiswizardblock.ui.views.PrimaryButton
                 android:id="@+id/btHighscore"
-                android:text="@string/highscore"
+                android:text="@string/title_highscore"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 android:layout_marginTop="20dp"

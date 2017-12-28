@@ -70,6 +70,13 @@
     <string name="player_count">%1$d player</string>
 
 
+    <!-- HighScore -->
+    <string name="title_highscore">Highscore</string>
+    <string name="highscore_text">Your highscore ranking:</string>
+    <string name="highscore_total">%1$d Points</string>
+
+
+
     <string name="activated">selected</string>
     <string name="backpress">Push back again to exit the App</string>
     <string name="blocktext">Example Round 2: Maxi said he\'ll make 2 but did just 1, so he get -10 and has 10 points now.</string>
@@ -128,7 +135,6 @@
     <string name="win">:-)</string>
     <string name="yes">yes</string>
     <string name="covername">Wizard Block</string>
-    <string name="highscore">Highscore</string>
     <string name="email"><u>tobi.applications@gmail.com</u></string>
     <string name="arrow"><![CDATA[>]]></string>
     <string name="game_block">Block</string>

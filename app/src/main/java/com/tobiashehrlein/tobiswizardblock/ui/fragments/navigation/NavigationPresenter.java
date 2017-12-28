@@ -3,6 +3,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.fragments.navigation;
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings.GameSettingsFragment;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.highscore.HighscoreFragment;
 import com.tobiashehrlein.tobiswizardblock.ui.fragments.lastgames.LastGamesFragment;
 
 /**
@@ -41,7 +42,7 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
 
     @Override
     public void openHighScore() {
-
-//        listener.replaceFragment();
+        HighscoreFragment highscoreFragment = HighscoreFragment.newInstance();
+        listener.replaceFragment(highscoreFragment, true);
     }
 }
