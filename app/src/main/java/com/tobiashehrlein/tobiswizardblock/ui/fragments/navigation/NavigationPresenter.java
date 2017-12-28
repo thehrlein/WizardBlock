@@ -1,8 +1,9 @@
-package com.tobiashehrlein.tobiswizardblock.ui.navigation;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.navigation;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
-import com.tobiashehrlein.tobiswizardblock.ui.gamesettings.GameSettingsFragment;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings.GameSettingsFragment;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.lastgames.LastGamesFragment;
 
 /**
  * Created by Tobias Hehrlein on 26.11.2017.
@@ -34,8 +35,8 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
 
     @Override
     public void openLoadGames() {
-
-//        listener.replaceFragment();
+        LastGamesFragment lastGamesFragment = LastGamesFragment.newInstance();
+        listener.replaceFragment(lastGamesFragment, true);
     }
 
     @Override

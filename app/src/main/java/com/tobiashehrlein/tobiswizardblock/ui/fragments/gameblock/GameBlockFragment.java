@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;

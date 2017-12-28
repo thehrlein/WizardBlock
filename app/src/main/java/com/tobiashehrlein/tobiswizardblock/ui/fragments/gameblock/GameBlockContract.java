@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;

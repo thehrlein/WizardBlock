@@ -1,11 +1,19 @@
 package com.tobiashehrlein.tobiswizardblock.utils;
 
+import com.tobiapplications.thutils.DateUtils;
+import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
+import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
@@ -42,6 +50,7 @@ public class Storage {
         gameSettings.setSettingsType(settingsType);
         gameSettings.setGameName(gameName);
         wizardGame.setGameSettings(gameSettings);
+        wizardGame.setGameDate(DateUtils.getTodayString(DateUtils.TimeMode.MINUTES));
         realm.commitTransaction();
     }
 
@@ -96,5 +105,19 @@ public class Storage {
         }
 
         realm.commitTransaction();
+    }
+
+    public List<DisplayableItem> getSavedGames() {
+        RealmResults<WizardGame> realmResults = realm.where(WizardGame.class).findAll();
+        List<DisplayableItem> savedGames = new ArrayList<>();
+        if (realmResults.isEmpty()) {
+            return savedGames;
+        }
+        for (WizardGame game : realmResults) {
+            GameSettings settings = game.getGameSettings();
+            savedGames.add(new SavedGame(settings.getGameName(), settings.getPlayerNames().size(), game.getGameDate()));
+        }
+
+        return savedGames;
     }
 }

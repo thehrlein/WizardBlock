@@ -1,8 +1,8 @@
 package com.tobiashehrlein.tobiswizardblock.ui.activity;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
-import com.tobiashehrlein.tobiswizardblock.ui.coverpage.CoverPage;
-import com.tobiashehrlein.tobiswizardblock.ui.navigation.NavigationFragment;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.coverpage.CoverPage;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.navigation.NavigationFragment;
 
 /**
  * Created by Tobias Hehrlein on 26.11.2017.

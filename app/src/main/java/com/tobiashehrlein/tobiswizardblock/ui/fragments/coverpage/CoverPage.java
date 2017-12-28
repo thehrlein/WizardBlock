@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.ui.coverpage;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.coverpage;
 
 import android.content.Context;
 import android.os.Bundle;

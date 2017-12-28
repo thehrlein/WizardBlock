@@ -9,8 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
@@ -18,7 +16,7 @@ import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.ActivityMainBinding;
-import com.tobiashehrlein.tobiswizardblock.ui.gamesettings.GameSettingsFragment;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings.GameSettingsFragment;
 
 import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;

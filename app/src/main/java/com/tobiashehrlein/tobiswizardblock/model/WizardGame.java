@@ -13,6 +13,7 @@ public class WizardGame extends RealmObject {
     public static final int NORMAL_POINTS = 10;
     private GameSettings gameSettings;
     private RealmList<Round> results;
+    private String gameDate;
 
     public WizardGame() {
         results = new RealmList<>();
@@ -36,6 +37,14 @@ public class WizardGame extends RealmObject {
 
     public void addRound(Round round) {
         results.add(round);
+    }
+
+    public String getGameDate() {
+        return gameDate;
+    }
+
+    public void setGameDate(String gameDate) {
+        this.gameDate = gameDate;
     }
 
     public void addMadeStitches(Round round) {

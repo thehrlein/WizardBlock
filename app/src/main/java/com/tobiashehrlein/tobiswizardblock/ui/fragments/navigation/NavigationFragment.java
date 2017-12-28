@@ -1,12 +1,11 @@
-package com.tobiashehrlein.tobiswizardblock.ui.navigation;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.navigation;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,21 +38,16 @@ public class NavigationFragment extends Fragment implements NavigationContract.V
         }
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         bind = FragmentNavigationBinding.inflate(inflater);
 
         return bind.getRoot();
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         presenter = new NavigationPresenter();
@@ -63,9 +57,9 @@ public class NavigationFragment extends Fragment implements NavigationContract.V
 
     @Override
     public void initListener() {
-        bind.btNewGame.setOnClickListener(v -> presenter.startNewGame());
-        bind.btLoadGames.setOnClickListener(v -> presenter.openLoadGames());
-        bind.btHighscore.setOnClickListener(v -> presenter.openHighScore());
+        bind.btNewGame.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::startNewGame));
+        bind.btLoadGames.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::openLoadGames));
+        bind.btHighscore.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::openHighScore));
     }
 
     @Override

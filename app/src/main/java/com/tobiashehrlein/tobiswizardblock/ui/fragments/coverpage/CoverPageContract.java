@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.ui.coverpage;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.coverpage;
 
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;

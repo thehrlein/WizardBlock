@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.ui.navigation;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.navigation;
 
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;

@@ -1,15 +1,11 @@
-package com.tobiashehrlein.tobiswizardblock.ui.gameblock;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 
-import com.tobiapplications.thutils.dialog.DialogOneButtonListener;
-import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;
-import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
-import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.ui.views.TippStitchSeekBarLayout;
 
 import io.realm.RealmList;

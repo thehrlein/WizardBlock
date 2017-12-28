@@ -65,6 +65,11 @@
     <string name="about_send_email_loading">One second ...</string>
 
 
+    <!-- Last Games -->
+    <string name="title_last_games">Last Games</string>
+    <string name="player_count">%1$d player</string>
+
+
     <string name="activated">selected</string>
     <string name="backpress">Push back again to exit the App</string>
     <string name="blocktext">Example Round 2: Maxi said he\'ll make 2 but did just 1, so he get -10 and has 10 points now.</string>
@@ -85,7 +90,6 @@
     <string name="gofurther">Go</string>
     <string name="hello_tobias">Hello Tobias,\n\n</string>
     <string name="information">Developed by Tobias</string>
-    <string name="last_games">Last Games</string>
     <string name="last_one_more_or_less">Last player must say 1 more or less.</string>
     <string name="letsgo">Let\'s go</string>
     <string name="load_game">Load Game</string>

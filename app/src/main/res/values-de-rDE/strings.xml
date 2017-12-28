@@ -72,7 +72,7 @@
 
     <!-- Last Games -->
     <string name="no_old_games">Keine vergangenen Spiele verfügbar</string>
-    <string name="last_games">Letzte Spiele</string>
+    <string name="title_last_games">Letzte Spiele</string>
     <string name="clock">Uhr</string>
     <string name="delete">Delete</string>
 

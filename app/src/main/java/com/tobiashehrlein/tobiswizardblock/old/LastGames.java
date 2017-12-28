@@ -1,18 +1,15 @@
 package com.tobiashehrlein.tobiswizardblock.old;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ActionMode;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,8 +18,6 @@ import android.widget.TextView;
 import com.tobiashehrlein.tobiswizardblock.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -63,7 +58,7 @@ public class LastGames extends AppCompatActivity implements
         listView.setOnItemClickListener(this);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 
-        setTitle(R.string.last_games);
+        setTitle(R.string.title_last_games);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -371,7 +366,7 @@ public class LastGames extends AppCompatActivity implements
 //            if (convertView == null)
 //            {
 //                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                convertView = inflater.inflate(R.layout.row_layout, parent, false);
+//                convertView = inflater.inflate(R.layout.holder_last_games, parent, false);
 //            }
 //
 //            convertView.setBackgroundColor(getResources().getColor(android.R.color.background_light));

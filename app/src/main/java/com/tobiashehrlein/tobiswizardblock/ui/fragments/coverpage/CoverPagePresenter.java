@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.ui.coverpage;
+package com.tobiashehrlein.tobiswizardblock.ui.fragments.coverpage;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;
