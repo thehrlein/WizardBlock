@@ -9,9 +9,6 @@ import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -188,9 +185,10 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     private void backFromTippsResults() {
-        getNewTippMode();
+        getCurrentMode();
+        setModifyLastInputTitle();
         setAllPreviousTippsAndResults();
-
+        scrollToVisiblePosition();
         if (!gameOver) {
             setEnterButton();
         }
@@ -198,7 +196,24 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         letVoid(listener, l -> l.setBackPressEnabled(false));
     }
 
-    private void getNewTippMode() {
+    private void scrollToVisiblePosition() {
+        if (isAttached()) {
+            int currentRound = let(wizardGame, game -> let(game.getResults(), results -> results.size()));
+            if (currentRound > 5) {
+                getView().scrollTo(currentRound - 4);
+            }
+        }
+    }
+
+    private void setModifyLastInputTitle() {
+        if (isTippMode) {
+            letVoid(listener, FragmentNavigationListener::setLastInputActionResults);
+        } else {
+            letVoid(listener, FragmentNavigationListener::setLastInputActionTipps);
+        }
+    }
+
+    private void getCurrentMode() {
         RealmList<Integer> lastMadeStitches = let(wizardGame, game -> let(game.getLastRound(), Round::getMadeStitches));
         isTippMode = !isNullOrEmpty(lastMadeStitches);
     }

@@ -178,6 +178,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
+    public void setLastInputActionTipps() {
+        String tippTitle = getString(R.string.action_change_input_title_tipps);
+        bind.toolbar.getMenu().findItem(R.id.action_change_last_tipps_or_results).setTitle(tippTitle);
+    }
+
+    @Override
+    public void setLastInputActionResults() {
+        String resultTitle = getString(R.string.action_change_input_title_results);
+        bind.toolbar.getMenu().findItem(R.id.action_change_last_tipps_or_results).setTitle(resultTitle);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         checkForCrashes();

@@ -38,6 +38,7 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
 
     public TippResultPresenter() {
         tippStitchesLayouts = new ArrayList<>();
+        lastInput = new RealmList<>();
         wizardGame = Storage.getInstance().getWizardGame();
     }
 
@@ -151,4 +152,10 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
         Storage.getInstance().saveInput(input, isTippMode);
     }
 
+    @Override
+    public void saveLastInputBecauseOfModifying() {
+        if (changeLastRoundInput) {
+            Storage.getInstance().saveInput(lastInput, isTippMode);
+        }
+    }
 }

@@ -41,5 +41,6 @@ public interface GameBlockContract {
         void openChangePlayerNamesDialog(RealmList<String> playerNames);
         void showWinnerDialog(Map<String, Integer> winner);
         void disableEnterButton();
+        void scrollTo(int roundNumber);
     }
 }

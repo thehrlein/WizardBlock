@@ -55,8 +55,9 @@ public class TippStitchSeekBarLayout extends LinearLayout {
         tippsStitchesControl = new SeekBarControl(context);
         tippsStitchesText = new TextView(context);
         tippsStitchesText.setText(INITIAL_VALUE);
-        tippsStitchesText.setPadding(GeneralUtils.pxFromDp(context, 16), 0, 0, 0);
+        tippsStitchesText.setPadding(GeneralUtils.pxFromDp(context, 8), 0, 0, 0);
         announcedTipps = new TextView(context);
+        announcedTipps.setPadding(GeneralUtils.pxFromDp(context, 8), 0, 0, 0);
         Button plusButton = createButton(context, "+");
         Button minusButton = createButton(context, "-");
 
@@ -74,7 +75,7 @@ public class TippStitchSeekBarLayout extends LinearLayout {
     private Button createButton(Context context, String text) {
         Button button = new Button(context);
         button.setText(text);
-        int buttonHeightWidth = GeneralUtils.pxFromDp(context, 40);
+        int buttonHeightWidth = GeneralUtils.pxFromDp(context, 30);
         LayoutParams buttonParams = new LayoutParams(buttonHeightWidth, buttonHeightWidth);
         button.setLayoutParams(buttonParams);
         button.setBackground(ContextCompat.getDrawable(context, R.drawable.border_player_choose_view));
@@ -100,7 +101,7 @@ public class TippStitchSeekBarLayout extends LinearLayout {
         LayoutParams nameParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 3);
         playerName.setLayoutParams(nameParams);
 
-        LayoutParams controlParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 5);
+        LayoutParams controlParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 4);
         tippsStitchesControl.setLayoutParams(controlParams);
 
         LayoutParams numberParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);

@@ -24,6 +24,7 @@ public interface TippResultContract {
 
         void init(FragmentNavigationListener listener, Bundle arguments);
         void onEnterButtonClicked();
+        void saveLastInputBecauseOfModifying();
     }
 
     interface View extends BaseView {

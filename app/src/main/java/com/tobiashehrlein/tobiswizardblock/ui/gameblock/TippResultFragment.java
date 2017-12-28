@@ -25,6 +25,7 @@ import java.util.List;
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
@@ -143,6 +144,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         if (enteredTippsOrResults && isNotNull(dismissListener)) {
             dismissListener.onDismissInputValid();
         } else if (isNotNull(dismissListener)) {
+            letVoid(presenter, p -> p.saveLastInputBecauseOfModifying());
             dismissListener.onCloseInputInvalid();
         }
         new Handler().postDelayed(this::dismiss, 200);

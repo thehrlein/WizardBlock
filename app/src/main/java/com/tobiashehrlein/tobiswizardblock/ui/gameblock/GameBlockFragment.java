@@ -49,8 +49,6 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     private Context context;
     private LinearLayout.LayoutParams roundViewParams;
     private boolean enterClickable;
-    private ChangePlayerNamesDialog playerDialog;
-    private Dialog startNewGameDialog;
     private GameHeader gameHeader;
 
     public static GameBlockFragment newInstance() {
@@ -198,7 +196,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
     @Override
     public void openChangePlayerNamesDialog(RealmList<String> playerNames) {
-        playerDialog = new ChangePlayerNamesDialog(context, R.style.Theme_Transparent_Full_Width);
+        ChangePlayerNamesDialog playerDialog = new ChangePlayerNamesDialog(context, R.style.Theme_Transparent_Full_Width);
         playerDialog.setPlayerNames(playerNames);
         playerDialog.setPlayerNameChangeListener(this::saveNewPlayerNames);
         playerDialog.show();
@@ -216,7 +214,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     private void openStartNewGameDialog() {
         String title = context.getString(R.string.action_title_are_you_sure);
         String message = context.getString(R.string.action_start_new_game);
-        startNewGameDialog = DialogBuilderUtil.createDialog(context, title, message, new DialogTwoButtonListener() {
+        Dialog startNewGameDialog = DialogBuilderUtil.createDialog(context, title, message, new DialogTwoButtonListener() {
             @Override
             public void onConfirm() {
                 letVoid(presenter, GameBlockContract.Presenter::startNewGame);
@@ -258,5 +256,14 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
 
         Dialog winnerDialog = DialogBuilderUtil.createOneButtonDialog(context, title, message);
         winnerDialog.show();
+    }
+
+    @Override
+    public void scrollTo(int roundNumber) {
+        int maxRounds = bind.roundLayout.getChildCount();
+        if (roundNumber < maxRounds) {
+            View view = bind.roundLayout.getChildAt(roundNumber);
+            bind.scrollView.post(() -> bind.scrollView.scrollTo(0, view.getBottom() + 5));
+        }
     }
 }

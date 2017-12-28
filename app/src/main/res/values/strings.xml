@@ -38,6 +38,8 @@
     <string name="winner_title">Congratulation</string>
     <string name="winner_message_single">%1$s has won with %2$d points!</string>
     <string name="winner_message_multipe">%1$s have won with %2$d points!</string>
+    <string name="action_change_input_title_results">Change last results</string>
+    <string name="action_change_input_title_tipps">Change last tipps</string>
 
 
     <!-- Tipps Results -->
@@ -68,8 +70,6 @@
     <string name="blocktext">Example Round 2: Maxi said he\'ll make 2 but did just 1, so he get -10 and has 10 points now.</string>
     <string name="can_first_round_be_equal">You say, that all tipps combined shoudn\'t be equal possible stitches. Should this rule be disabled in the first round?</string>
     <string name="change">Change</string>
-    <string name="changeResults">Change Results</string>
-    <string name="changeTipps">Change Tipps</string>
     <string name="change_names">Change Player Names</string>
     <string name="clock">o\'clock</string>
     <string name="congratulations">Well done</string>

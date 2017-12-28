@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/action_change_last_tipps_or_results"
-        android:title="@string/changeTipps"
+        android:title="@string/action_change_input_title_tipps"
         app:showAsAction="never" />
 
     <item

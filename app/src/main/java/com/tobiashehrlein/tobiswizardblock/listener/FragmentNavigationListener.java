@@ -23,4 +23,6 @@ public interface FragmentNavigationListener {
     void startNewGame();
     void disableModifyLastInputAction();
     void enableModifyLastInputAction();
+    void setLastInputActionTipps();
+    void setLastInputActionResults();
 }
