@@ -5,7 +5,9 @@ import android.view.ViewGroup;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegatesManager;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
+import com.tobiashehrlein.tobiswizardblock.model.lastgames.Divider;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
+import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.delegates.DividerDelegate;
 import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.delegates.SavedGameDelegate;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class LastGamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         delegatesManager = new AdapterDelegatesManager<>();
         delegatesManager.addDelegate(new SavedGameDelegate());
+        delegatesManager.addDelegate(new DividerDelegate());
     }
 
     @Override
@@ -54,7 +57,14 @@ public class LastGamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public void setSavedGames(List<DisplayableItem> savedGames) {
-        itemList.addAll(savedGames);
+        if (isNullOrEmpty(savedGames)) {
+            return;
+        }
+        itemList.add(savedGames.get(0));
+        for (int i = 1; i < savedGames.size(); i++) {
+            itemList.add(new Divider());
+            itemList.add(savedGames.get(i));
+        }
         notifyDataSetChanged();
     }
 }
