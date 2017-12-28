@@ -30,7 +30,7 @@
     <!-- Game Block -->
     <string name="title_tipps">Tipps</string>
     <string name="title_results">Results</string>
-    <string name="title_change_player_names">Edit player names and hit enter</string>
+    <string name="title_change_player_names">Edit player names and hit confirm</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="action_title_are_you_sure">Are you sure?</string>
