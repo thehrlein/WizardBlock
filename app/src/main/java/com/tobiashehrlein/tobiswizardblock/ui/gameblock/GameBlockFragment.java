@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.tobiapplications.thutils.GeneralUtils;
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
 import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameBlockBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
@@ -265,5 +266,11 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
             View view = bind.roundLayout.getChildAt(roundNumber);
             bind.scrollView.post(() -> bind.scrollView.scrollTo(0, view.getBottom() + 5));
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 }

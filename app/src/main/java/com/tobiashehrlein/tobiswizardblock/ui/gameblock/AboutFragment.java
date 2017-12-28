@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentAboutBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias on 10.09.2017.
@@ -94,9 +96,7 @@ public class AboutFragment extends Fragment implements AboutContract.View {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (presenter != null) {
-            presenter.detach();
-        }
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 
     @Override

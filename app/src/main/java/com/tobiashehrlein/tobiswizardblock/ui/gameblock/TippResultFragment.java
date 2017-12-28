@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentTippsResultsBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
@@ -185,5 +186,11 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
         Dialog failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text);
         failureDialog.show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 }

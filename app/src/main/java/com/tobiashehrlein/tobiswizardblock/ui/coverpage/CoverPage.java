@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentCoverPageBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;
+
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 26.11.2017.
@@ -60,5 +63,11 @@ public class CoverPage extends Fragment implements CoverPageContract.View {
     @Override
     public void initCounter(int timeOut) {
         new Handler().postDelayed(() -> presenter.onWaitCompleted(), timeOut);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 }

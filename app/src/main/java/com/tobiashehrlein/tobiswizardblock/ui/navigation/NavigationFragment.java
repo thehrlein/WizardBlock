@@ -10,8 +10,11 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentNavigationBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 26.11.2017.
@@ -63,5 +66,11 @@ public class NavigationFragment extends Fragment implements NavigationContract.V
         bind.btNewGame.setOnClickListener(v -> presenter.startNewGame());
         bind.btLoadGames.setOnClickListener(v -> presenter.openLoadGames());
         bind.btHighscore.setOnClickListener(v -> presenter.openHighScore());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 }

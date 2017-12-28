@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameSettingsBinding;
 import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
@@ -23,6 +24,7 @@ import com.tobiashehrlein.tobiswizardblock.ui.views.SwitchTextInfoView;
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogNotShowing;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 27.11.2017.
@@ -166,5 +168,11 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
         SettingsFactory settingsFactory = new SettingsFactory();
         return settingsFactory.getSettings(easyMode, easyModeFirstRound, anniversaryMode);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 }
