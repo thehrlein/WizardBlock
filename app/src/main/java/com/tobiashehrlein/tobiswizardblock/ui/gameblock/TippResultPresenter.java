@@ -5,6 +5,7 @@ import android.support.annotation.StringRes;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
@@ -18,6 +19,9 @@ import java.util.List;
 
 import io.realm.RealmList;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
+
 
 /**
  * Created by Tobias Hehrlein on 08.12.2017.
@@ -28,7 +32,9 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     private List<TippStitchSeekBarLayout> tippStitchesLayouts;
     private WizardGame wizardGame;
     private boolean isTippMode;
+    private boolean changeLastRoundInput;
     private int currentRound;
+    private RealmList<Integer> lastInput;
 
     public TippResultPresenter() {
         tippStitchesLayouts = new ArrayList<>();
@@ -38,6 +44,13 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     @Override
     public void init(FragmentNavigationListener listener, Bundle arguments) {
         parseArguments(arguments);
+
+        if (changeLastRoundInput) {
+            getLastToModifyInput();
+            Storage.getInstance().clearLastInput();
+        }
+
+        getCurrentGameRound();
         createEnteringControls();
         setUpFragmentBasedOnEnterType();
         listener.setBackPressEnabled(true);
@@ -45,6 +58,15 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
         if (isAttached()) {
             getView().initializeToolbar();
             getView().setListener();
+        }
+    }
+
+    private void getLastToModifyInput() {
+        Round round = wizardGame.getLastRound();
+        if (isNotNullOrEmpty(round.getMadeStitches())) {
+            lastInput = round.getMadeStitches();
+        } else {
+            lastInput = round.getAnnouncedTipps();
         }
     }
 
@@ -56,21 +78,16 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
         if (arguments.containsKey(Constants.ISTIPPMODE)) {
             isTippMode = arguments.getBoolean(Constants.ISTIPPMODE);
         }
+
+        if (arguments.containsKey(Constants.CHANGELASTTOUNDINPUT)) {
+            changeLastRoundInput = arguments.getBoolean(Constants.CHANGELASTTOUNDINPUT);
+        }
     }
 
     private void createEnteringControls() {
-        List<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
+        List<String> playerNames = let(wizardGame, game -> let(game.getGameSettings(), GameSettings::getPlayerNames));
         if (playerNames == null || playerNames.isEmpty()) {
             return;
-        }
-
-        RealmList<Round> results = wizardGame.getResults();
-        if (results == null) {
-            currentRound = 1;
-        } else if (isTippMode){
-            currentRound = results.size() + 1;
-        } else {
-            currentRound = results.size();
         }
 
         for (int i = 0; i < playerNames.size(); i++) {
@@ -78,6 +95,17 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
                 TippStitchSeekBarLayout layout = getView().createTippStitchesLayout(playerNames.get(i), currentRound);
                 tippStitchesLayouts.add(layout);
             }
+        }
+    }
+
+    private void getCurrentGameRound() {
+        RealmList<Round> results = let(wizardGame, WizardGame::getResults);
+        if (results == null) {
+            currentRound = 1;
+        } else if (isTippMode){
+            currentRound = results.size() + 1;
+        } else {
+            currentRound = results.size();
         }
     }
 

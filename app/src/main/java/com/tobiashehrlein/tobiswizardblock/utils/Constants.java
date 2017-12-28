@@ -15,6 +15,7 @@ import java.lang.annotation.RetentionPolicy;
 public final class Constants {
 
     public static final String ISTIPPMODE = "is_tipp_mode";
+    public static final String CHANGELASTTOUNDINPUT = "change_last_round_input";
 
     @IntDef({EnterType.TIPPS, EnterType.RESULTS})
     @Retention(RetentionPolicy.CLASS)

@@ -21,4 +21,6 @@ public interface FragmentNavigationListener {
     void disableToolbarMenu();
     void setToolbarMenuItemListener(Toolbar.OnMenuItemClickListener listener);
     void startNewGame();
+    void disableModifyLastInputAction();
+    void enableModifyLastInputAction();
 }

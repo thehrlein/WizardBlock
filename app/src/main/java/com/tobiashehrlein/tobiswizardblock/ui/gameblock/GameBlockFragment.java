@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -162,7 +163,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     public void setListener() {
         bind.enterButton.setOnClickListener(view -> {
             if (enterClickable) {
-                presenter.openTippsResult();
+                letVoid(presenter, GameBlockContract.Presenter::openNextInputEntering);
                 enterClickable = false;
                 new Handler().postDelayed(() -> enterClickable = true, 2000);
             }
@@ -176,7 +177,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
                 changePlayerNames();
                 return true;
             case R.id.action_change_last_tipps_or_results:
-                changeTippsOrResults();
+                changeLastRoundInput();
                 return true;
             case R.id.action_new_game:
                 openStartNewGameDialog();
@@ -208,8 +209,8 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
         gameHeader.setPlayerNames(newPlayerName);
     }
 
-    private void changeTippsOrResults() {
-
+    private void changeLastRoundInput() {
+        letVoid(presenter, GameBlockContract.Presenter::changeLastRoundInput);
     }
 
     private void openStartNewGameDialog() {
@@ -230,7 +231,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     }
 
     private void openAbout() {
-        letVoid(presenter, p -> p.openAbout());
+        letVoid(presenter, GameBlockContract.Presenter::openAbout);
     }
 
     @Override

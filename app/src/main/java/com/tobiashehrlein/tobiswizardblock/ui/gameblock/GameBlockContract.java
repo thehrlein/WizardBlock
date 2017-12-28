@@ -19,11 +19,12 @@ public interface GameBlockContract {
     interface Presenter extends BaseMvpPresenter<View>, DialogDismissListener {
 
         void init(FragmentNavigationListener listener);
-        void openTippsResult();
+        void openNextInputEntering();
         void changePlayerNames();
         void startNewGame();
         StringBuilder getCompleteWinnerString(List<String> winnerNames);
         void openAbout();
+        void changeLastRoundInput();
     }
 
     interface View extends BaseView {

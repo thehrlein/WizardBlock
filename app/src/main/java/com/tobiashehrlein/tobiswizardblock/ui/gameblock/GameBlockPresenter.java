@@ -4,6 +4,7 @@ import android.view.MenuItem;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
@@ -22,6 +23,7 @@ import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
@@ -46,14 +48,15 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     public void init(FragmentNavigationListener listener) {
         this.listener = listener;
 
+        listener.inflateToolbarMenu();
+        listener.setBackPressEnabled(false);
+        listener.setToolbarMenuItemListener(this::onMenuItemClicked);
+
         initTitle();
         initHeader();
         initRoundNumbers();
         setAllPreviousTippsAndResults();
 
-        listener.inflateToolbarMenu();
-        listener.setBackPressEnabled(false);
-        listener.setToolbarMenuItemListener(this::onMenuItemClicked);
     }
 
     private boolean onMenuItemClicked(MenuItem item) {
@@ -76,6 +79,8 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         if (listener != null) {
             listener.setToolbarTitle(wizardGame.getGameSettings().getGameName());
         }
+        String gamenName = let(wizardGame, game -> let(game.getGameSettings(), GameSettings::getGameName));
+        letVoid(listener, l -> l.setToolbarTitle(gamenName));
     }
 
     private void initHeader() {
@@ -95,8 +100,11 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
         RealmList<Round> results = wizardGame.getResults();
         if (results == null || results.isEmpty()) {
+            letVoid(listener, FragmentNavigationListener::disableModifyLastInputAction);
             return;
         }
+
+        letVoid(listener, FragmentNavigationListener::enableModifyLastInputAction);
 
         if (isAttached()) {
             getView().clearBlock();
@@ -161,25 +169,38 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     @Override
-    public void openTippsResult() {
+    public void openNextInputEntering() {
+        openTippsResultss(isTippMode, false);
+    }
+
+    @Override
+    public void changeLastRoundInput() {
+        boolean lastType = !isTippMode;
+        openTippsResultss(lastType, true);
+    }
+
+    private void openTippsResultss(boolean isTippMode, boolean changeLastRoundInput) {
         if (isNotNull(listener)) {
-            TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode);
+            TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode, changeLastRoundInput);
             tippResultFragment.setOnDismissListener(this);
             listener.showDialog(tippResultFragment);
         }
     }
 
     private void backFromTippsResults() {
-        isTippMode = !isTippMode;
+        getNewTippMode();
         setAllPreviousTippsAndResults();
 
         if (!gameOver) {
             setEnterButton();
         }
 
-        if (listener != null) {
-            listener.setBackPressEnabled(false);
-        }
+        letVoid(listener, l -> l.setBackPressEnabled(false));
+    }
+
+    private void getNewTippMode() {
+        RealmList<Integer> lastMadeStitches = let(wizardGame, game -> let(game.getLastRound(), Round::getMadeStitches));
+        isTippMode = !isNullOrEmpty(lastMadeStitches);
     }
 
     private void setEnterButton() {
@@ -199,9 +220,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     @Override
     public void startNewGame() {
-        if (isNotNull(listener)) {
-            listener.startNewGame();
-        }
+        letVoid(listener, FragmentNavigationListener::startNewGame);
     }
 
     @Override

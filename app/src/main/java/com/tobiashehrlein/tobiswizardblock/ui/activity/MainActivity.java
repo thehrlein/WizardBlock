@@ -168,6 +168,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
+    public void disableModifyLastInputAction() {
+        bind.toolbar.getMenu().findItem(R.id.action_change_last_tipps_or_results).setEnabled(false);
+    }
+
+    @Override
+    public void enableModifyLastInputAction() {
+        bind.toolbar.getMenu().findItem(R.id.action_change_last_tipps_or_results).setEnabled(true);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         checkForCrashes();

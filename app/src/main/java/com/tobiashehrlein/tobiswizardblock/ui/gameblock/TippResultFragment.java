@@ -39,10 +39,11 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     private Context context;
     private DialogDismissListener dismissListener;
 
-    public static TippResultFragment newInstance(boolean isTippMode) {
+    public static TippResultFragment newInstance(boolean isTippMode, boolean changeLastRoundInput) {
         TippResultFragment tippResultFragment = new TippResultFragment();
         Bundle args = new Bundle();
         args.putBoolean(Constants.ISTIPPMODE, isTippMode);
+        args.putBoolean(Constants.CHANGELASTTOUNDINPUT, changeLastRoundInput);
         tippResultFragment.setArguments(args);
         return tippResultFragment;
     }

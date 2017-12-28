@@ -103,4 +103,9 @@ public class WizardGame extends RealmObject {
 
         return points;
     }
+
+    public void clearLastRound() {
+        Round round = results.get(results.size() - 1);
+        results.remove(results.indexOf(round));
+    }
 }

@@ -6,6 +6,11 @@ import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 
 import io.realm.RealmList;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNull;
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
+
 /**
  * Created by Tobias Hehrlein on 12.12.2017.
  */
@@ -58,5 +63,20 @@ public class Storage {
 
     public void savePlayerNames(RealmList<String> newPlayerName) {
         wizardGame.getGameSettings().setPlayerNames(newPlayerName);
+    }
+
+    public void clearLastInput() {
+        Round round = let(wizardGame, WizardGame::getLastRound);
+        if (isNull(round)) {
+            return;
+        }
+
+        if (isNullOrEmpty(round.getMadeStitches())) {
+            letVoid(wizardGame, WizardGame::clearLastRound);
+        } else {
+            round.getMadeStitches().clear();
+            round.getPointsAdded().clear();
+            round.getPointsTotal().clear();
+        }
     }
 }
