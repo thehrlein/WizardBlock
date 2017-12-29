@@ -31,7 +31,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/no_old_highscores"
+        android:text="@string/highscore_no_old_scores"
         android:gravity="center"/>
 
 </LinearLayout>

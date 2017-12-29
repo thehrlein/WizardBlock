@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.listener;
 
+import android.support.annotation.MenuRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +18,7 @@ public interface FragmentNavigationListener {
     void setToolbarBackButtonEnabled();
     void setToolbarBackButtonDisabled();
     void setBackPressEnabled(boolean enabled);
-    void inflateToolbarMenu();
+    void inflateToolbarMenu(@MenuRes int menu_game_block);
     void disableToolbarMenu();
     void setToolbarMenuItemListener(Toolbar.OnMenuItemClickListener listener);
     void startNewGame();

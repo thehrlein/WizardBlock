@@ -87,7 +87,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
         roundViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GeneralUtils.pxFromDp(context, 60));
 
         presenter.attach(this);
-        presenter.init(listener);
+        presenter.init(listener, R.menu.menu_game_block);
 
         enterClickable = true;
     }

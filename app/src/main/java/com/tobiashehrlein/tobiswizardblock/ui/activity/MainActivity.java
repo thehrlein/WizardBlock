@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.activity;
 
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.MenuRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -88,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
-    public void inflateToolbarMenu() {
-        bind.toolbar.inflateMenu(R.menu.menu_game_block);
+    public void inflateToolbarMenu(@MenuRes int menuGameBlock) {
+        bind.toolbar.inflateMenu(menuGameBlock);
     }
 
     @Override

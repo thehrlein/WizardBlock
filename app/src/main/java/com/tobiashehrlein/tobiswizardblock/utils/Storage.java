@@ -151,15 +151,11 @@ public class Storage {
         highscores = realm.copyFromRealm(realmResults);
         Collections.sort(highscores, (o1, o2) -> o1.getScore() > o2.getScore() ? -1 : 1);
 
-        if (realmResults.size() <= MAX_HIGHSCORES) {
+        if (highscores.size() <= MAX_HIGHSCORES) {
             return highscores;
         }
 
-        for (int i = 0; i < MAX_HIGHSCORES; i++) {
-            highscores.add(realmResults.get(i));
-        }
-
-        return highscores;
+        return highscores.subList(0, MAX_HIGHSCORES);
     }
 
     public Map<String, Integer> getWinner() {
@@ -170,13 +166,13 @@ public class Storage {
         winners.put(playerNames.first(), totalPoints.first());
 
         for (int i = 1; i < totalPoints.size(); i++) {
-            int previousScore = totalPoints.get(i - 1);
+            int winnerScore = winners.values().iterator().next();
             int currentScore = totalPoints.get(i);
             String currentPlayerName = playerNames.get(i);
-            if (currentScore > previousScore) {
+            if (currentScore > winnerScore) {
                 winners.clear();
                 winners.put(currentPlayerName, currentScore);
-            } else if (currentScore == previousScore) {
+            } else if (currentScore == winnerScore) {
                 winners.put(currentPlayerName, currentScore);
             }
         }
@@ -202,6 +198,15 @@ public class Storage {
             newScore.setPlayerName(playerNames.get(i));
             highscores.add(newScore);
         }
+
+        realm.commitTransaction();
+    }
+
+    public void deleteAllHighscore() {
+        realm.beginTransaction();
+
+        RealmResults<Highscore> realmResults = realm.where(Highscore.class).findAll();
+        realmResults.deleteAllFromRealm();
 
         realm.commitTransaction();
     }

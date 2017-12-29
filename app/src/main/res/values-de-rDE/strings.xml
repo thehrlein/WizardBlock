@@ -83,7 +83,7 @@
     <string name="hello_tobias">Hallo Tobias,\n\n</string>
 
     <!-- Highscores -->
-    <string name="no_old_highscores">Keine vergangenen Highscores verfügbar</string>
+    <string name="highscore_no_old_scores">Keine vergangenen Highscores verfügbar</string>
     <string name="from">vom</string>
     <string name="activated">ausgewählt</string>
     <string name="points">Punkte</string>

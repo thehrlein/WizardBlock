@@ -123,7 +123,7 @@ public class LastGames extends AppCompatActivity implements
     {
         nr = 0;
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_last_games, menu);
+        inflater.inflate(R.menu.menu_higscore, menu);
 
         return true;
     }
@@ -253,7 +253,7 @@ public class LastGames extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu)
     {
 
-        getMenuInflater().inflate(R.menu.menu_last_games, menu);
+        getMenuInflater().inflate(R.menu.menu_higscore, menu);
         invalidateOptionsMenu();
 
         return super.onCreateOptionsMenu(menu);
@@ -264,11 +264,11 @@ public class LastGames extends AppCompatActivity implements
     {
         if (results.isEmpty())
         {
-            menu.findItem(R.id.menuItemDeleteALl).setVisible(false);
+            menu.findItem(R.id.action_delete).setVisible(false);
         }
         else
         {
-            menu.findItem(R.id.menuItemDeleteALl).setVisible(true);
+            menu.findItem(R.id.action_delete).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -281,7 +281,7 @@ public class LastGames extends AppCompatActivity implements
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.menuItemDeleteALl:
+            case R.id.action_delete:
                 deleteRealmDatabase();
                 break;
         }

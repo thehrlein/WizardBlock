@@ -74,6 +74,13 @@
     <string name="title_highscore">Highscore</string>
     <string name="highscore_text">Your highscore ranking:</string>
     <string name="highscore_total">%1$d Points</string>
+    <string name="highscore_ranking">%1$d.</string>
+    <string name="highscore_ranking_title">Ranking</string>
+    <string name="highscore_player_name_title">Player</string>
+    <string name="highscore_points_title">Points</string>
+    <string name="highscore_dialog_title">Delete all highscores?</string>
+    <string name="highscore_dialog_message">All your highscores will be deleted.</string>
+    <string name="highscore_no_old_scores">no old highscores</string>
 
 
 
@@ -107,7 +114,6 @@
     <string name="no">No</string>
     <string name="no_game_name">Choose a name for this game</string>
     <string name="no_old_games">No old games</string>
-    <string name="no_old_highscores">No old highscores</string>
     <string name="onewinner">you have won with</string>
     <string name="player_name_five">Player 5</string>
     <string name="player_name_four">Player 4</string>

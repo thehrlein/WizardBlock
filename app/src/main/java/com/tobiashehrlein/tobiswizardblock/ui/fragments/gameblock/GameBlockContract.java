@@ -1,5 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
+import android.support.annotation.MenuRes;
+
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.DialogDismissListener;
@@ -18,7 +20,7 @@ public interface GameBlockContract {
 
     interface Presenter extends BaseMvpPresenter<View>, DialogDismissListener {
 
-        void init(FragmentNavigationListener listener);
+        void init(FragmentNavigationListener listener, @MenuRes int menuGameBlock);
         void openNextInputEntering();
         void changePlayerNames();
         void startNewGame();

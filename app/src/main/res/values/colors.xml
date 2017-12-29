@@ -12,4 +12,8 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorBackGroundGrey">#808080</color>
     <color name="colorStatusBarGrey">#666666</color>
+    <color name="colorGold">#FFD700</color>
+    <color name="colorSilver">#c0c0c0</color>
+    <color name="colorBronze">#cd7f32</color>
+    <color name="colorNoRanking">#f7f7f7</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.highscore;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
+import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentHighscoreBinding;
@@ -59,7 +62,7 @@ public class HighscoreFragment extends Fragment implements HighscoreContract.Vie
 
         presenter = new HighscorePresenter();
         presenter.attach(this);
-        presenter.init(listener);
+        presenter.init(listener, R.menu.menu_higscore);
     }
 
     @Override
@@ -68,11 +71,54 @@ public class HighscoreFragment extends Fragment implements HighscoreContract.Vie
     }
 
     @Override
-    public void createNewHighscore(Highscore score) {
+    public void createNewHighscore(Highscore score, int ranking) {
         HighscoreRow row = new HighscoreRow(context);
-        row.setHighscore(score);
+        row.setHighscore(score, ranking);
 
         bind.highscoreList.addView(row);
+    }
+
+    @Override
+    public boolean onMenuItemClicked(int itemId) {
+        switch (itemId) {
+            case R.id.action_delete:
+                openDeleteAllHighscoreDialog();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void openDeleteAllHighscoreDialog() {
+        String title = context.getString(R.string.highscore_dialog_title);
+        String message = context.getString(R.string.highscore_dialog_message);
+        Dialog deleteHighscore = DialogBuilderUtil.createDialog(context, title, message, new DialogTwoButtonListener() {
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onConfirm() {
+                letVoid(presenter, HighscoreContract.Presenter::deleteAllHighscore);
+            }
+        });
+        deleteHighscore.show();
+    }
+
+    @Override
+    public void clearHighscoreList() {
+        bind.highscoreList.removeAllViews();
+    }
+
+    @Override
+    public void showNoScoresAvailable() {
+        bind.noHighscores.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNoScoresAvailable() {
+        bind.noHighscores.setVisibility(View.GONE);
     }
 
     @Override

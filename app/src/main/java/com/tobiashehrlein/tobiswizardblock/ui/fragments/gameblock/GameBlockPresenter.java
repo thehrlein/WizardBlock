@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
+import android.support.annotation.MenuRes;
 import android.view.MenuItem;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
@@ -9,16 +10,13 @@ import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
 
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
-import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
@@ -43,10 +41,10 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     @Override
-    public void init(FragmentNavigationListener listener) {
+    public void init(FragmentNavigationListener listener, @MenuRes int menuGameBlock) {
         this.listener = listener;
 
-        listener.inflateToolbarMenu();
+        listener.inflateToolbarMenu(menuGameBlock);
         listener.setBackPressEnabled(false);
         listener.setToolbarMenuItemListener(this::onMenuItemClicked);
 
@@ -121,6 +119,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
         if (finished(results) && isAttached()) {
             gameOver = true;
+            letVoid(listener, FragmentNavigationListener::disableModifyLastInputAction);
             Storage.getInstance().saveHighscores();
             getView().disableEnterButton();
             Map<String, Integer> winners = Storage.getInstance().getWinner();

@@ -7,12 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ActionMode;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,13 +18,9 @@ import android.widget.TextView;
 
 import com.tobiashehrlein.tobiswizardblock.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 public class HighScore extends AppCompatActivity implements
@@ -100,7 +94,7 @@ public class HighScore extends AppCompatActivity implements
     {
         nr = 0;
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_last_games, menu);
+        inflater.inflate(R.menu.menu_higscore, menu);
 
         return true;
     }
@@ -183,7 +177,7 @@ public class HighScore extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu)
     {
 
-        getMenuInflater().inflate(R.menu.menu_last_games, menu);
+        getMenuInflater().inflate(R.menu.menu_higscore, menu);
         invalidateOptionsMenu();
 
         return super.onCreateOptionsMenu(menu);
@@ -194,11 +188,11 @@ public class HighScore extends AppCompatActivity implements
     {
         if (results.isEmpty())
         {
-            menu.findItem(R.id.menuItemDeleteALl).setVisible(false);
+            menu.findItem(R.id.action_delete).setVisible(false);
         }
         else
         {
-            menu.findItem(R.id.menuItemDeleteALl).setVisible(true);
+            menu.findItem(R.id.action_delete).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -211,7 +205,7 @@ public class HighScore extends AppCompatActivity implements
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.menuItemDeleteALl:
+            case R.id.action_delete:
                 deleteRealmDatabase();
                 break;
         }

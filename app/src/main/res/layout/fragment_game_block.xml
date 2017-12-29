@@ -34,7 +34,7 @@
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_below="@id/header"
-            android:layout_above="@id/button_layout"
+            android:layout_above="@id/button_layout_shadow"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:layout_width="match_parent"
@@ -69,6 +69,7 @@
         </ScrollView>
 
         <View
+            android:id="@+id/button_layout_shadow"
             android:layout_above="@id/button_layout"
             android:background="@drawable/shadow_bottom"
             android:layout_width="match_parent"
