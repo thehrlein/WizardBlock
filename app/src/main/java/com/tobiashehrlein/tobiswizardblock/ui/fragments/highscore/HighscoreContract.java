@@ -7,6 +7,8 @@ import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 
+import java.util.Map;
+
 /**
  * Created by Tobias Hehrlein on 28.12.2017.
  */
@@ -22,12 +24,11 @@ public interface HighscoreContract {
     interface View extends BaseView {
 
         String getTitle();
-        void createNewHighscore(Highscore score, int ranking);
         boolean onMenuItemClicked(int itemId);
         void clearHighscoreList();
         void showNoScoresAvailable();
-
         void hideNoScoresAvailable();
+        void createNewHighscore(Highscore highscore, Integer ranking);
     }
 }
 

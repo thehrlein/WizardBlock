@@ -19,6 +19,8 @@ import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 import com.tobiashehrlein.tobiswizardblock.ui.views.HighscoreRow;
 
+import java.util.Map;
+
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
@@ -71,9 +73,9 @@ public class HighscoreFragment extends Fragment implements HighscoreContract.Vie
     }
 
     @Override
-    public void createNewHighscore(Highscore score, int ranking) {
+    public void createNewHighscore(Highscore highscore, Integer ranking) {
         HighscoreRow row = new HighscoreRow(context);
-        row.setHighscore(score, ranking);
+        row.setHighscore(highscore, ranking);
 
         bind.highscoreList.addView(row);
     }

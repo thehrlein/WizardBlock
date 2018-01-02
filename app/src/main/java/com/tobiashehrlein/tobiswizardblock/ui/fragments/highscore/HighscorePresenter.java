@@ -10,6 +10,7 @@ import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
@@ -50,7 +51,7 @@ public class HighscorePresenter extends BasePresenter<HighscoreContract.View> im
 
     private void setUpHighscores() {
         clearHighscoreList();
-        List<Highscore> highscores = Storage.getInstance().getHighscores();
+        Map<Highscore, Integer> highscores = Storage.getInstance().getHighscores();
 
         if (isNullOrEmpty(highscores)) {
             showNoScoresAvailable();
@@ -58,11 +59,11 @@ public class HighscorePresenter extends BasePresenter<HighscoreContract.View> im
             hideNoScoresAvailable();
         }
 
-        for (int i = 0; i < highscores.size(); i++) {
-            if (isAttached()) {
-                getView().createNewHighscore(highscores.get(i), i + 1);
-            }
+        for (Map.Entry<Highscore, Integer> entry : highscores.entrySet())
+        if (isAttached()) {
+            getView().createNewHighscore(entry.getKey(), entry.getValue());
         }
+
     }
 
     private void clearHighscoreList() {

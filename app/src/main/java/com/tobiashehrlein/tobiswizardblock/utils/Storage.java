@@ -144,7 +144,7 @@ public class Storage {
         }
     }
 
-    public List<Highscore> getHighscores() {
+    public Map<Highscore, Integer> getHighscores() {
         List<Highscore> highscores;
 
         RealmResults<Highscore> realmResults = realm.where(Highscore.class).findAll();
@@ -152,10 +152,33 @@ public class Storage {
         Collections.sort(highscores, (o1, o2) -> o1.getScore() > o2.getScore() ? -1 : 1);
 
         if (highscores.size() <= MAX_HIGHSCORES) {
-            return highscores;
+            return getHighscoreIntegerMap(highscores);
         }
 
-        return highscores.subList(0, MAX_HIGHSCORES);
+        highscores = highscores.subList(0, MAX_HIGHSCORES);
+
+        return getHighscoreIntegerMap(highscores);
+    }
+
+    private Map<Highscore, Integer> getHighscoreIntegerMap(List<Highscore> highscores) {
+        Map<Highscore, Integer> scoreRankingMap = new HashMap<>();
+        if (isNullOrEmpty(highscores)) {
+            return scoreRankingMap;
+        }
+
+        int rank = 1;
+
+        scoreRankingMap.put(highscores.get(0), rank);
+
+        for (int i = 1; i < highscores.size(); i++) {
+            if (highscores.get(i).getScore() != highscores.get(i - 1).getScore()) {
+                rank++;
+            }
+            scoreRankingMap.put(highscores.get(i), rank);
+        }
+
+        scoreRankingMap = MapUtils.sortByValue(scoreRankingMap);
+        return scoreRankingMap;
     }
 
     public Map<String, Integer> getWinner() {
