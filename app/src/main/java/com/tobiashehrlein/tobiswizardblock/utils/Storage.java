@@ -10,7 +10,6 @@ import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,15 +148,35 @@ public class Storage {
 
         RealmResults<Highscore> realmResults = realm.where(Highscore.class).findAll();
         highscores = realm.copyFromRealm(realmResults);
-        Collections.sort(highscores, (o1, o2) -> o1.getScore() > o2.getScore() ? -1 : 1);
+        Collections.sort(highscores, (o1, o2) -> o1.getScore() - o2.getScore());
 
         if (highscores.size() <= MAX_HIGHSCORES) {
             return getHighscoreIntegerMap(highscores);
         }
 
-        highscores = highscores.subList(0, MAX_HIGHSCORES);
+        return clearNotTopTenListAndReturnTopTen(highscores, realmResults);
+    }
+
+    private Map<Highscore, Integer> clearNotTopTenListAndReturnTopTen(List<Highscore> highscores, RealmResults<Highscore> realmResults) {
+        highscores.removeAll(getNotTopTenList(highscores));
+
+        realm.beginTransaction();
+        realmResults.deleteAllFromRealm();
+
+        for (Highscore topTen : highscores) {
+            Highscore newScore = realm.createObject(Highscore.class);
+            newScore.setScore(topTen.getScore());
+            newScore.setPlayerName(topTen.getPlayerName());
+        }
+
+        realm.commitTransaction();
+
 
         return getHighscoreIntegerMap(highscores);
+    }
+
+    private List<Highscore> getNotTopTenList(List<Highscore> highscores) {
+        return highscores.subList(MAX_HIGHSCORES, highscores.size());
     }
 
     private Map<Highscore, Integer> getHighscoreIntegerMap(List<Highscore> highscores) {
@@ -214,12 +233,10 @@ public class Storage {
 
         realm.beginTransaction();
 
-        List<Highscore> highscores = new ArrayList<>();
         for (int i = 0; i < playerNames.size(); i++) {
             Highscore newScore = realm.createObject(Highscore.class);
             newScore.setScore(totalPoints.get(i));
             newScore.setPlayerName(playerNames.get(i));
-            highscores.add(newScore);
         }
 
         realm.commitTransaction();
@@ -230,6 +247,15 @@ public class Storage {
 
         RealmResults<Highscore> realmResults = realm.where(Highscore.class).findAll();
         realmResults.deleteAllFromRealm();
+
+        realm.commitTransaction();
+    }
+
+    public void deleteThisGameFromLastGameList() {
+        realm.beginTransaction();
+
+        WizardGame currentGame = realm.where(WizardGame.class).equalTo("gameDate", wizardGame.getGameDate()).findFirst();
+        letVoid(currentGame, game -> game.deleteFromRealm());
 
         realm.commitTransaction();
     }
