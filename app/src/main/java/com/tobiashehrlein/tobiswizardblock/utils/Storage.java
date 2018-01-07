@@ -46,7 +46,7 @@ public class Storage {
         realm = Realm.getDefaultInstance();
     }
 
-    public void setGameSettings(String gameName, RealmList<String> playerNames, int settingsType) {
+    public void initializeGame(String gameName, RealmList<String> playerNames, int settingsType) {
         realm.beginTransaction();
         wizardGame = realm.createObject(WizardGame.class);
         GameSettings gameSettings = realm.createObject(GameSettings.class);
@@ -121,10 +121,8 @@ public class Storage {
         if (realmResults.isEmpty()) {
             return savedGames;
         }
-        for (WizardGame game : realmResults) {
-            GameSettings settings = game.getGameSettings();
-            savedGames.add(new SavedGame(settings.getGameName(), settings.getPlayerNames().size(), game.getGameDate()));
-        }
+
+        savedGames.addAll(realmResults);
 
         return savedGames;
     }
@@ -251,12 +249,34 @@ public class Storage {
         realm.commitTransaction();
     }
 
-    public void deleteThisGameFromLastGameList() {
+    public void deleteCurrentGameFromLastGameList() {
         realm.beginTransaction();
 
         WizardGame currentGame = realm.where(WizardGame.class).equalTo("gameDate", wizardGame.getGameDate()).findFirst();
         letVoid(currentGame, game -> game.deleteFromRealm());
 
+        realm.commitTransaction();
+    }
+
+    public void deleteThisSavedGame(WizardGame savedGame) {
+        realm.beginTransaction();
+
+        WizardGame currentGame = realm.where(WizardGame.class).equalTo("gameDate", savedGame.getGameDate()).findFirst();
+        letVoid(currentGame, game -> game.deleteFromRealm());
+
+        realm.commitTransaction();
+    }
+
+    public void restoreGame(WizardGame savedGame) {
+        realm.beginTransaction();
+        wizardGame = realm.createObject(WizardGame.class);
+        GameSettings gameSettings = realm.createObject(GameSettings.class);
+        gameSettings.setPlayerNames(savedGame.getGameSettings().getPlayerNames());
+        gameSettings.setSettingsType(savedGame.getGameSettings().getSettings());
+        gameSettings.setGameName(savedGame.getGameSettings().getGameName());
+        wizardGame.setGameSettings(gameSettings);
+        wizardGame.setGameDate(savedGame.getGameDate());
+        wizardGame.setResults(savedGame.getResults());
         realm.commitTransaction();
     }
 }

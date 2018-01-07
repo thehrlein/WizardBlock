@@ -12,7 +12,7 @@ import io.realm.RealmObject;
  * Created by Tobias Hehrlein on 12.12.2017.
  */
 
-public class WizardGame extends RealmObject {
+public class WizardGame extends RealmObject implements DisplayableItem {
 
     public static final int WIN_EXTRA_POINTS = 20;
     public static final int NORMAL_POINTS = 10;

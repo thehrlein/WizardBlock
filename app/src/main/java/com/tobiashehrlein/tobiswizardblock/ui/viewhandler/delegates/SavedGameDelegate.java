@@ -9,6 +9,8 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
+import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
+import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 import com.tobiashehrlein.tobiswizardblock.ui.viewholder.LastGameHolder;
 
@@ -30,7 +32,7 @@ public class SavedGameDelegate extends AdapterDelegate<List<DisplayableItem>> {
 
     @Override
     protected boolean isForViewType(@NonNull List<DisplayableItem> items, int position) {
-        return items.get(position) instanceof SavedGame;
+        return items.get(position) instanceof WizardGame;
     }
 
     @NonNull
@@ -43,14 +45,15 @@ public class SavedGameDelegate extends AdapterDelegate<List<DisplayableItem>> {
     protected void onBindViewHolder(@NonNull List<DisplayableItem> items, int position, @NonNull RecyclerView.ViewHolder holder, @NonNull List<Object> payloads) {
         LastGameHolder lastGameHolder = (LastGameHolder) holder;
 
-        SavedGame savedGame = (SavedGame) items.get(position);
+        WizardGame savedGame = (WizardGame) items.get(position);
 
         if (isNull(lastGameHolder, savedGame)) {
             return;
         }
 
-        lastGameHolder.setGameName(savedGame.getGameName());
-        lastGameHolder.setPlayerCount(savedGame.getPlayers());
-        lastGameHolder.setGameTime(savedGame.getDateTime());
+        GameSettings settings = savedGame.getGameSettings();
+        lastGameHolder.setGameName(settings.getGameName());
+        lastGameHolder.setPlayerCount(settings.getPlayerNames().size());
+        lastGameHolder.setGameTime(savedGame.getGameDate());
     }
 }

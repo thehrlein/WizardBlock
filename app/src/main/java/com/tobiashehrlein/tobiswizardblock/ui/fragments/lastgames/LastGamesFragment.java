@@ -1,24 +1,40 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.lastgames;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentLastGamesBinding;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
+import com.tobiashehrlein.tobiswizardblock.model.Round;
+import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.LastGamesAdapter;
+import com.tobiashehrlein.tobiswizardblock.ui.viewholder.LastGameHolder;
+import com.tobiashehrlein.tobiswizardblock.utils.RecyclerSwipeHelper;
+import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.List;
 
+import io.realm.RealmList;
+
+import static com.tobiapplications.thutils.NullPointerUtils.isNull;
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
@@ -76,16 +92,79 @@ public class LastGamesFragment extends Fragment implements LastGamesContract.Vie
         bind.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         adapter = new LastGamesAdapter(listener);
         bind.recyclerView.setAdapter(adapter);
+        bind.recyclerView.setItemAnimator(new DefaultItemAnimator());
+        bind.recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+
+        ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerSwipeHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(bind.recyclerView);
     }
 
     @Override
     public void addSavedGames(List<DisplayableItem> savedGames) {
-        letVoid(adapter, a -> a.setSavedGames(savedGames));
+        if (isNullOrEmpty(savedGames)) {
+            bind.noOldGames.setVisibility(View.VISIBLE);
+        } else {
+            bind.noOldGames.setVisibility(View.GONE);
+            letVoid(adapter, a -> a.setSavedGames(savedGames));
+        }
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (viewHolder instanceof LastGameHolder) {
+            String gameName = ((LastGameHolder) viewHolder).getGameName();
+
+            int deletedIndex = viewHolder.getAdapterPosition();
+            DisplayableItem deletedItem = let(adapter, a -> a.removeItem(deletedIndex));
+
+            WizardGame tempDeletedGame = createTempDeleteGame(deletedItem);
+            deleteFromRealm(deletedItem);
+
+            if (isNull(deletedItem)) {
+                return;
+            }
+
+            Snackbar snackbar = Snackbar
+                    .make(bind.getRoot(), gameName + " removed from last games!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", view -> restoreThisGame(deletedIndex, tempDeletedGame));
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+        }
+    }
+
+    private WizardGame createTempDeleteGame(DisplayableItem deletedItem) {
+        WizardGame wizardGame = new WizardGame();
+        if (deletedItem instanceof WizardGame) {
+            WizardGame deletedGame = (WizardGame) deletedItem;
+
+            wizardGame.setGameDate(deletedGame.getGameDate());
+            wizardGame.setGameSettings(deletedGame.getGameSettings());
+            RealmList<Round> tmpResults = new RealmList<>();
+            tmpResults.addAll(deletedGame.getResults());
+            wizardGame.setResults(tmpResults);
+        }
+
+        return wizardGame;
+    }
+
+    private void deleteFromRealm(DisplayableItem deletedItem) {
+        if (deletedItem instanceof WizardGame) {
+            WizardGame savedGame = (WizardGame) deletedItem;
+            Storage.getInstance().deleteThisSavedGame(savedGame);
+        }
+    }
+
+    private void restoreThisGame(int deletedIndex, DisplayableItem deletedItem) {
+        letVoid(adapter, a -> a.restoreItem(deletedItem, deletedIndex));
+        if (deletedItem instanceof WizardGame) {
+            WizardGame savedGame = (WizardGame) deletedItem;
+            Storage.getInstance().restoreGame(savedGame);
+        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        presenter.detach();
+        letVoid(presenter, BaseMvpPresenter::detach);
     }
 }

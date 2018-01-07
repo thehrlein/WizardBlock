@@ -51,7 +51,7 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
             String gameName = getView().getGameName();
             RealmList<String> playerNames = getView().getPlayerNames();
             @SettingsFactory.SettingsType int settingsType = getView().getSettings();
-            Storage.getInstance().setGameSettings(gameName, playerNames, settingsType);
+            Storage.getInstance().initializeGame(gameName, playerNames, settingsType);
         }
 
         if (listener != null) {

@@ -124,7 +124,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
             getView().disableEnterButton();
             Map<String, Integer> winners = Storage.getInstance().getWinner();
             getView().showWinnerDialog(winners);
-            Storage.getInstance().deleteThisGameFromLastGameList();
+            Storage.getInstance().deleteCurrentGameFromLastGameList();
         }
     }
 

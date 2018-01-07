@@ -68,6 +68,8 @@
     <!-- Last Games -->
     <string name="title_last_games">Last Games</string>
     <string name="player_count">%1$d player</string>
+    <string name="last_games_explanation">You can continue your game by clicking on it. If you want to delete it, swipe it left.</string>
+    <string name="last_games_no_available">no old games</string>
 
 
     <!-- HighScore -->
@@ -81,7 +83,6 @@
     <string name="highscore_dialog_title">Delete all highscores?</string>
     <string name="highscore_dialog_message">All your highscores will be deleted.</string>
     <string name="highscore_no_old_scores">no old highscores</string>
-
 
 
     <string name="activated">selected</string>

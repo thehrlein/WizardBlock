@@ -6,14 +6,13 @@ import android.view.ViewGroup;
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegatesManager;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
-import com.tobiashehrlein.tobiswizardblock.model.lastgames.Divider;
-import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
-import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.delegates.DividerDelegate;
 import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.delegates.SavedGameDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
+import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 
 /**
@@ -30,7 +29,6 @@ public class LastGamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         delegatesManager = new AdapterDelegatesManager<>();
         delegatesManager.addDelegate(new SavedGameDelegate(listener));
-        delegatesManager.addDelegate(new DividerDelegate());
     }
 
     @Override
@@ -61,11 +59,28 @@ public class LastGamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (isNullOrEmpty(savedGames)) {
             return;
         }
-        itemList.add(savedGames.get(0));
-        for (int i = 1; i < savedGames.size(); i++) {
-            itemList.add(new Divider());
-            itemList.add(savedGames.get(i));
-        }
+
+        itemList.addAll(savedGames);
         notifyDataSetChanged();
+    }
+
+    public DisplayableItem removeItem(int posToDelete) {
+        if (isNullOrEmpty(itemList) || posToDelete > itemList.size()) {
+            return null;
+        }
+        DisplayableItem deleteItem = itemList.get(posToDelete);
+        itemList.remove(deleteItem);
+        notifyItemRemoved(posToDelete);
+
+        return deleteItem;
+    }
+
+    public void restoreItem(DisplayableItem item, int position) {
+        if (isNull(itemList, item)) {
+            return;
+        }
+
+        itemList.add(position, item);
+        notifyItemInserted(position);
     }
 }

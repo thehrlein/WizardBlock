@@ -3,6 +3,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.fragments.lastgames;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.listener.RecyclerSwipeHelperListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface LastGamesContract {
         void init(FragmentNavigationListener listener);
     }
 
-    interface View extends BaseView {
+    interface View extends BaseView, RecyclerSwipeHelperListener {
 
         String getTitle();
         void setUpRecyclerViewAndAdapter();

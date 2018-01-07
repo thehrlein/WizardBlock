@@ -49,4 +49,12 @@ public class LastGameHolder extends RecyclerView.ViewHolder {
         this.gameDate = dateTime;
         bind.gamedate.setText(dateTime);
     }
+
+    public String getGameName() {
+        return bind.gameName.getText().toString();
+    }
+
+    public View getForegroundLayout() {
+        return bind.viewForeground;
+    }
 }
