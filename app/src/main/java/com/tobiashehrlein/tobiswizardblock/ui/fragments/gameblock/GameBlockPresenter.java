@@ -37,7 +37,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     public GameBlockPresenter() {
         wizardGame = Storage.getInstance().getWizardGame();
-        isTippMode = true;
+
     }
 
     @Override
@@ -48,6 +48,8 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         listener.setBackPressEnabled(false);
         listener.setToolbarMenuItemListener(this::onMenuItemClicked);
 
+        getCurrentMode();
+        setModifyLastInputTitle();
         initTitle();
         initHeader();
         initRoundNumbers();
@@ -90,7 +92,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     private void setAllPreviousTippsAndResults() {
-        if (wizardGame == null) {
+        if (isNull(wizardGame)) {
             return;
         }
 
@@ -107,25 +109,33 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         }
 
         for (Round round : results) {
-            RealmList<Integer> tippsAnnounced = round.getAnnouncedTipps();
-            RealmList<Integer> stitchesMade = round.getMadeStitches();
-            RealmList<Integer> pointsAdded = round.getPointsAdded();
-            RealmList<Integer> pointsTotal = round.getPointsTotal();
-
-            if (isAttached()) {
-                getView().addRound(tippsAnnounced, stitchesMade, pointsAdded, pointsTotal);
-            }
+            addRoundToUi(round);
         }
 
         if (finished(results) && isAttached()) {
-            gameOver = true;
-            letVoid(listener, FragmentNavigationListener::disableModifyLastInputAction);
-            Storage.getInstance().saveHighscores();
-            getView().disableEnterButton();
-            Map<String, Integer> winners = Storage.getInstance().getWinner();
-            getView().showWinnerDialog(winners);
-            Storage.getInstance().deleteCurrentGameFromLastGameList();
+            gameFinished();
         }
+    }
+
+    private void addRoundToUi(Round round) {
+        RealmList<Integer> tippsAnnounced = round.getAnnouncedTipps();
+        RealmList<Integer> stitchesMade = round.getMadeStitches();
+        RealmList<Integer> pointsAdded = round.getPointsAdded();
+        RealmList<Integer> pointsTotal = round.getPointsTotal();
+
+        if (isAttached()) {
+            getView().addRound(tippsAnnounced, stitchesMade, pointsAdded, pointsTotal);
+        }
+    }
+
+    private void gameFinished() {
+        gameOver = true;
+        letVoid(listener, FragmentNavigationListener::disableModifyLastInputAction);
+        Storage.getInstance().saveHighscores();
+        getView().disableEnterButton();
+        Map<String, Integer> winners = Storage.getInstance().getWinner();
+        getView().showWinnerDialog(winners);
+        Storage.getInstance().deleteCurrentGameFromLastGameList();
     }
 
     private boolean finished(RealmList<Round> results) {
@@ -148,16 +158,16 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     @Override
     public void openNextInputEntering() {
-        openTippsResultss(isTippMode, false);
+        openTippsResults(isTippMode, false);
     }
 
     @Override
     public void changeLastRoundInput() {
         boolean lastType = !isTippMode;
-        openTippsResultss(lastType, true);
+        openTippsResults(lastType, true);
     }
 
-    private void openTippsResultss(boolean isTippMode, boolean changeLastRoundInput) {
+    private void openTippsResults(boolean isTippMode, boolean changeLastRoundInput) {
         if (isNotNull(listener)) {
             TippResultFragment tippResultFragment = TippResultFragment.newInstance(isTippMode, changeLastRoundInput);
             tippResultFragment.setOnDismissListener(this);
@@ -195,8 +205,12 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     private void getCurrentMode() {
-        RealmList<Integer> lastMadeStitches = let(wizardGame, game -> let(game.getLastRound(), Round::getMadeStitches));
-        isTippMode = !isNullOrEmpty(lastMadeStitches);
+        if (isNull(wizardGame) || isNullOrEmpty(wizardGame.getResults())) {
+            isTippMode = true;
+        } else {
+            RealmList<Integer> lastMadeStitches = let(wizardGame, game -> let(game.getLastRound(), Round::getMadeStitches));
+            isTippMode = !isNullOrEmpty(lastMadeStitches);
+        }
     }
 
     private void setEnterButton() {

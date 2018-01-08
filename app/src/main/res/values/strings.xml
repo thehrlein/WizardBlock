@@ -70,6 +70,7 @@
     <string name="player_count">%1$d player</string>
     <string name="last_games_explanation">You can continue your game by clicking on it. If you want to delete it, swipe it left.</string>
     <string name="last_games_no_available">no old games</string>
+    <string name="last_game_delete">Delete</string>
 
 
     <!-- HighScore -->

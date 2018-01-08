@@ -9,6 +9,7 @@ import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.delegates.SavedGameDelegate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
@@ -59,7 +60,7 @@ public class LastGamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (isNullOrEmpty(savedGames)) {
             return;
         }
-
+        Collections.reverse(savedGames);
         itemList.addAll(savedGames);
         notifyDataSetChanged();
     }

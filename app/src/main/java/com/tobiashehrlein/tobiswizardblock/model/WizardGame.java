@@ -8,6 +8,9 @@ import java.util.List;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
+
 /**
  * Created by Tobias Hehrlein on 12.12.2017.
  */
@@ -37,6 +40,10 @@ public class WizardGame extends RealmObject implements DisplayableItem {
     }
 
     public Round getLastRound() {
+        if (isNullOrEmpty(results)) {
+            return null;
+        }
+
         return results.get(results.size() - 1);
     }
 
