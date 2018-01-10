@@ -138,7 +138,6 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
             } else {
                 getView().displayInvalidInput(message);
             }
-
         }
     }
 
@@ -156,6 +155,20 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
     public void saveLastInputBecauseOfModifying() {
         if (changeLastRoundInput) {
             Storage.getInstance().saveInput(lastInput, isTippMode);
+        }
+    }
+
+    @Override
+    public void checkAllSeekbarValues() {
+        if (isAttached()) {
+            RealmList<Integer> input = getView().getSeekBarValues();
+            @StringRes int message = validInput(input);
+
+            if (message == Constants.Validation.VALID.stringResId) {
+                getView().enableEnterButton();
+            } else {
+                getView().disableEnterButton();
+            }
         }
     }
 }

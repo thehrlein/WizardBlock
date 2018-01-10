@@ -21,6 +21,7 @@ public interface TippResultContract {
         void init(FragmentNavigationListener listener, Bundle arguments);
         void onEnterButtonClicked();
         void saveLastInputBecauseOfModifying();
+        void checkAllSeekbarValues();
     }
 
     interface View extends BaseView {
@@ -32,10 +33,12 @@ public interface TippResultContract {
         void initializeToolbar();
         void setTippsToolbar();
         void setResultsToolbar();
-        void dismissOverlay(boolean b);
+        void dismissOverlay(boolean enteredTippsOrResults);
         RealmList<Integer> getSeekBarValues();
         void setTippsHeadline();
         void setResultsHeadline();
         void displayInvalidInput(@StringRes int message);
+        void enableEnterButton();
+        void disableEnterButton();
     }
 }

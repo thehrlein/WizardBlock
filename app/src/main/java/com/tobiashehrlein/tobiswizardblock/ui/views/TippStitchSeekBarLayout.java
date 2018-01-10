@@ -8,10 +8,12 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.tobiapplications.thutils.GeneralUtils;
 import com.tobiashehrlein.tobiswizardblock.R;
+import com.tobiashehrlein.tobiswizardblock.listener.SeekBarValueListener;
 
 
 /**
@@ -46,8 +48,13 @@ public class TippStitchSeekBarLayout extends LinearLayout {
         createViews(context);
         setLayoutParams(context);
         setGravity(Gravity.CENTER);
+    }
 
-        tippsStitchesControl.setOnSeekBarValueChangeListener(value -> tippsStitchesText.setText(String.valueOf(value)));
+    public void setOnSeekBarValueChangeListener(SeekBarValueListener seekBarValueChangeListener) {
+        tippsStitchesControl.setOnSeekBarValueChangeListener(value -> {
+            tippsStitchesText.setText(String.valueOf(value));
+            seekBarValueChangeListener.onValueChange(value);
+        });
     }
 
     private void createViews(Context context) {

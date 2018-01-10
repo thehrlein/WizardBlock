@@ -88,7 +88,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
     private void enableEnterButtonDelayed() {
         bind.enterButton.setEnabled(false);
-        new Handler().postDelayed(() -> bind.enterButton.setEnabled(true), 1000);
+        new Handler().postDelayed(() -> letVoid(presenter, TippResultContract.Presenter::checkAllSeekbarValues), 1000);
     }
 
     public void setOnDismissListener(DialogDismissListener dismissListener) {
@@ -112,6 +112,7 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
         TippStitchSeekBarLayout seekBarLayout = new TippStitchSeekBarLayout(context);
         seekBarLayout.setPlayerName(playerName);
         seekBarLayout.setMax(round);
+        seekBarLayout.setOnSeekBarValueChangeListener(value -> letVoid(presenter, TippResultContract.Presenter::checkAllSeekbarValues));
         bind.tippStitchesLayout.addView(seekBarLayout);
         seekBarLayouts.add(seekBarLayout);
         return seekBarLayout;
@@ -186,6 +187,16 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
 
         Dialog failureDialog = DialogBuilderUtil.createOneButtonDialog(context, title, text);
         failureDialog.show();
+    }
+
+    @Override
+    public void enableEnterButton() {
+        bind.enterButton.setEnabled(true);
+    }
+
+    @Override
+    public void disableEnterButton() {
+        bind.enterButton.setEnabled(false);
     }
 
     @Override
