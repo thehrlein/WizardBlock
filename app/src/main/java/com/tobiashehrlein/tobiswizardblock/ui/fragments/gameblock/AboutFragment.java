@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,7 +27,7 @@ import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.l
 public class AboutFragment extends Fragment implements AboutContract.View {
 
     private FragmentAboutBinding bind;
-    private AboutPresenter presenter;
+    private AboutContract.Presenter presenter;
     private FragmentNavigationListener listener;
     private Context context;
 
@@ -44,14 +45,9 @@ public class AboutFragment extends Fragment implements AboutContract.View {
         }
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         bind = FragmentAboutBinding.inflate(inflater);
 
         return bind.getRoot();
@@ -70,7 +66,8 @@ public class AboutFragment extends Fragment implements AboutContract.View {
 
     @Override
     public void setListener() {
-        bind.fab.setOnClickListener(v -> presenter.fabButtonClicked());
+        bind.fab.setOnClickListener(v -> letVoid(presenter, AboutContract.Presenter::fabButtonClicked));
+        bind.layoutMoviebase.setOnClickListener(v -> letVoid(presenter, AboutContract.Presenter::openMovieBase));
     }
 
     @Override
@@ -91,6 +88,12 @@ public class AboutFragment extends Fragment implements AboutContract.View {
     @Override
     public String getTitle() {
         return context.getString(R.string.action_about);
+    }
+
+    @Override
+    public void openMovieBase(String url) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
     }
 
     @Override

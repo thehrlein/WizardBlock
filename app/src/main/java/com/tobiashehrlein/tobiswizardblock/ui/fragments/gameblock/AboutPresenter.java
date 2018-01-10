@@ -1,6 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import android.content.Intent;
+import android.net.Uri;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
@@ -46,6 +47,14 @@ public class AboutPresenter extends BasePresenter<AboutContract.View> implements
             intent.putExtra(Intent.EXTRA_TEXT, text);
             intent.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
             getView().sendEmail(intent);
+        }
+    }
+
+    @Override
+    public void openMovieBase() {
+        if (isAttached()) {
+            String url = "https://play.google.com/store/apps/details?id=tobiapplications.com.moviebase";
+            getView().openMovieBase(url);
         }
     }
 }

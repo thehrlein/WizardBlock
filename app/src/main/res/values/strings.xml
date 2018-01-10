@@ -20,7 +20,7 @@
     <string name="stitches_can_be_equal_in_first_round_text">Exception: enable for first round</string>
     <string name="stitches_can_be_equal_in_first_round_info">If enabled, previous rule is disabled for first round.\n\nThis does not affect all other rounds.</string>
     <string name="anniversary_option_stitches_can_be_less">Advanced: anniversary option</string>
-    <string name="anniversary_option_stitches_can_be_less_info">If enabled, you can play with the anniversary version, which means, your stitches combined can be less than possible stitches.</string>
+    <string name="anniversary_option_stitches_can_be_less_info">If enabled, you can play with the anniversary version, which means, your stitches combined can be less than possible stitches.\n\nIn anniversary version, you have more cards than usual (e.g. dragon, bomb).</string>
     <string name="gamename_info">This name is used to identify this game to save in your local database.\nYou can pause and continue this game anytime.</string>
     <string name="player_hint_placeholder">Player %1$d</string>
     <string name="round">Round</string>
@@ -56,13 +56,15 @@
 
     <!-- About -->
     <string name="action_about">About</string>
-    <string name="about_text_second">For further information, questions or feedback, please use the button at the bottom to send me an email.</string>
+    <string name="about_feedback">For further information, questions or feedback, please use the button at the bottom to send me an email.</string>
+    <string name="about_other_apps">Want more? Check out my other application:</string>
     <string name="about_creator" translatable="false">- Tobias</string>
     <string name="about_email" translatable="false">tobi.applications@gmail.com</string>
     <string name="about_email_text">Hello Tobias, \n\n</string>
     <string name="about_email_chooser_title">Choose your email client</string>
     <string name="about_no_email_clients">There are no email clients installed</string>
     <string name="about_send_email_loading">One second ...</string>
+    <string name="about_moviebase">MovieBase</string>
 
 
     <!-- Last Games -->
