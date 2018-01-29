@@ -94,7 +94,7 @@
     <string name="can_first_round_be_equal">You say, that all tipps combined shoudn\'t be equal possible stitches. Should this rule be disabled in the first round?</string>
     <string name="change">Change</string>
     <string name="change_names">Change Player Names</string>
-    <string name="clock">o\'clock</string>
+    <string name="clock">%1$s o\'clock</string>
     <string name="congratulations">Well done</string>
     <string name="displayOff">Display tuns off</string>
     <string name="displayOn">Display stays active</string>

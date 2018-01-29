@@ -19,9 +19,6 @@ import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.ActivityMainBinding;
 import com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings.GameSettingsFragment;
 
-import net.hockeyapp.android.CrashManager;
-import net.hockeyapp.android.UpdateManager;
-
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogNotShowing;
 import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogShowing;
@@ -192,29 +189,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        checkForCrashes();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterManagers();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         letVoid(presenter, BaseMvpPresenter::detach);
-        unregisterManagers();
-    }
-
-    private void unregisterManagers() {
-        UpdateManager.unregister();
-    }
-
-    private void checkForCrashes() {
-        CrashManager.register(this);
     }
 }

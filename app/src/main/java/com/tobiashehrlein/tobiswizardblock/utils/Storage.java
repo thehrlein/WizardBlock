@@ -54,7 +54,7 @@ public class Storage {
         gameSettings.setSettingsType(settingsType);
         gameSettings.setGameName(gameName);
         wizardGame.setGameSettings(gameSettings);
-        wizardGame.setGameDate(DateUtils.getTodayString(DateUtils.TimeMode.MINUTES));
+        wizardGame.setGameDate(DateUtils.getDate("dd MMM. yyyy - HH:mm"));
         realm.commitTransaction();
     }
 

@@ -9,6 +9,7 @@ import com.tobiashehrlein.tobiswizardblock.BuildConfig;
 
 import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
 /**
@@ -24,6 +25,13 @@ public class MyApplication extends Application {
         connectWithStetho(this);
         Fabric.with(this, new Crashlytics());
         Realm.init(this);
+
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .name("myRealm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(configuration);
+
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }

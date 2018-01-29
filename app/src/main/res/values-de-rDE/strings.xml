@@ -73,7 +73,7 @@
     <!-- Last Games -->
     <string name="no_old_games">Keine vergangenen Spiele verfügbar</string>
     <string name="title_last_games">Letzte Spiele</string>
-    <string name="clock">Uhr</string>
+    <string name="clock">%1$s Uhr</string>
     <string name="delete">Delete</string>
 
     <!-- App Info -->

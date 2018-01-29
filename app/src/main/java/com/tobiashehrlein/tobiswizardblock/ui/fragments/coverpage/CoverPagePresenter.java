@@ -3,6 +3,8 @@ package com.tobiashehrlein.tobiswizardblock.ui.fragments.coverpage;
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;
 
+import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
+
 /**
  * Created by Tobias Hehrlein on 27.11.2017.
  */
@@ -10,7 +12,7 @@ import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;
 public class CoverPagePresenter extends BasePresenter<CoverPageContract.View> implements CoverPageContract.Presenter {
 
     private CoverPageListener listener;
-    private static final int TIME_OUT = 20;
+    private static final int TIME_OUT = 1500;
 
     @Override
     public void init(CoverPageListener listener) {
@@ -23,6 +25,6 @@ public class CoverPagePresenter extends BasePresenter<CoverPageContract.View> im
 
     @Override
     public void onWaitCompleted() {
-        listener.onWaitCompleted();
+        letVoid(listener, CoverPageListener::onWaitCompleted);
     }
 }

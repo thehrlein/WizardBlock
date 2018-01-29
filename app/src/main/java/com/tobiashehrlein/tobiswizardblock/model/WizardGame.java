@@ -1,15 +1,9 @@
 package com.tobiashehrlein.tobiswizardblock.model;
 
-import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
-import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
 
 /**
  * Created by Tobias Hehrlein on 12.12.2017.
