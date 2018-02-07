@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void setToolbarTitle(String title) {
         if (isNullOrEmpty(title)) {
             bind.toolbarText.setText(getString(R.string.app_name));
+        } else if (title.length() > 8){
+            bind.toolbarText.setText(title);
         } else {
             bind.toolbarText.setText(getString(R.string.app_name_toolbar, title));
         }

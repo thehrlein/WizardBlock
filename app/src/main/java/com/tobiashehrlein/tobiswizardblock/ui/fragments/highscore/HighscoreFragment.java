@@ -116,11 +116,15 @@ public class HighscoreFragment extends Fragment implements HighscoreContract.Vie
     @Override
     public void showNoScoresAvailable() {
         bind.noHighscores.setVisibility(View.VISIBLE);
+        bind.highscoreTitle.setVisibility(View.INVISIBLE);
+        bind.highscoreHeader.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideNoScoresAvailable() {
         bind.noHighscores.setVisibility(View.GONE);
+        bind.highscoreTitle.setVisibility(View.VISIBLE);
+        bind.highscoreHeader.setVisibility(View.VISIBLE);
     }
 
     @Override

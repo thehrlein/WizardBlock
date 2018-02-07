@@ -35,6 +35,7 @@
             android:id="@+id/scroll_view"
             android:layout_below="@id/header"
             android:layout_above="@id/button_layout_shadow"
+            android:paddingTop="1dp"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:layout_width="match_parent"

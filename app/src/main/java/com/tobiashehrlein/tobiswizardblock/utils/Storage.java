@@ -147,6 +147,7 @@ public class Storage {
         RealmResults<Highscore> realmResults = realm.where(Highscore.class).findAll();
         highscores = realm.copyFromRealm(realmResults);
         Collections.sort(highscores, (o1, o2) -> o1.getScore() - o2.getScore());
+        Collections.reverse(highscores);
 
         if (highscores.size() <= MAX_HIGHSCORES) {
             return getHighscoreIntegerMap(highscores);

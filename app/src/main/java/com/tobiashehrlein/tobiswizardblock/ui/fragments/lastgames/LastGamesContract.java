@@ -17,6 +17,8 @@ public interface LastGamesContract {
     interface Presenter extends BaseMvpPresenter<View> {
 
         void init(FragmentNavigationListener listener);
+        void onGameDeleted();
+        void onGameRestored();
     }
 
     interface View extends BaseView, RecyclerSwipeHelperListener {
@@ -24,5 +26,6 @@ public interface LastGamesContract {
         String getTitle();
         void setUpRecyclerViewAndAdapter();
         void addSavedGames(List<DisplayableItem> savedGames);
+        void showNoLastGamesAvailable(boolean noLastGames);
     }
 }

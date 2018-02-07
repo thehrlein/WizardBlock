@@ -10,6 +10,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/last_games_header"
             android:text="@string/last_games_explanation"
             android:gravity="center"
             android:layout_marginTop="32dp"

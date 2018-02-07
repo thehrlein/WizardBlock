@@ -80,18 +80,18 @@ public class BlockRoundRow extends LinearLayout {
     private void createTippStitchLayout(LinearLayout layout, RealmList<Integer> firstColumnList, RealmList<Integer> secondColumnList, boolean showPlusSign, boolean showBold) {
         layout.removeAllViews();
         for (int i = 0; i < firstColumnList.size(); i++) {
-            layout.addView(createTextView(firstColumnList.get(i), showPlusSign, false));
+            layout.addView(createTextView(firstColumnList.get(i), showPlusSign, false, false));
             if (!secondColumnList.isEmpty() || i < secondColumnList.size()) {
-                layout.addView(createTextView(secondColumnList.get(i), false, showBold));
+                layout.addView(createTextView(secondColumnList.get(i), false, showBold, true));
             } else {
-                layout.addView(createTextView(EMPTY_STRING, textBlack));
+                layout.addView(createTextView(EMPTY_STRING, textBlack, false));
             }
         }
 
         addView(layout);
     }
 
-    private View createTextView(Integer value, boolean showPlusSign, boolean showBold) {
+    private View createTextView(Integer value, boolean showPlusSign, boolean showBold, boolean borderRight) {
         SpannableStringBuilder text;
         int textColor;
         if (value > 0 && showPlusSign) {
@@ -110,15 +110,19 @@ public class BlockRoundRow extends LinearLayout {
             text.setSpan(bold, 0, text.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         }
 
-        return createTextView(text, textColor);
+        return createTextView(text, textColor, borderRight);
     }
 
-    private TextView createTextView(SpannableStringBuilder value, int textColor) {
+    private TextView createTextView(SpannableStringBuilder value, int textColor, boolean borderRight) {
         TextView textView = new TextView(context);
         textView.setText(value);
         textView.setTextColor(textColor);
         textView.setGravity(Gravity.CENTER);
         textView.setLayoutParams(blockViewParams);
+
+        if (borderRight) {
+            textView.setBackground(ContextCompat.getDrawable(context, R.drawable.border_right_grey));
+        }
         return textView;
     }
 }

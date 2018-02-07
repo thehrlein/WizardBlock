@@ -37,7 +37,6 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     public GameBlockPresenter() {
         wizardGame = Storage.getInstance().getWizardGame();
-
     }
 
     @Override
@@ -74,9 +73,6 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     }
 
     private void initTitle() {
-        if (listener != null) {
-            listener.setToolbarTitle(wizardGame.getGameSettings().getGameName());
-        }
         String gamenName = let(wizardGame, game -> let(game.getGameSettings(), GameSettings::getGameName));
         letVoid(listener, l -> l.setToolbarTitle(gamenName));
     }

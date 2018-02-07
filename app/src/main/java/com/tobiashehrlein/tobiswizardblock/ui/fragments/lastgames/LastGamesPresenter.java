@@ -8,6 +8,7 @@ import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.List;
 
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
@@ -46,9 +47,26 @@ public class LastGamesPresenter extends BasePresenter<LastGamesContract.View> im
     }
 
     private void createSavedGames() {
-        List<DisplayableItem> savedGames = Storage.getInstance().getSavedGames();
         if (isAttached()) {
-            getView().addSavedGames(savedGames);
+            getView().addSavedGames(getSavedGames());
         }
+    }
+
+    @Override
+    public void onGameDeleted() {
+        if (isAttached()) {
+            getView().showNoLastGamesAvailable(isNullOrEmpty(getSavedGames()));
+        }
+    }
+
+    @Override
+    public void onGameRestored() {
+        if (isAttached()) {
+            getView().showNoLastGamesAvailable(isNullOrEmpty(getSavedGames()));
+        }
+    }
+
+    private List<DisplayableItem> getSavedGames() {
+        return Storage.getInstance().getSavedGames();
     }
 }

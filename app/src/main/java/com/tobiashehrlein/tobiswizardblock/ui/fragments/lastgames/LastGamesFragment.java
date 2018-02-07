@@ -23,7 +23,6 @@ import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
-import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 import com.tobiashehrlein.tobiswizardblock.ui.viewhandler.LastGamesAdapter;
 import com.tobiashehrlein.tobiswizardblock.ui.viewholder.LastGameHolder;
 import com.tobiashehrlein.tobiswizardblock.utils.RecyclerSwipeHelper;
@@ -101,11 +100,18 @@ public class LastGamesFragment extends Fragment implements LastGamesContract.Vie
 
     @Override
     public void addSavedGames(List<DisplayableItem> savedGames) {
-        if (isNullOrEmpty(savedGames)) {
+        showNoLastGamesAvailable(isNullOrEmpty(savedGames));
+        letVoid(adapter, a -> a.setSavedGames(savedGames));
+    }
+
+    @Override
+    public void showNoLastGamesAvailable(boolean noLastGames) {
+        if (noLastGames) {
             bind.noOldGames.setVisibility(View.VISIBLE);
+            bind.lastGamesHeader.setVisibility(View.INVISIBLE);
         } else {
             bind.noOldGames.setVisibility(View.GONE);
-            letVoid(adapter, a -> a.setSavedGames(savedGames));
+            bind.lastGamesHeader.setVisibility(View.VISIBLE);
         }
     }
 
@@ -123,6 +129,8 @@ public class LastGamesFragment extends Fragment implements LastGamesContract.Vie
             if (isNull(deletedItem)) {
                 return;
             }
+
+            letVoid(presenter, LastGamesContract.Presenter::onGameDeleted);
 
             Snackbar snackbar = Snackbar
                     .make(bind.getRoot(), gameName + " removed from last games!", Snackbar.LENGTH_LONG);
@@ -159,6 +167,7 @@ public class LastGamesFragment extends Fragment implements LastGamesContract.Vie
         if (deletedItem instanceof WizardGame) {
             WizardGame savedGame = (WizardGame) deletedItem;
             Storage.getInstance().restoreGame(savedGame);
+            letVoid(presenter, LastGamesContract.Presenter::onGameRestored);
         }
     }
 
