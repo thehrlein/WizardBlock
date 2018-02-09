@@ -1,9 +1,5 @@
 package com.tobiashehrlein.tobiswizardblock.ui.activity;
 
-import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.Toolbar;
-
-import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.CoverPageListener;

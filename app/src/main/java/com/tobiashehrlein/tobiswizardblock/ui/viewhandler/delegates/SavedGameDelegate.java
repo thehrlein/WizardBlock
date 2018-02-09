@@ -11,7 +11,6 @@ import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
-import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 import com.tobiashehrlein.tobiswizardblock.ui.viewholder.LastGameHolder;
 
 import java.util.List;

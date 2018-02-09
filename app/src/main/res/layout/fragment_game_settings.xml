@@ -66,6 +66,7 @@
 
                     <ImageView
                         android:background="@drawable/ic_info"
+                        android:contentDescription="@string/info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 

@@ -3,7 +3,6 @@ package com.tobiashehrlein.tobiswizardblock.model.settings;
 import android.support.annotation.StringRes;
 
 import io.realm.RealmList;
-import io.realm.RealmObject;
 
 import static com.tobiashehrlein.tobiswizardblock.utils.Constants.Validation.*;
 

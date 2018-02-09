@@ -6,7 +6,6 @@ import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
 import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
-import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 
 import java.util.ArrayList;
 import java.util.Collections;

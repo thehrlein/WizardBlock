@@ -3,7 +3,6 @@ package com.tobiashehrlein.tobiswizardblock.model;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
-import com.tobiashehrlein.tobiswizardblock.model.settings.Settings;
 import com.tobiashehrlein.tobiswizardblock.model.settings.SettingsFactory;
 
 /**

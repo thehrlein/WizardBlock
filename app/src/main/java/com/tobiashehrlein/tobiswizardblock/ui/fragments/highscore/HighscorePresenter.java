@@ -4,12 +4,10 @@ import android.support.annotation.MenuRes;
 import android.view.MenuItem;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
-import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;

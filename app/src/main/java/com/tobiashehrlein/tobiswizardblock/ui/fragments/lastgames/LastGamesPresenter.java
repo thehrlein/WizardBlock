@@ -3,7 +3,6 @@ package com.tobiashehrlein.tobiswizardblock.ui.fragments.lastgames;
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.DisplayableItem;
-import com.tobiashehrlein.tobiswizardblock.model.lastgames.SavedGame;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.List;

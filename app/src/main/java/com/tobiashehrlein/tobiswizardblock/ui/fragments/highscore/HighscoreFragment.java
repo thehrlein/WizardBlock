@@ -19,8 +19,6 @@ import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 import com.tobiashehrlein.tobiswizardblock.ui.views.HighscoreRow;
 
-import java.util.Map;
-
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 

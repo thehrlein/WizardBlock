@@ -7,8 +7,6 @@ import com.tobiapplications.thutils.mvp.BaseView;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 
-import java.util.Map;
-
 /**
  * Created by Tobias Hehrlein on 28.12.2017.
  */

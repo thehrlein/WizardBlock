@@ -1,7 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.views;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;

@@ -9,7 +9,6 @@ import com.tobiashehrlein.tobiswizardblock.listener.RecyclerSwipeHelperListener;
 import com.tobiashehrlein.tobiswizardblock.ui.viewholder.LastGameHolder;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
-import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
  * Created by Tobias Hehrlein on 07.01.2018.

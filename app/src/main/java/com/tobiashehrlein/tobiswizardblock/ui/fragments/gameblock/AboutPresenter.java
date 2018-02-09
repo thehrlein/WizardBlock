@@ -1,7 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import android.content.Intent;
-import android.net.Uri;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.R;

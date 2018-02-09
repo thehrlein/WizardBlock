@@ -1,6 +1,5 @@
 package com.tobiashehrlein.tobiswizardblock.model;
 
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 

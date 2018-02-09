@@ -2,16 +2,21 @@
 <resources>
 
     <!-- General -->
-    <string name="app_name">Wizard Block</string>
-    <string name="app_name_toolbar">Wizard Block - %1$s</string>
+    <string name="app_name" translatable="false">Wizard Block</string>
+    <string name="app_name_toolbar" translatable="false">Wizard Block - %1$s</string>
+    <string name="info" translatable="false">Info</string>
+    <string name="delete">Delete</string>
 
     <!-- Main Activity -->
     <string name="back_press_dialog_title">Do you want to quit this game?</string>
     <string name="back_press_dialog_text">If you press OK, this game will be closed and you will return back to main page. Do not be afraid, your game is saved.</string>
+    <string name="load_game">Load Game</string>
+    <string name="newGameOrLoad">Do you want to start a new game, load a game or look up your highscores?</string>
+    <string name="new_game">New Game</string>
+    <string name="welcome">Welcome to Wizard Block!</string>
 
     <!-- Game Settings -->
     <string name="title_game_settings">Game Settings</string>
-    <string name="switch_stitches_question">tipps equal possible stitches?</string>
     <string name="hint_game_name">Gamename</string>
     <string name="title_info_dialog">Info</string>
     <string name="stitches_can_be_equal_tipps">Tipps can be equal stitches</string>
@@ -26,11 +31,12 @@
     <string name="round">Round</string>
     <string name="enter_tipps">Enter your tipps</string>
     <string name="enter_results">Enter your results</string>
+    <string name="game_settings_explaination">Choose a name for this game and how much players.</string>
 
     <!-- Game Block -->
     <string name="title_tipps">Tipps</string>
     <string name="title_results">Results</string>
-    <string name="title_change_player_names">Edit player names and hit confirm</string>
+    <string name="title_change_player_names">Edit player names</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="action_title_are_you_sure">Are you sure?</string>
@@ -40,6 +46,9 @@
     <string name="winner_message_multipe">%1$s have won with %2$d points!</string>
     <string name="action_change_input_title_results">Change last results</string>
     <string name="action_change_input_title_tipps">Change last tipps</string>
+    <string name="change_names">Change Player Names</string>
+    <string name="next">Next</string>
+    <string name="start_new_game">New Game</string>
 
 
     <!-- Tipps Results -->
@@ -48,7 +57,7 @@
     <string name="how_many_stitches">How much stitches you\'ll make?</string>
     <string name="how_many_stitches_result">Stitches made:</string>
     <string name="validation_valid">Valid</string>
-    <string name="validation_tipp_can_not_be_equal_stitches">Tipp can not be equal stitsches</string>
+    <string name="validation_tipp_can_not_be_equal_stitches">Tipp can not be equal rounds</string>
     <string name="validation_stitches_must_be_equal_rounds">Stitches must be equal rounds</string>
     <string name="validation_stitches_can_not_be_more_than_rounds">Stitches can not be more than rounds</string>
     <string name="error_title">Invalid input</string>
@@ -64,90 +73,27 @@
     <string name="about_email_chooser_title">Choose your email client</string>
     <string name="about_no_email_clients">There are no email clients installed</string>
     <string name="about_send_email_loading">One second ...</string>
-    <string name="about_moviebase">MovieBase</string>
+    <string name="about_moviebase" translatable="false">MovieBase</string>
 
 
     <!-- Last Games -->
-    <string name="title_last_games">Last Games</string>
+    <string name="title_last_games">saved games</string>
     <string name="player_count">%1$d player</string>
     <string name="last_games_explanation">You can continue your game by clicking on it. If you want to delete it, swipe it left.</string>
-    <string name="last_games_no_available">no old games</string>
-    <string name="last_game_delete">Delete</string>
+    <string name="last_games_no_available">no saved games</string>
+    <string name="clock">%1$s o\'clock</string>
 
 
     <!-- HighScore -->
-    <string name="title_highscore">Highscore</string>
+    <string name="title_highscore">Highscores</string>
     <string name="highscore_text">Your highscore ranking:</string>
     <string name="highscore_total">%1$d Points</string>
-    <string name="highscore_ranking">%1$d.</string>
+    <string name="highscore_ranking" translatable="false">%1$d.</string>
     <string name="highscore_ranking_title">Ranking</string>
     <string name="highscore_player_name_title">Player</string>
     <string name="highscore_points_title">Points</string>
     <string name="highscore_dialog_title">Delete all highscores?</string>
     <string name="highscore_dialog_message">All your highscores will be deleted.</string>
-    <string name="highscore_no_old_scores">no old highscores</string>
+    <string name="highscore_no_old_scores">no highscores</string>
 
-
-    <string name="activated">selected</string>
-    <string name="backpress">Push back again to exit the App</string>
-    <string name="blocktext">Example Round 2: Maxi said he\'ll make 2 but did just 1, so he get -10 and has 10 points now.</string>
-    <string name="can_first_round_be_equal">You say, that all tipps combined shoudn\'t be equal possible stitches. Should this rule be disabled in the first round?</string>
-    <string name="change">Change</string>
-    <string name="change_names">Change Player Names</string>
-    <string name="clock">%1$s o\'clock</string>
-    <string name="congratulations">Well done</string>
-    <string name="displayOff">Display tuns off</string>
-    <string name="displayOn">Display stays active</string>
-    <string name="display_always_on">Should your display always be active?</string>
-    <string name="explaination">Don\'t want to write all your results on your block? That\'s no problem with the Wizard Block Application!</string>
-    <string name="feedback">I\'m very happy to get feedback from you. Please mail to me.</string>
-    <string name="from">from</string>
-    <string name="game_over">Game Over</string>
-    <string name="game_settings_explaination">Choose a name for this game and how much players.</string>
-    <string name="gamesettingstext">Choose a name for this game and how much players.</string>
-    <string name="gofurther">Go</string>
-    <string name="hello_tobias">Hello Tobias,\n\n</string>
-    <string name="information">Developed by Tobias</string>
-    <string name="last_one_more_or_less">Last player must say 1 more or less.</string>
-    <string name="letsgo">Let\'s go</string>
-    <string name="load_game">Load Game</string>
-    <string name="newGameOrLoad">Do you want to start a new game, load a game or look up your highscores?</string>
-    <string name="new_game">New Game</string>
-    <string name="next">Next</string>
-    <string name="next_result">Confirm Results</string>
-    <string name="no">No</string>
-    <string name="no_game_name">Choose a name for this game</string>
-    <string name="no_old_games">No old games</string>
-    <string name="onewinner">you have won with</string>
-    <string name="player_name_five">Player 5</string>
-    <string name="player_name_four">Player 4</string>
-    <string name="player_name_give_in">Type in all player names</string>
-    <string name="player_name_not_entered">You haven\'t set a game name</string>
-    <string name="player_name_one">Player 1</string>
-    <string name="player_name_six">Player 6</string>
-    <string name="player_name_three">Player 3</string>
-    <string name="player_name_two">Player 2</string>
-    <string name="player_settings">Player</string>
-    <string name="playersettingstext">Type in all player names.</string>
-    <string name="points">Points</string>
-    <string name="scoreboard">Scoreboard</string>
-    <string name="settingstext">You can change player names or your tipps and results from last round.</string>
-    <string name="start_a_new_game">New Game</string>
-    <string name="start_new_game">New Game</string>
-    <string name="startscreentext">You choose weather to start a new game, load an old game or your highscores.</string>
-    <string name="tipps_can_not_be_equal_round">Tipps equal stitches.</string>
-    <string name="tipps_error">Stitches made not equal possible stitches</string>
-    <string name="tippstext">You can choose the amount of tipps and results.</string>
-    <string name="tutorial">Tutorial</string>
-    <string name="tutorialexplaination"><![CDATA[In this little tutorial everything will be explained to you. Swipe to the left or push >]]></string>
-    <string name="twowinner">you have won with</string>
-    <string name="welcome">Welcome to Wizard Block!</string>
-    <string name="win">:-)</string>
-    <string name="yes">yes</string>
-    <string name="covername">Wizard Block</string>
-    <string name="email"><u>tobi.applications@gmail.com</u></string>
-    <string name="arrow"><![CDATA[>]]></string>
-    <string name="game_block">Block</string>
-    <string name="delete">Delete</string>
-    <string name="facebook_app_id">287788674952926</string>
 </resources>
