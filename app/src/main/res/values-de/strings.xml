@@ -10,13 +10,12 @@
     <string name="highscore_ranking_title">Platzierung</string>
     <string name="highscore_total">%1$d Punkte</string>
     <string name="highscore_text">Deine Plazierungen:</string>
-    <string name="title_highscore">Platzierungen</string>
     <string name="about_email_text">Hallo Tobias, \\n\\n</string>
     <string name="clock">%1$s Uhr</string>
     <string name="last_games_no_available">keine gespeicherten Spiele</string>
     <string name="last_games_explanation">Du kannst das Spiel per Klick fortsetzen. Um es zu löschen, wische es nach links.</string>
     <string name="player_count">%1$s Spieler</string>
-    <string name="title_last_games">gespeicherte Spiele</string>
+    <string name="title_last_games">Gespeicherte Spiele</string>
     <string name="about_send_email_loading">Einen Moment ...</string>
     <string name="about_no_email_clients">Es wurde kein E-Mail Programm gefunden</string>
     <string name="about_email_chooser_title">Wähle deine E-Mail Programm</string>
@@ -53,5 +52,17 @@
     <string name="round">Runde</string>
     <string name="player_hint_placeholder">Spieler %1$d</string>
     <string name="gamename_info">Der Spielname wird zur Identifizierung bei der Speicherung in der lokalen Datenbank verwendet.\\nDu kannst das Spiel jederzeit pausieren und später fortsetzen.</string>
-    <string name="anniversary_option_stitches_can_be_less_info">Wenn du dies aktivierst, kannst du mit der Jubiläumsversion spielen. Das bedeuted, dass du weniger Stiche eingeben kannst, als potenziell möglich sind.\\n\\nIn der Jubiläumsversion gibt es mehr Karten (z.B. Drache, Bombe)</string>
+    <string name="anniversary_option_stitches_can_be_less_info">rWenn du dies aktivierst, kannst du mit der Jubiläumsversion spielen. Das bedeuted, dass du weniger Stiche eingeben kannst, als potenziell möglich sind.\\n\\nIn der Jubiläumsversion gibt es mehr Karten (z.B. Drache, Bombe)</string>
+    <string name="anniversary_option_stitches_can_be_less">Erweitert: Jubiläumsversion</string>
+    <string name="stitches_can_be_equal_in_first_round_info">Wenn du dies aktivierst, ist die vorherige Regel für die erste Runde deaktiviert. Dies hat keinen Einfluss auf alle weiteren Runden.</string>
+    <string name="stitches_can_be_equal_in_first_round_text">Ausnahme: aktiviert für erste Runde</string>
+    <string name="stitches_can_be_equal_tipps_info">Wenn du dies aktivierst, können deine Tipps gleich der potenziell möglichen Stiche sein (z.B. Runde 2 = alle Tipps kombiniert dürfen 2 sein).\\n\\nFalls nicht, dürfen Tipps nicht gleich sein. Das bedeutet, dass der letzte Spieler ein Stich mehr oder weniger ansagen muss, sofern die angesagten Tipps zusammen gleich der potenziell möglichen Stiche ist.</string>
+    <string name="stitches_can_be_equal_tipps">Tipps dürfen gleich möglicher Stiche sein</string>
+    <string name="hint_game_name">Spielname</string>
+    <string name="title_game_settings">Spieleinstellungen</string>
+    <string name="welcome">Willkommen beim Wizard Block!</string>
+    <string name="new_game">Neues Spiel</string>
+    <string name="newGameOrLoad">Möchtest du ein neues Spiel starten, ein gespeichertes Spiel fortsetzen oder deine Highscores einsehen?</string>
+    <string name="load_game">Spiel laden</string>
+    <string name="back_press_dialog_text">Wenn du OK klickst, wird dieses Spiel beendet und du wirst zum Startbildschirm zurückkehren. Keine Angst, dein Spiel ist gespeichert.</string>
 </resources>

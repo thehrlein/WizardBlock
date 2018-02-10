@@ -11,14 +11,14 @@
     <string name="back_press_dialog_title">Do you want to quit this game?</string>
     <string name="back_press_dialog_text">If you press OK, this game will be closed and you will return back to main page. Do not be afraid, your game is saved.</string>
     <string name="load_game">Load Game</string>
-    <string name="newGameOrLoad">Do you want to start a new game, load a game or look up your highscores?</string>
+    <string name="newGameOrLoad">Do you want to start a new game, load a saved game or look up your highscores?</string>
     <string name="new_game">New Game</string>
     <string name="welcome">Welcome to Wizard Block!</string>
 
     <!-- Game Settings -->
     <string name="title_game_settings">Game Settings</string>
     <string name="hint_game_name">Gamename</string>
-    <string name="title_info_dialog">Info</string>
+    <string name="title_info_dialog" translatable="false">Info</string>
     <string name="stitches_can_be_equal_tipps">Tipps can be equal stitches</string>
     <string name="stitches_can_be_equal_tipps_info">If enabled, your tipps can be equal possible stitches (e.g. Round 2 = all tipps combined can be 2).\n\nIf not,
         tipps can not be equal to possible stitches. That means, the last player has to say one tipp more or less, if all tipps combined would be equal to possible stitches.</string>
@@ -77,7 +77,7 @@
 
 
     <!-- Last Games -->
-    <string name="title_last_games">saved games</string>
+    <string name="title_last_games">Saved games</string>
     <string name="player_count">%1$d player</string>
     <string name="last_games_explanation">You can continue your game by clicking on it. If you want to delete it, swipe it left.</string>
     <string name="last_games_no_available">no saved games</string>
@@ -85,7 +85,7 @@
 
 
     <!-- HighScore -->
-    <string name="title_highscore">Highscores</string>
+    <string name="title_highscore" translatable="false">Highscores</string>
     <string name="highscore_text">Your highscore ranking:</string>
     <string name="highscore_total">%1$d Points</string>
     <string name="highscore_ranking" translatable="false">%1$d.</string>
