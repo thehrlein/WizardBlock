@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -26,6 +27,8 @@ import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.l
 
 public class AboutFragment extends Fragment implements AboutContract.View {
 
+    public static final String PLAYSTORE_PREFIX = "market://details?id=";
+    public static final String PLAYSTORE_URL = "https://play.google.com/store/apps/details?id=";
     private FragmentAboutBinding bind;
     private AboutContract.Presenter presenter;
     private FragmentNavigationListener listener;
@@ -59,7 +62,7 @@ public class AboutFragment extends Fragment implements AboutContract.View {
 
         context = bind.getRoot().getContext();
 
-        presenter = new AboutPresenter(this);
+        presenter = new AboutPresenter();
         presenter.attach(this);
         presenter.init(listener);
     }
@@ -67,7 +70,8 @@ public class AboutFragment extends Fragment implements AboutContract.View {
     @Override
     public void setListener() {
         bind.fab.setOnClickListener(v -> letVoid(presenter, AboutContract.Presenter::fabButtonClicked));
-        bind.layoutMoviebase.setOnClickListener(v -> letVoid(presenter, AboutContract.Presenter::openMovieBase));
+        bind.layoutWizardBlock.setOnClickListener(v -> letVoid(presenter, AboutContract.Presenter::openWizardBlockInPlayStore));
+        bind.layoutMoviebase.setOnClickListener(v -> letVoid(presenter, AboutContract.Presenter::openMovieBaseInPlayStore));
     }
 
     @Override
@@ -91,9 +95,23 @@ public class AboutFragment extends Fragment implements AboutContract.View {
     }
 
     @Override
-    public void openMovieBase(String url) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(browserIntent);
+    public void openWizardBlockInPlayStore() {
+        String packageName = context.getPackageName();
+        openInPlayStore(packageName);
+    }
+
+    @Override
+    public void openMovieBaseInPlayStore(String packageName) {
+       openInPlayStore(packageName);
+    }
+
+    private void openInPlayStore(String packageName) {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PLAYSTORE_PREFIX + packageName)));
+        } catch (ActivityNotFoundException e) {
+            String urlPrefix = PLAYSTORE_URL;
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPrefix + packageName)));
+        }
     }
 
     @Override

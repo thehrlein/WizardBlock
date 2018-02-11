@@ -133,8 +133,8 @@ public class LastGamesFragment extends Fragment implements LastGamesContract.Vie
             letVoid(presenter, LastGamesContract.Presenter::onGameDeleted);
 
             Snackbar snackbar = Snackbar
-                    .make(bind.getRoot(), gameName + " removed from last games!", Snackbar.LENGTH_LONG);
-            snackbar.setAction("UNDO", view -> restoreThisGame(deletedIndex, tempDeletedGame));
+                    .make(bind.getRoot(), context.getString(R.string.last_game_deleted, gameName), Snackbar.LENGTH_LONG);
+            snackbar.setAction(context.getString(R.string.last_games_undo), view -> restoreThisGame(deletedIndex, tempDeletedGame));
             snackbar.setActionTextColor(Color.YELLOW);
             snackbar.show();
         }

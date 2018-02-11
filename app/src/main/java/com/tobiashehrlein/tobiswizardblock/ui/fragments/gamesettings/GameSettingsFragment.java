@@ -34,7 +34,6 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
     private GameSettingsContract.Presenter presenter;
     private FragmentNavigationListener listener;
     private Context context;
-    private AlertDialog infoDialog;
     private SwitchTextInfoView disableRuleInFirstRound;
     private SwitchTextInfoView anniveraryOption;
     private SwitchTextInfoView tippsEqualStitches;
@@ -84,18 +83,9 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
     @Override
     public void setListener() {
-        infoDialog = DialogBuilderUtil.createOneButtonDialog(context, context.getString(R.string.title_info_dialog), context.getString(R.string.gamename_info));
-
-        bind.gameNameInfo.setOnClickListener(view -> showInfoDialog());
         bind.btNext.setOnClickListener(view -> presenter.startNewGame());
         bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerChooseSingleView) view).getNumber()));
         bind.playerChooser.initStandardPlayers();
-    }
-
-    private void showInfoDialog() {
-        if (isDialogNotShowing(infoDialog)) {
-            infoDialog.show();
-        }
     }
 
     @Override

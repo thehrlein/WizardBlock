@@ -14,11 +14,11 @@ import java.lang.ref.WeakReference;
 
 public class AboutPresenter extends BasePresenter<AboutContract.View> implements AboutContract.Presenter {
 
-    private WeakReference<AboutFragment> fragment;
+
     private FragmentNavigationListener listener;
 
-    public AboutPresenter(AboutFragment fragment) {
-        this.fragment = new WeakReference<>(fragment);
+    public AboutPresenter() {
+
     }
 
     @Override
@@ -50,10 +50,17 @@ public class AboutPresenter extends BasePresenter<AboutContract.View> implements
     }
 
     @Override
-    public void openMovieBase() {
+    public void openWizardBlockInPlayStore() {
         if (isAttached()) {
-            String url = "https://play.google.com/store/apps/details?id=tobiapplications.com.moviebase";
-            getView().openMovieBase(url);
+            getView().openWizardBlockInPlayStore();
+        }
+    }
+
+    @Override
+    public void openMovieBaseInPlayStore() {
+        if (isAttached()) {
+            String packageName = "tobiapplications.com.moviebase";
+            getView().openMovieBaseInPlayStore(packageName);
         }
     }
 }

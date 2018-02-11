@@ -15,13 +15,15 @@ public interface AboutContract {
     interface Presenter extends BaseMvpPresenter<View> {
         void init(FragmentNavigationListener listener);
         void fabButtonClicked();
-        void openMovieBase();
+        void openMovieBaseInPlayStore();
+        void openWizardBlockInPlayStore();
     }
 
     interface View extends BaseView {
         void setListener();
         void sendEmail(Intent mailer);
         String getTitle();
-        void openMovieBase(String url);
+        void openMovieBaseInPlayStore(String packageName);
+        void openWizardBlockInPlayStore();
     }
 }

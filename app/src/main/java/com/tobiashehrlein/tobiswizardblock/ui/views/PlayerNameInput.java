@@ -52,7 +52,7 @@ public class PlayerNameInput extends TextInputLayout {
     }
 
     public void setText(String text) {
-        input.setText(text);
+        input.append(text);
     }
 
     public String getInput() {

@@ -31,7 +31,7 @@
     <string name="round">Round</string>
     <string name="enter_tipps">Enter your tipps</string>
     <string name="enter_results">Enter your results</string>
-    <string name="game_settings_explaination">Choose a name for this game and how much players.</string>
+    <string name="game_settings_explaination">Choose a name for this game and how much players:</string>
 
     <!-- Game Block -->
     <string name="title_tipps">Tipps</string>
@@ -74,7 +74,7 @@
     <string name="about_no_email_clients">There are no email clients installed</string>
     <string name="about_send_email_loading">One second ...</string>
     <string name="about_moviebase" translatable="false">MovieBase</string>
-
+    <string name="about_like_wizard_block">Do you like Wizard Block? I would feel happy about a positive rating in PlayStore:</string>
 
     <!-- Last Games -->
     <string name="title_last_games">Saved games</string>
@@ -82,6 +82,8 @@
     <string name="last_games_explanation">You can continue your game by clicking on it. If you want to delete it, swipe it left.</string>
     <string name="last_games_no_available">no saved games</string>
     <string name="clock">%1$s o\'clock</string>
+    <string name="last_game_deleted">%1$s removed from last games!</string>
+    <string name="last_games_undo">Undo</string>
 
 
     <!-- HighScore -->
