@@ -3,11 +3,14 @@ package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 import android.support.annotation.MenuRes;
 import android.view.MenuItem;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.LevelEndEvent;
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
+import com.tobiashehrlein.tobiswizardblock.utils.FabricUtils;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.Iterator;
@@ -131,6 +134,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         getView().disableEnterButton();
         Map<String, Integer> winners = Storage.getInstance().getWinner();
         getView().showWinnerDialog(winners);
+        FabricUtils.gameFinished(wizardGame, winners);
         Storage.getInstance().deleteCurrentGameFromLastGameList();
     }
 

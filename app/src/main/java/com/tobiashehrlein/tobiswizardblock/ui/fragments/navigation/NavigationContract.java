@@ -14,7 +14,7 @@ public interface NavigationContract {
 
         void init(FragmentNavigationListener listener);
         void startNewGame();
-        void openLoadGames();
+        void openSavedGames();
         void openHighScore();
     }
 

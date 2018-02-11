@@ -10,6 +10,7 @@ import com.tobiashehrlein.tobiswizardblock.model.highscore.Highscore;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -201,7 +202,7 @@ public class Storage {
     public Map<String, Integer> getWinner() {
         Round lastRound = wizardGame.getLastRound();
         RealmList<Integer> totalPoints = lastRound.getPointsTotal();
-        Map<String, Integer> winners = new HashMap<>();
+        Map<String, Integer> winners = new LinkedHashMap<>();
         RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
         winners.put(playerNames.first(), totalPoints.first());
 

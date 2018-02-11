@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
+import com.tobiashehrlein.tobiswizardblock.utils.FabricUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -52,6 +53,7 @@ public class AboutPresenter extends BasePresenter<AboutContract.View> implements
     @Override
     public void openWizardBlockInPlayStore() {
         if (isAttached()) {
+            FabricUtils.openWizardBlockPlayStore();
             getView().openWizardBlockInPlayStore();
         }
     }
@@ -59,6 +61,7 @@ public class AboutPresenter extends BasePresenter<AboutContract.View> implements
     @Override
     public void openMovieBaseInPlayStore() {
         if (isAttached()) {
+            FabricUtils.openMovieBasePlayStore();
             String packageName = "tobiapplications.com.moviebase";
             getView().openMovieBaseInPlayStore(packageName);
         }

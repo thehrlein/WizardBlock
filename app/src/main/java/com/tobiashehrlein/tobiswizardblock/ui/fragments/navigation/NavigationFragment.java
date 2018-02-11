@@ -58,7 +58,7 @@ public class NavigationFragment extends Fragment implements NavigationContract.V
     @Override
     public void initListener() {
         bind.btNewGame.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::startNewGame));
-        bind.btLoadGames.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::openLoadGames));
+        bind.btLoadGames.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::openSavedGames));
         bind.btHighscore.setOnClickListener(v -> letVoid(presenter, NavigationContract.Presenter::openHighScore));
     }
 
