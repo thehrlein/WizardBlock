@@ -20,6 +20,7 @@ import java.util.Map;
 import io.realm.RealmList;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNotNull;
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
 import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.let;
@@ -56,7 +57,6 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         initHeader();
         initRoundNumbers();
         setAllPreviousTippsAndResults();
-
     }
 
     private boolean onMenuItemClicked(MenuItem item) {
@@ -179,8 +179,8 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
         getCurrentMode();
         setModifyLastInputTitle();
         setAllPreviousTippsAndResults();
-        scrollToVisiblePosition();
         if (!gameOver) {
+            scrollToVisiblePosition();
             setEnterButton();
         }
 
@@ -189,7 +189,10 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
     private void scrollToVisiblePosition() {
         if (isAttached()) {
-            int currentRound = let(wizardGame, game -> let(game.getResults(), results -> results.size()));
+            int currentRound = 0;
+            if (isNotNull(wizardGame) && isNotNullOrEmpty(wizardGame.getResults())) {
+                currentRound = wizardGame.getResults().size();
+            }
             if (currentRound > 5) {
                 getView().scrollTo(currentRound - 4);
             }

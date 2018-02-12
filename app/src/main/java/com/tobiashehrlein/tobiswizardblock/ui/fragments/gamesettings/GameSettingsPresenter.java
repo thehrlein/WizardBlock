@@ -27,6 +27,7 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
             getView().createTippsEqualStitchesOption();
             getView().createAdditionalFirstRoundTippsEqualStitchesOption();
             getView().createAnniversaryStitchesCanBeLessOption();
+            getView().setFocusToGameNameIfNecessary();
         }
 
         listener.setBackPressEnabled(true);

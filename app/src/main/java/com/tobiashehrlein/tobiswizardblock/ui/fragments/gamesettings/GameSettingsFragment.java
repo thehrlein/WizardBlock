@@ -21,6 +21,8 @@ import com.tobiashehrlein.tobiswizardblock.ui.views.SwitchTextInfoView;
 
 import io.realm.RealmList;
 
+import static android.text.TextUtils.isEmpty;
+import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
 import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogNotShowing;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
@@ -71,9 +73,6 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
         presenter = new GameSettingsPresenter();
         presenter.attach(this);
         presenter.init(listener);
-
-        // ONLY TEST
-        bind.gameName.setText("My Round");
     }
 
     @Override
@@ -86,6 +85,20 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
         bind.btNext.setOnClickListener(view -> presenter.startNewGame());
         bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerChooseSingleView) view).getNumber()));
         bind.playerChooser.initStandardPlayers();
+        bind.gameName.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus && isEmpty(bind.gameName.getText().toString())) {
+                bind.gameNameLayout.setError(context.getString(R.string.game_settings_game_name_must_not_be_empty));
+            } else if (hasFocus) {
+                bind.gameNameLayout.setError(null);
+            }
+        });
+    }
+
+    @Override
+    public void setFocusToGameNameIfNecessary() {
+        if (isEmpty(bind.gameName.getText().toString())) {
+            bind.gameName.requestFocus();
+        }
     }
 
     @Override

@@ -34,5 +34,6 @@ public interface GameSettingsContract {
         String getGameName();
         RealmList<String> getPlayerNames();
         @SettingsFactory.SettingsType int getSettings();
+        void setFocusToGameNameIfNecessary();
     }
 }

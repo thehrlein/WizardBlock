@@ -68,5 +68,7 @@
     <string name="back_press_dialog_text">Wenn du OK klickst, wird dieses Spiel beendet und du wirst zum Startbildschirm zurückkehren. Keine Angst, dein Spiel ist gespeichert.</string>
     <string name="last_game_deleted">%1$s von gespeicherten Spielen gelöscht!</string>
     <string name="last_games_undo">Rückgängig</string>
+    <string name="game_settings_game_name_must_not_be_empty">Spielname darf nicht leer sein</string>
+    <string name="game_settings_name_must_not_be_empty">Name darf nicht leer sein</string>
 
 </resources>
