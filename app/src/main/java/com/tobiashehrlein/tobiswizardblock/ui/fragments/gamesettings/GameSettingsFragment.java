@@ -1,16 +1,16 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.FragmentGameSettingsBinding;
@@ -22,8 +22,10 @@ import com.tobiashehrlein.tobiswizardblock.ui.views.SwitchTextInfoView;
 import io.realm.RealmList;
 
 import static android.text.TextUtils.isEmpty;
+import static com.tobiapplications.thutils.NullPointerUtils.isNotEmpty;
+import static com.tobiapplications.thutils.NullPointerUtils.isNotNullOrEmpty;
+import static com.tobiapplications.thutils.NullPointerUtils.isNull;
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
-import static com.tobiapplications.thutils.dialog.DialogUtils.isDialogNotShowing;
 import static com.tobiashehrlein.tobiswizardblock.utils.lambda.NullCoalescence.letVoid;
 
 /**
@@ -82,22 +84,63 @@ public class GameSettingsFragment extends Fragment implements GameSettingsContra
 
     @Override
     public void setListener() {
-        bind.btNext.setOnClickListener(view -> presenter.startNewGame());
-        bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerChooseSingleView) view).getNumber()));
+        bind.btNext.setOnClickListener(view -> checkIfAllInputsAreValid());
+        bind.playerChooser.setPlayerChooseListener(view -> bind.playerNameGroup.setPlayerFieldsVisibleUntil(((PlayerChooseSingleView) view).getNumber(), true));
         bind.playerChooser.initStandardPlayers();
         bind.gameName.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus && isEmpty(bind.gameName.getText().toString())) {
-                bind.gameNameLayout.setError(context.getString(R.string.game_settings_game_name_must_not_be_empty));
+                setGameNameError();
             } else if (hasFocus) {
-                bind.gameNameLayout.setError(null);
+                resetGameNameError();
             }
         });
+        bind.gameName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isNotEmpty(s.toString())) {
+                    resetGameNameError();
+                }
+            }
+        });
+    }
+
+    private void setGameNameError() {
+        bind.gameNameLayout.setErrorEnabled(true);
+        bind.gameNameLayout.setError(context.getString(R.string.game_settings_game_name_must_not_be_empty));
+    }
+
+    private void resetGameNameError() {
+        bind.gameNameLayout.setError(null);
+        bind.gameNameLayout.setErrorEnabled(false);
+    }
+
+    private void checkIfAllInputsAreValid() {
+        if (isEmpty(bind.gameName.getText().toString())) {
+            setGameNameError();
+            return;
+        } else if (bind.playerNameGroup.invalidInput()) {
+            bind.playerNameGroup.setPlayerErrorIfInvalid();
+            return;
+        } else {
+            letVoid(presenter, GameSettingsContract.Presenter::startNewGame);
+        }
     }
 
     @Override
     public void setFocusToGameNameIfNecessary() {
         if (isEmpty(bind.gameName.getText().toString())) {
             bind.gameName.requestFocus();
+            bind.playerNameGroup.clearErrors();
         }
     }
 

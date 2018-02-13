@@ -47,10 +47,10 @@ public class PlayerNameGroup extends LinearLayout {
             addView(player);
         }
 
-        setPlayerFieldsVisibleUntil(MIN_PLAYERS);
+        setPlayerFieldsVisibleUntil(MIN_PLAYERS, false);
     }
 
-    public void setPlayerFieldsVisibleUntil(int visibleCount) {
+    public void setPlayerFieldsVisibleUntil(int visibleCount, boolean setFocus) {
         for (int i = 0; i < players.size(); i++) {
             if (i < visibleCount) {
                 players.get(i).setVisibility(View.VISIBLE);
@@ -60,7 +60,9 @@ public class PlayerNameGroup extends LinearLayout {
             }
         }
 
-        setFocusUntil(visibleCount);
+        if (setFocus) {
+            setFocusUntil(visibleCount);
+        }
     }
 
     private void setFocusUntil(int visibleCount) {
@@ -83,5 +85,32 @@ public class PlayerNameGroup extends LinearLayout {
         }
 
         return playerNames;
+    }
+
+    public void clearErrors() {
+        for (PlayerNameInput player : players) {
+            player.setError(null);
+            player.setErrorEnabled(false);
+        }
+    }
+
+    public boolean invalidInput() {
+        for (PlayerNameInput player : players) {
+            if (player.isVisible() && player.invalidInput()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void setPlayerErrorIfInvalid() {
+        for (PlayerNameInput player : players) {
+            if (player.invalidInput()) {
+                player.setPlayerInputError(getContext());
+            } else {
+                player.resetPlayerInputError();
+            }
+        }
     }
 }
