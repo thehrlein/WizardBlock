@@ -34,6 +34,7 @@
     <string name="game_settings_explaination">Choose a name for this game and how much players:</string>
     <string name="game_settings_game_name_must_not_be_empty">Gamename must not be empty</string>
     <string name="game_settings_name_must_not_be_empty">Name must not be empty</string>
+    <string name="game_settings_section_settings_title">Settings</string>
 
     <!-- Game Block -->
     <string name="title_tipps">Tipps</string>

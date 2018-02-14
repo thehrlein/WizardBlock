@@ -7,8 +7,7 @@
      <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorLightGrey"
-        tools:context="tobiapplications.com.moviebase.ui.NavigationActivity">
+        android:background="@color/colorLightGrey">
 
          <ScrollView
              android:layout_width="match_parent"
@@ -53,8 +52,8 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:background="@drawable/wizard"
-                            android:contentDescription="@string/about_moviebase"
+                            android:background="@drawable/wizard_small"
+                            android:contentDescription="@string/app_name"
                             android:layout_gravity="center_vertical"
                             android:layout_width="48dp"
                             android:layout_height="48dp" />

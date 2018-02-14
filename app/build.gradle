@@ -66,5 +66,11 @@ dependencies {
     // Testing
     testCompile 'junit:junit:4.12'
 
+    // Firebase
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
 
 }
+
+// Apply Plugin Firebase
+apply plugin: 'com.google.gms.google-services'

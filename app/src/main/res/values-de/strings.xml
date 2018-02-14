@@ -70,5 +70,6 @@
     <string name="last_games_undo">Rückgängig</string>
     <string name="game_settings_game_name_must_not_be_empty">Spielname darf nicht leer sein</string>
     <string name="game_settings_name_must_not_be_empty">Name darf nicht leer sein</string>
+    <string name="game_settings_section_settings_title">Einstellungen</string>
 
 </resources>

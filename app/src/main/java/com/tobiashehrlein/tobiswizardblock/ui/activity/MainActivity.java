@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bind = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        enableBackPress = true;
         init();
     }
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             transaction.addToBackStack(null);
         }
 
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     @Override
