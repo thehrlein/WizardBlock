@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.viewhandler;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegatesManager;

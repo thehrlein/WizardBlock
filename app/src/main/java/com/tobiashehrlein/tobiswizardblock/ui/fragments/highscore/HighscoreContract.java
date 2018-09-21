@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.highscore;
 
-import android.support.annotation.MenuRes;
+import androidx.annotation.MenuRes;
 
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiapplications.thutils.mvp.BaseView;

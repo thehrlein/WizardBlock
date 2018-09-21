@@ -1,8 +1,8 @@
 package com.tobiashehrlein.tobiswizardblock.ui.views;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 import com.tobiashehrlein.tobiswizardblock.R;

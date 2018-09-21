@@ -1,9 +1,9 @@
 package com.tobiashehrlein.tobiswizardblock.listener;
 
-import android.support.annotation.MenuRes;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.MenuRes;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.Toolbar;
 
 
 /**

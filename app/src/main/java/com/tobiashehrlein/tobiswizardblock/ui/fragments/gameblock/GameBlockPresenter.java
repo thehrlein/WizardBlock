@@ -1,10 +1,8 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
-import android.support.annotation.MenuRes;
+import androidx.annotation.MenuRes;
 import android.view.MenuItem;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.LevelEndEvent;
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;

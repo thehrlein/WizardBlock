@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock;
 
 import android.os.Bundle;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 import com.tobiapplications.thutils.mvp.BasePresenter;
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;

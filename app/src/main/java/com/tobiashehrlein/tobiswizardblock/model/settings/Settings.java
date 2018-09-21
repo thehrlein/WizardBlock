@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.model.settings;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 import io.realm.RealmList;
 import static com.tobiashehrlein.tobiswizardblock.utils.Constants.Validation.*;
