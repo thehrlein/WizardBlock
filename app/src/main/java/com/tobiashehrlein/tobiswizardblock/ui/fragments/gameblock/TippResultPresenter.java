@@ -164,6 +164,12 @@ public class TippResultPresenter extends BasePresenter<TippResultContract.View> 
             RealmList<Integer> input = getView().getSeekBarValues();
             @StringRes int message = validInput(input);
 
+            int totalTippsValue = 0;
+            for (Integer tipp : input) {
+                totalTippsValue += tipp;
+            }
+            getView().setCurrentTotalTipps(totalTippsValue, currentRound);
+
             if (message == Constants.Validation.VALID.stringResId) {
                 getView().enableEnterButton();
             } else {

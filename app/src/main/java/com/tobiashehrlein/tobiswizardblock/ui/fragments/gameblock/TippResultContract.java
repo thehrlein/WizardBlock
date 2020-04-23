@@ -40,5 +40,6 @@ public interface TippResultContract {
         void displayInvalidInput(@StringRes int message);
         void enableEnterButton();
         void disableEnterButton();
+        void setCurrentTotalTipps(int tippsValue, int totalTippsValue);
     }
 }

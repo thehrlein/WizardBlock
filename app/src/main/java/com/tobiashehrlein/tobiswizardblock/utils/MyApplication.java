@@ -2,10 +2,8 @@ package com.tobiashehrlein.tobiswizardblock.utils;
 
 import android.app.Application;
 
-import com.crashlytics.android.Crashlytics;
 import com.tobiashehrlein.tobiswizardblock.BuildConfig;
 
-import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import timber.log.Timber;
@@ -20,7 +18,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Fabric.with(this, new Crashlytics());
         Realm.init(this);
 
         RealmConfiguration configuration = new RealmConfiguration.Builder()

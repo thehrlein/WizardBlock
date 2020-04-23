@@ -67,6 +67,7 @@
     <string name="validation_stitches_must_be_equal_rounds">Stitches must be equal rounds</string>
     <string name="validation_stitches_can_not_be_more_than_rounds">Stitches can not be more than rounds</string>
     <string name="error_title">Invalid input</string>
+    <string name="tipps_total_and_possible">%1$d / %2$d</string>
 
 
     <!-- About -->

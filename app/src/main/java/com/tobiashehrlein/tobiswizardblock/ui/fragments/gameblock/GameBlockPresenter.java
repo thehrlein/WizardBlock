@@ -8,7 +8,6 @@ import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.model.GameSettings;
 import com.tobiashehrlein.tobiswizardblock.model.Round;
 import com.tobiashehrlein.tobiswizardblock.model.WizardGame;
-import com.tobiashehrlein.tobiswizardblock.utils.FabricUtils;
 import com.tobiashehrlein.tobiswizardblock.utils.Storage;
 
 import java.util.Iterator;

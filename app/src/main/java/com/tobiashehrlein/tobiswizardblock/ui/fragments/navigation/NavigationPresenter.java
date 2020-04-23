@@ -5,7 +5,6 @@ import com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings.GameSetting
 import com.tobiashehrlein.tobiswizardblock.listener.FragmentNavigationListener;
 import com.tobiashehrlein.tobiswizardblock.ui.fragments.highscore.HighscoreFragment;
 import com.tobiashehrlein.tobiswizardblock.ui.fragments.lastgames.LastGamesFragment;
-import com.tobiashehrlein.tobiswizardblock.utils.FabricUtils;
 
 /**
  * Created by Tobias Hehrlein on 26.11.2017.
@@ -32,21 +31,18 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
 
     @Override
     public void startNewGame() {
-        FabricUtils.newGameStarted();
         GameSettingsFragment gameSettingsFragment = GameSettingsFragment.newInstance();
         listener.replaceFragment(gameSettingsFragment, true);
     }
 
     @Override
     public void openSavedGames() {
-        FabricUtils.savedGamesOpened();
         LastGamesFragment lastGamesFragment = LastGamesFragment.newInstance();
         listener.replaceFragment(lastGamesFragment, true);
     }
 
     @Override
     public void openHighScore() {
-        FabricUtils.highscoresOpened();
         HighscoreFragment highscoreFragment = HighscoreFragment.newInstance();
         listener.replaceFragment(highscoreFragment, true);
     }

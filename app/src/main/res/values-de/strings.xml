@@ -74,5 +74,6 @@
     <string name="game_settings_game_name_must_not_be_empty">Spielname darf nicht leer sein</string>
     <string name="game_settings_name_must_not_be_empty">Name darf nicht leer sein</string>
     <string name="game_settings_section_settings_title">Einstellungen</string>
+    <string name="tipps_total_and_possible">%1$d / %2$d</string>
 
 </resources>

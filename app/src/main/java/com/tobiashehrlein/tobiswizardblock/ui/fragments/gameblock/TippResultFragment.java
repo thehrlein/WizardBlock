@@ -200,6 +200,11 @@ public class TippResultFragment extends DialogFragment implements TippResultCont
     }
 
     @Override
+    public void setCurrentTotalTipps(int tipsValue, int round) {
+        bind.totalTipps.setText(getString(R.string.tipps_total_and_possible, tipsValue, round));
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         letVoid(presenter, BaseMvpPresenter::detach);
