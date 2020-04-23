@@ -41,6 +41,23 @@ public class WizardGame extends RealmObject implements DisplayableItem {
         return results.get(results.size() - 1);
     }
 
+    public Round getLastFullPlayedRound() {
+        if (isNullOrEmpty(results)) {
+            return null;
+        }
+
+        Round lastRound = results.get(results.size() - 1);
+        if (lastRound.getMadeStitches().isEmpty()) {
+            if (results.size() > 1) {
+                return results.get(results.size() - 2);
+            } else {
+                return null;
+            }
+        }
+
+        return results.get(results.size() - 1);
+    }
+
     public void addRound(Round round) {
         results.add(round);
     }

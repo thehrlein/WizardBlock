@@ -27,6 +27,7 @@ public interface GameBlockContract {
         StringBuilder getCompleteWinnerString(List<String> winnerNames);
         void openAbout();
         void changeLastRoundInput();
+        void finishGameEarly();
     }
 
     interface View extends BaseView {
@@ -44,5 +45,6 @@ public interface GameBlockContract {
         void showWinnerDialog(Map<String, Integer> winner);
         void disableEnterButton();
         void scrollTo(int roundNumber);
+        void finishGameEarly();
     }
 }

@@ -211,7 +211,7 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
         letVoid(presenter, GameBlockContract.Presenter::changeLastRoundInput);
     }
 
-    private void openStartNewGameDialog() {
+    private void openStartNewGameDialog() { // TODO
         String title = context.getString(R.string.action_title_are_you_sure);
         String message = context.getString(R.string.action_start_new_game);
         Dialog startNewGameDialog = DialogBuilderUtil.createDialog(context, title, message, new DialogTwoButtonListener() {
@@ -244,14 +244,18 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
     public void showWinnerDialog(Map<String, Integer> winner) {
         String title = context.getString(R.string.winner_title);
         String message;
-        String firstWinnerName = new ArrayList<>(winner.keySet()).get(0);
-        int winnerPoints = winner.get(firstWinnerName);
-        if (winner.size() == 1) {
-            message = context.getString(R.string.winner_message_single, firstWinnerName, winnerPoints);
+        if (winner == null) {
+            message = getString(R.string.winner_message_none);
         } else {
-            ArrayList<String> winnerNames = new ArrayList<>(winner.keySet());
-            StringBuilder completeWinnerNames = let(presenter, p -> p.getCompleteWinnerString(winnerNames));
-            message = context.getString(R.string.winner_message_multipe, completeWinnerNames, winnerPoints);
+            String firstWinnerName = new ArrayList<>(winner.keySet()).get(0);
+            int winnerPoints = winner.get(firstWinnerName);
+            if (winner.size() == 1) {
+                message = context.getString(R.string.winner_message_single, firstWinnerName, winnerPoints);
+            } else {
+                ArrayList<String> winnerNames = new ArrayList<>(winner.keySet());
+                StringBuilder completeWinnerNames = let(presenter, p -> p.getCompleteWinnerString(winnerNames));
+                message = context.getString(R.string.winner_message_multipe, completeWinnerNames, winnerPoints);
+            }
         }
 
         Dialog winnerDialog = DialogBuilderUtil.createOneButtonDialog(context, title, message);
@@ -265,6 +269,11 @@ public class GameBlockFragment extends Fragment implements GameBlockContract.Vie
             View view = bind.roundLayout.getChildAt(roundNumber);
             bind.scrollView.post(() -> bind.scrollView.scrollTo(0, view.getBottom() + 5));
         }
+    }
+
+    @Override
+    public void finishGameEarly() {
+        letVoid(presenter, GameBlockContract.Presenter::finishGameEarly);
     }
 
     @Override

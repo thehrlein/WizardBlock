@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="back_press_dialog_title">Willst du dieses Spiel beenden?</string>
+    <string name="back_press_dialog_save">Speichern</string>
+    <string name="back_press_dialog_quit">Beenden</string>
     <string name="delete">Löschen</string>
     <string name="highscore_no_old_scores">keine Highscores</string>
     <string name="highscore_dialog_message">Alle Highscores werden gelöscht.</string>
@@ -37,8 +39,9 @@
     <string name="change_names">Spielernamen ändern</string>
     <string name="action_change_input_title_tipps">Letzte Tipps ändern</string>
     <string name="action_change_input_title_results">Letzte Ergebnisse ändern</string>
-    <string name="winner_message_multipe">%1$s haben mit %2$s gewonnen!</string>
-    <string name="winner_message_single">%1$s hat mit %2$s gewonnen!</string>
+    <string name="winner_message_multipe">%1$s haben mit %2$d gewonnen!</string>
+    <string name="winner_message_single">%1$s hat mit %2$d gewonnen!</string>
+    <string name="winner_message_none">Keiner hat gewonnen!</string>
     <string name="winner_title">Glückwunsch</string>
     <string name="action_start_new_game">Möchtest du wirklich ein neues Spiel starten? Dieses Spiel ist gespeichert und kann jederzeit fortgesetzt werden.</string>
     <string name="action_title_are_you_sure">Bist du dir sicher?</string>
@@ -65,7 +68,7 @@
     <string name="new_game">Neues Spiel</string>
     <string name="newGameOrLoad">Möchtest du ein neues Spiel starten, ein gespeichertes Spiel fortsetzen oder deine Highscores einsehen?</string>
     <string name="load_game">Spiel laden</string>
-    <string name="back_press_dialog_text">Wenn du OK klickst, wird dieses Spiel beendet und du wirst zum Startbildschirm zurückkehren. Keine Angst, dein Spiel ist gespeichert.</string>
+    <string name="back_press_dialog_text">Wenn du Speichern klickst, gelangst du zum Startbildschirm zurück und dein Spiel wird gespeichert. Bei Beenden wird das Spiel mit den aktuellen Punkten beendet.</string>
     <string name="last_game_deleted">%1$s von gespeicherten Spielen gelöscht!</string>
     <string name="last_games_undo">Rückgängig</string>
     <string name="game_settings_game_name_must_not_be_empty">Spielname darf nicht leer sein</string>

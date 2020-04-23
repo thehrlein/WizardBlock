@@ -26,6 +26,7 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
         listener.setToolbarBackButtonDisabled();
         listener.setToolbarTitle(null);
         listener.setBackPressEnabled(true);
+        listener.setGameFinished(false);
         listener.disableToolbarMenu();
     }
 

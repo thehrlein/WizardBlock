@@ -23,6 +23,7 @@ public class GameSettingsPresenter extends BasePresenter<GameSettingsContract.Vi
             String gameSettingsTitle = getView().getTitle();
             listener.setToolbarTitle(gameSettingsTitle);
             listener.setToolbarBackButtonEnabled();
+            listener.setGameFinished(false);
             getView().setListener();
             getView().createTippsEqualStitchesOption();
             getView().createAdditionalFirstRoundTippsEqualStitchesOption();

@@ -200,7 +200,10 @@ public class Storage {
     }
 
     public Map<String, Integer> getWinner() {
-        Round lastRound = wizardGame.getLastRound();
+        Round lastRound = wizardGame.getLastFullPlayedRound();
+        if (lastRound == null) {
+            return null;
+        }
         RealmList<Integer> totalPoints = lastRound.getPointsTotal();
         Map<String, Integer> winners = new LinkedHashMap<>();
         RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
@@ -222,7 +225,8 @@ public class Storage {
     }
 
     public void saveHighscores() {
-        Round lastRound = wizardGame.getLastRound();
+        Round lastRound = wizardGame.getLastFullPlayedRound();
+        if (lastRound ==  null) return;
         RealmList<Integer> totalPoints = lastRound.getPointsTotal();
         RealmList<String> playerNames = wizardGame.getGameSettings().getPlayerNames();
 

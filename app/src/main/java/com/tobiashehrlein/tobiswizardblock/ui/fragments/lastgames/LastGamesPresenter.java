@@ -23,6 +23,7 @@ public class LastGamesPresenter extends BasePresenter<LastGamesContract.View> im
         this.listener = listener;
 
         listener.setBackPressEnabled(true);
+        listener.setGameFinished(false);
         listener.disableToolbarMenu();
         listener.setToolbarBackButtonEnabled();
 

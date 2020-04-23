@@ -9,7 +9,9 @@
 
     <!-- Main Activity -->
     <string name="back_press_dialog_title">Do you want to quit this game?</string>
-    <string name="back_press_dialog_text">If you press OK, this game will be closed and you will return back to main page. Do not be afraid, your game is saved.</string>
+    <string name="back_press_dialog_save">Save</string>
+    <string name="back_press_dialog_quit">Finish</string>
+    <string name="back_press_dialog_text">If you press save, you will return back to main page and your game is saved. On finish, this game is over with current scores</string>
     <string name="load_game">Load Game</string>
     <string name="newGameOrLoad">Do you want to start a new game, load a saved game or look up your highscores?</string>
     <string name="new_game">New Game</string>
@@ -47,6 +49,7 @@
     <string name="winner_title">Congratulation</string>
     <string name="winner_message_single">%1$s has won with %2$d points!</string>
     <string name="winner_message_multipe">%1$s have won with %2$d points!</string>
+    <string name="winner_message_none">Nobody won!</string>
     <string name="action_change_input_title_results">Change last results</string>
     <string name="action_change_input_title_tipps">Change last tipps</string>
     <string name="change_names">Change Player Names</string>

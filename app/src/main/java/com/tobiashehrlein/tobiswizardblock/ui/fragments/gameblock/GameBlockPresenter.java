@@ -47,6 +47,7 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
 
         listener.inflateToolbarMenu(menuGameBlock);
         listener.setBackPressEnabled(false);
+        listener.setGameFinished(false);
         listener.setToolbarMenuItemListener(this::onMenuItemClicked);
 
         getCurrentMode();
@@ -128,11 +129,11 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     private void gameFinished() {
         gameOver = true;
         letVoid(listener, FragmentNavigationListener::disableModifyLastInputAction);
+        letVoid(listener, l  -> l.setGameFinished(true));
         Storage.getInstance().saveHighscores();
         getView().disableEnterButton();
         Map<String, Integer> winners = Storage.getInstance().getWinner();
         getView().showWinnerDialog(winners);
-        FabricUtils.gameFinished(wizardGame, winners);
         Storage.getInstance().deleteCurrentGameFromLastGameList();
     }
 
@@ -265,5 +266,10 @@ public class GameBlockPresenter extends BasePresenter<GameBlockContract.View> im
     @Override
     public void onCloseInputInvalid() {
         letVoid(listener, l -> l.setBackPressEnabled(false));
+    }
+
+    @Override
+    public void finishGameEarly() {
+        gameFinished();
     }
 }

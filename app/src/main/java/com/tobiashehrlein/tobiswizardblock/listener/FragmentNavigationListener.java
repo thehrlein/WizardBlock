@@ -18,6 +18,7 @@ public interface FragmentNavigationListener {
     void setToolbarBackButtonEnabled();
     void setToolbarBackButtonDisabled();
     void setBackPressEnabled(boolean enabled);
+    void setGameFinished(boolean finished);
     void inflateToolbarMenu(@MenuRes int menu_game_block);
     void disableToolbarMenu();
     void setToolbarMenuItemListener(Toolbar.OnMenuItemClickListener listener);

@@ -31,6 +31,7 @@ public class HighscorePresenter extends BasePresenter<HighscoreContract.View> im
         listener.inflateToolbarMenu(menuHigscore);
         listener.setToolbarMenuItemListener(this::onMenuItemClicked);
         listener.setBackPressEnabled(true);
+        listener.setGameFinished(false);
 
         setTitle();
         setUpHighscores();

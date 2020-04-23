@@ -1,5 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.ui.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.annotation.MenuRes;
@@ -8,15 +9,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
+import com.tobiapplications.thutils.NullPointerUtils;
 import com.tobiapplications.thutils.dialog.DialogBuilderUtil;
 import com.tobiapplications.thutils.dialog.DialogTwoButtonListener;
 import com.tobiapplications.thutils.mvp.BaseMvpPresenter;
 import com.tobiashehrlein.tobiswizardblock.R;
 import com.tobiashehrlein.tobiswizardblock.databinding.ActivityMainBinding;
+import com.tobiashehrlein.tobiswizardblock.ui.fragments.gameblock.GameBlockFragment;
 import com.tobiashehrlein.tobiswizardblock.ui.fragments.gamesettings.GameSettingsFragment;
 
 import static com.tobiapplications.thutils.NullPointerUtils.isNullOrEmpty;
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private MainActivityContract.Presenter presenter;
     private boolean enableBackPress;
     private Dialog backPressDialog;
+    private boolean gameFinished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +50,33 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         presenter.attach(this);
         presenter.init();
 
-        backPressDialog = DialogBuilderUtil.createDialog(this, getString(R.string.back_press_dialog_title), getString(R.string.back_press_dialog_text), false, new DialogTwoButtonListener() {
-            @Override
-            public void onCancel() {
-                dismissBackPressDialog();
-            }
+        backPressDialog = createDialog();
+    }
 
-            @Override
-            public void onConfirm() {
-                dismissBackPressDialog();
-                closeUntilNavigationFragment();
-            }
+    private AlertDialog createDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.back_press_dialog_title));
+        builder.setMessage(getString(R.string.back_press_dialog_text));
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.back_press_dialog_save, (dialog, which) -> {
+            dismissBackPressDialog();
+            closeUntilNavigationFragment();
         });
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+
+        });
+        builder.setNeutralButton(getString(R.string.back_press_dialog_quit), (dialog, which) -> {
+            finishGame();
+        });
+        return builder.create();
+    }
+
+    private void finishGame() {
+        Fragment fragment = getSupportFragmentManager().getFragments().get(0);
+        if (fragment instanceof GameBlockFragment) {
+            GameBlockFragment gameBlockFragment = (GameBlockFragment) fragment;
+            gameBlockFragment.finishGameEarly();
+        }
     }
 
     @Override
@@ -134,9 +155,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
+    public void setGameFinished(boolean finished) {
+        this.gameFinished = finished;
+    }
+
+    @Override
     public void onBackPressed() {
         if (enableBackPress) {
             super.onBackPressed();
+        } else if (gameFinished) {
+            closeUntilNavigationFragment();
         } else {
             showBackPressDialog();
         }
