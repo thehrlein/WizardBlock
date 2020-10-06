@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "409426723524-t2jogoaij9o76n8ngfj64ahdll8cbjdq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tobiashehrlein.tobiswizardblock",
+            "certificate_hash": "b341317862e29ac68e65211e0bfb92bd792f0b34"
+          }
+        },
+        {
           "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -25,15 +33,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
