@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.github.thehrlein:Thutils:0.1.7'
 
     // Adapter Delegate
-    implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
+    implementation 'com.hannesdorfmann:adapterdelegates3:3.1.0'
 
     // Testing
     testImplementation 'junit:junit:4.13'
