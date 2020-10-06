@@ -1,0 +1,67 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'macos-latest'
+
+variables:
+  - group: wizardBlockVariables  
+
+steps:
+  - task: PowerShell@2
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+    inputs:
+      targetType: 'inline'
+      script: |
+        $url = "{0}{1}/_apis/build/builds/$env:BUILD_BUILDID/changes?api-version=5.1" -f $env:SYSTEM_COLLECTIONURI, $env:SYSTEM_TEAMPROJECT
+        
+          $changelogPath = "$env:BUILD_ARTIFACTSTAGINGDIRECTORY/changelog"
+        
+          $changes = Invoke-RestMethod -Uri $url -Method Get -Headers @{
+              Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+          }
+        
+          Write-Host "Pipeline = $($changes | ConvertTo-Json -Depth 100)"
+        
+          ## Generate Output
+          "Last Commits:" | Add-Content -Path $changelogPath
+          foreach($change in $changes.value) {
+            "* $($change.message)" | Add-Content -Path $changelogPath
+          }
+  - task: DownloadSecureFile@1
+    name: release_key
+    inputs:
+      secureFile: 'release_key.jks'
+  - task: Gradle@2
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      publishJUnitResults: false
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'assembleRelease'
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: '**/*.apk'
+      apksign: true
+      apksignerKeystoreFile: 'release_key.jks'
+      apksignerKeystorePassword: '$(releaseKeyStorePassword)'
+      apksignerKeystoreAlias: '$(releaseAlias)'
+      apksignerKeyPassword: '$(releaseKeyPassword)'
+      zipalign: true
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      SourceFolder: app/build/outputs/apk/
+      Contents: '**/*.apk'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      flattenFolders: true
+  - task: PublishBuildArtifacts@1
+    inputs:
+      ArtifactName: buildRelease
