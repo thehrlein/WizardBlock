@@ -63,4 +63,4 @@ steps:
     displayName: 'Install firebase cli'
   - task: CmdLine@2
     inputs:
-      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.apk --token firebase_token --app firebase_app_id_debug --release-notes "Upload from azure"'    
+      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.apk --token $(firebase_token) --app $(firebase_app_id_debug) --release-notes "Upload from azure"'    
