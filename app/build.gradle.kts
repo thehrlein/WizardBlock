@@ -27,29 +27,20 @@ android {
     }
 
     signingConfigs {
-//        getByName("debug") {
-//            keyAlias = project.rootProject.ext["debugAlias"] as? String
-//            keyPassword = project.rootProject.ext["debugKeyPassword"] as? String
-//            storeFile = file("../signing/app/121tutor_keystore_debug.jks")
-//            storePassword = project.rootProject.ext["debugKeyStorePassword"] as? String
-//            enableV1Signing = true
-//            enableV2Signing = true
-//        }
-//        create("release") {
-//            keyAlias = project.rootProject.ext["releaseAlias"] as? String
-//            keyPassword = project.rootProject.ext["releaseKeyPassword"] as? String
-//            storeFile = file("../signing/app/121tutor_keystore_release.jks")
-//            storePassword = project.rootProject.ext["releaseKeyStorePassword"] as? String
-//            enableV1Signing = true
-//            enableV2Signing = true
-//        }
+        create("release") {
+            keyAlias = project.rootProject.ext["releaseAlias"] as? String
+            keyPassword = project.rootProject.ext["releaseKeyPassword"] as? String
+            storeFile = file("../signing/release_key.jks")
+            storePassword = project.rootProject.ext["releaseKeyStorePassword"] as? String
+            enableV1Signing = true
+            enableV2Signing = true
+        }
     }
 
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             isDebuggable = true
-//            signingConfig = signingConfigs.getByName("debug")
             isMinifyEnabled = false
             isShrinkResources = false
             proguardFiles(
@@ -64,7 +55,7 @@ android {
         }
         getByName("release") {
             isDebuggable = false
-//            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             isShrinkResources = false
             multiDexEnabled = true

@@ -1,12 +1,21 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-val showLogging: String = com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
-    rootDir
-).getProperty("showLogging", "false")
+val releaseAlias: String? =
+    gradleLocalProperties(rootDir).getProperty("releaseAlias") ?: System.getenv("RELEASEALIAS")
+val releaseKeyPassword: String? =
+    gradleLocalProperties(rootDir).getProperty("releaseKeyPassword")
+        ?: System.getenv("RELEASEKEYPASSWORD")
+val releaseKeyStorePassword: String? =
+    gradleLocalProperties(rootDir).getProperty("releaseKeyStorePassword")
+        ?: System.getenv("RELEASEKEYSTOREPASSWORD")
+val showLogging: String = gradleLocalProperties(rootDir).getProperty("showLogging", "false")
 
 project.ext {
+    set("releaseAlias", releaseAlias)
+    set("releaseKeyPassword", releaseKeyPassword)
+    set("releaseKeyStorePassword", releaseKeyStorePassword)
     set("showLogging", showLogging)
 
 }
