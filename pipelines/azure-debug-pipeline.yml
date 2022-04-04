@@ -34,6 +34,12 @@ steps:
           foreach($change in $changes.value) {
             "* $($change.message)" | Add-Content -Path $changelogPath
           }
+  - task: JavaToolInstaller@0
+    inputs:
+      versionSpec: '11'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
+    displayName: 'Install Java 11'
   - task: Gradle@2
     inputs:
       workingDirectory: ''
@@ -63,4 +69,4 @@ steps:
     displayName: 'Install firebase cli'
   - task: CmdLine@2
     inputs:
-      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.apk --token $(firebase_token) --app $(firebase_app_id_debug) --release-notes "Upload from azure"'    
+      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.apk --token $(firebase_token) --app $(firebase_app_id_debug) --release-notes-file "$(Build.ArtifactStagingDirectory)/changelog" --groups "WizardBlock-Tester"'

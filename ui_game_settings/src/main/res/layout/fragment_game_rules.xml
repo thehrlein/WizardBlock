@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tobiashehrlein.tobiswizardblock.presentation.gamesettings.gamerules.GameRulesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_4">
+
+        <TextView
+            android:id="@+id/game_rules_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/game_rules_other_settings_title"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBInputView
+            android:id="@+id/game_rules_game_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            app:hint="@{@string/game_rules_game_name_hint}"
+            app:adapter="@{viewModel.gameNameOptions}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_title"
+            app:name="@{viewModel.gameName}" />
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
+            android:id="@+id/game_rules_settings_tips_equal_stitches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            app:checked="@{viewModel.gameSettings.tipsEqualStitches}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_game_name"
+            app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsEqualStitchesInfoIconClicked()}"
+            app:switchText="@{@string/game_rules_stitches_can_be_equal_tips}" />
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
+            android:id="@+id/game_rules_settings_tips_equal_stitches_first_round"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:enabled="@{!viewModel.gameSettings.tipsEqualStitches}"
+            app:checked="@{viewModel.gameSettings.tipsEqualStitchesFirstRound}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches"
+            app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsEqualStitchesFirstRoundInfoIconClicked()}"
+            app:switchText="@{@string/game_rules_stitches_can_be_equal_in_first_round_text}" />
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
+            android:id="@+id/game_rules_settings_anniversary_version"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            app:checked="@{viewModel.gameSettings.anniversaryVersion}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches_first_round"
+            app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsAnniversaryVersionInfoIconClicked()}"
+            app:switchText="@{@string/game_rules_anniversary_option_stitches_can_be_less}" />
+
+        <Button
+            android:id="@+id/game_rules_button_proceed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:text="@string/general_button_proceed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_settings_anniversary_version" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

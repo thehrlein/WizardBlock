@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2"
+        android:background="@drawable/wb_background_border_about_apps"
+        android:elevation="@dimen/elevation_medium"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_2">
+
+        <ImageView
+            android:id="@+id/app_view_image"
+            android:layout_width="@dimen/icon_size_big"
+            android:layout_height="@dimen/icon_size_big"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/about_moviebase"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/wb_image_moviebase" />
+
+        <TextView
+            android:id="@+id/app_view_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/space_8"
+            android:textAppearance="?textAppearanceBody2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/app_view_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/about_moviebase" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

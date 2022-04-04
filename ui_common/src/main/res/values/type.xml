@@ -1,0 +1,112 @@
+<resources>
+
+    <!--Typography-->
+
+    <!--Material’s type system supports 13 categories that, when combined, form the typescale. -->
+    <!--This typescale is evident in the variety of text styles and sizes that appear on screen, -->
+    <!--ranging from body copy to buttons. Type appears across the UI, in places such as in -->
+    <!--components and on surfaces.-->
+
+    <!--These styles should be used throughout your app when creating text views so all your -->
+    <!--text is consistently styled and easily updated if design or product needs change. Each -->
+    <!--style in the type scale can be customized by defining a style and overriding that -->
+    <!--style's Material Theme attribute (?textAppearanceHeadline1, ?textAppearanceBody2, etc.) -->
+    <!--in your app's theme. In this project, type attributes have already been overridden in -->
+    <!--themes.xml and are set to the styles in this file, type.xml. These ?textAppearance* -->
+    <!--theme attributes should be used in your layouts to set a TextView’s appearance instead -->
+    <!--of fully qualified style references and in favor of manually setting text properties.-->
+
+    <!--Type on Android is themed by defining a custom TextAppearance for each type scale style. -->
+    <!--Use standard TextAppearance attributes such as textSize, textColor, fontFamily, -->
+    <!--letterSpacing, etc. to define a custom appearance for each and see how they are -->
+    <!--applied globally across your app.-->
+
+    <style name="TextAppearance.WizardBlock.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+        <item name="android:textSize">@dimen/font_size_headline_4</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+        <item name="android:textSize">@dimen/font_size_headline_5</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+        <item name="android:textSize">@dimen/font_size_headline_6</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+<!--        <item name="fontFamily">@font/lato_bold</item>-->
+<!--        <item name="android:fontFamily">@font/lato_bold</item>-->
+        <item name="android:textSize">@dimen/font_size_subtitle_1</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+<!--        <item name="fontFamily">@font/lato_bold</item>-->
+<!--        <item name="android:fontFamily">@font/lato_bold</item>-->
+        <item name="android:textSize">@dimen/font_size_subtitle_2</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Body1" parent="TextAppearance.MaterialComponents.Body1">
+<!--        <item name="fontFamily">@font/lato_italic</item>-->
+<!--        <item name="android:fontFamily">@font/lato_italic</item>-->
+        <item name="android:textSize">@dimen/font_size_body_1</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Body2" parent="TextAppearance.MaterialComponents.Body2">
+<!--        <item name="fontFamily">@font/lato_italic</item>-->
+<!--        <item name="android:fontFamily">@font/lato_italic</item>-->
+        <item name="android:textSize">@dimen/font_size_body_2</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Button" parent="TextAppearance.MaterialComponents.Button">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+        <item name="textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_button_2</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Caption" parent="TextAppearance.MaterialComponents.Caption">
+<!--        <item name="fontFamily">@font/roboto_slab</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <!--        <item name="fontFamily">@font/roboto_slab</item>-->
+        <!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Error" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/color_error</item>
+        <item name="android:textSize">@dimen/font_size_error</item>
+    </style>
+
+    <style name="TextAppearance.WizardBlock.Toolbar.Title" parent="TextAppearance.WizardBlock.Subtitle1">
+        <item name="android:textColor">?colorOnPrimary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+</resources>
