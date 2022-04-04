@@ -11,6 +11,7 @@ import androidx.activity.addCallback
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItem
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockName
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockPlaceholder
 import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
@@ -33,6 +34,17 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+private const val KONFETTI_MIN_DEGREES = 0.0
+private const val KONFETTI_MAX_DEGREES = 360.0
+private const val KONFETTI_MIN_SPEED = 1f
+private const val KONFETTI_MAX_SPEED = 5f
+private const val KONFETTI_TIME_TO_LIVE = 2000L
+private const val KONFETTI_SIZE_IN_DP = 12
+private const val KONFETTI_SIZE_MASS = 5f
+private const val KONFETTI_POSITION_OFFSET = 50f
+private const val KONFETTI_PARTICLES_PER_SECOND = 300
+private const val KONFETTI_EMITTING_TIME = 5000L
+
 class BlockResultsFragment :
     BaseToolbarFragment<BlockResultsViewModel, GameBlockViewModel, FragmentBlockResultsBinding>(),
     DialogInteractor {
@@ -50,26 +62,28 @@ class BlockResultsFragment :
             activityToolbarViewModel.setTitle(getString(R.string.game_block_toolbar_title, it))
         }
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.None)
-
         activityToolbarViewModel.gameId.observe(viewLifecycleOwner) {
             viewModel.setGameId(it)
         }
-
-        viewModel.editInputEnabled.observe(viewLifecycleOwner, {
+        viewModel.editInputEnabled.observe(viewLifecycleOwner) {
             requireActivity().invalidateOptionsMenu()
-        })
-
-        viewModel.showGameFinishedEvent.observe(viewLifecycleOwner, {
+        }
+        viewModel.showGameFinishedEvent.observe(viewLifecycleOwner) {
             binding.gameBlockKonfetti.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                .setDirection(0.0, 359.0)
-                .setSpeed(1f, 5f)
+                .setDirection(KONFETTI_MIN_DEGREES, KONFETTI_MAX_DEGREES)
+                .setSpeed(KONFETTI_MIN_SPEED, KONFETTI_MAX_SPEED)
                 .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
+                .setTimeToLive(KONFETTI_TIME_TO_LIVE)
                 .addShapes(Shape.Square, Shape.Circle)
-                .addSizes(Size(12, 5f))
-                .setPosition(-50f, binding.gameBlockKonfetti.width + 50f, -50f, -50f)
-                .streamFor(300, 5000L)
+                .addSizes(Size(KONFETTI_SIZE_IN_DP, KONFETTI_SIZE_MASS))
+                .setPosition(
+                    -KONFETTI_POSITION_OFFSET,
+                    binding.gameBlockKonfetti.width + KONFETTI_POSITION_OFFSET,
+                    -KONFETTI_POSITION_OFFSET,
+                    -KONFETTI_POSITION_OFFSET
+                )
+                .streamFor(KONFETTI_PARTICLES_PER_SECOND, KONFETTI_EMITTING_TIME)
 
             ReviewManagerFactory.create(requireActivity()).run {
                 requestReviewFlow()
@@ -89,7 +103,7 @@ class BlockResultsFragment :
             activityToolbarViewModel.trackGameFinished()
 
             requireActivity().invalidateOptionsMenu()
-        })
+        }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             viewModel.showExitDialog()
@@ -114,57 +128,69 @@ class BlockResultsFragment :
                     )
                 )
             }
-            viewModel.blockItems.observe(viewLifecycleOwner, { blockItems ->
+            viewModel.blockItems.observe(viewLifecycleOwner) { blockItems ->
                 val columnCount = viewModel.columnCount.value ?: 0
                 val headerItems = blockItems.filter { it is BlockPlaceholder || it is BlockName }
                 val gameItems = blockItems.toMutableList().apply {
                     removeAll(headerItems)
                 }
 
-                binding.gamePlayerListLayout.apply {
-                    removeAllViews()
-                    headerItems.forEach {
-                        if (it is BlockPlaceholder) {
-                            addView(BlockPlaceHolderView(context).apply {
-                                layoutParams = LinearLayout.LayoutParams(
-                                    0,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                                    1f
-                                )
-                                setPlaceHolder(it, viewModel)
-                            })
-                        } else if (it is BlockName) {
-                            addView(BlockNameView(context).apply {
-                                layoutParams = LinearLayout.LayoutParams(
-                                    0,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                                    2f
-                                )
-                                setName(it)
-                            })
-                        }
-                    }
-                }
-
-                binding.gameList.layoutManager =
-                    GridLayoutManager(requireContext(), columnCount).apply {
-                        spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                            override fun getSpanSize(position: Int): Int {
-                                return when (blockResultAdapter.getItemViewType(position)) {
-                                    R.layout.item_block_round -> 1
-                                    R.layout.item_block_result -> 2
-                                    else -> 0
-                                }
-                            }
-                        }
-                    }
-
+                addHeaderItems(headerItems)
+                setGridSize(columnCount, blockResultAdapter)
                 blockResultAdapter.submitList(gameItems)
                 binding.gameList.scrollToPosition(blockItems.size - 1)
-            })
+            }
         }
     }
 
+    private fun setGridSize(
+        columnCount: Int,
+        blockResultAdapter: BlockResultsAdapter
+    ) {
+        binding.gameList.layoutManager =
+            GridLayoutManager(requireContext(), columnCount).apply {
+                spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return when (blockResultAdapter.getItemViewType(position)) {
+                            R.layout.item_block_round -> 1
+                            R.layout.item_block_result -> 2
+                            else -> 0
+                        }
+                    }
+                }
+            }
+    }
+
+    private fun addHeaderItems(headerItems: List<BlockItem>) {
+        binding.gamePlayerListLayout.apply {
+            removeAllViews()
+            headerItems.forEach {
+                if (it is BlockPlaceholder) {
+                    addView(
+                        BlockPlaceHolderView(context).apply {
+                            layoutParams = LinearLayout.LayoutParams(
+                                0,
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                1f
+                            )
+                            setPlaceHolder(it, viewModel)
+                        }
+                    )
+                } else if (it is BlockName) {
+                    addView(
+                        BlockNameView(context).apply {
+                            layoutParams = LinearLayout.LayoutParams(
+                                0,
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                2f
+                            )
+                            setName(it)
+                        }
+                    )
+                }
+            }
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_block, menu)
@@ -199,7 +225,10 @@ class BlockResultsFragment :
             DialogRequestCode.CHOOSE_TRUMP -> {
                 when (resultCode) {
                     DialogResultCode.POSITIVE -> {
-                        (data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as? DialogEntity.Custom.Trump)?.let {
+                        (
+                            data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
+                                DialogEntity.Custom.Trump
+                            )?.let {
                             viewModel.updateTrumpType(it.selectedTrumpType)
                         }
                     }

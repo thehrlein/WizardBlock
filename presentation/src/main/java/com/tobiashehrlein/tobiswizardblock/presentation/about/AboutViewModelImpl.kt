@@ -2,10 +2,10 @@ package com.tobiashehrlein.tobiswizardblock.presentation.about
 
 import com.tobiashehrlein.tobiswizardblock.presentation.general.SingleLiveEvent
 
-class AboutViewModelImpl : AboutViewModel(){
+class AboutViewModelImpl : AboutViewModel() {
 
     override val sendEmail = SingleLiveEvent<Unit>()
-    override val openWizard= SingleLiveEvent<Unit>()
+    override val openWizard = SingleLiveEvent<Unit>()
     override val openFahrstuhl = SingleLiveEvent<Unit>()
     override val openMovieBase = SingleLiveEvent<Unit>()
 

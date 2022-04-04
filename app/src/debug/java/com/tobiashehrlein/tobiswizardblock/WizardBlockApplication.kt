@@ -13,5 +13,4 @@ class WizardBlockApplication : BaseWizardBlockApplication() {
     private fun initLogger() {
         Timber.plant(Timber.DebugTree())
     }
-
 }

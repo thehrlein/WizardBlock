@@ -45,23 +45,23 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
 
     private fun initAdapter() {
         PlayerOrderAdapter(viewModel).also { playerOrderAdapter ->
-                binding.playerOrderList.apply {
-                    adapter = playerOrderAdapter
+            binding.playerOrderList.apply {
+                adapter = playerOrderAdapter
 
-                    addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+                addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
 
-                    val callback = SimpleItemTouchHelper(playerOrderAdapter)
-                    val itemTouchHelper = ItemTouchHelper(callback)
-                    itemTouchHelper.attachToRecyclerView(this)
-                    playerOrderAdapter.setOnItemTouchListener {
-                        itemTouchHelper.startDrag(it)
-                    }
-                }
-
-                viewModel.playerNames.observe(viewLifecycleOwner) {
-                    playerOrderAdapter.setItems(it)
+                val callback = SimpleItemTouchHelper(playerOrderAdapter)
+                val itemTouchHelper = ItemTouchHelper(callback)
+                itemTouchHelper.attachToRecyclerView(this)
+                playerOrderAdapter.setOnItemTouchListener {
+                    itemTouchHelper.startDrag(it)
                 }
             }
+
+            viewModel.playerNames.observe(viewLifecycleOwner) {
+                playerOrderAdapter.setItems(it)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

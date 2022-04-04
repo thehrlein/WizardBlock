@@ -16,12 +16,13 @@ class BlockNameView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attributeSet, defStyleAttr) {
 
-    private val binding : ViewBlockNameBinding =
-        DataBindingUtil.inflate(context.layoutInflater,
-        R.layout.view_block_name,
-        this,
-        true)
-
+    private val binding: ViewBlockNameBinding =
+        DataBindingUtil.inflate(
+            context.layoutInflater,
+            R.layout.view_block_name,
+            this,
+            true
+        )
 
     fun setName(item: BlockName) {
         binding.executeAfter {

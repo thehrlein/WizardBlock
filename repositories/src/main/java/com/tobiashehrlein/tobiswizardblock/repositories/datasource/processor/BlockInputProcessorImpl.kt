@@ -13,7 +13,6 @@ import com.tobiashehrlein.tobiswizardblock.old.utils.helper.BlockHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
 private const val FIRST_ROUND = 1
 private const val DEFAULT_PLAYER_INPUT = 0
 
@@ -33,7 +32,8 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
                         }
                     }
                     InputType.RESULT -> when {
-                        game.gameInfo.gameSettings.anniversaryVersion -> inputValidityData.inputSum <= game.currentRoundNumber
+                        game.gameInfo.gameSettings.anniversaryVersion ->
+                            inputValidityData.inputSum <= game.currentRoundNumber
                         else -> inputValidityData.inputSum == game.currentRoundNumber
                     }
                 }

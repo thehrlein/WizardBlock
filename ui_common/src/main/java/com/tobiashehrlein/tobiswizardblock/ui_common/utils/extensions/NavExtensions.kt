@@ -10,7 +10,7 @@ import androidx.navigation.Navigator
 fun NavController.navigateSafe(
     navDirection: NavDirections
 ) {
-	navigateSafe(navDirection.actionId, navDirection.arguments)
+    navigateSafe(navDirection.actionId, navDirection.arguments)
 }
 
 fun NavController.navigateSafe(
@@ -19,8 +19,8 @@ fun NavController.navigateSafe(
     navOptions: NavOptions? = null,
     navExtras: Navigator.Extras? = null
 ) {
-	val action = currentDestination?.getAction(resId) ?: graph.getAction(resId)
-	if (action != null && currentDestination?.id != action.destinationId) {
-		navigate(resId, args, navOptions, navExtras)
-	}
+    val action = currentDestination?.getAction(resId) ?: graph.getAction(resId)
+    if (action != null && currentDestination?.id != action.destinationId) {
+        navigate(resId, args, navOptions, navExtras)
+    }
 }

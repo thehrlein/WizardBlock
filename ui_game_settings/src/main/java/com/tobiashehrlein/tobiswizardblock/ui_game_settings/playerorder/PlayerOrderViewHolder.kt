@@ -10,13 +10,13 @@ import com.tobiashehrlein.tobiswizardblock.ui_game_settings.databinding.ItemPlay
 class PlayerOrderViewHolder(private val binding: ItemPlayerRowBinding) :
     RecyclerView.ViewHolder(binding.root), ItemTouchHelperViewHolder {
 
-    private var notifyDataSetChanged : (() -> Unit)? = null
+    private var notifyDataSetChanged: (() -> Unit)? = null
 
     @SuppressLint("ClickableViewAccessibility")
     fun bind(
         item: String,
         onItemTouchListener: ((RecyclerView.ViewHolder) -> Unit)?,
-        notifyDataSetChanged : () -> Unit
+        notifyDataSetChanged: () -> Unit
     ) {
         this.notifyDataSetChanged = notifyDataSetChanged
         binding.playerName.text = item

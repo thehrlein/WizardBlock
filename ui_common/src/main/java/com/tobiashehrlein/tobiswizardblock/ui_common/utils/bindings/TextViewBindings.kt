@@ -19,7 +19,16 @@ fun TextView.setResultText(value: Int?) {
 @BindingAdapter("differenceText")
 fun TextView.setDifferenceText(value: Int?) {
     text = value?.let {
-        setTextColor(ContextCompat.getColor(context, if (it > 0) R.color.block_result_positive_difference else R.color.block_result_negative_difference))
+        setTextColor(
+            ContextCompat.getColor(
+                context,
+                if (it > 0) {
+                    R.color.block_result_positive_difference
+                } else {
+                    R.color.block_result_negative_difference
+                }
+            )
+        )
         it.toString()
     }
 }
@@ -48,7 +57,12 @@ fun TextView.setPlayerNames(playerNames: List<String>) {
 
 @BindingAdapter("round")
 fun TextView.setRound(item: SavedGameEntity) {
-    text = if (item.gameFinished) context.getString(R.string.saved_game_finished) else context.getString(R.string.saved_game_current_max_round, item.currentRound, item.maxRound)
+    text =
+        if (item.gameFinished) context.getString(R.string.saved_game_finished) else context.getString(
+            R.string.saved_game_current_max_round,
+            item.currentRound,
+            item.maxRound
+        )
 }
 
 @BindingAdapter("gameStartDate")

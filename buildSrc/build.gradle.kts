@@ -5,4 +5,3 @@ repositories {
 plugins {
     `kotlin-dsl`
 }
-

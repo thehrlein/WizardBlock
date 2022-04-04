@@ -18,38 +18,38 @@ import org.koin.core.parameter.parametersOf
 
 abstract class BaseFragment<Model : BaseViewModel, Binding : ViewDataBinding> : Fragment() {
 
-	protected abstract val viewModel: Model
-	protected abstract val viewModelVariableId: Int
-	@get:LayoutRes
-	protected abstract val layoutId: Int
-	protected lateinit var binding: Binding
-	open val hasOptionsMenu: Boolean = false
+    protected abstract val viewModel: Model
+    protected abstract val viewModelVariableId: Int
+    @get:LayoutRes
+    protected abstract val layoutId: Int
+    protected lateinit var binding: Binding
+    open val hasOptionsMenu: Boolean = false
 
-	private val pageNavigator: PageNavigator by inject {
-		parametersOf(requireActivity(), findNavController(), ResourceHelperImpl(requireContext()))
-	}
+    private val pageNavigator: PageNavigator by inject {
+        parametersOf(requireActivity(), findNavController(), ResourceHelperImpl(requireContext()))
+    }
 
-	override fun onCreateView(
-	    inflater: LayoutInflater,
-	    container: ViewGroup?,
-	    savedInstanceState: Bundle?
-	): View? {
-		setHasOptionsMenu(hasOptionsMenu)
-		return DataBindingUtil.inflate<Binding>(inflater, layoutId, container, false).also {
-			binding = it
-			binding.lifecycleOwner = this
-			binding.setVariable(viewModelVariableId, viewModel)
-			listenToNavigationEvents()
-			onBindingCreated(savedInstanceState)
-		}.root
-	}
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(hasOptionsMenu)
+        return DataBindingUtil.inflate<Binding>(inflater, layoutId, container, false).also {
+            binding = it
+            binding.lifecycleOwner = this
+            binding.setVariable(viewModelVariableId, viewModel)
+            listenToNavigationEvents()
+            onBindingCreated(savedInstanceState)
+        }.root
+    }
 
-	@CallSuper
-	open fun onBindingCreated(savedInstanceState: Bundle?) = Unit
+    @CallSuper
+    open fun onBindingCreated(savedInstanceState: Bundle?) = Unit
 
-	private fun listenToNavigationEvents() {
-		viewModel.navigationEvent.observe(viewLifecycleOwner, {
-			pageNavigator.navigateTo(it)
-		})
-	}
+    private fun listenToNavigationEvents() {
+        viewModel.navigationEvent.observe(viewLifecycleOwner, {
+            pageNavigator.navigateTo(it)
+        })
+    }
 }

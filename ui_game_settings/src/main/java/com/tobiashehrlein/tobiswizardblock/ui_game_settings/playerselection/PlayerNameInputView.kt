@@ -72,10 +72,12 @@ class PlayerNameInputView @JvmOverloads constructor(
     }
 
     fun setPlayerError(errorType: PlayerError?) {
-        setError(when (errorType) {
-            PlayerError.EMPTY -> context.getString(R.string.player_selection_player_name_empty)
-            PlayerError.DUPLICATE -> context.getString(R.string.player_selection_player_name_duplicate)
-            else -> null
-        })
+        setError(
+            when (errorType) {
+                PlayerError.EMPTY -> context.getString(R.string.player_selection_player_name_empty)
+                PlayerError.DUPLICATE -> context.getString(R.string.player_selection_player_name_duplicate)
+                else -> null
+            }
+        )
     }
 }

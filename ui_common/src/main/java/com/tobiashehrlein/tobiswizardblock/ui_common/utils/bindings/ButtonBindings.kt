@@ -13,9 +13,12 @@ fun Button.setButtonText(inputType: InputType?, summedInputs: Int?, cardCount: I
         context.getString(R.string.general_empty_string)
     }
 
-    text = context.getString(if (inputType == InputType.TIPP) {
-        R.string.block_input_enter_tips
-    } else {
-        R.string.block_input_enter_results
-    }, suffix)
+    text = context.getString(
+        if (inputType == InputType.TIPP) {
+            R.string.block_input_enter_tips
+        } else {
+            R.string.block_input_enter_results
+        },
+        suffix
+    )
 }

@@ -52,5 +52,4 @@ class PlayerOrderAdapter(
         notifyItemMoved(fromPosition, toPosition)
         interactions.onPlayerOrderChanged(ArrayList(items))
     }
-
 }

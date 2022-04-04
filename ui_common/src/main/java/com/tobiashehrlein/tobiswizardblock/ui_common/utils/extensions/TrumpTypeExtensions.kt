@@ -6,7 +6,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.ui_common.R
 
 @ColorRes
-fun TrumpType.getColorRes() : Int? {
+fun TrumpType.getColorRes(): Int? {
     return when (this) {
         is TrumpType.Selected.Blue -> R.color.trump_color_blue
         is TrumpType.Selected.Red -> R.color.trump_color_red
@@ -17,7 +17,7 @@ fun TrumpType.getColorRes() : Int? {
 }
 
 @StringRes
-fun TrumpType.getNameRes() :  Int? {
+fun TrumpType.getNameRes(): Int? {
     return when (this) {
         is TrumpType.Selected.Blue -> R.string.block_trump_type_blue
         is TrumpType.Selected.Red -> R.string.block_trump_type_red

@@ -11,7 +11,6 @@ class GameSettingsRepositoryImpl(
     private val gameCache: GameCache
 ) : GameSettingsRepository {
 
-
     override suspend fun getGameSettings(gameId: Long): AppResult<GameInfo> {
         return gameCache.getGameInfo(gameId)
     }

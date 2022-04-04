@@ -5,7 +5,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScore
 import com.tobiashehrlein.tobiswizardblock.ui_block.databinding.ItemBlockScoreBinding
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.executeAfter
 
-class BlockScoreViewHolder(private val binding: ItemBlockScoreBinding) :
+class BlockScoresViewHolder(private val binding: ItemBlockScoreBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: GameScore) {

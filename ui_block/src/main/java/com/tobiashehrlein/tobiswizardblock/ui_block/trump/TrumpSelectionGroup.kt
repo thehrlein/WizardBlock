@@ -33,39 +33,47 @@ class TrumpSelectionGroup @JvmOverloads constructor(
         binding.groupOne.removeAllViews()
         binding.groupTwo.removeAllViews()
 
-        binding.groupOne.addView(TrumpSelectionItem(context).apply {
-            setItem(Trump(context.getString(R.string.block_trump_type_blue), TrumpType.Selected.Blue)) {
-                setTrumpSelected(it)
+        binding.groupOne.addView(
+            TrumpSelectionItem(context).apply {
+                setItem(Trump(context.getString(R.string.block_trump_type_blue), TrumpType.Selected.Blue)) {
+                    setTrumpSelected(it)
+                }
+            }.also {
+                items[TrumpType.Selected.Blue] = it
             }
-        }.also {
-            items[TrumpType.Selected.Blue] = it
-        })
-        binding.groupOne.addView(TrumpSelectionItem(context).apply {
-            setItem(Trump(context.getString(R.string.block_trump_type_red), TrumpType.Selected.Red)) {
-                setTrumpSelected(it)
+        )
+        binding.groupOne.addView(
+            TrumpSelectionItem(context).apply {
+                setItem(Trump(context.getString(R.string.block_trump_type_red), TrumpType.Selected.Red)) {
+                    setTrumpSelected(it)
+                }
+            }.also {
+                items[TrumpType.Selected.Red] = it
             }
-        }.also {
-            items[TrumpType.Selected.Red] = it
-        })
-        binding.groupTwo.addView(TrumpSelectionItem(context).apply {
-            setItem(Trump(context.getString(R.string.block_trump_type_green), TrumpType.Selected.Green)) {
-                setTrumpSelected(it)
+        )
+        binding.groupTwo.addView(
+            TrumpSelectionItem(context).apply {
+                setItem(Trump(context.getString(R.string.block_trump_type_green), TrumpType.Selected.Green)) {
+                    setTrumpSelected(it)
+                }
+            }.also {
+                items[TrumpType.Selected.Green] = it
             }
-        }.also {
-            items[TrumpType.Selected.Green] = it
-        })
-        binding.groupTwo.addView(TrumpSelectionItem(context).apply {
-            setItem(
-                Trump(
-                    context.getString(R.string.block_trump_type_yellow),
-                    TrumpType.Selected.Yellow
-                )
-            ) {
-                setTrumpSelected(it)
+        )
+        binding.groupTwo.addView(
+            TrumpSelectionItem(context).apply {
+                setItem(
+                    Trump(
+                        context.getString(R.string.block_trump_type_yellow),
+                        TrumpType.Selected.Yellow
+                    )
+                ) {
+                    setTrumpSelected(it)
+                }
+            }.also {
+                items[TrumpType.Selected.Yellow] = it
             }
-        }.also {
-            items[TrumpType.Selected.Yellow] = it
-        })
+        )
     }
 
     private fun setTrumpSelected(trumpType: TrumpType) {

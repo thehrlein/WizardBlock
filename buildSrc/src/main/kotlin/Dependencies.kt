@@ -106,7 +106,6 @@ object Dependencies {
         private const val lottieVersion = "4.2.2"
         private const val timberVersion = "5.0.1"
 
-
         const val coil = "io.coil-kt:coil:$coilVersion"
         const val debugDb = "com.amitshekhar.android:debug-db:$debugDbVersion" // NOT working anymore
         const val joda = "net.danlew:android.joda:$jodaVersion"

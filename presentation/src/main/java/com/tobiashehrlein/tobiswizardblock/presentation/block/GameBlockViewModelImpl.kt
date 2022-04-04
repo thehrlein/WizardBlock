@@ -7,7 +7,6 @@ import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import kotlinx.coroutines.launch
 
-
 class GameBlockViewModelImpl(
     gameId: Long,
     private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase

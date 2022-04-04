@@ -41,9 +41,9 @@ class FullscreenLoadingDialogFragment : DialogInteractionFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())
-                // sets view
+            // sets view
             .setView(R.layout.dialog_progress)
-                // set background to transparent
+            // set background to transparent
             .setBackground(ColorDrawable(Color.TRANSPARENT))
             .create().also {
                 // dim window if requested

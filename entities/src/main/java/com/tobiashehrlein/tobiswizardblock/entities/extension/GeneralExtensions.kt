@@ -17,4 +17,4 @@ package com.tobiashehrlein.tobiswizardblock.entities.extension
  * }.checkAllMatched
  */
 val <T> T.checkAllMatched: T
-	get() = this
+    get() = this

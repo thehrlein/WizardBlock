@@ -17,12 +17,13 @@ class BlockPlaceHolderView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attributeSet, defStyleAttr) {
 
-    private val binding : ViewBlockPlaceholderBinding =
-        DataBindingUtil.inflate(context.layoutInflater,
-        R.layout.view_block_placeholder,
-        this,
-        true)
-
+    private val binding: ViewBlockPlaceholderBinding =
+        DataBindingUtil.inflate(
+            context.layoutInflater,
+            R.layout.view_block_placeholder,
+            this,
+            true
+        )
 
     fun setPlaceHolder(item: BlockPlaceholder, blockResultsInteractions: BlockResultsInteractions) {
         binding.executeAfter {

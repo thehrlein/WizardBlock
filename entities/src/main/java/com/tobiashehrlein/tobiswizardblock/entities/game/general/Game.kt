@@ -63,9 +63,8 @@ data class Game(
         }
 
     val gameFinished: Boolean
-        get() = lastRoundNumber == maxRound && lastPlayedGameRound?.roundCompleted == true //currentGameRound == null
+        get() = lastRoundNumber == maxRound && lastPlayedGameRound?.roundCompleted == true // currentGameRound == null
 
     private val lastRoundNumber: Int?
         get() = lastPlayedGameRound?.round
 }
-

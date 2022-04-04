@@ -72,19 +72,21 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
             val currentTotals =
                 lastRoundWithTotal?.playerResultData?.sortedByDescending { it.total }
 
-            blockItems.addAll(players.mapIndexed { index: Int, name: String ->
-                BlockName(
-                    name = name,
-                    isDealer = BlockHelper.isDealer(
-                        currentRoundNumber,
-                        game.maxRound,
-                        players.size,
-                        index + 1
-                    ),
-                    isCurrentLeader = currentTotals?.firstOrNull()?.total != null &&
+            blockItems.addAll(
+                players.mapIndexed { index: Int, name: String ->
+                    BlockName(
+                        name = name,
+                        isDealer = BlockHelper.isDealer(
+                            currentRoundNumber,
+                            game.maxRound,
+                            players.size,
+                            index + 1
+                        ),
+                        isCurrentLeader = currentTotals?.firstOrNull()?.total != null &&
                             currentTotals.firstOrNull { it.playerName == name }?.total == currentTotals.firstOrNull()?.total
-                )
-            })
+                    )
+                }
+            )
             game.gameRounds.forEach { round ->
                 val roundPlayerTipData = round.playerTipData ?: return@forEach
                 // do not show round number after trump selected and without any tips made
@@ -94,18 +96,20 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
                         colorized = round.round.isEven()
                     )
                 )
-                blockItems.addAll(players.map { player ->
-                    val resultData = round.playerResultData?.firstOrNull { it.playerName == player }
-                    BlockResult(
-                        player = player,
-                        round = round.round,
-                        tip = roundPlayerTipData.first { it.playerName == player }.tip,
-                        result = resultData?.result,
-                        difference = resultData?.difference,
-                        total = resultData?.total,
-                        colorized = round.round.isEven()
-                    )
-                })
+                blockItems.addAll(
+                    players.map { player ->
+                        val resultData = round.playerResultData?.firstOrNull { it.playerName == player }
+                        BlockResult(
+                            player = player,
+                            round = round.round,
+                            tip = roundPlayerTipData.first { it.playerName == player }.tip,
+                            result = resultData?.result,
+                            difference = resultData?.difference,
+                            total = resultData?.total,
+                            colorized = round.round.isEven()
+                        )
+                    }
+                )
             }
 
 //            val lastRound = game.lastPlayedGameRound
@@ -157,9 +161,11 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
                 .entries
                 .sortedByDescending { it.key }
                 .mapIndexed { index: Int, entry: Map.Entry<Int, List<Pair<String, Int>>> ->
-                    scores.addAll(entry.value.map {
-                        GameScore(index + 1, it.first, it.second)
-                    })
+                    scores.addAll(
+                        entry.value.map {
+                            GameScore(index + 1, it.first, it.second)
+                        }
+                    )
                 }
 
             GameScoreData(

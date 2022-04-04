@@ -14,6 +14,7 @@ variables:
 
 steps:
   - task: PowerShell@2
+    displayName: 'Generate Changelog'
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken)
     inputs:
@@ -40,10 +41,23 @@ steps:
     inputs:
       secureFile: 'release_key.jks'
   - task: CopyFiles@2
+    displayName: 'Copy release_key.jks'
     inputs:
       SourceFolder: '$(Agent.TempDirectory)'
       Contents: '$(keystore.secureFilePath)'
-      TargetFolder: '$(System.DefaultWorkingDirectory)/android/signing'
+      TargetFolder: '$(System.DefaultWorkingDirectory)/signing'
+      OverWrite: true
+  - task: DownloadSecureFile@1
+    displayName: 'Download local.properties'
+    name: localProperties
+    inputs:
+      secureFile: 'local.properties'
+  - task: CopyFiles@2
+    displayName: 'Copy local.properties'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '$(localProperties.secureFilePath)'
+      TargetFolder: '$(System.DefaultWorkingDirectory)'
       OverWrite: true
   - task: JavaToolInstaller@0
     displayName: 'Install Java 11'
@@ -60,17 +74,18 @@ steps:
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'assembleRelease'
-  - task: AndroidSigning@3
-    inputs:
-      apkFiles: '**/*.apk'
-      apksign: true
-      apksignerKeystoreFile: 'release_key.jks'
-      apksignerKeystorePassword: '$(releaseKeyStorePassword)'
-      apksignerKeystoreAlias: '$(releaseAlias)'
-      apksignerKeyPassword: '$(releaseKeyPassword)'
-      zipalign: true
+#  - task: AndroidSigning@3
+#    displayName: 'Sign Apk'
+#    inputs:
+#      apkFiles: '**/*.apk'
+#      apksign: true
+#      apksignerKeystoreFile: 'release_key.jks'
+#      apksignerKeystorePassword: '$(releaseKeyStorePassword)'
+#      apksignerKeystoreAlias: '$(releaseAlias)'
+#      apksignerKeyPassword: '$(releaseKeyPassword)'
+#      zipalign: true
   - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    displayName: 'Copy apk to: $(Build.ArtifactStagingDirectory)'
     inputs:
       SourceFolder: app/build/outputs/apk/
       Contents: '**/*.apk'
@@ -86,7 +101,7 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bundleRelease'
   - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    displayName: 'Copy aab to: $(Build.ArtifactStagingDirectory)'
     inputs:
       SourceFolder: app/build/outputs/bundle/
       Contents: '**/*.aab'

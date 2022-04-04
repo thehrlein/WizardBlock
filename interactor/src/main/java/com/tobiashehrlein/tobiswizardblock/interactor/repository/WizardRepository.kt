@@ -5,5 +5,5 @@ import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
 
 interface WizardRepository {
 
-    suspend fun trackAnalyticsEvent(trackingEvent: TrackingEvent) : AppResult<Unit>
+    suspend fun trackAnalyticsEvent(trackingEvent: TrackingEvent): AppResult<Unit>
 }

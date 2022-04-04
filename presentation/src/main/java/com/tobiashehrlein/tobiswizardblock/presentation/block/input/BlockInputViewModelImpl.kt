@@ -64,7 +64,7 @@ class BlockInputViewModelImpl(
                     inputType.value = result.value.inputType
                     inputModels.value = result.value.inputModels
                     showAnniversaryOption.value = game.gameInfo.gameSettings.anniversaryVersion &&
-                            result.value.inputType == InputType.RESULT
+                        result.value.inputType == InputType.RESULT
                 }
                 is AppResult.Error -> Unit
             }
@@ -101,18 +101,21 @@ class BlockInputViewModelImpl(
         val game = getGameData()
         val playerTipData = game.currentGameRound?.playerTipData ?: error("no tips available")
         val round = game.currentRoundNumber
-        navigateTo(Page.Input.CorrectTipsBecauseOfCloudCard(playerTipData, round ))
+        navigateTo(Page.Input.CorrectTipsBecauseOfCloudCard(playerTipData, round))
     }
 
     override fun correctPlayerTips(correctedPlayerTipData: List<PlayerTipData>) {
         val currentRound = round.value ?: error("could not determine round")
-        val round = InsertRoundData(gameId, currentRound.copy(
-            playerTipData = correctedPlayerTipData
-        ))
+        val round = InsertRoundData(
+            gameId,
+            currentRound.copy(
+                playerTipData = correctedPlayerTipData
+            )
+        )
 
         val oldPlayerTipData = currentRound.playerTipData
         val correctPlayer = correctedPlayerTipData.firstOrNull { corrected ->
-            oldPlayerTipData?.firstOrNull { it.playerName == corrected.playerName && it.tip != corrected.tip} != null
+            oldPlayerTipData?.firstOrNull { it.playerName == corrected.playerName && it.tip != corrected.tip } != null
         } ?: error("no change detected")
 
         viewModelScope.launch {
@@ -140,14 +143,17 @@ class BlockInputViewModelImpl(
         currentGameRound: GameRound,
         inputItems: List<InputDataItem>
     ) {
-        val round = InsertRoundData(gameId, currentGameRound.copy(
-            playerTipData = inputItems.map {
-                PlayerTipData(
-                    playerName = it.player,
-                    tip = it.userInput
-                )
-            }
-        ))
+        val round = InsertRoundData(
+            gameId,
+            currentGameRound.copy(
+                playerTipData = inputItems.map {
+                    PlayerTipData(
+                        playerName = it.player,
+                        tip = it.userInput
+                    )
+                }
+            )
+        )
 
         viewModelScope.launch {
             when (val result = storeRoundUseCase.invoke(round)) {
@@ -181,7 +187,8 @@ class BlockInputViewModelImpl(
 
     private fun storeResults(currentGameRound: GameRound, results: List<PlayerResultData>) {
         val round = InsertRoundData(
-            gameId, currentGameRound.copy(
+            gameId,
+            currentGameRound.copy(
                 playerResultData = results
             )
         )
@@ -197,5 +204,4 @@ class BlockInputViewModelImpl(
     private fun getGameData() = game.value ?: error("could not determine game")
 
     private fun getInputs() = inputModels.value ?: error("could not determine input models")
-
 }

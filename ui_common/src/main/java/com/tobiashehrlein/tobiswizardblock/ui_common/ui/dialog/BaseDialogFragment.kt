@@ -44,8 +44,11 @@ abstract class BaseDialogFragment<Model : BaseViewModel, Binding : ViewDataBindi
 
     @CallSuper
     open fun onBindingCreated() {
-        viewModel.navigationEvent.observe(this, Observer {
-            navigationHandler.navigateTo(it)
-        })
+        viewModel.navigationEvent.observe(
+            this,
+            Observer {
+                navigationHandler.navigateTo(it)
+            }
+        )
     }
 }

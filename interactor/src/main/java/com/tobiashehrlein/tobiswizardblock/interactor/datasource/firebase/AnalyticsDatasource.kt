@@ -5,5 +5,5 @@ import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
 
 interface AnalyticsDatasource {
 
-    suspend fun trackEvent(trackingEvent: TrackingEvent) : AppResult<Unit>
+    suspend fun trackEvent(trackingEvent: TrackingEvent): AppResult<Unit>
 }

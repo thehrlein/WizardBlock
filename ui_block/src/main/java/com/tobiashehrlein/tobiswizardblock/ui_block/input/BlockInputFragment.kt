@@ -47,7 +47,6 @@ class BlockInputFragment :
     private val navArgs: BlockInputFragmentArgs by navArgs()
     override val hasOptionsMenu: Boolean = true
 
-
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
@@ -135,7 +134,10 @@ class BlockInputFragment :
         when (requestCode) {
             DialogRequestCode.CORRECT_TIPS_CHOOSE_PLAYER -> when (resultCode) {
                 DialogResultCode.POSITIVE -> {
-                    (data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as? DialogEntity.Custom.CorrectTipsChoosePlayer)?.let {
+                    (
+                        data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
+                            DialogEntity.Custom.CorrectTipsChoosePlayer
+                        )?.let {
                         viewModel.correctPlayerTips(it.playerTipData)
                     }
                 }

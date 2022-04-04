@@ -1,5 +1,12 @@
 package com.tobiashehrlein.tobiswizardblock.fw_database_room.model.classes
 
+private const val QUALIFIER_UNSELECTED = 0
+private const val QUALIFIER_SELECTED_NONE = 1
+private const val QUALIFIER_SELECTED_BLUE = 2
+private const val QUALIFIER_SELECTED_RED = 3
+private const val QUALIFIER_SELECTED_GREEN = 4
+private const val QUALIFIER_SELECTED_YELLOW = 5
+
 sealed class DbTrumpType {
 
     sealed class Selected : DbTrumpType() {
@@ -14,12 +21,12 @@ sealed class DbTrumpType {
 
     fun getQualifier(): Int {
         return when (this) {
-            is Unselected -> 0
-            is Selected.None -> 1
-            is Selected.Blue -> 2
-            is Selected.Red -> 3
-            is Selected.Green -> 4
-            is Selected.Yellow -> 5
+            is Unselected -> QUALIFIER_UNSELECTED
+            is Selected.None -> QUALIFIER_SELECTED_NONE
+            is Selected.Blue -> QUALIFIER_SELECTED_BLUE
+            is Selected.Red -> QUALIFIER_SELECTED_RED
+            is Selected.Green -> QUALIFIER_SELECTED_GREEN
+            is Selected.Yellow -> QUALIFIER_SELECTED_YELLOW
         }
     }
 
@@ -35,5 +42,4 @@ sealed class DbTrumpType {
             }
         }
     }
-
 }

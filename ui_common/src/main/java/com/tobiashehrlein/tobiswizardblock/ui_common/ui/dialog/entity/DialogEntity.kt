@@ -122,7 +122,6 @@ sealed class DialogEntity : Serializable {
                         round
                     )
                 }
-
             },
             neutralButtonText = resourceHelper.getString(R.string.general_ok)
         ) {

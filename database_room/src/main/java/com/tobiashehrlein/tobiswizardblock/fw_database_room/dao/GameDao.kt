@@ -1,6 +1,5 @@
 package com.tobiashehrlein.tobiswizardblock.fw_database_room.dao
 
-
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -51,7 +50,7 @@ interface GameDao {
     fun deleteGameRounds(gameId: Long)
 
     @Query("SELECT gameName from game_database")
-    fun getGameNameOptions() : List<String>?
+    fun getGameNameOptions(): List<String>?
 
     @Transaction
     fun deleteAllGames() {

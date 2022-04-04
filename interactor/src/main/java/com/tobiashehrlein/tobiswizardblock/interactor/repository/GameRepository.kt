@@ -36,5 +36,4 @@ interface GameRepository {
     suspend fun deleteGame(gameId: Long): AppResult<Unit>
 
     suspend fun deleteAllGame(): AppResult<Unit>
-
 }

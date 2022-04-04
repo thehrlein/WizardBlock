@@ -107,7 +107,6 @@ class BlockResultsViewModelImpl(
         }
     }
 
-
     private fun showTrumpSelectionDialog(data: BlockItemData) {
         val placeHolderItem =
             data.items.firstOrNull { it is BlockPlaceholder } as? BlockPlaceholder ?: return

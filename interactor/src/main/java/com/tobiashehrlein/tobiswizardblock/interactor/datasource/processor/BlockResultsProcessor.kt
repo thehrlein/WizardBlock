@@ -7,7 +7,6 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItemData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 
-
 interface BlockResultsProcessor {
 
     suspend fun calculateResults(calculateResultData: CalculateResultData): AppResult<List<PlayerResultData>>

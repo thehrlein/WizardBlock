@@ -17,5 +17,4 @@ abstract class AboutViewModel : BaseToolbarViewModelImpl() {
     abstract fun onFahrstuhlBlockClicked()
 
     abstract fun onMovieBaseClicked()
-
 }

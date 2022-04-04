@@ -14,7 +14,8 @@ import com.tobiashehrlein.tobiswizardblock.ui_common.ui.BaseToolbarFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BlockScoresFragment : BaseToolbarFragment<BlockScoresViewModel, GameBlockViewModel, FragmentBlockScoresBinding>() {
+class BlockScoresFragment :
+    BaseToolbarFragment<BlockScoresViewModel, GameBlockViewModel, FragmentBlockScoresBinding>() {
 
     override val viewModel: BlockScoresViewModel by viewModel()
     override val viewModelVariableId: Int = BR.viewModel

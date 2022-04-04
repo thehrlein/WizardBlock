@@ -72,15 +72,20 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
                 setTitle(it)
             }
 
-            toolbarEvent.observe(this@BaseToolbarActivity, Observer {
-                onToolbarButtonClicked()
-            })
-            toolbarButton.observe(this@BaseToolbarActivity, Observer<ToolbarButtonType> {
-                toolbarButtonType = it
-            })
+            toolbarEvent.observe(
+                this@BaseToolbarActivity,
+                Observer {
+                    onToolbarButtonClicked()
+                }
+            )
+            toolbarButton.observe(
+                this@BaseToolbarActivity,
+                Observer<ToolbarButtonType> {
+                    toolbarButtonType = it
+                }
+            )
         }
     }
 
     fun provideLifecycleOwner(): LifecycleOwner = this
-
 }

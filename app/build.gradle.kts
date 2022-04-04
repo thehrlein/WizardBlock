@@ -11,9 +11,11 @@ plugins {
     id(BuildPlugins.safeArgs)
 }
 
-val buildNumber = Integer.parseInt(SimpleDateFormat("yyyyMMddHH", Locale.getDefault()).format(
-    Date()
-))
+val buildNumber = Integer.parseInt(
+    SimpleDateFormat("yyyyMMddHH", Locale.getDefault()).format(
+        Date()
+    )
+)
 
 android {
     compileSdk = AndroidSdkTools.compileSdk
@@ -26,6 +28,10 @@ android {
         testInstrumentationRunner = Others.ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER
     }
 
+    println("Get release properties in app build.gradle")
+    println("releaseAlias: " + project.rootProject.ext["releaseAlias"])
+    println("releaseKeyPassword: " + project.rootProject.ext["releaseKeyPassword"])
+    println("releaseKeyStorePassword: " + project.rootProject.ext["releaseKeyStorePassword"])
     signingConfigs {
         create("release") {
             keyAlias = project.rootProject.ext["releaseAlias"] as? String

@@ -19,7 +19,6 @@ class PlayerSelectionFragment : BaseToolbarFragment<PlayerSelectionViewModel, Ga
     override val activityToolbarViewModel: GameSettingsViewModel by sharedViewModel()
     private val playerSettingsHandler = PlayerSelectionHandler()
 
-
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
         activityToolbarViewModel.setTitle(getString(R.string.player_selection_toolbar_title))
@@ -27,23 +26,27 @@ class PlayerSelectionFragment : BaseToolbarFragment<PlayerSelectionViewModel, Ga
 
         binding.playerCountChooseButtonGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
-                viewModel.setPlayerCount(when (checkedId) {
-                    R.id.toggle_four -> 4
-                    R.id.toggle_five -> 5
-                    R.id.toggle_six -> 6
-                    else -> 3
-                })
+                viewModel.setPlayerCount(
+                    when (checkedId) {
+                        R.id.toggle_four -> 4
+                        R.id.toggle_five -> 5
+                        R.id.toggle_six -> 6
+                        else -> 3
+                    }
+                )
             }
         }
 
-        playerSettingsHandler.setInputViews(listOf(
+        playerSettingsHandler.setInputViews(
+            listOf(
                 binding.playerOneLayout,
                 binding.playerTwoLayout,
                 binding.playerThreeLayout,
                 binding.playerFourLayout,
                 binding.playerFiveLayout,
                 binding.playerSixLayout
-            ))
+            )
+        )
 
         activityToolbarViewModel.playerNames.observe(viewLifecycleOwner) {
             viewModel.setPlayerNames(it)

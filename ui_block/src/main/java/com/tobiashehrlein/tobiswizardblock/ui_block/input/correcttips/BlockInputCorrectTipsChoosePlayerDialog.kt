@@ -51,7 +51,8 @@ class BlockInputCorrectTipsChoosePlayerDialog :
     }
 
     private val dialogEntity: DialogEntity.Custom.CorrectTipsChoosePlayer by lazy {
-        requireArguments().getSerializable(DialogEntity.KEY_DIALOG_ENTITY) as DialogEntity.Custom.CorrectTipsChoosePlayer
+        requireArguments().getSerializable(DialogEntity.KEY_DIALOG_ENTITY) as
+            DialogEntity.Custom.CorrectTipsChoosePlayer
     }
 
     override fun createDialog(savedInstanceState: Bundle?, view: View): AlertDialog {
@@ -134,9 +135,12 @@ class BlockInputCorrectTipsChoosePlayerDialog :
                                 it
                             }
                         }
-                        sendDialogResult(dialogEntity.copy(
-                            playerTipData = updatedPlayerTipData
-                        ), DialogResultCode.POSITIVE)
+                        sendDialogResult(
+                            dialogEntity.copy(
+                                playerTipData = updatedPlayerTipData
+                            ),
+                            DialogResultCode.POSITIVE
+                        )
                         dismiss()
                     }
                 }

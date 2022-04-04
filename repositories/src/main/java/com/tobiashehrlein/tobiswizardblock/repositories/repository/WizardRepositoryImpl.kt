@@ -9,7 +9,7 @@ class WizardRepositoryImpl(
     private val analyticsDatasource: AnalyticsDatasource
 ) : WizardRepository {
 
-    override suspend fun trackAnalyticsEvent(trackingEvent: TrackingEvent) : AppResult<Unit> {
+    override suspend fun trackAnalyticsEvent(trackingEvent: TrackingEvent): AppResult<Unit> {
         return analyticsDatasource.trackEvent(trackingEvent)
     }
 }

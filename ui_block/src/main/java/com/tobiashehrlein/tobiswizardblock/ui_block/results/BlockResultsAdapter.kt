@@ -63,19 +63,20 @@ object BlockResultsDiff : DiffUtil.ItemCallback<BlockItem>() {
 
     override fun areItemsTheSame(oldItem: BlockItem, newItem: BlockItem) = when {
         oldItem is BlockRound && newItem is BlockRound && oldItem.round == newItem.round -> true
-        oldItem is BlockResult && newItem is BlockResult && oldItem.round == newItem.round && oldItem.player == newItem.player -> true
+        oldItem is BlockResult && newItem is BlockResult && oldItem.round == newItem.round &&
+            oldItem.player == newItem.player -> true
         else -> false
     }
 
     override fun areContentsTheSame(oldItem: BlockItem, newItem: BlockItem) = when {
         oldItem is BlockRound && newItem is BlockRound && oldItem.round == newItem.round -> true
         oldItem is BlockResult && newItem is BlockResult &&
-                oldItem.round == newItem.round &&
-                oldItem.player == newItem.player &&
-                oldItem.tip == newItem.tip &&
-                oldItem.result == newItem.result &&
-                oldItem.difference == newItem.difference &&
-                oldItem.total == newItem.total -> true
+            oldItem.round == newItem.round &&
+            oldItem.player == newItem.player &&
+            oldItem.tip == newItem.tip &&
+            oldItem.result == newItem.result &&
+            oldItem.difference == newItem.difference &&
+            oldItem.total == newItem.total -> true
         else -> false
     }
 }

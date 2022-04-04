@@ -16,11 +16,13 @@ class PlayerCacheImpl(
     override suspend fun addPlayers(names: List<String>): AppResult<Unit> =
         withContext(Dispatchers.IO) {
             safeCall {
-                playerDao.insertPlayerNames(names.map {
-                    DbPlayer(
-                        it
-                    )
-                })
+                playerDao.insertPlayerNames(
+                    names.map {
+                        DbPlayer(
+                            it
+                        )
+                    }
+                )
             }
         }
 

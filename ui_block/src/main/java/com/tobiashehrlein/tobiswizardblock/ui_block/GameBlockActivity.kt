@@ -31,9 +31,11 @@ class GameBlockActivity : BaseToolbarActivity<GameBlockViewModel, ActivityGameBl
         private const val EXTRA_GAME_ID = "extra.game_id"
         private const val DEFAULT_GAME_ID: Long = -1
         fun start(activity: AppCompatActivity, gameId: Long) {
-            activity.startActivity(Intent(activity, GameBlockActivity::class.java).apply {
-                putExtra(EXTRA_GAME_ID, gameId)
-            })
+            activity.startActivity(
+                Intent(activity, GameBlockActivity::class.java).apply {
+                    putExtra(EXTRA_GAME_ID, gameId)
+                }
+            )
             activity.finishAffinity()
         }
     }

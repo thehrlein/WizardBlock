@@ -20,7 +20,6 @@ class AboutFragment :
     //    override val activityToolbarViewModel: GameBlockViewModel by sharedViewModel()
     override val hasOptionsMenu: Boolean = true
 
-
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
