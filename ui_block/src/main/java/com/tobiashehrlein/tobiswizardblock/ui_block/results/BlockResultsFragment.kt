@@ -59,7 +59,7 @@ class BlockResultsFragment :
         super.onBindingCreated(savedInstanceState)
 
         viewModel.gameName.observe(viewLifecycleOwner) {
-            activityToolbarViewModel.setTitle(getString(R.string.game_block_toolbar_title, it))
+            activityToolbarViewModel.setTitle(it)
         }
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.None)
         activityToolbarViewModel.gameId.observe(viewLifecycleOwner) {

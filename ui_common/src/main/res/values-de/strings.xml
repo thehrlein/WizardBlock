@@ -48,7 +48,6 @@
     <string name="game_rules_info_description">Das Spiel beginnt mit einer Karte und wird jede Runde um eine Karte bis zur Maximalanzahl erhöht. Wähle ein Spielname, um dieses Spiel eindeutig zu identifizieren. Anhand der Regeln kannst du ganz deinen Vorlieben spielen.</string>
 
     <!-- GameBlock -->
-    <string name="game_block_toolbar_title">Wizard - %1$s</string>
     <string name="game_block_results_fab_add_prediction">Tipps</string>
     <string name="game_block_results_fab_add_results">Ergebnisse</string>
     <string name="game_block_results_fab_exit">Beenden</string>

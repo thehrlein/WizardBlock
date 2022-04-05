@@ -56,7 +56,6 @@
     <string name="game_rules_info_description">The game starts with one card and is increased by one card each round up to the maximum number. Choose a game name to clearly identify this game. The rules allow you to play according to your preferences.</string>
 
     <!-- GameBlock -->
-    <string name="game_block_toolbar_title">Wizard - %1$s</string>
     <string name="game_block_results_fab_add_prediction">Tipps</string>
     <string name="game_block_results_fab_add_results">Results</string>
     <string name="game_block_results_fab_exit">Exit</string>
