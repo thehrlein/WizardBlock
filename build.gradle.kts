@@ -4,15 +4,15 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-val releaseAlias: String? =
+val releaseAlias: String =
     gradleLocalProperties(rootDir).getProperty("releaseAlias")
         ?: System.getenv("RELEASEALIAS")
         ?: ""
-val releaseKeyPassword: String? =
+val releaseKeyPassword: String =
     gradleLocalProperties(rootDir).getProperty("releaseKeyPassword")
         ?: System.getenv("RELEASEKEYPASSWORD")
         ?: ""
-val releaseKeyStorePassword: String? =
+val releaseKeyStorePassword: String =
     gradleLocalProperties(rootDir).getProperty("releaseKeyStorePassword")
         ?: System.getenv("RELEASEKEYSTOREPASSWORD")
         ?: ""
@@ -64,6 +64,7 @@ subprojects {
     apply {
         plugin(BuildPlugins.gradleUpdater)
         plugin(BuildPlugins.detekt)
+        // run ./gradlew app:projectDependencyGraph
         from(BuildPlugins.projectDependencyGraph)
     }
 

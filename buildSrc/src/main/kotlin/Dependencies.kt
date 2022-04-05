@@ -3,9 +3,9 @@ import org.gradle.api.JavaVersion
 object Dependencies {
 
     object AndroidX {
-        private const val appCompatVersion = "1.4.0"
+        private const val appCompatVersion = "1.4.1"
         private const val coreVersion = "1.7.0"
-        private const val constraintLayoutVersion = "2.1.2"
+        private const val constraintLayoutVersion = "2.1.3"
         private const val recyclerViewVersion = "1.2.1"
         private const val splashScreenVersion = "1.0.0-beta01"
         private const val swipeRefreshVersion = "1.1.0"
@@ -20,7 +20,7 @@ object Dependencies {
             "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
 
         object LifeCycle {
-            private const val lifecycleVersion = "2.4.0"
+            private const val lifecycleVersion = "2.4.1"
 
             const val livedataExtensions =
                 "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
@@ -30,14 +30,14 @@ object Dependencies {
         }
 
         object Navigation {
-            const val navigationVersion = "2.4.0-rc01"
+            const val navigationVersion = "2.4.1"
 
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
             const val ui = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
         }
 
         object Room {
-            private const val roomVersion = "2.4.0"
+            private const val roomVersion = "2.4.2"
 
             const val runtime = "androidx.room:room-runtime:$roomVersion"
             const val extensions = "androidx.room:room-ktx:$roomVersion"
@@ -46,19 +46,16 @@ object Dependencies {
     }
 
     object Google {
-        private const val googleServicesVersion = "19.0.0"
-        private const val gsonVersion = "2.8.6"
-        private const val materialVersion = "1.4.0"
-        private const val playRatingVersion = "1.8.0"
+        private const val gsonVersion = "2.9.0"
+        private const val materialVersion = "1.5.0"
+        private const val playRatingVersion = "1.10.3"
 
-        const val googleServices =
-            "com.google.android.gms:play-services-location:$googleServicesVersion"
         const val gson = "com.google.code.gson:gson:$gsonVersion"
         const val material = "com.google.android.material:material:$materialVersion"
         const val playRating = "com.google.android.play:core:$playRatingVersion"
 
         object Firebase {
-            private const val firebaseVersion = "29.0.3"
+            private const val firebaseVersion = "29.3.0"
             private const val firebaseUiVersion = "8.0.0"
             private const val firebaseAuthPlayServicesVersion = "20.0.0"
 
@@ -70,8 +67,8 @@ object Dependencies {
     }
 
     object Kotlin {
-        const val kotlinVersion = "1.6.10"
-        private const val coroutineVersion = "1.6.0"
+        const val kotlinVersion = "1.6.20"
+        private const val coroutineVersion = "1.6.1"
         private const val playKtxVersion = "1.4.1"
 
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
@@ -85,7 +82,7 @@ object Dependencies {
     }
 
     object Koin {
-        private const val koinVersion = "3.1.4"
+        private const val koinVersion = "3.1.5"
         const val android = "io.insert-koin:koin-android:$koinVersion"
     }
 
@@ -102,7 +99,7 @@ object Dependencies {
         private const val coilVersion = "1.4.0"
         private const val debugDbVersion = "1.0.6"
         private const val jodaVersion = "2.10.12.2"
-        private const val konfettiVersion = "1.2.2"
+        private const val konfettiVersion = "1.3.2"
         private const val lottieVersion = "4.2.2"
         private const val timberVersion = "5.0.1"
 
@@ -116,7 +113,7 @@ object Dependencies {
 
     object Test {
         private const val jUnitVersion = "4.13.2"
-        private const val jodaTestVersion = "2.10.13"
+        private const val jodaTestVersion = "2.10.14"
 
         const val coroutine =
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Kotlin.Coroutine.android}"
@@ -137,7 +134,7 @@ object Dependencies {
             const val uiAutomator = "androidx.test.uiautomator:uiautomator:$uiAutomatorVersion"
 
             object Espresso {
-                private const val espressoVersion = "3.2.0"
+                private const val espressoVersion = "3.4.0"
 
                 const val core = "androidx.test.espresso:espresso-core:$espressoVersion"
                 const val contrib = "androidx.test.espresso:espresso-contrib:$espressoVersion"
@@ -145,7 +142,7 @@ object Dependencies {
         }
 
         object Mockito {
-            private const val androidVersion = "4.2.0"
+            private const val androidVersion = "4.4.0"
             private const val kotlinVersion = "2.1.0"
 
             const val android = "org.mockito:mockito-android:$androidVersion"
@@ -156,7 +153,7 @@ object Dependencies {
 
 object Classpaths {
 
-    private const val gradleVersion = "7.0.4"
+    private const val gradleVersion = "7.1.2"
     private const val firebaseCrashlyticsVersion = "2.7.0"
     private const val googleServicesVersion = "4.3.8"
     private const val gradleUpdateVersion = "0.28.0"
@@ -174,7 +171,6 @@ object Classpaths {
 
 object BuildPlugins {
     const val detektVersion = "1.19.0"
-    const val taskTreeVersion = "1.5"
 
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
@@ -187,7 +183,6 @@ object BuildPlugins {
     const val kapt = "kapt"
     const val projectDependencyGraph =
         "https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle"
-    const val taskTree = "com.dorongold.task-tree"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
 }
 

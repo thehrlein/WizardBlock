@@ -189,7 +189,7 @@ class BlockResultsViewModelImpl(
 
             val result = if (currentRound.playerTipData == null) {
                 val round = game.lastPlayedGameRound?.copy(
-                    playerResultData = emptyList()
+                    playerResultData = null
                 ) ?: return@launch
 
                 storeRoundUseCase.invoke(InsertRoundData(game.gameInfo.gameId, round))

@@ -24,7 +24,6 @@ dependencies {
     implementation(Dependencies.AndroidX.LifeCycle.livedataExtensions)
 
     // Google
-    implementation(Dependencies.Google.googleServices)
     implementation(platform(Dependencies.Google.Firebase.bom))
     implementation(Dependencies.Google.Firebase.analytics)
 
