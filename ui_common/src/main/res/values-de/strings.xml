@@ -74,6 +74,7 @@
     <string name="block_input_anniversary_version_cloud_card_question">Gibt es in dieser Runde einen Stich mit der Wolke?</string>
     <string name="block_input_anniversary_version_cloud_card_button">Tipps korrigieren</string>
     <string name="block_input_correct_tips_choose_player_title">Welcher Spieler muss sein Tipp korrigieren?</string>
+    <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
     <string name="block_input_correct_tips_count_title">Ein Stich mehr oder weniger ansagen %1$s?</string>
     <string name="block_input_correct_tips_snackbar_message">Der Tipp von %1$s wurde auf %2$d korrigiert</string>
 

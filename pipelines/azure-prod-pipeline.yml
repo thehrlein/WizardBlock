@@ -74,16 +74,6 @@ steps:
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'assembleRelease'
-#  - task: AndroidSigning@3
-#    displayName: 'Sign Apk'
-#    inputs:
-#      apkFiles: '**/*.apk'
-#      apksign: true
-#      apksignerKeystoreFile: 'release_key.jks'
-#      apksignerKeystorePassword: '$(releaseKeyStorePassword)'
-#      apksignerKeystoreAlias: '$(releaseAlias)'
-#      apksignerKeyPassword: '$(releaseKeyPassword)'
-#      zipalign: true
   - task: CopyFiles@2
     displayName: 'Copy apk to: $(Build.ArtifactStagingDirectory)'
     inputs:

@@ -134,13 +134,32 @@ tasks.register("clean").configure {
 }
 
 val detektAllAutocorrect by tasks.registering(Detekt::class) {
-    description = "Runs a failfast detekt build."
+    description = "Runs a failfast detekt build on all modules"
     setSource(file(projectDir))
     debug = true
     parallel = true
     buildUponDefaultConfig = true
     autoCorrect = true
     ignoreFailures = true
+    config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
+    baseline.set(file("$projectDir/config/detekt/baseline_config.xml"))
+    reports {
+        html.enabled = true
+    }
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+}
+
+val detektAll by tasks.registering(Detekt::class) {
+    description = "Runs a detekt build on all modules"
+    setSource(file(projectDir))
+    debug = true
+    parallel = true
+    buildUponDefaultConfig = true
+    autoCorrect = false
+    ignoreFailures = false
     config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
     baseline.set(file("$projectDir/config/detekt/baseline_config.xml"))
     reports {

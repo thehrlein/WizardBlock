@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.WizardBlock.DayNight" parent="Base.Theme.WizardBlock">
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:navigationBarColor">?colorBackground</item>
+    </style>
+
+</resources>

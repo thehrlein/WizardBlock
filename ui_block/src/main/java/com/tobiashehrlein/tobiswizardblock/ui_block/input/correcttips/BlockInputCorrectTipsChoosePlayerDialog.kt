@@ -52,7 +52,7 @@ class BlockInputCorrectTipsChoosePlayerDialog :
 
     private val dialogEntity: DialogEntity.Custom.CorrectTipsChoosePlayer by lazy {
         requireArguments().getSerializable(DialogEntity.KEY_DIALOG_ENTITY) as
-            DialogEntity.Custom.CorrectTipsChoosePlayer
+                DialogEntity.Custom.CorrectTipsChoosePlayer
     }
 
     override fun createDialog(savedInstanceState: Bundle?, view: View): AlertDialog {
@@ -79,13 +79,19 @@ class BlockInputCorrectTipsChoosePlayerDialog :
         dialogEntity.playerTipData.forEach { data ->
             val radio = RadioButton(requireContext()).apply {
                 id = data.playerName.hashCode()
-                text = data.playerName
-                val margin = context.getDimen(R.dimen.space_2)
-                setPadding(margin, margin, margin, margin)
+                text = getString(
+                    R.string.block_input_correct_tips_choose_player_name_and_tip,
+                    data.playerName,
+                    data.tip
+                )
+                setTextAppearance(R.style.TextAppearance_WizardBlock_Body1)
+                val padding = context.getDimen(R.dimen.space_2)
+                setPadding(padding, padding, padding, padding)
                 val params = RadioGroup.LayoutParams(
                     RadioGroup.LayoutParams.MATCH_PARENT,
                     RadioGroup.LayoutParams.WRAP_CONTENT
                 )
+                val margin = context.getDimen(R.dimen.space_1)
                 params.setMargins(margin, margin, margin, margin)
                 layoutParams = params
             }

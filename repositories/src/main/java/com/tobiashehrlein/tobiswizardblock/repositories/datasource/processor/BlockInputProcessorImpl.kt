@@ -27,7 +27,7 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
                         when {
                             game.gameInfo.gameSettings.tipsEqualStitches -> true
                             game.currentRoundNumber == FIRST_ROUND &&
-                                    game.gameInfo.gameSettings.tipsEqualStitchesFirstRound -> true
+                                game.gameInfo.gameSettings.tipsEqualStitchesFirstRound -> true
                             else -> inputValidityData.inputSum != game.currentRoundNumber
                         }
                     }

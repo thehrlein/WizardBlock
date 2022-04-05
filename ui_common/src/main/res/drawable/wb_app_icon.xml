@@ -18,22 +18,22 @@
         android:fillColor="#FFFFFF"
         android:pathData="M5.05,258.07L257.05,6.07L282.25,31.27L30.25,283.27z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M29.83,283.57L80.23,233.17L29.83,233.17L29.83,283.57z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M80.16,233.47L130.56,183.07L80.16,183.07L80.16,233.47z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M130.79,182.87L181.19,131.67L130.79,131.67L130.79,182.87z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M80.57,182.3L30.17,233.5L80.57,233.5L80.57,182.3z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M130.56,132.44L80.16,182.84L130.56,182.84L130.56,132.44z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M181.82,81.18L131.42,131.58L181.82,131.58L181.82,81.18z" />
     <path
         android:fillColor="#838383"
@@ -51,16 +51,16 @@
         android:fillColor="#838383"
         android:pathData="M232.36,80.95L282.76,30.55L232.36,30.55L232.36,80.95z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M156.19,157.57L206.59,106.37L156.19,106.37L156.19,157.57z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M54.62,208.38L4.22,258.78L54.62,258.78L54.62,208.38z" />
     <path
         android:fillColor="#838383"
         android:pathData="M257.57,5.5L282.37,31.1L257.57,31.1L257.57,5.5z" />
     <path
-        android:fillColor="#000000"
+        android:fillColor="?colorOnBackground"
         android:pathData="M29.89,283.64L4.29,258.84L29.89,258.84L29.89,283.64z" />
     <path
         android:fillColor="#838383"

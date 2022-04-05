@@ -85,6 +85,7 @@
     <string name="block_input_anniversary_version_cloud_card_question">Was there any stitch with the cloud card in this round?</string>
     <string name="block_input_anniversary_version_cloud_card_button">Correct tips</string>
     <string name="block_input_correct_tips_choose_player_title">Which player must correct his/her tip?</string>
+    <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
     <string name="block_input_correct_tips_count_title">One stitch more or less %1$s?</string>
     <string name="block_input_correct_tips_snackbar_message">The tip of %1$s was corrected to %2$d</string>
 

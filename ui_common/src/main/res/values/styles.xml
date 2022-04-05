@@ -45,6 +45,8 @@
 
     <style name="Widget.WizardBlock.Button.Outline" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="strokeColor">@color/color_selector_outline_button</item>
+<!--        <item name="android:textColor">?colorOnBackground</item>-->
     </style>
 
     <style name="Widget.WizardBlock.Button.Borderless" parent="@style/Widget.MaterialComponents.Button.TextButton">
