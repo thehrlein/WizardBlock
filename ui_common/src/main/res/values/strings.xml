@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <string name="general_delete">Delete</string>
+    <string name="general_button_proceed">Continue</string>
+    <string name="general_empty_string" translatable="false" />
+    <string name="general_cancel">Cancel</string>
+    <string name="general_back">Back</string>
+    <string name="general_ok" translatable="false">Ok</string>
+    <string name="general_yes">Yes</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_title_info">Info</string>
+    <string name="dialog_title_attention">Attention</string>
+    <string name="dialog_exit_message">Do you want to quit Wizard Block or return to the menu?</string>
+    <string name="dialog_exit_button_quit">Quit</string>
+    <string name="dialog_exit_button_menu">Menu</string>
+
+    <!-- NavigationActivity -->
+    <string name="navigation_title">Welcome to Wizard Block!</string>
+    <string name="navigation_subtitle">Do you want to start a new game or load a saved game?</string>
+    <string name="navigation_button_new_game">New game</string>
+    <string name="navigation_button_load_game">Load game</string>
+    <string name="navigation_button_info">Info</string>
+
+    <!-- PlayerSelectionFragment -->
+    <string name="player_selection_toolbar_title">Player selection</string>
+    <string name="player_selection_player_count_hint">Choose player count</string>
+    <string name="player_selection_player_count_three" translatable="false">3</string>
+    <string name="player_selection_player_count_four" translatable="false">4</string>
+    <string name="player_selection_player_count_five" translatable="false">5</string>
+    <string name="player_selection_player_count_six" translatable="false">6</string>
+    <string name="player_selection_player_hint">Player %1$d</string>
+    <string name="player_selection_player_name_empty">Please choose a name</string>
+    <string name="player_selection_player_name_duplicate">This name is already chosen. Please take another one</string>
+
+    <!-- Player order -->
+    <string name="player_order_toolbar_title">Player order</string>
+    <string name="player_order_hint">Choose player order</string>
+    <string name="player_order_position" translatable="false">%1$d.</string>
+    <string name="player_order_description">The first player will start to shuffle and deal the cards.\n\nPress the two lines or long-press the whole cell to move and reorder</string>
+
+    <!-- Game rules -->
+    <string name="game_rules_toolbar_title">Game rules</string>
+    <string name="game_rules_other_settings_title">General rules</string>
+    <string name="game_rules_game_name_hint">Game name</string>
+    <string name="game_rules_stitches_can_be_equal_tips">Tipps can be equal stitches</string>
+    <string name="game_rules_stitches_can_be_equal_tips_info">If enabled, your tipps can be equal possible stitches (e.g. Round 2 = all tipps combined can be 2).\n\nIf not,
+        tipps can not be equal to possible stitches. That means, the last player has to say one tipp more or less, if all tipps combined would be equal to possible stitches.</string>
+    <string name="game_rules_stitches_can_be_equal_in_first_round_text">Exception: enable for first round</string>
+    <string name="game_rules_stitches_can_be_equal_in_first_round_info">If enabled, previous rule is disabled for first round.\n\nThis does not affect all other rounds.</string>
+    <string name="game_rules_anniversary_option_stitches_can_be_less">Advanced: anniversary option</string>
+    <string name="game_rules_anniversary_option_stitches_can_be_less_info">If enabled, you can play with the anniversary version, which means, your stitches combined can be less than possible stitches.\n\nIn anniversary version, you have more cards than usual (e.g. dragon, bomb).</string>
+    <string name="game_rules_game_name_must_not_be_empty">Game name must not be empty</string>
+    <string name="game_rules_info_description">The game starts with one card and is increased by one card each round up to the maximum number. Choose a game name to clearly identify this game. The rules allow you to play according to your preferences.</string>
+
+    <!-- GameBlock -->
+    <string name="game_block_toolbar_title">Wizard - %1$s</string>
+    <string name="game_block_results_fab_add_prediction">Tipps</string>
+    <string name="game_block_results_fab_add_results">Results</string>
+    <string name="game_block_results_fab_exit">Exit</string>
+    <string name="game_block_results_is_dealer_hint">(Dealer)</string>
+    <string name="game_block_results_winner_title">Congratulations</string>
+    <string name="game_block_results_winner_message_singlular">%1$s has won with a total of %2$d points</string>
+    <string name="game_block_results_winner_message_plural">%1$s have won with a total of %2$d points</string>
+    <string name="game_block_results_menu_trophy_title" translatable="false">Scores</string>
+    <string name="game_block_results_menu_about_title" translatable="false">Info</string>
+    <string name="game_block_results_menu_delete_last_input">Delete last input</string>
+
+    <!-- Block input -->
+    <string name="block_input_toolbar_title_tips">Tips</string>
+    <string name="block_input_toolbar_title_results">Results</string>
+    <string name="block_input_general_title">Round %1$d</string>
+    <string name="block_input_info_tips_can_be_equal_stitches_message_first_round">Your combined tips can be 1 in the first round</string>
+    <string name="block_input_info_tips_can_be_equal_stitches_message">Your combined tips can be equal %1$d</string>
+    <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Your combined tips must not be %1$d. The last user must make sure that after his tip the amount of tips is not equal %1$d</string>
+    <string name="block_input_info_result_message">Your combined results must be %1$d</string>
+    <string name="block_input_info_result_anniversary_version_message">Your combined results must be %1$d, except if someone played the bomb</string>
+    <string name="block_input_enter_tips">Enter tips%1$s</string>
+    <string name="block_input_enter_results">Enter results%1$s</string>
+    <string name="block_input_summed_inputs" translatable="false">&#160;- %1$d / %2$d</string>
+    <string name="block_input_action_info_title">Info</string>
+    <string name="block_input_action_trump_title">Trump</string>
+    <string name="block_input_anniversary_version_cloud_card_question">Was there any stitch with the cloud card in this round?</string>
+    <string name="block_input_anniversary_version_cloud_card_button">Correct tips</string>
+    <string name="block_input_correct_tips_choose_player_title">Which player must correct his/her tip?</string>
+    <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
+    <string name="block_input_correct_tips_count_title">One stitch more or less %1$s?</string>
+    <string name="block_input_correct_tips_snackbar_message">The tip of %1$s was corrected to %2$d</string>
+
+    <!-- Block scores -->
+    <string name="block_scores_toolbar_title">Current Scores</string>
+    <string name="block_scores_position" translatable="false">%1$d.</string>
+    <string name="block_scores_position_label">Position</string>
+    <string name="block_scores_name_label">Name</string>
+    <string name="block_scores_points_label">Points</string>
+
+    <!-- Trump -->
+    <string name="block_trump_title">Choose trump</string>
+    <string name="block_trump_type_red">Red (Dwarfs)</string>
+    <string name="block_trump_type_blue">Blue (Humans)</string>
+    <string name="block_trump_type_green">Green (Elves)</string>
+    <string name="block_trump_type_yellow">Yellow (Giants)</string>
+    <string name="block_trump_disable_auto_show_dialog">Show this dialog automatically for each round (optional)</string>
+    <string name="block_trump_reset_selection">Reset</string>
+
+    <!-- About -->
+    <string name="about_toolbar_title">Info</string>
+    <string name="about_feedback">For further information, questions or feedback, please use the button at the bottom to send me an email.</string>
+    <string name="about_like_fahrstuhl_block">Do you like Wizard Block? I would feel happy about a positive rating in PlayStore:</string>
+    <string name="about_other_apps">Want more? Check out my other applications:</string>
+    <string name="about_fahrstuhl_block" translatable="false">Fahrstuhl Block</string>
+    <string name="about_moviebase" translatable="false">MovieBase</string>
+    <string name="about_email" translatable="false">tobi.applications@gmail.com</string>
+    <string name="about_email_text">Hello Tobias, \n\n</string>
+    <string name="about_no_email_clients">There are no email clients installed</string>
+    <string name="about_email_chooser_title">Choose your email client</string>
+    <string name="about_package_name_moviebase" translatable="false">tobiapplications.com.moviebase</string>
+    <string name="about_package_name_fahrstuhl_block" translatable="false">com.tobiapplications.fahrstuhlblock</string>
+    <string name="about_playstore_prefix" translatable="false">market://details?id=%1$s</string>
+    <string name="about_playstore_url" translatable="false">https://play.google.com/store/apps/details?id=%1$s</string>
+
+    <!-- Saved Games -->
+    <string name="saved_game_toolbar_title">Saved Games</string>
+    <string name="saved_game_current_max_round" translatable="false">%1$d / %2$d</string>
+    <string name="saved_game_no_games">No saved games available</string>
+    <string name="saved_game_start_date">Startdate</string>
+    <string name="saved_game_game_name">Name</string>
+    <string name="saved_game_rounds">Round</string>
+    <string name="saved_game_finished">Finished</string>
+    <string name="saved_game_settings">Info</string>
+    <string name="saved_game_dialog_info_title">Game settings</string>
+    <string name="saved_game_dialog_delete_title">Delete games</string>
+    <string name="saved_game_dialog_delete_message">Do you really want to delete all games?</string>
+
+
+</resources>
