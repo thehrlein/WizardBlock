@@ -69,12 +69,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/block_score_list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/block_scores_position"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:itemCount="4"
             tools:listitem="@layout/item_block_score" />
 

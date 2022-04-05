@@ -18,6 +18,13 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/space_4">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
             <TextView
                 android:id="@+id/game_rules_title"
                 android:layout_width="0dp"
@@ -35,7 +42,7 @@
                 android:layout_marginTop="@dimen/space_4"
                 app:adapter="@{viewModel.gameNameOptions}"
                 app:hint="@{@string/game_rules_game_name_hint}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/game_rules_title" />
 
@@ -43,8 +50,9 @@
                 android:id="@+id/game_rules_settings_tips_equal_stitches"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/space_4"
+                android:layout_marginEnd="@dimen/space_2"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/game_rules_game_name"
                 app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsEqualStitchesInfoIconClicked()}"
@@ -54,10 +62,10 @@
                 android:id="@+id/game_rules_settings_tips_equal_stitches_first_round"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4"
+                android:layout_marginStart="@dimen/space_2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches"
+                app:layout_constraintStart_toEndOf="@id/guideline_center"
+                app:layout_constraintTop_toTopOf="@id/game_rules_settings_tips_equal_stitches"
                 app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsEqualStitchesFirstRoundInfoIconClicked()}"
                 app:switchText="@{@string/game_rules_stitches_can_be_equal_in_first_round_text}" />
 
@@ -66,9 +74,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_4"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/space_2"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches_first_round"
+                app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches"
                 app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsAnniversaryVersionInfoIconClicked()}"
                 app:switchText="@{@string/game_rules_anniversary_option_stitches_can_be_less}" />
 

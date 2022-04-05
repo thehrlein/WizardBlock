@@ -22,7 +22,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/game_list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:overScrollMode="never"
             android:visibility="@{!viewModel.noSavedGames}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -30,7 +30,8 @@
             tools:listitem="@layout/item_saved_game"
             app:layout_constraintTop_toBottomOf="@id/saved_game_header"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/no_saved_games"

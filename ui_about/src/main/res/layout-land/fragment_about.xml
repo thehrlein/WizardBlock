@@ -81,7 +81,8 @@
                     android:onClick="@{() -> viewModel.onFahrstuhlBlockClicked()}"
                     app:appIcon="@{@drawable/wb_ic_fahrstuhl_block}"
                     app:appName="@{@string/about_fahrstuhl_block}"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/space_4"
+                    app:layout_constraintEnd_toStartOf="@id/about_app_view_movie_base"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_other_apps" />
 
@@ -89,13 +90,13 @@
                     android:id="@+id/about_app_view_movie_base"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_4"
+                    android:layout_marginStart="@dimen/space_4"
                     android:onClick="@{() -> viewModel.onMovieBaseClicked()}"
                     app:appIcon="@{@drawable/wb_image_moviebase}"
                     app:appName="@{@string/about_moviebase}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/about_app_view_fahrstuhl_block" />
+                    app:layout_constraintStart_toEndOf="@id/about_app_view_fahrstuhl_block"
+                    app:layout_constraintTop_toTopOf="@id/about_app_view_fahrstuhl_block" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -16,9 +16,7 @@ class GameRulesViewModelImpl(
     private val getGameNameOptionsUseCase: GetGameNameOptionsUseCase
 ) : GameRulesViewModel() {
 
-    override val gameName = MutableLiveData<String>()
     override val gameNameOptions = MutableLiveData<Set<String>>(emptySet())
-    override val gameSettings = MutableLiveData<GameSettings>()
 
     init {
         getGameNameOptions()
@@ -33,36 +31,14 @@ class GameRulesViewModelImpl(
         }
     }
 
-    override fun setTipsEqualStitches(enabled: Boolean) {
-        gameSettings.value = gameSettings.value?.copy(
-            tipsEqualStitches = enabled
-        )
-    }
-
-    override fun setTipsEqualStitchesFirstRound(enabled: Boolean) {
-        gameSettings.value = gameSettings.value?.copy(
-            tipsEqualStitchesFirstRound = enabled
-        )
-    }
-
-    override fun setAnniversaryVersion(enabled: Boolean) {
-        gameSettings.value = gameSettings.value?.copy(
-            anniversaryVersion = enabled
-        )
-    }
-
-    override fun setGameSettings(gameSettings: GameSettings) {
-        this.gameSettings.value = gameSettings
-    }
-
-    override fun setGameName(gameName: String) {
-        this.gameName.value = gameName
-    }
-
-    override fun onProceedClicked(gameName: String, playerNames: List<String>) {
+    override fun onProceedClicked(
+        gameName: String,
+        playerNames: List<String>,
+        gameSettings: GameSettings
+    ) {
         viewModelScope.launch {
-            val gameSettings = gameSettings.value ?: return@launch
-            storeGameInfo(gameName, playerNames, gameSettings)
+            val gameId = storeGameInfo(gameName, playerNames, gameSettings)
+            navigateTo(Page.GameRules.Block(gameId))
         }
     }
 
@@ -70,15 +46,15 @@ class GameRulesViewModelImpl(
         gameName: String,
         playerNames: List<String>,
         gameSettings: GameSettings
-    ) {
+    ): Long {
         val gameInfo = GameInfo(
             players = playerNames,
             gameName = gameName,
             gameSettings = gameSettings
         )
-        when (val result = storeGameInfoUseCase.invoke(gameInfo)) {
-            is AppResult.Success -> navigateTo(Page.GameRules.Block(result.value))
-            is AppResult.Error -> Unit
+        return when (val result = storeGameInfoUseCase.invoke(gameInfo)) {
+            is AppResult.Success -> result.value
+            is AppResult.Error -> error("gameId can't be null")
         }
     }
 

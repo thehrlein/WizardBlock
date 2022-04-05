@@ -15,10 +15,13 @@ import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.BaseDialogFragmen
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.entity.DialogEntity
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.utils.DialogResultCode
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrumpBinding>() {
 
-    override val viewModel: BlockTrumpViewModel by viewModel()
+    override val viewModel: BlockTrumpViewModel by viewModel {
+        parametersOf(dialogEntity.selectedTrumpType)
+    }
     override val layoutId: Int = R.layout.dialog_block_trump
     override val viewModelVariableId: Int = BR.viewModel
 
@@ -52,6 +55,7 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
             .setView(view)
             .setTitle(dialogEntity.title)
             .setPositiveButton(R.string.general_ok) { _, _ ->
+                dialogEntity.selectedTrumpType = viewModel.selectedTrump.value ?: TrumpType.Selected.None
                 if (dialogEntity.selectedTrumpType == TrumpType.Unselected) {
                     dialogEntity.selectedTrumpType = TrumpType.Selected.None
                 }
@@ -66,7 +70,7 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
         dialog.setOnShowListener {
             (dialog as? AlertDialog)?.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {
                 binding.trumpSelectionGroup.reset()
-                dialogEntity.selectedTrumpType = TrumpType.Selected.None
+                viewModel.setSelectedTrump(TrumpType.Selected.None)
             }
         }
 
@@ -77,10 +81,8 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
         super.onBindingCreated()
 
         binding.trumpSelectionGroup.setOnCheckedChangeListener {
-            dialogEntity.selectedTrumpType = it
+            viewModel.setSelectedTrump(it)
         }
-
-        binding.trumpSelectionGroup.setSelectedItem(dialogEntity.selectedTrumpType)
         binding.autoShowTrumpDialog.setOnCheckedChangeListener { _, isChecked ->
             viewModel.onAutoShowTrumpDialogChanged(isChecked)
         }

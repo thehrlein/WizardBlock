@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
@@ -26,6 +28,7 @@ import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.utils.DialogReque
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.utils.DialogResultCode
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.getColorRes
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.getNameRes
+import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.isLandscape
 import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -61,9 +64,9 @@ class BlockInputFragment :
             )
         )
 
-        viewModel.trumpType.observe(viewLifecycleOwner, {
+        viewModel.trumpType.observe(viewLifecycleOwner) {
             requireActivity().invalidateOptionsMenu()
-        })
+        }
 
         viewModel.playerTipDataCorrectedEvent.observe(viewLifecycleOwner) {
             Snackbar.make(
@@ -85,6 +88,12 @@ class BlockInputFragment :
             binding.blockInputList.apply {
                 adapter = blockInputAdapter
                 addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+                val isLandscape = context?.isLandscape() ?: false
+                layoutManager = if (isLandscape) {
+                    GridLayoutManager(context, 2)
+                } else {
+                    LinearLayoutManager(context)
+                }
             }
 
             viewModel.inputModels.observe(viewLifecycleOwner) {
@@ -135,11 +144,11 @@ class BlockInputFragment :
             DialogRequestCode.CORRECT_TIPS_CHOOSE_PLAYER -> when (resultCode) {
                 DialogResultCode.POSITIVE -> {
                     (
-                        data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
-                            DialogEntity.Custom.CorrectTipsChoosePlayer
-                        )?.let {
-                        viewModel.correctPlayerTips(it.playerTipData)
-                    }
+                            data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
+                                    DialogEntity.Custom.CorrectTipsChoosePlayer
+                            )?.let {
+                            viewModel.correctPlayerTips(it.playerTipData)
+                        }
                 }
             }
         }

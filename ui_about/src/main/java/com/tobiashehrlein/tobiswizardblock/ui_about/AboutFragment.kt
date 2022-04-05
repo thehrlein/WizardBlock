@@ -16,28 +16,23 @@ class AboutFragment :
     override val viewModel: AboutViewModel by sharedViewModel()
     override val viewModelVariableId: Int = BR.viewModel
     override val layoutId: Int = R.layout.fragment_about
-
-    //    override val activityToolbarViewModel: GameBlockViewModel by sharedViewModel()
     override val hasOptionsMenu: Boolean = true
 
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
-//        activityToolbarViewModel.setTitle(getString(R.string.about_toolbar_title))
-//        activityToolbarViewModel.setToolbarButton(ToolbarButtonType.Back)
-
-        viewModel.sendEmail.observe(viewLifecycleOwner, {
+        viewModel.sendEmail.observe(viewLifecycleOwner) {
             sendEmail()
-        })
-        viewModel.openWizard.observe(viewLifecycleOwner, {
+        }
+        viewModel.openWizard.observe(viewLifecycleOwner) {
             openWizard()
-        })
-        viewModel.openFahrstuhl.observe(viewLifecycleOwner, {
+        }
+        viewModel.openFahrstuhl.observe(viewLifecycleOwner) {
             openFahrstuhl()
-        })
-        viewModel.openMovieBase.observe(viewLifecycleOwner, {
+        }
+        viewModel.openMovieBase.observe(viewLifecycleOwner) {
             openMoviebase()
-        })
+        }
     }
 
     private fun openWizard() {

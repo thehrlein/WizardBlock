@@ -8,11 +8,16 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetLastGa
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import kotlinx.coroutines.launch
 
+private const val DEFAULT_PLAYER_COUNT = 3
+private const val MIN_PLAYER_COUNT = 3
+private const val DEFAULT_GAME_NAME = ""
+
 class GameSettingsViewModelImpl(
-    private val getLastGameSettingsUseCase: GetLastGameSettingsUseCase
+    private val getLastGameSettingsUseCase: GetLastGameSettingsUseCase,
 ) : GameSettingsViewModel() {
 
     override val playerNames = MutableLiveData<List<String>>()
+    override val playerCount = MutableLiveData<Int>()
     override val gameName = MutableLiveData<String>()
     override val gameSettings = MutableLiveData<GameSettings>()
 
@@ -31,6 +36,7 @@ class GameSettingsViewModelImpl(
                         setPlayerNames(gameInfo.players)
                         setGameName(gameInfo.gameName)
                         setGameSettings(gameInfo.gameSettings)
+                        setPlayerCount(gameInfo.players.size)
                     }
                 }
                 is AppResult.Error -> setDefaults()
@@ -40,25 +46,51 @@ class GameSettingsViewModelImpl(
 
     private fun setDefaults() {
         setPlayerNames(emptyList())
-        setGameName("")
+        setGameName(DEFAULT_GAME_NAME)
         setGameSettings(GameSettings.Default)
+        setPlayerCount(DEFAULT_PLAYER_COUNT)
+    }
+
+    // PlayerSelectionFragment
+    override fun setPlayerCount(playerCount: Int) {
+        if (playerCount >= MIN_PLAYER_COUNT) {
+            this.playerCount.value = playerCount
+        }
     }
 
     override fun setPlayerNames(playerNames: List<String>) {
-        if (this.playerNames.value != playerNames) {
-            this.playerNames.value = playerNames
-        }
+        this.playerNames.value = playerNames
     }
 
+    /// PlayerOrderFragment
+    override fun onPlayerOrderChanged(names: List<String>) {
+        playerNames.value = names
+    }
+
+    // GameRulesFragment
     override fun setGameName(gameName: String) {
-        if (this.gameName.value != gameName) {
-            this.gameName.value = gameName
-        }
+        this.gameName.value = gameName
     }
 
     override fun setGameSettings(gameSettings: GameSettings) {
-        if (this.gameSettings.value != gameSettings) {
-            this.gameSettings.value = gameSettings
-        }
+        this.gameSettings.value = gameSettings
+    }
+
+    override fun setTipsEqualStitches(enabled: Boolean) {
+        gameSettings.value = gameSettings.value?.copy(
+            tipsEqualStitches = enabled
+        )
+    }
+
+    override fun setTipsEqualStitchesFirstRound(enabled: Boolean) {
+        gameSettings.value = gameSettings.value?.copy(
+            tipsEqualStitchesFirstRound = enabled
+        )
+    }
+
+    override fun setAnniversaryVersion(enabled: Boolean) {
+        gameSettings.value = gameSettings.value?.copy(
+            anniversaryVersion = enabled
+        )
     }
 }

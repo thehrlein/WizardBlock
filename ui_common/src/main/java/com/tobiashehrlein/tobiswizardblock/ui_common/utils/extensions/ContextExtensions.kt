@@ -1,6 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions
 
 import android.content.Context
+import android.content.res.Configuration
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.annotation.DimenRes
@@ -21,4 +22,8 @@ fun Context.getColorReference(resId: Int): Int {
     val typedValue = TypedValue()
     theme.resolveAttribute(resId, typedValue, true)
     return typedValue.data
+}
+
+fun Context.isLandscape() : Boolean {
+    return resources?.configuration?.orientation == Configuration.ORIENTATION_LANDSCAPE
 }

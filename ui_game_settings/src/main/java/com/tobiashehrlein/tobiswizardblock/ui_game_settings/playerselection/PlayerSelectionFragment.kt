@@ -5,13 +5,15 @@ import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.presentation.gamesettings.GameSettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.presentation.gamesettings.playerselection.PlayerSelectionViewModel
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.BaseToolbarFragment
+import com.tobiashehrlein.tobiswizardblock.ui_common.utils.bindings.setPlayerCount
 import com.tobiashehrlein.tobiswizardblock.ui_game_settings.BR
 import com.tobiashehrlein.tobiswizardblock.ui_game_settings.R
 import com.tobiashehrlein.tobiswizardblock.ui_game_settings.databinding.FragmentPlayerSelectionBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PlayerSelectionFragment : BaseToolbarFragment<PlayerSelectionViewModel, GameSettingsViewModel, FragmentPlayerSelectionBinding>() {
+class PlayerSelectionFragment :
+    BaseToolbarFragment<PlayerSelectionViewModel, GameSettingsViewModel, FragmentPlayerSelectionBinding>() {
 
     override val viewModel: PlayerSelectionViewModel by viewModel()
     override val viewModelVariableId: Int = BR.viewModel
@@ -26,7 +28,7 @@ class PlayerSelectionFragment : BaseToolbarFragment<PlayerSelectionViewModel, Ga
 
         binding.playerCountChooseButtonGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
-                viewModel.setPlayerCount(
+                activityToolbarViewModel.setPlayerCount(
                     when (checkedId) {
                         R.id.toggle_four -> 4
                         R.id.toggle_five -> 5
@@ -48,23 +50,23 @@ class PlayerSelectionFragment : BaseToolbarFragment<PlayerSelectionViewModel, Ga
             )
         )
 
-        activityToolbarViewModel.playerNames.observe(viewLifecycleOwner) {
-            viewModel.setPlayerNames(it)
-            viewModel.setPlayerCount(it.size)
-        }
-        viewModel.playerCount.observe(viewLifecycleOwner, {
+        activityToolbarViewModel.playerCount.observe(viewLifecycleOwner) {
             playerSettingsHandler.setPlayerCount(it)
-        })
-        viewModel.playerNames.observe(viewLifecycleOwner, {
+            binding.playerCountChooseButtonGroup.setPlayerCount(it)
+        }
+        activityToolbarViewModel.playerNames.observe(viewLifecycleOwner) {
             playerSettingsHandler.setPlayerNames(it)
-            activityToolbarViewModel.setPlayerNames(it)
-        })
-        viewModel.playerNameOptions.observe(viewLifecycleOwner, {
+        }
+        viewModel.playerNameOptions.observe(viewLifecycleOwner) {
             playerSettingsHandler.setPlayerNameOptions(it)
-        })
+        }
 
         binding.playerSelectionButtonProceed.setOnClickListener {
-            viewModel.onProceedClicked(playerSettingsHandler.getValues())
+            playerSettingsHandler.getValues()?.let { inputs ->
+                val names = inputs.mapNotNull { it.second }
+                activityToolbarViewModel.setPlayerNames(names)
+                viewModel.onProceedClicked()
+            }
         }
     }
 

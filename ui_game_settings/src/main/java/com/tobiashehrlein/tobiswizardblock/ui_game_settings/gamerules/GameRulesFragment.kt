@@ -30,42 +30,36 @@ class GameRulesFragment : BaseToolbarFragment<GameRulesViewModel, GameSettingsVi
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.Back)
 
         binding.gameRulesSettingsTipsEqualStitches.onCheckedChange {
-            viewModel.setTipsEqualStitches(it)
+            activityToolbarViewModel.setTipsEqualStitches(it)
         }
         binding.gameRulesSettingsTipsEqualStitchesFirstRound.onCheckedChange {
-            viewModel.setTipsEqualStitchesFirstRound(it)
+            activityToolbarViewModel.setTipsEqualStitchesFirstRound(it)
         }
         binding.gameRulesSettingsAnniversaryVersion.onCheckedChange {
-            viewModel.setAnniversaryVersion(it)
+            activityToolbarViewModel.setAnniversaryVersion(it)
         }
         binding.gameRulesGameName.addTextChangeListener {
-            viewModel.setGameName(it)
-        }
-
-        viewModel.gameSettings.observe(viewLifecycleOwner) {
-            activityToolbarViewModel.setGameSettings(it)
-        }
-
-        viewModel.gameName.observe(viewLifecycleOwner) {
             activityToolbarViewModel.setGameName(it)
         }
-
-        activityToolbarViewModel.gameSettings.value?.let {
-            viewModel.setGameSettings(it)
+        activityToolbarViewModel.gameSettings.observe(viewLifecycleOwner) {
+            binding.gameRulesSettingsTipsEqualStitches.setChecked(it.tipsEqualStitches)
+            binding.gameRulesSettingsTipsEqualStitchesFirstRound.setChecked(it.tipsEqualStitchesFirstRound)
+            binding.gameRulesSettingsTipsEqualStitchesFirstRound.isEnabled = !it.tipsEqualStitches
+            binding.gameRulesSettingsAnniversaryVersion.setChecked(it.anniversaryVersion)
         }
-
-        activityToolbarViewModel.gameName.value?.let {
-            viewModel.setGameName(it)
+        activityToolbarViewModel.gameName.observe(viewLifecycleOwner) {
+            binding.gameRulesGameName.setName(it)
         }
 
         binding.gameRulesButtonProceed.setOnClickListener {
             val gameName = binding.gameRulesGameName.getName()
             val playerNames = activityToolbarViewModel.playerNames.value ?: error("playerNames must not be null")
+            val gameSettings = activityToolbarViewModel.gameSettings.value ?: error("gameSettings must not be null")
             if (gameName.isNullOrEmpty()) {
                 binding.gameRulesGameName.setError(getString(R.string.game_rules_game_name_must_not_be_empty))
             } else {
                 binding.gameRulesGameName.setError(null)
-                viewModel.onProceedClicked(gameName, playerNames)
+                viewModel.onProceedClicked(gameName, playerNames, gameSettings)
             }
         }
     }

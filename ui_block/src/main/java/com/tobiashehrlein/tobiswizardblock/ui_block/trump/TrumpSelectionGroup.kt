@@ -44,20 +44,20 @@ class TrumpSelectionGroup @JvmOverloads constructor(
         )
         binding.groupOne.addView(
             TrumpSelectionItem(context).apply {
-                setItem(Trump(context.getString(R.string.block_trump_type_red), TrumpType.Selected.Red)) {
-                    setTrumpSelected(it)
-                }
-            }.also {
-                items[TrumpType.Selected.Red] = it
-            }
-        )
-        binding.groupTwo.addView(
-            TrumpSelectionItem(context).apply {
                 setItem(Trump(context.getString(R.string.block_trump_type_green), TrumpType.Selected.Green)) {
                     setTrumpSelected(it)
                 }
             }.also {
                 items[TrumpType.Selected.Green] = it
+            }
+        )
+        binding.groupTwo.addView(
+            TrumpSelectionItem(context).apply {
+                setItem(Trump(context.getString(R.string.block_trump_type_red), TrumpType.Selected.Red)) {
+                    setTrumpSelected(it)
+                }
+            }.also {
+                items[TrumpType.Selected.Red] = it
             }
         )
         binding.groupTwo.addView(

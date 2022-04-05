@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.databaseModule
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.firebase.AnalyticsDatasource
@@ -249,12 +250,12 @@ object Koin {
         }
         viewModel<GameSettingsViewModel> {
             GameSettingsViewModelImpl(
-                getLastGameSettingsUseCase = get()
+                getLastGameSettingsUseCase = get(),
             )
         }
         viewModel<PlayerSelectionViewModel> {
             PlayerSelectionViewModelImpl(
-                getPlayerNamesUseCase = get(),
+                getPlayerNamesUseCase = get()
             )
         }
         viewModel<PlayerOrderViewModel> {
@@ -302,8 +303,9 @@ object Koin {
         viewModel<AboutViewModel> {
             AboutViewModelImpl()
         }
-        viewModel<BlockTrumpViewModel> {
+        viewModel<BlockTrumpViewModel> { (selectedTrumpType: TrumpType) ->
             BlockTrumpViewModelImpl(
+                selectedTrumpType = selectedTrumpType,
                 isShowTrumpDialogEnabledUseCase = get(),
                 setShowTrumpDialogEnabledUseCase = get()
             )

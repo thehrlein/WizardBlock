@@ -23,8 +23,8 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
     override val viewModel: PlayerOrderViewModel by viewModel()
     override val viewModelVariableId: Int = BR.viewModel
     override val layoutId: Int = R.layout.fragment_player_order
-    override val activityToolbarViewModel: GameSettingsViewModel by sharedViewModel()
     override val hasOptionsMenu: Boolean = true
+    override val activityToolbarViewModel: GameSettingsViewModel by sharedViewModel()
 
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
@@ -34,17 +34,13 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
 
         initAdapter()
 
-        viewModel.playerNames.observe(viewLifecycleOwner) {
-            activityToolbarViewModel.setPlayerNames(it)
-        }
-
-        activityToolbarViewModel.playerNames.value?.let {
-            viewModel.onPlayerOrderChanged(it)
+        binding.playerOrderButtonProceed.setOnClickListener {
+            viewModel.onProceedClicked()
         }
     }
 
     private fun initAdapter() {
-        PlayerOrderAdapter(viewModel).also { playerOrderAdapter ->
+        PlayerOrderAdapter(activityToolbarViewModel).also { playerOrderAdapter ->
             binding.playerOrderList.apply {
                 adapter = playerOrderAdapter
 
@@ -58,7 +54,7 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
                 }
             }
 
-            viewModel.playerNames.observe(viewLifecycleOwner) {
+            activityToolbarViewModel.playerNames.observe(viewLifecycleOwner) {
                 playerOrderAdapter.setItems(it)
             }
         }

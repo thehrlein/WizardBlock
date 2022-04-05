@@ -6,16 +6,13 @@ import com.tobiashehrlein.tobiswizardblock.presentation.general.BaseToolbarViewM
 
 abstract class GameRulesViewModel : BaseToolbarViewModelImpl() {
 
-    abstract val gameName: LiveData<String>
     abstract val gameNameOptions: LiveData<Set<String>>
-    abstract val gameSettings: LiveData<GameSettings>
 
-    abstract fun setTipsEqualStitches(enabled: Boolean)
-    abstract fun setTipsEqualStitchesFirstRound(enabled: Boolean)
-    abstract fun setAnniversaryVersion(enabled: Boolean)
-    abstract fun setGameSettings(gameSettings: GameSettings)
-    abstract fun setGameName(gameName: String)
-    abstract fun onProceedClicked(gameName: String, playerNames: List<String>)
+    abstract fun onProceedClicked(
+        gameName: String, playerNames: List<String>,
+        gameSettings: GameSettings
+    )
+
     abstract fun onInfoIconClicked()
     abstract fun onSettingsEqualStitchesInfoIconClicked()
     abstract fun onSettingsEqualStitchesFirstRoundInfoIconClicked()

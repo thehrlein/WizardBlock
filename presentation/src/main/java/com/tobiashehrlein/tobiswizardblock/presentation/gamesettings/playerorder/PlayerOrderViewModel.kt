@@ -1,11 +1,8 @@
 package com.tobiashehrlein.tobiswizardblock.presentation.gamesettings.playerorder
 
-import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.presentation.general.BaseToolbarViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.presentation.general.BaseViewModelImpl
 
-abstract class PlayerOrderViewModel : BaseToolbarViewModelImpl(), PlayerOrderInteractions {
-
-    abstract val playerNames: LiveData<List<String>>
+abstract class PlayerOrderViewModel : BaseViewModelImpl() {
 
     abstract fun onProceedClicked()
     abstract fun onInfoIconClicked()
