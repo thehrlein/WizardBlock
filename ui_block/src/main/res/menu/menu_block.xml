@@ -21,4 +21,10 @@
         android:title="@string/game_block_results_menu_about_title"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@null"
+        android:title="@string/game_block_results_menu_settings_title"
+        app:showAsAction="never" />
+
 </menu>

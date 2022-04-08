@@ -21,6 +21,7 @@ dependencies {
     // AndroidX
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.coreKtx)
+    implementation(Dependencies.AndroidX.dataStore)
     implementation(Dependencies.AndroidX.LifeCycle.livedataExtensions)
 
     // Google

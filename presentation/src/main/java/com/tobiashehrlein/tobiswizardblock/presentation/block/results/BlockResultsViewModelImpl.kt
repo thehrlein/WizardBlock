@@ -176,11 +176,15 @@ class BlockResultsViewModelImpl(
         }
     }
 
-    override fun onInfoClicked() {
+    override fun onMenuInfoClicked() {
         navigateTo(Page.Block.About)
     }
 
-    override fun onDeleteInputClicked() {
+    override fun onMenuSettingsClicked() {
+        navigateTo(Page.Block.Settings)
+    }
+
+    override fun onMenuDeleteInputClicked() {
         val game = game.value ?: error("round not initialized - could not set trump type")
         val currentRound = game.currentGameRound ?: return
 

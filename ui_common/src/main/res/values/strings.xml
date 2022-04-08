@@ -23,6 +23,7 @@
     <string name="navigation_button_new_game">New game</string>
     <string name="navigation_button_load_game">Load game</string>
     <string name="navigation_button_info">Info</string>
+    <string name="navigation_button_settings">Settings</string>
 
     <!-- PlayerSelectionFragment -->
     <string name="player_selection_toolbar_title">Player selection</string>
@@ -65,6 +66,7 @@
     <string name="game_block_results_winner_message_plural">%1$s have won with a total of %2$d points</string>
     <string name="game_block_results_menu_trophy_title" translatable="false">Scores</string>
     <string name="game_block_results_menu_about_title" translatable="false">Info</string>
+    <string name="game_block_results_menu_settings_title">Settings</string>
     <string name="game_block_results_menu_delete_last_tip_input">Delete last tips</string>
     <string name="game_block_results_menu_delete_last_result_input">Delete last results</string>
 
@@ -136,6 +138,12 @@
     <string name="saved_game_dialog_info_title">Game settings</string>
     <string name="saved_game_dialog_delete_title">Delete games</string>
     <string name="saved_game_dialog_delete_message">Do you really want to delete all games?</string>
+
+    <!-- Settings -->
+    <string name="settings_toolbar_title">Settings</string>
+    <string name="settings_display_always_active_title">Should the display be active during the game?</string>
+    <string name="settings_display_always_active_dialog_title">Always active</string>
+    <string name="settings_display_always_active_dialog_message">If this option is activated, your smartphone won\'t go into standby but stays active as long as this application is open.</string>
 
 
 </resources>

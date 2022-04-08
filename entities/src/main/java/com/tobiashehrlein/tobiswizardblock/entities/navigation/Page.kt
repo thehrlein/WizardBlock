@@ -20,6 +20,7 @@ sealed class Page {
         object GameSettings : Navigation()
         object LastGames : Navigation()
         object Info : Navigation()
+        object Settings : Navigation()
     }
 
     sealed class PlayerSelection : Page() {
@@ -44,6 +45,7 @@ sealed class Page {
         object Exit : Block()
         object Menu : Block()
         object About : Block()
+        object Settings : Block()
         class Trump(val trumpType: TrumpType) : Block()
         class Scores(val gameScoreData: GameScoreData) : Block()
         class GameFinished(val winners: List<GameScore>) : Block()
@@ -61,6 +63,7 @@ sealed class Page {
             val playerTipData: List<PlayerTipData>,
             val round: Int
         ) : Input()
+
         object BombPlayed : Input()
     }
 
@@ -68,5 +71,9 @@ sealed class Page {
         class ContinueGame(val gameId: Long) : SavedGames()
         class Info(val gameSettings: GameSettings) : SavedGames()
         object Delete : SavedGames()
+    }
+
+    sealed class Settings : Page() {
+        object DialogDisplayAlwaysOn : Settings()
     }
 }

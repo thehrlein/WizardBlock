@@ -22,6 +22,7 @@ import com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.Play
 import com.tobiashehrlein.tobiswizardblock.ui_navigation.NavigationActivity
 import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesActivity
 import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesInfoDialog
+import com.tobiashehrlein.tobiswizardblock.ui_settings.SettingsActivity
 
 class PageNavigatorImpl(
     private val activity: AppCompatActivity,
@@ -39,6 +40,7 @@ class PageNavigatorImpl(
             is Page.Block -> navigateTo(page)
             is Page.Input -> navigateTo(page)
             is Page.SavedGames -> navigateTo(page)
+            is Page.Settings -> navigateTo(page)
         }.checkAllMatched
     }
 
@@ -57,6 +59,7 @@ class PageNavigatorImpl(
             is Page.Navigation.GameSettings -> GameSettingsActivity.start(activity)
             is Page.Navigation.LastGames -> SavedGamesActivity.start(activity)
             is Page.Navigation.Info -> AboutActivity.start(activity)
+            is Page.Navigation.Settings -> SettingsActivity.start(activity)
         }.checkAllMatched
     }
 
@@ -119,6 +122,7 @@ class PageNavigatorImpl(
                 BlockResultsFragmentDirections.actionBlockResultsFragmentToBlockScoresFragment(page.gameScoreData)
             )
             is Page.Block.About -> AboutActivity.start(activity)
+            is Page.Block.Settings -> SettingsActivity.start(activity)
             is Page.Block.Trump -> BlockTrumpDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.Trump(page.trumpType, resourceHelper)
@@ -176,6 +180,15 @@ class PageNavigatorImpl(
             is Page.SavedGames.Delete -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.DeleteSavedGames(resourceHelper)
+            )
+        }.checkAllMatched
+    }
+
+    private fun navigateTo(page: Page.Settings) {
+        when (page) {
+            is Page.Settings.DialogDisplayAlwaysOn -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.SettingsDisplayAlwaysOn(resourceHelper)
             )
         }.checkAllMatched
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tobiashehrlein.tobiswizardblock.ui_about">
+    package="com.tobiashehrlein.tobiswizardblock.ui_settings">
 
     <application
         android:theme="@style/Theme.WizardBlock.DayNight"/>

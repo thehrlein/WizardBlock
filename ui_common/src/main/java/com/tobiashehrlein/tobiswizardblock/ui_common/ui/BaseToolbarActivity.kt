@@ -5,7 +5,6 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.presentation.general.BaseToolbarViewModel
 import com.tobiashehrlein.tobiswizardblock.ui_common.BR
@@ -21,9 +20,9 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
     protected abstract var toolbarButtonType: ToolbarButtonType
     protected abstract val toolbarTitle: String?
     protected abstract val contentViewModelResId: Int
+
     @get:LayoutRes
     protected abstract val contentLayoutRes: Int
-
     protected lateinit var contentBinding: ViewDataBinding
         private set
 
@@ -37,10 +36,9 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
 
     final override fun onBindingCreated() {
         super.onBindingCreated()
-
         val activityBaseToolbarBinding = binding
         setUpToolbar(activityBaseToolbarBinding.baseToolbar)
-        setupToolbarViewModel()
+        setUpToolbarViewModel()
         createContentBinding(activityBaseToolbarBinding.baseContentContainer)
     }
 
@@ -55,8 +53,6 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
         }
     }
 
-    open fun onContentBindingCreated() = Unit
-
     private fun setUpToolbar(toolbar: BaseToolbar) {
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
@@ -65,27 +61,24 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
         }
     }
 
-    private fun setupToolbarViewModel() {
+    private fun setUpToolbarViewModel() {
         viewModel.apply {
             setToolbarButton(toolbarButtonType)
             this@BaseToolbarActivity.toolbarTitle?.let {
                 setTitle(it)
             }
 
-            toolbarEvent.observe(
-                this@BaseToolbarActivity,
-                Observer {
-                    onToolbarButtonClicked()
-                }
-            )
-            toolbarButton.observe(
-                this@BaseToolbarActivity,
-                Observer<ToolbarButtonType> {
-                    toolbarButtonType = it
-                }
-            )
+            toolbarEvent.observe(this@BaseToolbarActivity) {
+                onToolbarButtonClicked()
+            }
+
+            toolbarButton.observe(this@BaseToolbarActivity) {
+                toolbarButtonType = it
+            }
         }
     }
 
-    fun provideLifecycleOwner(): LifecycleOwner = this
+    open fun onContentBindingCreated() = Unit
+
+    private fun provideLifecycleOwner(): LifecycleOwner = this
 }

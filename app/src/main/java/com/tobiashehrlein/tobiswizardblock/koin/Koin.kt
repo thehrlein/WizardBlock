@@ -8,6 +8,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.databaseModule
+import com.tobiashehrlein.tobiswizardblock.interactor.datasource.datastore.SettingsDataStore
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.firebase.AnalyticsDatasource
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.BlockInputProcessor
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.BlockResultsProcessor
@@ -34,6 +35,8 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.player.GetPlayerNa
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteAllSavedGamesUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteSavedGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDisplayAlwaysOnUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.SetShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.navigation.PageNavigatorImpl
@@ -65,6 +68,9 @@ import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.SavedGamesVie
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.SavedGamesViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGamesInfoViewModel
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGamesInfoViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.presentation.settings.SettingsViewModel
+import com.tobiashehrlein.tobiswizardblock.presentation.settings.SettingsViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.repositories.datasource.datastore.WizardDataStoreImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.firebase.FirebaseDatasourceImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockInputProcessorImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockResultsProcessorImpl
@@ -98,7 +104,8 @@ object Koin {
         }
         single<UserRepository> {
             UserRepositoryImpl(
-                userSettingsPersistence = get()
+                userSettingsPersistence = get(),
+                settingsDataStore = get()
             )
         }
         single<WizardRepository> {
@@ -126,6 +133,11 @@ object Koin {
                 firebaseAnalytics = get()
             )
         } binds (arrayOf(AnalyticsDatasource::class))
+        single {
+            WizardDataStoreImpl(
+                context = get()
+            )
+        } binds (arrayOf(SettingsDataStore::class))
 
         // other
         single { Firebase.analytics }
@@ -242,6 +254,16 @@ object Koin {
                 wizardRepository = get()
             )
         }
+        factory {
+            GetDisplayAlwaysOnUseCase(
+                userRepository = get()
+            )
+        }
+        factory {
+            SetDisplayAlwaysOnUseCase(
+                userRepository = get()
+            )
+        }
     }
 
     private val viewModel = module {
@@ -320,6 +342,12 @@ object Koin {
         viewModel<SavedGamesInfoViewModel> { (gameSettings: GameSettings) ->
             SavedGamesInfoViewModelImpl(
                 gameSettings = gameSettings
+            )
+        }
+        viewModel<SettingsViewModel> {
+            SettingsViewModelImpl(
+                getDisplayAlwaysOnUseCase = get(),
+                setDisplayAlwaysOnUseCase = get()
             )
         }
     }

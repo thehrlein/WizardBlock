@@ -21,6 +21,7 @@
     <string name="navigation_subtitle">Möchtest du ein neues Spiel starten oder ein gespeichertes Spiel fortsetzen?</string>
     <string name="navigation_button_load_game">Spiel laden</string>
     <string name="navigation_button_info">Info</string>
+    <string name="navigation_button_settings">Einstellungen</string>
 
     <!-- PlayerSelectionFragment -->
     <string name="player_selection_toolbar_title">Spielereinstellungen</string>
@@ -57,6 +58,7 @@
     <string name="game_block_results_winner_message_plural">%1$s haben mit insgesamt %2$d Punkten gewonnen</string>
     <string name="game_block_results_menu_delete_last_tip_input">Letzte Tipps löschen</string>
     <string name="game_block_results_menu_delete_last_result_input">Letzte Ergebnisse löschen</string>
+    <string name="game_block_results_menu_settings_title">Einstellungen</string>
 
     <!-- Block input -->
     <string name="block_input_toolbar_title_tips">Tipps</string>
@@ -116,5 +118,11 @@
     <string name="saved_game_dialog_info_title">Spieleinstellungen</string>
     <string name="saved_game_dialog_delete_title">Spiele löschen</string>
     <string name="saved_game_dialog_delete_message">Möchtest du wirklich alle Spiele löschen?</string>
+
+    <!-- Settings -->
+    <string name="settings_toolbar_title">Einstellungen</string>
+    <string name="settings_display_always_active_title">Display während des Spiels immer aktiv lassen?</string>
+    <string name="settings_display_always_active_dialog_title">Immer aktiv</string>
+    <string name="settings_display_always_active_dialog_message">Wenn diese Option aktiviert ist, geht dein Smartphone während die App geöffnet ist nicht in Standby sondern bleibt aktiv.</string>
 
 </resources>

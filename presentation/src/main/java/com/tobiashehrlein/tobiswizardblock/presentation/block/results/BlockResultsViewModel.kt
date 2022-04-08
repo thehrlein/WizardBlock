@@ -20,7 +20,8 @@ abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsI
     abstract fun onFabClicked()
     abstract fun onTrophyClicked()
     abstract fun updateTrumpType(trumpType: TrumpType)
-    abstract fun onInfoClicked()
+    abstract fun onMenuDeleteInputClicked()
+    abstract fun onMenuInfoClicked()
+    abstract fun onMenuSettingsClicked()
     abstract fun showExitDialog()
-    abstract fun onDeleteInputClicked()
 }

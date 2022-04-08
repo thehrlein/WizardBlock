@@ -15,4 +15,8 @@ class NavigationViewModelImpl : NavigationViewModel() {
     override fun onInfoClicked() {
         navigateTo(Page.Navigation.Info)
     }
+
+    override fun onSettingsClicked() {
+        navigateTo(Page.Navigation.Settings)
+    }
 }

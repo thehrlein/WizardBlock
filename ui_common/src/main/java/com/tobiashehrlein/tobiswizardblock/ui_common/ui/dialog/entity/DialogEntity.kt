@@ -144,6 +144,14 @@ sealed class DialogEntity : Serializable {
         ) {
             override val requestCode: Int = DialogRequestCode.BLOCK_INPUT_BOMB_PLAYED
         }
+
+        class SettingsDisplayAlwaysOn(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.settings_display_always_active_dialog_title),
+            message = resourceHelper.getString(R.string.settings_display_always_active_dialog_message),
+            neutralButtonText = resourceHelper.getString(R.string.general_ok)
+        ) {
+            override val requestCode: Int = DialogRequestCode.SETTINGS_DISPLAY_ALWAYS_ON
+        }
     }
 
     sealed class Custom(

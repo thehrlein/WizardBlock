@@ -220,11 +220,15 @@ class BlockResultsFragment :
                 true
             }
             R.id.action_delete_input -> {
-                viewModel.onDeleteInputClicked()
+                viewModel.onMenuDeleteInputClicked()
                 true
             }
             R.id.action_info -> {
-                viewModel.onInfoClicked()
+                viewModel.onMenuInfoClicked()
+                true
+            }
+            R.id.action_settings -> {
+                viewModel.onMenuSettingsClicked()
                 true
             }
             else -> super.onOptionsItemSelected(item)

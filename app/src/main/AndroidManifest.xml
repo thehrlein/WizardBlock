@@ -32,6 +32,9 @@
         <activity
             android:name=".ui_about.AboutActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
+        <activity
+            android:name=".ui_settings.SettingsActivity"
+            android:theme="@style/Theme.WizardBlock.DayNight" />
 
     </application>
 

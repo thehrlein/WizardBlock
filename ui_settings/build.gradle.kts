@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id(BuildPlugins.androidLibrary)
     kotlin(BuildPlugins.android)
@@ -7,7 +5,7 @@ plugins {
     id(BuildPlugins.safeArgs)
 }
 
-tasks.withType<KotlinCompile>().configureEach {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = Others.JVM_TARGET
     }
@@ -26,9 +24,6 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // Modules
-
-    implementation(project(Module.Ui.about))
-    implementation(project(Module.Ui.settings))
     implementation(project(Module.Ui.common))
     implementation(project(Module.General.presentation))
     implementation(project(Module.General.interactor))
@@ -43,12 +38,6 @@ dependencies {
     implementation(Dependencies.AndroidX.LifeCycle.viewModelExtensions)
     implementation(Dependencies.AndroidX.Navigation.fragment)
     implementation(Dependencies.AndroidX.Navigation.ui)
-
-    // Google
-    implementation(Dependencies.Google.playRating)
-
-    // Others
-    implementation(Dependencies.Other.konfetti)
 
     // Koin
     implementation(Dependencies.Koin.android)
