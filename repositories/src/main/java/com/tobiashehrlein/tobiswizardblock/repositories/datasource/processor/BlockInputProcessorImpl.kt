@@ -32,8 +32,8 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
                         }
                     }
                     InputType.RESULT -> when {
-                        game.gameInfo.gameSettings.anniversaryVersion ->
-                            inputValidityData.inputSum <= game.currentRoundNumber
+                        game.gameInfo.gameSettings.anniversaryVersion && inputValidityData.bombPlayed ->
+                            inputValidityData.inputSum == game.currentRoundNumber - 1
                         else -> inputValidityData.inputSum == game.currentRoundNumber
                     }
                 }

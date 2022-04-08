@@ -61,6 +61,7 @@ sealed class Page {
             val playerTipData: List<PlayerTipData>,
             val round: Int
         ) : Input()
+        object BombPlayed : Input()
     }
 
     sealed class SavedGames : Page() {

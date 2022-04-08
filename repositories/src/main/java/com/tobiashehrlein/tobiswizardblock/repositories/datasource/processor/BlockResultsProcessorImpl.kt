@@ -112,31 +112,6 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
                 )
             }
 
-//            val lastRound = game.lastPlayedGameRound
-//            if (lastRound == null || lastRound.roundCompleted) {
-//                game.currentGameRound?.let { round ->
-//                    blockItems.add(
-//                        BlockRound(
-//                            round = round.round,
-//                            colorized = round.round.isEven()
-//                        )
-//                    )
-//                    players.forEach {
-//                        blockItems.add(
-//                            BlockResult(
-//                                player = it,
-//                                round = round.round,
-//                                tip = null,
-//                                result = null,
-//                                difference = null,
-//                                total = null,
-//                                colorized = round.round.isEven()
-//                            )
-//                        )
-//                    }
-//                }
-//            }
-
             val columnCount = game.gameInfo.players.size * 2 + 1
             BlockItemData(
                 items = blockItems,

@@ -22,6 +22,8 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.Inputs
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.StoreRoundUseCase
 import kotlinx.coroutines.launch
 
+private const val DEFAULT_BOMB_PLAYED = false
+
 class BlockInputViewModelImpl(
     private val gameId: Long,
     private val getGameUseCase: GetGameUseCase,
@@ -38,6 +40,7 @@ class BlockInputViewModelImpl(
     override val showAnniversaryOption = MutableLiveData<Boolean>()
     override val summedInputs = MutableLiveData<Int>()
     override val trumpType = MutableLiveData<TrumpType>()
+    override val bombPlayed = MutableLiveData(DEFAULT_BOMB_PLAYED)
     override val playerTipDataCorrectedEvent = MutableLiveData<PlayerTipData>()
     private val round = MutableLiveData<GameRound>()
 
@@ -72,7 +75,8 @@ class BlockInputViewModelImpl(
     }
 
     override fun onInputChanged() {
-        val data = CheckInputValidityData(getGameData(), getInputs().sumOf { it.userInput })
+        val bombPlayed = this.bombPlayed.value ?: DEFAULT_BOMB_PLAYED
+        val data = CheckInputValidityData(getGameData(), bombPlayed, getInputs().sumOf { it.userInput })
 
         summedInputs.value = data.inputSum
 
@@ -199,6 +203,15 @@ class BlockInputViewModelImpl(
                 is AppResult.Error -> Unit
             }
         }
+    }
+
+    override fun onBlockInputBombPlayedInfoClicked() {
+        navigateTo(Page.Input.BombPlayed)
+    }
+
+    override fun onBlockPlayedSwitchChanged(bombPlayed: Boolean) {
+        this.bombPlayed.value = bombPlayed
+        onInputChanged()
     }
 
     private fun getGameData() = game.value ?: error("could not determine game")

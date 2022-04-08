@@ -19,6 +19,7 @@ class SavedGamesViewModelImpl(
     private val deleteAllSavedGamesUseCase: DeleteAllSavedGamesUseCase
 ) : SavedGamesViewModel() {
 
+    override val loading = MutableLiveData(true)
     override val savedGames = MutableLiveData<List<SavedGameEntity>>()
     override val noSavedGames = MutableLiveData<Boolean>()
 
@@ -32,6 +33,8 @@ class SavedGamesViewModelImpl(
                 is AppResult.Success -> convertGames(result.value)
                 is AppResult.Error -> noSavedGames.value = true
             }
+
+            loading.value = false
         }
     }
 

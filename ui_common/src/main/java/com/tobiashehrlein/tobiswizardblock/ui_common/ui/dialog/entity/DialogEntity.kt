@@ -136,6 +136,14 @@ sealed class DialogEntity : Serializable {
         ) {
             override val requestCode: Int = DialogRequestCode.SAVED_GAMES_DELETE
         }
+
+        class BlockInputBombPlayed(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.block_input_anniversary_version_bomb_played_dialog_title),
+            message = resourceHelper.getString(R.string.block_input_anniversary_version_bomb_played_dialog_message),
+            positiveButtonText = resourceHelper.getString(R.string.general_ok)
+        ) {
+            override val requestCode: Int = DialogRequestCode.BLOCK_INPUT_BOMB_PLAYED
+        }
     }
 
     sealed class Custom(

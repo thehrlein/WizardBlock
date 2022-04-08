@@ -80,6 +80,10 @@ class BlockInputFragment :
             ).show()
         }
 
+        binding.blockInputBombPlayed.onCheckedChange {
+            viewModel.onBlockPlayedSwitchChanged(it)
+        }
+
         initAdapter()
     }
 

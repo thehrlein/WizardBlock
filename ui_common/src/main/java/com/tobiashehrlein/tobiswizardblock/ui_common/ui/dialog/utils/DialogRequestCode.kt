@@ -13,4 +13,5 @@ object DialogRequestCode {
     const val ANNIVERSARY_VERSION: Int = 900
     const val SAVED_GAMES_INFO: Int = 1000
     const val SAVED_GAMES_DELETE: Int = 1100
+    const val BLOCK_INPUT_BOMB_PLAYED: Int = 1200
 }

@@ -6,6 +6,7 @@ import com.tobiashehrlein.tobiswizardblock.presentation.general.BaseToolbarViewM
 
 abstract class SavedGamesViewModel : BaseToolbarViewModelImpl(), SavedGamesInteractions {
 
+    abstract val loading: LiveData<Boolean>
     abstract val savedGames: LiveData<List<SavedGameEntity>>
     abstract val noSavedGames: LiveData<Boolean>
 

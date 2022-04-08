@@ -152,6 +152,12 @@ class PageNavigatorImpl(
                     resourceHelper
                 )
             )
+            is Page.Input.BombPlayed -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.BlockInputBombPlayed(
+                    resourceHelper
+                )
+            )
         }.checkAllMatched
     }
 
