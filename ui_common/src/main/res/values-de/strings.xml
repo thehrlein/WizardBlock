@@ -55,7 +55,8 @@
     <string name="game_block_results_winner_title">Glückwunsch</string>
     <string name="game_block_results_winner_message_singlular">%1$s hat mit insgesamt %2$d Punkten gewonnen</string>
     <string name="game_block_results_winner_message_plural">%1$s haben mit insgesamt %2$d Punkten gewonnen</string>
-    <string name="game_block_results_menu_delete_last_input">Letzte Eingabe löschen</string>
+    <string name="game_block_results_menu_delete_last_tip_input">Letzte Tipps löschen</string>
+    <string name="game_block_results_menu_delete_last_result_input">Letzte Ergebnisse löschen</string>
 
     <!-- Block input -->
     <string name="block_input_toolbar_title_tips">Tipps</string>

@@ -65,7 +65,8 @@
     <string name="game_block_results_winner_message_plural">%1$s have won with a total of %2$d points</string>
     <string name="game_block_results_menu_trophy_title" translatable="false">Scores</string>
     <string name="game_block_results_menu_about_title" translatable="false">Info</string>
-    <string name="game_block_results_menu_delete_last_input">Delete last input</string>
+    <string name="game_block_results_menu_delete_last_tip_input">Delete last tips</string>
+    <string name="game_block_results_menu_delete_last_result_input">Delete last results</string>
 
     <!-- Block input -->
     <string name="block_input_toolbar_title_tips">Tips</string>

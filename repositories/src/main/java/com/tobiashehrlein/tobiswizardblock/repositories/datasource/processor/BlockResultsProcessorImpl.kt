@@ -62,13 +62,7 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
             )
             val players = game.gameInfo.players
             val currentRoundNumber = game.currentRoundNumber
-            val lastRoundWithTotal = game.lastPlayedGameRound?.let {
-                when {
-                    it.playerResultData.isNullOrEmpty().not() -> it
-                    it.round >= 2 -> game.gameRounds[game.gameRounds.size - 2]
-                    else -> null
-                }
-            }
+            val lastRoundWithTotal = game.lastCompletedGameRound
             val currentTotals =
                 lastRoundWithTotal?.playerResultData?.sortedByDescending { it.total }
 

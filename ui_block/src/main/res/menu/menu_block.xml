@@ -12,7 +12,7 @@
         android:id="@+id/action_delete_input"
         android:icon="@null"
         android:enabled="false"
-        android:title="@string/game_block_results_menu_delete_last_input"
+        android:title="@string/game_block_results_menu_delete_last_tip_input"
         app:showAsAction="never" />
 
     <item

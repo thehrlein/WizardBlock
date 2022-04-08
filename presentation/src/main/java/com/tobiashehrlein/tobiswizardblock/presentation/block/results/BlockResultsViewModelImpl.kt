@@ -188,10 +188,15 @@ class BlockResultsViewModelImpl(
             navigateTo(Page.General.Loading.Show(dim = true))
 
             val result = if (currentRound.playerTipData == null) {
-                val round = game.lastPlayedGameRound?.copy(
+                val round = game.lastCompletedGameRound?.copy(
                     playerResultData = null
                 ) ?: return@launch
 
+                // if we previously added a "empty" round by selecting a trump, we have to
+                // delete this round when deleting last completed round's result data
+                game.lastNonCompletedGameRound?.let {
+                    removeRoundUseCase.invoke(DeleteRoundData(game.gameInfo.gameId, it))
+                }
                 storeRoundUseCase.invoke(InsertRoundData(game.gameInfo.gameId, round))
             } else {
                 removeRoundUseCase.invoke(DeleteRoundData(game.gameInfo.gameId, currentRound))

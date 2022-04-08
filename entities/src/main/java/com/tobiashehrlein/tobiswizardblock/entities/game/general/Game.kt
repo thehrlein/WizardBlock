@@ -17,8 +17,7 @@ data class Game(
         get() = CARD_COUNT / gameInfo.players.size
 
     val previousTotals: List<Input>
-        get() = gameRounds
-            .lastOrNull { it.playerResultData != null }
+        get() = lastCompletedGameRound
             ?.playerResultData?.map {
                 Input(
                     playerName = it.playerName,
@@ -33,20 +32,21 @@ data class Game(
             }
 
     /**
-     * Last round which was played, can be the current if not completed
-     * Can be null if no round played yet
+     * Last completed game round
      */
-    val lastPlayedGameRound: GameRound?
-        get() = gameRounds.lastOrNull()
+    val lastCompletedGameRound: GameRound?
+        get() = gameRounds.lastOrNull { it.roundCompleted }
+
+    /**
+     * Last non-completed game round
+     */
+    val lastNonCompletedGameRound: GameRound?
+        get() = gameRounds.lastOrNull { !it.roundCompleted }
 
     val inputType: InputType
-        get() = lastPlayedGameRound?.let {
-            if (it.roundCompleted) {
-                InputType.TIPP
-            } else {
-                it.inputTypeForThisRound
-            }
-        } ?: InputType.TIPP
+        get() = lastNonCompletedGameRound
+            ?.inputTypeForThisRound
+            ?: InputType.TIPP
 
     val currentRoundNumber: Int
         get() = currentGameRound?.round ?: FIRST_ROUND
@@ -57,14 +57,12 @@ data class Game(
      */
     val currentGameRound: GameRound?
         get() = when {
-            lastRoundNumber == maxRound && lastPlayedGameRound?.roundCompleted == true -> null
-            lastPlayedGameRound?.roundCompleted?.not() == true -> lastPlayedGameRound
+            gameFinished -> null
+            lastNonCompletedGameRound != null -> lastNonCompletedGameRound
             else -> GameRound(gameRounds.size + 1, null, null, TrumpType.Unselected)
         }
 
     val gameFinished: Boolean
-        get() = lastRoundNumber == maxRound && lastPlayedGameRound?.roundCompleted == true // currentGameRound == null
+        get() = lastCompletedGameRound?.round == maxRound
 
-    private val lastRoundNumber: Int?
-        get() = lastPlayedGameRound?.round
 }

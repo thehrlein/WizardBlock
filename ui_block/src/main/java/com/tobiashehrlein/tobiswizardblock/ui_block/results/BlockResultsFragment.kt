@@ -11,6 +11,7 @@ import androidx.activity.addCallback
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItem
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockName
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockPlaceholder
@@ -199,7 +200,14 @@ class BlockResultsFragment :
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        menu.findItem(R.id.action_delete_input).isEnabled = viewModel.editInputEnabled.value == true
+        menu.findItem(R.id.action_delete_input).apply {
+            isEnabled = viewModel.editInputEnabled.value == true
+            title = getString(if (viewModel.inputType.value == InputType.RESULT) {
+                R.string.game_block_results_menu_delete_last_tip_input
+            } else {
+                R.string.game_block_results_menu_delete_last_result_input
+            })
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -226,11 +234,11 @@ class BlockResultsFragment :
                 when (resultCode) {
                     DialogResultCode.POSITIVE -> {
                         (
-                            data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
-                                DialogEntity.Custom.Trump
-                            )?.let {
-                            viewModel.updateTrumpType(it.selectedTrumpType)
-                        }
+                                data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
+                                        DialogEntity.Custom.Trump
+                                )?.let {
+                                viewModel.updateTrumpType(it.selectedTrumpType)
+                            }
                     }
                 }
             }
