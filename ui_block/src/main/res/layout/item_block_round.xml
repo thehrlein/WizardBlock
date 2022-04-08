@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/block_cell_height"
-        android:background="@{item.colorized ? @color/color_surface : @android:color/transparent}">
+        android:background="@{item.colorized ? @color/color_surface : @color/color_background}">
 
         <TextView
             android:id="@+id/round"

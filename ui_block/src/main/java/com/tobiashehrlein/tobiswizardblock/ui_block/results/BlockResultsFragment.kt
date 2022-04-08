@@ -35,6 +35,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+
 private const val KONFETTI_MIN_DEGREES = 0.0
 private const val KONFETTI_MAX_DEGREES = 360.0
 private const val KONFETTI_MIN_SPEED = 1f
@@ -202,11 +203,13 @@ class BlockResultsFragment :
         super.onPrepareOptionsMenu(menu)
         menu.findItem(R.id.action_delete_input).apply {
             isEnabled = viewModel.editInputEnabled.value == true
-            title = getString(if (viewModel.inputType.value == InputType.RESULT) {
-                R.string.game_block_results_menu_delete_last_tip_input
-            } else {
-                R.string.game_block_results_menu_delete_last_result_input
-            })
+            title = getString(
+                if (viewModel.inputType.value == InputType.RESULT) {
+                    R.string.game_block_results_menu_delete_last_tip_input
+                } else {
+                    R.string.game_block_results_menu_delete_last_result_input
+                }
+            )
         }
     }
 
