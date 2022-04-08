@@ -14,15 +14,18 @@ class BlockInputViewHolder(private val binding: ItemBlockInputBinding) :
         inputDataItem: InputDataItem,
         interactions: BlockInputInteractions
     ) {
-        bindInputData(inputDataItem, interactions)
+        bindInputData(inputDataItem)
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(
                 seekBar: SeekBar?,
                 progress: Int,
                 fromUser: Boolean
             ) {
-                inputDataItem.userInput = progress
-                bindInputData(inputDataItem, interactions)
+                if (fromUser) {
+                    inputDataItem.userInput = progress
+                    bindInputData(inputDataItem)
+                    interactions.onInputChanged(inputDataItem)
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -37,22 +40,23 @@ class BlockInputViewHolder(private val binding: ItemBlockInputBinding) :
         binding.buttonDecrease.setOnClickListener {
             if (inputDataItem.userInput > 0) {
                 inputDataItem.userInput = inputDataItem.userInput - 1
-                bindInputData(inputDataItem, interactions)
+                bindInputData(inputDataItem)
+                interactions.onInputChanged(inputDataItem)
             }
         }
 
         binding.buttonIncrease.setOnClickListener {
             if (inputDataItem.userInput < inputDataItem.cards) {
                 inputDataItem.userInput = inputDataItem.userInput + 1
-                bindInputData(inputDataItem, interactions)
+                bindInputData(inputDataItem)
+                interactions.onInputChanged(inputDataItem)
             }
         }
     }
 
-    fun bindInputData(inputDataItem: InputDataItem, interactions: BlockInputInteractions) {
+    fun bindInputData(inputDataItem: InputDataItem) {
         binding.executeAfter {
             this.item = inputDataItem
         }
-        interactions.onInputChanged()
     }
 }

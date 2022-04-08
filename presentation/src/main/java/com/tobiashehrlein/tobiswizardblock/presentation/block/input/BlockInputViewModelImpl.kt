@@ -66,6 +66,7 @@ class BlockInputViewModelImpl(
                     round.value = result.value.currentGameRound
                     inputType.value = result.value.inputType
                     inputModels.value = result.value.inputModels
+                    summedInputs.value = result.value.inputModels.sumOf { it.userInput }
                     showAnniversaryOption.value = game.gameInfo.gameSettings.anniversaryVersion &&
                         result.value.inputType == InputType.RESULT
                 }
@@ -74,9 +75,27 @@ class BlockInputViewModelImpl(
         }
     }
 
-    override fun onInputChanged() {
+    override fun onInputChanged(inputDataItem: InputDataItem) {
+        val tmpModels = this.inputModels.value ?: return
+        val updatedModels = mutableListOf<InputDataItem>()
+        tmpModels.forEach {
+            updatedModels.add(
+                if (it.player == inputDataItem.player) {
+                    inputDataItem
+                } else {
+                    it
+                }
+            )
+        }
+        this.inputModels.value = updatedModels
+
+        checkInputValid()
+    }
+
+    private fun checkInputValid() {
         val bombPlayed = this.bombPlayed.value ?: DEFAULT_BOMB_PLAYED
-        val data = CheckInputValidityData(getGameData(), bombPlayed, getInputs().sumOf { it.userInput })
+        val data =
+            CheckInputValidityData(getGameData(), bombPlayed, getInputs().sumOf { it.userInput })
 
         summedInputs.value = data.inputSum
 
@@ -211,7 +230,7 @@ class BlockInputViewModelImpl(
 
     override fun onBlockPlayedSwitchChanged(bombPlayed: Boolean) {
         this.bombPlayed.value = bombPlayed
-        onInputChanged()
+        checkInputValid()
     }
 
     private fun getGameData() = game.value ?: error("could not determine game")
