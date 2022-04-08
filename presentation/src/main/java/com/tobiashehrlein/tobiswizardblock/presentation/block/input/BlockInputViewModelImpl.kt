@@ -66,9 +66,9 @@ class BlockInputViewModelImpl(
                     round.value = result.value.currentGameRound
                     inputType.value = result.value.inputType
                     inputModels.value = result.value.inputModels
-                    summedInputs.value = result.value.inputModels.sumOf { it.userInput }
                     showAnniversaryOption.value = game.gameInfo.gameSettings.anniversaryVersion &&
                         result.value.inputType == InputType.RESULT
+                    checkInputValid()
                 }
                 is AppResult.Error -> Unit
             }
