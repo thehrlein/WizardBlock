@@ -23,6 +23,7 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.StoreR
 import kotlinx.coroutines.launch
 
 private const val DEFAULT_BOMB_PLAYED = false
+private const val DEFAULT_CLOUD_PLAYED = false
 
 class BlockInputViewModelImpl(
     private val gameId: Long,
@@ -41,6 +42,7 @@ class BlockInputViewModelImpl(
     override val summedInputs = MutableLiveData<Int>()
     override val trumpType = MutableLiveData<TrumpType>()
     override val bombPlayed = MutableLiveData(DEFAULT_BOMB_PLAYED)
+    override val cloudCardPlayed = MutableLiveData(DEFAULT_CLOUD_PLAYED)
     override val playerTipDataCorrectedEvent = MutableLiveData<PlayerTipData>()
     private val round = MutableLiveData<GameRound>()
 
@@ -59,6 +61,9 @@ class BlockInputViewModelImpl(
 
     private fun setInputModels(game: Game) {
         this.game.value = game
+        this.cloudCardPlayed.value = game.lastNonCompletedGameRound?.playerTipData?.any {
+            it.correctedCauseOfCloudCard
+        }
         this.trumpType.value = game.currentGameRound?.trumpType
         viewModelScope.launch {
             when (val result = getBlockInputModelsUseCase.invoke(game)) {
@@ -95,9 +100,9 @@ class BlockInputViewModelImpl(
     private fun checkInputValid() {
         val bombPlayed = this.bombPlayed.value ?: DEFAULT_BOMB_PLAYED
         val data =
-            CheckInputValidityData(getGameData(), bombPlayed, getInputs().sumOf { it.userInput })
+            CheckInputValidityData(getGameData(), bombPlayed, getInputs())
 
-        summedInputs.value = data.inputSum
+        summedInputs.value = data.inputDataItems.sumOf { it.userInput }
 
         viewModelScope.launch {
             inputsValid.postValue(

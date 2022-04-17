@@ -10,7 +10,7 @@ import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.PlayerDao
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.classes.DbGameRound
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerListConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerResultDataListConverter
-import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerTippDataListConverter
+import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerTipDataListConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbTrumpTypeConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbGameInfo
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbPlayer
@@ -28,7 +28,7 @@ import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbPla
     value = [
         DbPlayerListConverter::class,
         DbPlayerResultDataListConverter::class,
-        DbPlayerTippDataListConverter::class,
+        DbPlayerTipDataListConverter::class,
         DbTrumpTypeConverter::class
     ]
 )

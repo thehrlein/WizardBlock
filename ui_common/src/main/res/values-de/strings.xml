@@ -82,6 +82,7 @@
     <string name="block_input_anniversary_version_bomb_played">Wurde die Bombe gespielt?</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_title">Bombe</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_message">Wenn ein Spieler in dieser Runde die Bombe gespielt hat, wird der Stich beiseite gelegt und nicht gewertet. Das bedeutet, dass die Anzahl gemachter Stiche um 1 niedriger sein muss.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s hat seine/ihre Tipps anhand der Wolke verändert und muss dementsprechend mindestens 1 Stich gemacht haben.</string>
 
     <!-- Block scores -->
     <string name="block_scores_toolbar_title">Aktueller Stand</string>

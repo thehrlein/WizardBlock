@@ -62,8 +62,8 @@
             style="@style/Widget.WizardBlock.Button.InputAction.LeftRounded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
             app:icon="@drawable/wb_ic_remove"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/player_name_layout" />
 
@@ -85,10 +85,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon="@drawable/wb_ic_add"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/button_decrease"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/player_name_layout" />
+            app:layout_constraintTop_toTopOf="@id/button_decrease" />
 
+        <TextView
+            android:id="@+id/cloud_card_played_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:textAppearance="?textAppearanceCaption"
+            android:visibility="@{item.cloudCardPlayed}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_decrease"
+            tools:text="@string/block_input_anniversary_version_cloud_card_played_hint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

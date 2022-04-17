@@ -6,5 +6,7 @@ data class InputDataItem(
     val isDealer: Boolean,
     val currentRound: Int,
     val cards: Int,
+    val cloudCardPlayed: Boolean = false,
+    val minInput : Int = 0,
     var userInput: Int = 0
 )

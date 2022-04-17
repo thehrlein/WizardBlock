@@ -18,6 +18,7 @@ abstract class BlockInputViewModel : BaseViewModelImpl(), BlockInputInteractions
     abstract val summedInputs: LiveData<Int>
     abstract val trumpType: LiveData<TrumpType>
     abstract val bombPlayed: LiveData<Boolean>
+    abstract val cloudCardPlayed: LiveData<Boolean>
     abstract val playerTipDataCorrectedEvent: LiveData<PlayerTipData>
 
     abstract fun onInfoIconClicked()

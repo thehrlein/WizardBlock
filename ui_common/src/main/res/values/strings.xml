@@ -88,11 +88,12 @@
     <string name="block_input_anniversary_version_cloud_card_button">Correct tips</string>
     <string name="block_input_correct_tips_choose_player_title">Which player must correct his/her tip?</string>
     <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
-    <string name="block_input_correct_tips_count_title">One stitch more or less %1$s?</string>
+    <string name="block_input_correct_tips_count_title">Predict one stitch more or less %1$s?</string>
     <string name="block_input_correct_tips_snackbar_message">The tip of %1$s was corrected to %2$d</string>
     <string name="block_input_anniversary_version_bomb_played">Bomb was played?</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_title">Bomb</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_message">If someone played the bomb, the stitch will be put away and not evaluated. Therefore the amount of stitches must be 1 less.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s changed his/her tip because of the cloud card, so he/she must have made at least 1 stitch.</string>
 
     <!-- Block scores -->
     <string name="block_scores_toolbar_title">Current Scores</string>
