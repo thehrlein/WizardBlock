@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttonPanel"
+    style="?attr/buttonBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollIndicators="top|bottom"
+    tools:targetApi="m">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/buttonScrollIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="?dividerHeight"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="?attr/dialogPreferredPadding"
+            android:layout_marginEnd="?attr/dialogPreferredPadding"
+            android:background="?attr/colorControlHighlight"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@android:id/button2"
+                style="?attr/buttonBarNegativeButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                tools:text="Negative"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@android:id/button3"
+                style="?attr/buttonBarNeutralButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                tools:text="Neutral"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@android:id/button1"
+                style="?attr/buttonBarPositiveButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                tools:text="Positive"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

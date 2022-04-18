@@ -147,12 +147,10 @@ class BlockInputFragment :
         when (requestCode) {
             DialogRequestCode.CORRECT_TIPS_CHOOSE_PLAYER -> when (resultCode) {
                 DialogResultCode.POSITIVE -> {
-                    (
-                            data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
-                                    DialogEntity.Custom.CorrectTipsChoosePlayer
-                            )?.let {
-                            viewModel.correctPlayerTips(it.playerTipData)
-                        }
+                    (data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
+                            DialogEntity.Custom.CorrectTipsChoosePlayer)?.let {
+                        viewModel.correctPlayerTips(it.playerTipData)
+                    }
                 }
             }
         }

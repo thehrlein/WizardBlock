@@ -78,7 +78,6 @@
     <string name="block_input_info_tips_can_be_equal_stitches_message">Your combined tips can be equal %1$d</string>
     <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Your combined tips must not be %1$d. The last user must make sure that after his tip the amount of tips is not equal %1$d</string>
     <string name="block_input_info_result_message">Your combined results must be %1$d</string>
-    <string name="block_input_info_result_anniversary_version_message">Your combined results must be %1$d, except if someone played the bomb</string>
     <string name="block_input_enter_tips">Enter tips%1$s</string>
     <string name="block_input_enter_results">Enter results%1$s</string>
     <string name="block_input_summed_inputs" translatable="false">&#160;- %1$d / %2$d</string>

@@ -92,6 +92,7 @@ sealed class DialogEntity : Serializable {
 
         class InputInfo(
             inputType: InputType,
+            bombPlayed: Boolean,
             round: Int,
             gameSettings: GameSettings,
             resourceHelper: ResourceHelper
@@ -112,16 +113,12 @@ sealed class DialogEntity : Serializable {
                             round
                         )
                     }
-                InputType.RESULT -> when {
-                    gameSettings.anniversaryVersion -> resourceHelper.getString(
-                        R.string.block_input_info_result_anniversary_version_message,
-                        round
-                    )
-                    else -> resourceHelper.getString(
+                InputType.RESULT ->
+                    resourceHelper.getString(
                         R.string.block_input_info_result_message,
-                        round
+                        round - if (bombPlayed) 1 else 0
                     )
-                }
+
             },
             neutralButtonText = resourceHelper.getString(R.string.general_ok)
         ) {

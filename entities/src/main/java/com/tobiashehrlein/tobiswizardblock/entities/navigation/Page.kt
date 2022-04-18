@@ -55,6 +55,7 @@ sealed class Page {
         object Block : Input()
         class Info(
             val inputType: InputType,
+            val bombPlayed: Boolean,
             val round: Int,
             val gameSettings: GameSettings
         ) : Input()

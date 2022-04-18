@@ -43,6 +43,7 @@ object BockInputDiff : DiffUtil.ItemCallback<InputDataItem>() {
                 oldItem.currentRound == newItem.currentRound &&
                 oldItem.type == newItem.type &&
                 oldItem.userInput == newItem.userInput &&
-                oldItem.isDealer == newItem.isDealer
+                oldItem.isDealer == newItem.isDealer &&
+                oldItem.cloudCardPlayed == newItem.cloudCardPlayed
     }
 }

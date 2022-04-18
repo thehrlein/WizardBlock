@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tobiashehrlein.tobiswizardblock.presentation.gamesettings.playerselection.PlayerSelectionViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_4">
+
+            <TextView
+                android:id="@+id/player_count_choose_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/player_selection_player_count_hint"
+                android:textAppearance="?textAppearanceHeadline5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/player_count_choose_button_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_count_choose_title"
+                app:layout_goneMarginTop="@dimen/space_4"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/toggle_three"
+                    style="?materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/player_selection_player_count_three" />
+
+                <Button
+                    android:id="@+id/toggle_four"
+                    style="?materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/player_selection_player_count_four" />
+
+                <Button
+                    android:id="@+id/toggle_five"
+                    style="?materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/player_selection_player_count_five" />
+
+                <Button
+                    android:id="@+id/toggle_six"
+                    style="?materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/player_selection_player_count_six" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/player_input_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_count_choose_button_group">
+
+                <com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerNameInputView
+                    android:id="@+id/player_one_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_2"
+                    android:layout_marginEnd="@dimen/space_2"
+                    app:hint="@{String.format(@string/player_selection_player_hint, 1)}"
+                    app:layout_constraintEnd_toStartOf="@id/player_two_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerNameInputView
+                    android:id="@+id/player_two_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_2"
+                    app:hint="@{String.format(@string/player_selection_player_hint, 2)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/player_one_layout"
+                    app:layout_constraintTop_toTopOf="@id/player_one_layout" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_one_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="player_one_layout, player_two_layout" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerNameInputView
+                    android:id="@+id/player_three_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_2"
+                    app:hint="@{String.format(@string/player_selection_player_hint, 3)}"
+                    app:layout_constraintEnd_toStartOf="@id/player_four_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_one_two" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerNameInputView
+                    android:id="@+id/player_four_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_2"
+                    app:hint="@{String.format(@string/player_selection_player_hint, 4)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/player_three_layout"
+                    app:layout_constraintTop_toTopOf="@id/player_three_layout" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_three_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="player_three_layout, player_four_layout" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerNameInputView
+                    android:id="@+id/player_five_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_2"
+                    app:hint="@{String.format(@string/player_selection_player_hint, 5)}"
+                    app:layout_constraintEnd_toStartOf="@id/player_six_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_three_four" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerNameInputView
+                    android:id="@+id/player_six_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_2"
+                    app:hint="@{String.format(@string/player_selection_player_hint, 6)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/player_five_layout"
+                    app:layout_constraintTop_toTopOf="@id/player_five_layout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/player_selection_button_proceed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:text="@string/general_button_proceed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/player_input_group" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

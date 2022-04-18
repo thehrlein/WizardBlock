@@ -116,9 +116,11 @@ class BlockInputViewModelImpl(
 
     override fun onInfoIconClicked() {
         val game = getGameData()
+        val bombPlayed = this.bombPlayed.value ?: false
         navigateTo(
             Page.Input.Info(
                 inputType = game.inputType,
+                bombPlayed = bombPlayed,
                 round = game.currentRoundNumber,
                 gameSettings = game.gameInfo.gameSettings
             )

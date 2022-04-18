@@ -9,50 +9,51 @@
             type="com.tobiashehrlein.tobiswizardblock.presentation.block.input.correcttips.BlockInputCorrectTipsChoosePlayerViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_2">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ViewSwitcher
+            android:id="@+id/correct_tips_view_switcher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/space_2">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ViewSwitcher
-                android:id="@+id/correct_tips_view_switcher"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="wrap_content">
 
                 <RadioGroup
                     android:id="@+id/block_input_correct_tips_radio_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+            </ScrollView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/block_input_correct_tips_correction_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_2">
+
+                <include
+                    android:id="@+id/correct_tips_layout"
+                    layout="@layout/item_block_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/space_2">
+                    android:layout_marginTop="@dimen/space_4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <include
-                        android:id="@+id/correct_tips_layout"
-                        layout="@layout/item_block_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_4"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+        </ViewSwitcher>
 
-            </ViewSwitcher>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 
 </layout>

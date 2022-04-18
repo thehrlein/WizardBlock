@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ALERT DIALOG -->
+
+    <style name="MaterialAlertDialog.WizardBlock" parent="@style/MaterialAlertDialog.MaterialComponents">
+        <item name="android:layout">@layout/widget_alert_dialog_centered</item>
+    </style>
+
+    <style name="MaterialAlertDialog.WizardBlock.Title.Panel" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked" />
+
+    <style name="MaterialAlertDialog.WizardBlock.Title.Icon" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked" />
+
+    <style name="MaterialAlertDialog.WizardBlock.Title.Text" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked">
+        <item name="android:textAppearance">?textAppearanceHeadline5</item>
+        <item name="android:textColor">?colorOnBackground</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="MaterialAlertDialog.WizardBlock.Body.Text" parent="@style/TextAppearance.WizardBlock.Body1">
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="android:textColor">?colorOnBackground</item>
+        <item name="android:gravity">center</item>
+        <item name="android:alpha">?alphaEmphasisHigh</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.TextButton.Dialog" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:minHeight">@dimen/dialog_button_height</item>
+        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.TextButton.Dialog.Secondary">
+        <item name="android:textColor">?colorOnBackground</item>
+        <item name="android:alpha">?alphaEmphasisMedium</item>
+    </style>
+</resources>

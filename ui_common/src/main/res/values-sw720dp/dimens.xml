@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="space_0">4dp</dimen>
+    <dimen name="space_1">8dp</dimen>
+    <dimen name="space_2">16dp</dimen>
+    <dimen name="space_3">24dp</dimen>
+    <dimen name="space_4">32dp</dimen>
+    <dimen name="space_5">40dp</dimen>
+    <dimen name="space_6">48dp</dimen>
+    <dimen name="space_7">56dp</dimen>
+    <dimen name="space_8">64dp</dimen>
+    <dimen name="space_9">80dp</dimen>
+    <dimen name="space_10">96dp</dimen>
+
+    <!-- Font Size -->
+    <dimen name="font_size_headline_4">34sp</dimen>
+    <dimen name="font_size_headline_5">30sp</dimen>
+    <dimen name="font_size_headline_6">26sp</dimen>
+    <dimen name="font_size_subtitle_1">22sp</dimen>
+    <dimen name="font_size_subtitle_2">20sp</dimen>
+    <dimen name="font_size_body_1">20sp</dimen>
+    <dimen name="font_size_body_2">18sp</dimen>
+    <dimen name="font_size_caption">16sp</dimen>
+    <dimen name="font_size_overline">17sp</dimen>
+    <dimen name="font_size_button">20sp</dimen>
+    <dimen name="font_size_button_2">18sp</dimen>
+    <dimen name="font_size_error">16sp</dimen>
+
+    <!-- Icon -->
+    <dimen name="icon_size_small">48dp</dimen>
+    <dimen name="icon_size_medium">64dp</dimen>
+    <dimen name="icon_size_big">96dp</dimen>
+
+</resources>

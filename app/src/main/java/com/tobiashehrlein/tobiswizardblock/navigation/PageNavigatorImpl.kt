@@ -143,6 +143,7 @@ class PageNavigatorImpl(
                 activity.supportFragmentManager,
                 DialogEntity.Text.InputInfo(
                     page.inputType,
+                    page.bombPlayed,
                     page.round,
                     page.gameSettings,
                     resourceHelper
