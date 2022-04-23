@@ -30,10 +30,11 @@ class PlayerSelectionFragment :
             if (isChecked) {
                 activityToolbarViewModel.setPlayerCount(
                     when (checkedId) {
+                        R.id.toggle_three -> 3
                         R.id.toggle_four -> 4
                         R.id.toggle_five -> 5
                         R.id.toggle_six -> 6
-                        else -> 3
+                        else -> 2
                     }
                 )
             }

@@ -15,6 +15,8 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItem
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockName
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockPlaceholder
+import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockResult
+import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockRound
 import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.presentation.block.GameBlockViewModel
 import com.tobiashehrlein.tobiswizardblock.presentation.block.results.BlockResultsViewModel
@@ -140,7 +142,7 @@ class BlockResultsFragment :
                 addHeaderItems(headerItems)
                 setGridSize(columnCount, blockResultAdapter)
                 blockResultAdapter.submitList(gameItems)
-                binding.gameList.scrollToPosition(blockItems.size - 1)
+                binding.gameList.scrollToPosition(blockItems.count { it is BlockRound || it is BlockResult } - 1)
             }
         }
     }

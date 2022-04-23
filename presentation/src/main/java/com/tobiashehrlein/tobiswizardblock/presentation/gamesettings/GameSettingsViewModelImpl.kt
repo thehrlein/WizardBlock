@@ -9,7 +9,7 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import kotlinx.coroutines.launch
 
 private const val DEFAULT_PLAYER_COUNT = 3
-private const val MIN_PLAYER_COUNT = 3
+private const val MIN_PLAYER_COUNT = 2
 private const val DEFAULT_GAME_NAME = ""
 
 class GameSettingsViewModelImpl(

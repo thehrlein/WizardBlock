@@ -28,6 +28,7 @@
     <!-- PlayerSelectionFragment -->
     <string name="player_selection_toolbar_title">Player selection</string>
     <string name="player_selection_player_count_hint">Choose player count</string>
+    <string name="player_selection_player_count_two" translatable="false">2</string>
     <string name="player_selection_player_count_three" translatable="false">3</string>
     <string name="player_selection_player_count_four" translatable="false">4</string>
     <string name="player_selection_player_count_five" translatable="false">5</string>
