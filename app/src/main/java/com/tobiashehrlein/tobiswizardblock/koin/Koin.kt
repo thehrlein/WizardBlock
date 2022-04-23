@@ -37,6 +37,7 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteS
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDisplayAlwaysOnUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGamesPlayedCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetTopPointsStatisticsUseCase
@@ -284,6 +285,11 @@ object Koin {
                 gameRepository = get()
             )
         }
+        factory {
+            GetGamesPlayedCountStatisticsUseCase(
+                gameRepository = get()
+            )
+        }
     }
 
     private val viewModel = module {
@@ -374,7 +380,8 @@ object Koin {
             StatisticsViewModelImpl(
                 getMostWinsStatisticsUseCase = get(),
                 getPlayerCountStatisticsUseCase = get(),
-                getTopPointsStatisticsUseCase = get()
+                getTopPointsStatisticsUseCase = get(),
+                getGamesPlayedCountStatisticsUseCase = get()
             )
         }
     }

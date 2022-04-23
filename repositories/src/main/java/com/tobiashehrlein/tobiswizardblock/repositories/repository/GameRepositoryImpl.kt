@@ -94,4 +94,8 @@ class GameRepositoryImpl(
     override suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>> {
         return gameCache.getTopPointsStatistics()
     }
+
+    override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> {
+        return gameCache.getGamesPlayedCountStatistics()
+    }
 }

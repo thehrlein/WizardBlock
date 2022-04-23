@@ -7,6 +7,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGamesPlayedCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetTopPointsStatisticsUseCase
@@ -15,17 +16,20 @@ import kotlinx.coroutines.launch
 class StatisticsViewModelImpl(
     private val getMostWinsStatisticsUseCase: GetMostWinsStatisticsUseCase,
     private val getPlayerCountStatisticsUseCase: GetPlayerCountStatisticsUseCase,
-    private val getTopPointsStatisticsUseCase: GetTopPointsStatisticsUseCase
+    private val getTopPointsStatisticsUseCase: GetTopPointsStatisticsUseCase,
+    private val getGamesPlayedCountStatisticsUseCase: GetGamesPlayedCountStatisticsUseCase
 ) : StatisticsViewModel() {
 
     override val mostWinStatisticsData = MutableLiveData<List<MostWinStatisticsData>>()
     override val playerCountStatistics = MutableLiveData<Map<Int, Int>>()
     override val topPointsStatisticsData = MutableLiveData<List<TopPointsStatisticsData>>()
+    override val gamesPlayedCountStatistics = MutableLiveData<Int>()
 
     init {
         getMostWins()
         getPlayerCount()
         getTopPoints()
+        getGamesPlayed()
     }
 
     private fun getMostWins() {
@@ -50,6 +54,15 @@ class StatisticsViewModelImpl(
         viewModelScope.launch {
             when (val result = getTopPointsStatisticsUseCase.invoke()) {
                 is AppResult.Success -> topPointsStatisticsData.value = result.value
+                is AppResult.Error -> Unit
+            }
+        }
+    }
+
+    private fun getGamesPlayed() {
+        viewModelScope.launch {
+            when (val result = getGamesPlayedCountStatisticsUseCase.invoke()) {
+                is AppResult.Success -> gamesPlayedCountStatistics.value = result.value
                 is AppResult.Error -> Unit
             }
         }

@@ -163,5 +163,6 @@
     <string name="statistics_player_count_headline">Player count</string>
     <string name="statistics_player_count_x_axis_label">Player</string>
     <string name="statistics_player_count_frequency">Count</string>
+    <string name="statistics_games_played_headline">Finished game count</string>
 
 </resources>

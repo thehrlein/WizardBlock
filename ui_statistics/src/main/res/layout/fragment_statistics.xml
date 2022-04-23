@@ -51,6 +51,15 @@
                     app:layout_constraintTop_toBottomOf="@id/statistics_top_points"
                     app:playerCountStatistics="@{viewModel.playerCountStatistics}" />
 
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.GamesPlayedStatisticsView
+                    android:id="@+id/statistics_games_played"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:gamesPlayedStatistics="@{viewModel.gamesPlayedCountStatistics}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_player_count_chart" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>

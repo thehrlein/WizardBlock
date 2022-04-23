@@ -44,4 +44,6 @@ interface GameRepository {
     suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>>
 
     suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>>
+
+    suspend fun getGamesPlayedCountStatistics(): AppResult<Int>
 }

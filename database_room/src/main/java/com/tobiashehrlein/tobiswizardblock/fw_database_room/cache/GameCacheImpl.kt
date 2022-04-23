@@ -160,4 +160,10 @@ class GameCacheImpl(
             }.take(10)
         }
     }
+
+    override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> = withContext(Dispatchers.IO) {
+        safeCall {
+            gameDao.getAllFinishedGames().size
+        }
+    }
 }

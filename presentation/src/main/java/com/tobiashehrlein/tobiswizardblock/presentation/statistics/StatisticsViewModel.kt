@@ -10,4 +10,5 @@ abstract class StatisticsViewModel : BaseToolbarViewModelImpl() {
     abstract val mostWinStatisticsData: LiveData<List<MostWinStatisticsData>>
     abstract val playerCountStatistics: LiveData<Map<Int, Int>>
     abstract val topPointsStatisticsData: LiveData<List<TopPointsStatisticsData>>
+    abstract val gamesPlayedCountStatistics: LiveData<Int>
 }

@@ -141,6 +141,7 @@
     <string name="statistics_player_count_headline">Spieleranzahl</string>
     <string name="statistics_player_count_x_axis_label">Spieler</string>
     <string name="statistics_player_count_frequency">Anzahl</string>
+    <string name="statistics_games_played_headline">Anzahl beendeter Spiele</string>
 
 
 </resources>
