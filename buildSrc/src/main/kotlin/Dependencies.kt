@@ -104,6 +104,7 @@ object Dependencies {
         private const val jodaVersion = "2.10.12.2"
         private const val konfettiVersion = "1.3.2"
         private const val lottieVersion = "4.2.2"
+        private const val mpAndroidChartVersion = "3.1.0"
         private const val timberVersion = "5.0.1"
 
         const val coil = "io.coil-kt:coil:$coilVersion"
@@ -111,6 +112,7 @@ object Dependencies {
         const val joda = "net.danlew:android.joda:$jodaVersion"
         const val konfetti = "nl.dionsegijn:konfetti:$konfettiVersion"
         const val lottie = "com.airbnb.android:lottie:$lottieVersion"
+        const val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:$mpAndroidChartVersion"
         const val timber = "com.jakewharton.timber:timber:$timberVersion"
     }
 
@@ -222,6 +224,7 @@ object Module {
         const val savedGames = ":ui_saved_games"
         const val about = ":ui_about"
         const val settings = ":ui_settings"
+        const val statistics = ":ui_statistics"
         const val common = ":ui_common"
     }
 

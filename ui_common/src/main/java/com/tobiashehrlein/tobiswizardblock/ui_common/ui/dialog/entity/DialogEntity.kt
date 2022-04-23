@@ -153,7 +153,7 @@ sealed class DialogEntity : Serializable {
         class FinishGameManually(resourceHelper: ResourceHelper) : Text(
             title = resourceHelper.getString(R.string.game_block_finish_manually_title),
             message = resourceHelper.getString(R.string.game_block_finish_manually_message),
-            positiveButtonText = resourceHelper.getString(R.string.general_exit),
+            positiveButtonText = resourceHelper.getString(R.string.general_finish),
             negativeButtonText = resourceHelper.getString(R.string.general_cancel)
         ) {
             override val requestCode: Int = DialogRequestCode.GAME_BLOCK_FINISH_MANUALLY

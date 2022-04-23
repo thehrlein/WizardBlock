@@ -21,6 +21,7 @@ sealed class Page {
         object LastGames : Navigation()
         object Info : Navigation()
         object Settings : Navigation()
+        object Statistics: Navigation()
     }
 
     sealed class PlayerSelection : Page() {

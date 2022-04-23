@@ -32,9 +32,8 @@ dependencies {
 
     // AndroidX
     implementation(Dependencies.AndroidX.constraintLayout)
-    implementation(Dependencies.AndroidX.recyclerView)
-    implementation(Dependencies.AndroidX.splashScreen)
     implementation(Dependencies.AndroidX.swipeToRefresh)
+    implementation(Dependencies.AndroidX.recyclerView)
     implementation(Dependencies.AndroidX.LifeCycle.livedataExtensions)
     implementation(Dependencies.AndroidX.LifeCycle.viewModelExtensions)
     implementation(Dependencies.AndroidX.Navigation.fragment)
@@ -45,4 +44,7 @@ dependencies {
 
     // Logging
     implementation(Dependencies.Other.timber)
+
+    // Other
+    implementation(Dependencies.Other.mpAndroidChart)
 }

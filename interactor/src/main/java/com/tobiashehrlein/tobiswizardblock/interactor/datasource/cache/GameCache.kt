@@ -5,6 +5,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 
 interface GameCache {
 
@@ -27,4 +28,8 @@ interface GameCache {
     suspend fun getGameNameOptions(): AppResult<Set<String>>
 
     suspend fun deleteALlGames(): AppResult<Unit>
+
+    suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>>
+
+    suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>>
 }

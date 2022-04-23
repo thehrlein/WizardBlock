@@ -8,4 +8,5 @@ abstract class NavigationViewModel : BaseViewModelImpl() {
     abstract fun onLoadGamesClicked()
     abstract fun onInfoClicked()
     abstract fun onSettingsClicked()
+    abstract fun onStatisticsClicked()
 }

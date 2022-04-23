@@ -23,6 +23,7 @@ import com.tobiashehrlein.tobiswizardblock.ui_navigation.NavigationActivity
 import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesActivity
 import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesInfoDialog
 import com.tobiashehrlein.tobiswizardblock.ui_settings.SettingsActivity
+import com.tobiashehrlein.tobiswizardblock.ui_statistics.StatisticsActivity
 
 class PageNavigatorImpl(
     private val activity: AppCompatActivity,
@@ -60,6 +61,7 @@ class PageNavigatorImpl(
             is Page.Navigation.LastGames -> SavedGamesActivity.start(activity)
             is Page.Navigation.Info -> AboutActivity.start(activity)
             is Page.Navigation.Settings -> SettingsActivity.start(activity)
+            is Page.Navigation.Statistics -> StatisticsActivity.start(activity)
         }.checkAllMatched
     }
 

@@ -5,6 +5,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.GameDao
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.mapToDbData
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.mapToEntity
@@ -78,15 +79,56 @@ class GameCacheImpl(
             }
         }
 
-    override suspend fun getGameNameOptions(): AppResult<Set<String>> = withContext(Dispatchers.IO) {
-        safeCall {
-            gameDao.getGameNameOptions()?.toSet() ?: emptySet()
+    override suspend fun getGameNameOptions(): AppResult<Set<String>> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                gameDao.getGameNameOptions()?.toSet() ?: emptySet()
+            }
         }
-    }
 
     override suspend fun deleteALlGames(): AppResult<Unit> = withContext(Dispatchers.IO) {
         safeCall {
             gameDao.deleteAllGames()
+        }
+    }
+
+    override suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                val winner = gameDao.getAllFinishedGames().map {
+                    it.mapToEntity()
+                }.mapNotNull {
+                    it.winner
+                }.groupingBy {
+                    it
+                }.eachCount()
+
+                val winnerMap = mutableMapOf<Int, MutableList<String>>()
+                winner.entries.forEach { entry ->
+                    winnerMap.getOrPut(entry.value) {
+                        mutableListOf()
+                    }.add(entry.key)
+                }
+
+                winnerMap.entries.forEach { entry ->
+                    entry.value.sortBy { it.lowercase() }
+                }
+
+                winnerMap.entries.flatMapIndexed { index, entry ->
+                    entry.value.map {
+                        MostWinStatisticsData(
+                            position = index + 1,
+                            playerName = it,
+                            wins = entry.key
+                        )
+                    }
+                }
+            }
+        }
+
+    override suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>> = withContext(Dispatchers.IO) {
+        safeCall {
+            gameDao.getAllSavedGames().map { it.mapToEntity() }.map { it.gameInfo.players.size }.groupingBy { it }.eachCount()
         }
     }
 }

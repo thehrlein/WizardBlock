@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_2"
-        android:background="@drawable/wb_background_border_about_apps"
+        android:background="@drawable/wb_background_border_rounded"
         android:elevation="@dimen/elevation_medium"
         android:orientation="horizontal"
         android:padding="@dimen/space_2">

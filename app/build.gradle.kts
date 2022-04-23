@@ -90,6 +90,7 @@ dependencies {
     implementation(project(Module.Ui.savedGames))
     implementation(project(Module.Ui.common))
     implementation(project(Module.Ui.settings))
+    implementation(project(Module.Ui.statistics))
     implementation(project(Module.Ui.about))
     implementation(project(Module.Framework.repositories))
     implementation(project(Module.Framework.Database.room))

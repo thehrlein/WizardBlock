@@ -65,4 +65,16 @@ data class Game(
     val gameFinished: Boolean
         get() = gameInfo.gameFinished || lastCompletedGameRound?.round == maxRound
 
+    val winner: String?
+        get() = if (gameFinished) lastCompletedGameRound?.playerResultData?.maxByOrNull { it.total }?.playerName else null
+
+//    val winner : Pair<String, Int>?
+//        get() = if (gameFinished) {
+//           lastCompletedGameRound?.playerResultData?.maxByOrNull { it.total }?.let {
+//               it.playerName to it.total
+//           }
+//        } else {
+//            null
+//        }
+
 }

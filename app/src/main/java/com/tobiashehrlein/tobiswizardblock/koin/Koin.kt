@@ -37,6 +37,8 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteS
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDisplayAlwaysOnUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.SetShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.navigation.PageNavigatorImpl
@@ -70,6 +72,8 @@ import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGam
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGamesInfoViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.presentation.settings.SettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.presentation.settings.SettingsViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.presentation.statistics.StatisticsViewModel
+import com.tobiashehrlein.tobiswizardblock.presentation.statistics.StatisticsViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.datastore.WizardDataStoreImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.firebase.FirebaseDatasourceImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockInputProcessorImpl
@@ -264,6 +268,16 @@ object Koin {
                 userRepository = get()
             )
         }
+        factory {
+            GetMostWinsStatisticsUseCase(
+                gameRepository = get()
+            )
+        }
+        factory {
+            GetPlayerCountStatisticsUseCase(
+                gameRepository = get()
+            )
+        }
     }
 
     private val viewModel = module {
@@ -348,6 +362,12 @@ object Koin {
             SettingsViewModelImpl(
                 getDisplayAlwaysOnUseCase = get(),
                 setDisplayAlwaysOnUseCase = get()
+            )
+        }
+        viewModel<StatisticsViewModel> {
+            StatisticsViewModelImpl(
+                getMostWinsStatisticsUseCase = get(),
+                getPlayerCountStatisticsUseCase = get()
             )
         }
     }

@@ -86,4 +86,7 @@
     <!-- Trump -->
     <dimen name="block_trump_item_height">64dp</dimen>
 
+    <!-- Chart -->
+    <dimen name="chart_axis_label_text_size">10sp</dimen>
+
 </resources>

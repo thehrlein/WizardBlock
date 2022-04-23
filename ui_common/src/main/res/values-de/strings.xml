@@ -8,6 +8,7 @@
     <string name="general_back">Zurück</string>
     <string name="general_yes">Ja</string>
     <string name="general_exit">Beenden</string>
+    <string name="general_finish">Beenden</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_info">Info</string>
@@ -23,6 +24,7 @@
     <string name="navigation_button_load_game">Spiel laden</string>
     <string name="navigation_button_info">Info</string>
     <string name="navigation_button_settings">Einstellungen</string>
+    <string name="navigation_button_statistics">Statistiken</string>
 
     <!-- PlayerSelectionFragment -->
     <string name="player_selection_toolbar_title">Spielereinstellungen</string>
@@ -71,7 +73,6 @@
     <string name="block_input_info_tips_can_be_equal_stitches_message">Die Anzahl eurer Tipps darf %1$d ergeben</string>
     <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Die Anzahl eurer Tipps darf nicht gleich %1$d sein. Der letzte Spieler muss sicherstellen, dass die Anzahl an Tipps nicht gleich %1$d ist</string>
     <string name="block_input_info_result_message">Die Anzahl eurer Ergebnisse muss %1$d ergeben</string>
-    <string name="block_input_info_result_anniversary_version_message">Die Anzahl eurer Ergebnisse muss %1$d ergeben</string>
     <string name="block_input_enter_tips">Tripps eintragen%1$s</string>
     <string name="block_input_enter_results">Ergebnisse eintragen%1$s</string>
     <string name="block_input_action_info_title">Info</string>
@@ -128,5 +129,16 @@
     <string name="settings_display_always_active_title">Display während des Spiels immer aktiv lassen?</string>
     <string name="settings_display_always_active_dialog_title">Immer aktiv</string>
     <string name="settings_display_always_active_dialog_message">Wenn diese Option aktiviert ist, geht dein Smartphone während die App geöffnet ist nicht in Standby sondern bleibt aktiv.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_toolbar_title">Statistiken</string>
+    <string name="statistics_most_wins_headline">Meiste gewonnene Spiele</string>
+    <string name="statistics_most_wins_header_row_position">Position</string>
+    <string name="statistics_most_wins_header_row_name">Name</string>
+    <string name="statistics_most_wins_header_row_win_count">Anzahl</string>
+    <string name="statistics_player_count_headline">Spieleranzahl</string>
+    <string name="statistics_player_count_x_axis_label">Spieler</string>
+    <string name="statistics_player_count_frequency">Anzahl</string>
+
 
 </resources>

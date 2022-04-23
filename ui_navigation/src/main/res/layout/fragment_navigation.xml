@@ -110,6 +110,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/navigation_button_info" />
 
+                <Button
+                    android:id="@+id/navigation_button_statistics"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_2"
+                    android:onClick="@{() -> viewModel.onStatisticsClicked()}"
+                    android:text="@string/navigation_button_statistics"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/navigation_button_settings" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
