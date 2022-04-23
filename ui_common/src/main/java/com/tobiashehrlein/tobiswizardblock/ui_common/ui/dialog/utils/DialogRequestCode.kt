@@ -15,4 +15,5 @@ object DialogRequestCode {
     const val SAVED_GAMES_DELETE: Int = 1100
     const val BLOCK_INPUT_BOMB_PLAYED: Int = 1200
     const val SETTINGS_DISPLAY_ALWAYS_ON: Int = 1300
+    const val GAME_BLOCK_FINISH_MANUALLY: Int = 1400
 }

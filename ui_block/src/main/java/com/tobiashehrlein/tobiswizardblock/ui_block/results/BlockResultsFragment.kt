@@ -72,6 +72,9 @@ class BlockResultsFragment :
         viewModel.editInputEnabled.observe(viewLifecycleOwner) {
             requireActivity().invalidateOptionsMenu()
         }
+        viewModel.finishManuallyEnabled.observe(viewLifecycleOwner) {
+            requireActivity().invalidateOptionsMenu()
+        }
         viewModel.showGameFinishedEvent.observe(viewLifecycleOwner) {
             binding.gameBlockKonfetti.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
@@ -213,6 +216,8 @@ class BlockResultsFragment :
                 }
             )
         }
+
+        menu.findItem(R.id.action_finish_game).isEnabled = viewModel.finishManuallyEnabled.value == true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -223,6 +228,10 @@ class BlockResultsFragment :
             }
             R.id.action_delete_input -> {
                 viewModel.onMenuDeleteInputClicked()
+                true
+            }
+            R.id.action_finish_game -> {
+                viewModel.finishGameManuallyClicked()
                 true
             }
             R.id.action_info -> {
@@ -249,6 +258,11 @@ class BlockResultsFragment :
                                 viewModel.updateTrumpType(it.selectedTrumpType)
                             }
                     }
+                }
+            }
+            DialogRequestCode.GAME_BLOCK_FINISH_MANUALLY -> {
+                when (resultCode) {
+                    DialogResultCode.POSITIVE -> viewModel.onFinishGameManuallyConfirmed()
                 }
             }
         }

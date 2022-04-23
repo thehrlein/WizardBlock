@@ -15,6 +15,7 @@ abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsI
     abstract val blockItems: LiveData<List<BlockItem>>
     abstract val showGameFinishedEvent: LiveData<Unit>
     abstract val editInputEnabled: LiveData<Boolean>
+    abstract val finishManuallyEnabled :LiveData<Boolean>
 
     abstract fun setGameId(gameId: Long)
     abstract fun onFabClicked()
@@ -24,4 +25,6 @@ abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsI
     abstract fun onMenuInfoClicked()
     abstract fun onMenuSettingsClicked()
     abstract fun showExitDialog()
+    abstract fun finishGameManuallyClicked()
+    abstract fun onFinishGameManuallyConfirmed()
 }

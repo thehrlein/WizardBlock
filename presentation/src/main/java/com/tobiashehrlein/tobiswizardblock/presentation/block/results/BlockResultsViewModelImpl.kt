@@ -78,6 +78,14 @@ class BlockResultsViewModelImpl(
             )
         }
     }
+    override val finishManuallyEnabled = MediatorLiveData<Boolean>().also { mediator ->
+        mediator.addSource(editInputEnabled) {
+            mediator.value = it && inputType.value == InputType.TIPP
+        }
+        mediator.addSource(inputType) {
+            mediator.value = it == InputType.TIPP && editInputEnabled.value == true
+        }
+    }
 
     override fun setGameId(gameId: Long) {
         viewModelScope.launch {
@@ -151,7 +159,10 @@ class BlockResultsViewModelImpl(
             val gameId = game.value?.gameInfo?.gameId ?: return@launch
             when (val result = storeGameFinishedUseCase.invoke(gameId)) {
                 is AppResult.Success -> {
-                    navigateTo(Page.Block.GameFinished(results.filter { it.position == WINNER_POSITION }))
+                    navigateTo(
+                        Page.Block.GameFinished(
+                            results.filter { it.position == WINNER_POSITION })
+                    )
                     onFinishedSuccess?.invoke()
                 }
                 is AppResult.Error -> Unit
@@ -217,5 +228,17 @@ class BlockResultsViewModelImpl(
 
     override fun showExitDialog() {
         navigateTo(Page.Block.Exit)
+    }
+
+    override fun finishGameManuallyClicked() {
+        navigateTo(Page.Block.FinishManually)
+    }
+
+    override fun onFinishGameManuallyConfirmed() {
+        val gameScores = this.gameScores.value?.results ?: return
+        val gameId = game.value?.gameInfo?.gameId ?: return
+        onGameFinished(gameScores) {
+            setGameId(gameId)
+        }
     }
 }

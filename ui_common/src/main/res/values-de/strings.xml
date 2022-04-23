@@ -7,6 +7,7 @@
     <string name="general_cancel">Abbrechen</string>
     <string name="general_back">Zurück</string>
     <string name="general_yes">Ja</string>
+    <string name="general_exit">Beenden</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_info">Info</string>
@@ -51,14 +52,16 @@
     <!-- GameBlock -->
     <string name="game_block_results_fab_add_prediction">Tipps</string>
     <string name="game_block_results_fab_add_results">Ergebnisse</string>
-    <string name="game_block_results_fab_exit">Beenden</string>
     <string name="game_block_results_is_dealer_hint">(Geber)</string>
     <string name="game_block_results_winner_title">Glückwunsch</string>
     <string name="game_block_results_winner_message_singlular">%1$s hat mit insgesamt %2$d Punkten gewonnen</string>
     <string name="game_block_results_winner_message_plural">%1$s haben mit insgesamt %2$d Punkten gewonnen</string>
     <string name="game_block_results_menu_delete_last_tip_input">Letzte Tipps löschen</string>
+    <string name="game_block_results_menu_finish_game">Spiel beenden</string>
     <string name="game_block_results_menu_delete_last_result_input">Letzte Ergebnisse löschen</string>
     <string name="game_block_results_menu_settings_title">Einstellungen</string>
+    <string name="game_block_finish_manually_title">Spiel beenden?</string>
+    <string name="game_block_finish_manually_message">Wenn du dieses Spiel beendest kannst du nicht mehr weiterspielen</string>
 
     <!-- Block input -->
     <string name="block_input_toolbar_title_tips">Tipps</string>

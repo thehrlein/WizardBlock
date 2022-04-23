@@ -117,6 +117,10 @@ class PageNavigatorImpl(
                 activity.supportFragmentManager,
                 DialogEntity.Text.Exit(resourceHelper)
             )
+            is Page.Block.FinishManually -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.FinishGameManually(resourceHelper)
+            )
             is Page.Block.Menu -> NavigationActivity.start(activity)
             is Page.Block.Scores -> navHostController.navigateSafe(
                 BlockResultsFragmentDirections.actionBlockResultsFragmentToBlockScoresFragment(page.gameScoreData)

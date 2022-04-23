@@ -9,6 +9,7 @@
     <string name="general_back">Back</string>
     <string name="general_ok" translatable="false">Ok</string>
     <string name="general_yes">Yes</string>
+    <string name="general_exit">Exit</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_info">Info</string>
@@ -60,7 +61,6 @@
     <!-- GameBlock -->
     <string name="game_block_results_fab_add_prediction">Tipps</string>
     <string name="game_block_results_fab_add_results">Results</string>
-    <string name="game_block_results_fab_exit">Exit</string>
     <string name="game_block_results_is_dealer_hint">(Dealer)</string>
     <string name="game_block_results_winner_title">Congratulations</string>
     <string name="game_block_results_winner_message_singlular">%1$s has won with a total of %2$d points</string>
@@ -69,7 +69,10 @@
     <string name="game_block_results_menu_about_title" translatable="false">Info</string>
     <string name="game_block_results_menu_settings_title">Settings</string>
     <string name="game_block_results_menu_delete_last_tip_input">Delete last tips</string>
+    <string name="game_block_results_menu_finish_game">Finish game</string>
     <string name="game_block_results_menu_delete_last_result_input">Delete last results</string>
+    <string name="game_block_finish_manually_title">Finish game?</string>
+    <string name="game_block_finish_manually_message">If you finish this game you can no longer continue playing</string>
 
     <!-- Block input -->
     <string name="block_input_toolbar_title_tips">Tips</string>

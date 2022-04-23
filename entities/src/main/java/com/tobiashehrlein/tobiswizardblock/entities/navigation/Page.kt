@@ -43,6 +43,7 @@ sealed class Page {
     sealed class Block : Page() {
         class Input(val gameId: Long, val inputType: InputType) : Block()
         object Exit : Block()
+        object FinishManually : Block()
         object Menu : Block()
         object About : Block()
         object Settings : Block()

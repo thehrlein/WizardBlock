@@ -63,6 +63,6 @@ data class Game(
         }
 
     val gameFinished: Boolean
-        get() = lastCompletedGameRound?.round == maxRound
+        get() = gameInfo.gameFinished || lastCompletedGameRound?.round == maxRound
 
 }
