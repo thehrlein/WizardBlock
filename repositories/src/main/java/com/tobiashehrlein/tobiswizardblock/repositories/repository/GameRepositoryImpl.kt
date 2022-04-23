@@ -10,8 +10,6 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItemData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.cache.GameCache
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.BlockInputProcessor
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.BlockResultsProcessor
@@ -81,21 +79,5 @@ class GameRepositoryImpl(
 
     override suspend fun deleteAllGame(): AppResult<Unit> {
         return gameCache.deleteALlGames()
-    }
-
-    override suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>> {
-        return gameCache.getMostWinsStatistics()
-    }
-
-    override suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>> {
-        return gameCache.getPlayerCountStatistics()
-    }
-
-    override suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>> {
-        return gameCache.getTopPointsStatistics()
-    }
-
-    override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> {
-        return gameCache.getGamesPlayedCountStatistics()
     }
 }

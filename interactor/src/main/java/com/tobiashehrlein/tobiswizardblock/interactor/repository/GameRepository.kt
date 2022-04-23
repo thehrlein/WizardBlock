@@ -10,8 +10,6 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItemData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 
 interface GameRepository {
 
@@ -38,12 +36,4 @@ interface GameRepository {
     suspend fun deleteGame(gameId: Long): AppResult<Unit>
 
     suspend fun deleteAllGame(): AppResult<Unit>
-
-    suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>>
-
-    suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>>
-
-    suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>>
-
-    suspend fun getGamesPlayedCountStatistics(): AppResult<Int>
 }

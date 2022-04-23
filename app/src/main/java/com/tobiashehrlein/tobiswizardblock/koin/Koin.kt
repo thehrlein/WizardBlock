@@ -15,6 +15,7 @@ import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.Block
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.sharedpref.UserSettingsPersistence
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.GameRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.GameSettingsRepository
+import com.tobiashehrlein.tobiswizardblock.interactor.repository.StatisticsRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.UserRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.WizardRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.GetGameUseCase
@@ -83,6 +84,7 @@ import com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.Blo
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.sharedpref.WizardBlockSharedPreferences
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.GameRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.GameSettingsRepositoryImpl
+import com.tobiashehrlein.tobiswizardblock.repositories.repository.StatisticsRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.UserRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.WizardRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.ResourceHelper
@@ -117,6 +119,11 @@ object Koin {
         single<WizardRepository> {
             WizardRepositoryImpl(
                 analyticsDatasource = get()
+            )
+        }
+        single<StatisticsRepository> {
+            StatisticsRepositoryImpl(
+                gameCache = get()
             )
         }
 
@@ -272,22 +279,22 @@ object Koin {
         }
         factory {
             GetMostWinsStatisticsUseCase(
-                gameRepository = get()
+                statisticsRepository = get()
             )
         }
         factory {
             GetPlayerCountStatisticsUseCase(
-                gameRepository = get()
+                statisticsRepository = get()
             )
         }
         factory {
             GetTopPointsStatisticsUseCase(
-                gameRepository = get()
+                statisticsRepository = get()
             )
         }
         factory {
             GetGamesPlayedCountStatisticsUseCase(
-                gameRepository = get()
+                statisticsRepository = get()
             )
         }
     }
