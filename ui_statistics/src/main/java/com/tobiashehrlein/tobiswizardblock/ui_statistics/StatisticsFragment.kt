@@ -15,14 +15,5 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel, FragmentStatisticsB
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
-        viewModel.mostWinStatisticsData.observe(viewLifecycleOwner) {
-            it.map { data ->
-                MostWinsRowView(requireContext()).apply {
-                    setData(data)
-                }
-            }.forEach { view ->
-                binding.statisticsMostWinsList.addView(view)
-            }
-        }
     }
 }

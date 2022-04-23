@@ -132,10 +132,12 @@
 
     <!-- Statistics -->
     <string name="statistics_toolbar_title">Statistiken</string>
-    <string name="statistics_most_wins_headline">Meiste gewonnene Spiele</string>
+    <string name="statistics_most_wins_headline">Meiste gewonnene Spiele (Top 10)</string>
     <string name="statistics_most_wins_header_row_position">Position</string>
     <string name="statistics_most_wins_header_row_name">Name</string>
     <string name="statistics_most_wins_header_row_win_count">Anzahl</string>
+    <string name="statistics_top_points_headline">Höchstpunktzahlen (Top 10)</string>
+    <string name="statistics_top_points_header_row_win_count">Punkte</string>
     <string name="statistics_player_count_headline">Spieleranzahl</string>
     <string name="statistics_player_count_x_axis_label">Spieler</string>
     <string name="statistics_player_count_frequency">Anzahl</string>

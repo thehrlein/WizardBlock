@@ -6,6 +6,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.GameDao
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.mapToDbData
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.mapToEntity
@@ -122,13 +123,41 @@ class GameCacheImpl(
                             wins = entry.key
                         )
                     }
-                }
+                }.take(10)
             }
         }
 
     override suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>> = withContext(Dispatchers.IO) {
         safeCall {
             gameDao.getAllSavedGames().map { it.mapToEntity() }.map { it.gameInfo.players.size }.groupingBy { it }.eachCount()
+        }
+    }
+
+    override suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>> = withContext(Dispatchers.IO) {
+        safeCall {
+            val totals = gameDao.getAllFinishedGames().map { it.mapToEntity() }.mapNotNull { game ->
+                game.lastCompletedGameRound?.playerResultData?.map { playerResultData ->
+                    playerResultData.total to playerResultData.playerName
+                }
+            }.flatten()
+            val totalsMap = mutableMapOf<Int, MutableList<String>>()
+            totals.forEach { pair ->
+                totalsMap.getOrPut(pair.first) {
+                    mutableListOf()
+                }.add(pair.second)
+            }
+
+            val sortedMap = totalsMap.toSortedMap(compareByDescending { it })
+
+            sortedMap.entries.flatMapIndexed { index, entry ->
+                entry.value.map {
+                    TopPointsStatisticsData(
+                        position = index + 1,
+                        playerName = it,
+                        points = entry.key
+                    )
+                }
+            }.take(10)
         }
     }
 }

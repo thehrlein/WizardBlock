@@ -39,6 +39,7 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDispla
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetTopPointsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.SetShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.navigation.PageNavigatorImpl
@@ -278,6 +279,11 @@ object Koin {
                 gameRepository = get()
             )
         }
+        factory {
+            GetTopPointsStatisticsUseCase(
+                gameRepository = get()
+            )
+        }
     }
 
     private val viewModel = module {
@@ -367,7 +373,8 @@ object Koin {
         viewModel<StatisticsViewModel> {
             StatisticsViewModelImpl(
                 getMostWinsStatisticsUseCase = get(),
-                getPlayerCountStatisticsUseCase = get()
+                getPlayerCountStatisticsUseCase = get(),
+                getTopPointsStatisticsUseCase = get()
             )
         }
     }
