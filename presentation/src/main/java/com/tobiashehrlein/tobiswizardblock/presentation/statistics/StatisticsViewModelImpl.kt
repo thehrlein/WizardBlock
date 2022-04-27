@@ -11,7 +11,10 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGame
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetTopPointsStatisticsUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+private const val DEFAULT_SHOW_LOADING = true
 
 class StatisticsViewModelImpl(
     private val getMostWinsStatisticsUseCase: GetMostWinsStatisticsUseCase,
@@ -20,16 +23,20 @@ class StatisticsViewModelImpl(
     private val getGamesPlayedCountStatisticsUseCase: GetGamesPlayedCountStatisticsUseCase
 ) : StatisticsViewModel() {
 
+    override val showLoading = MutableLiveData(DEFAULT_SHOW_LOADING)
     override val mostWinStatisticsData = MutableLiveData<List<MostWinStatisticsData>>()
     override val playerCountStatistics = MutableLiveData<Map<Int, Int>>()
     override val topPointsStatisticsData = MutableLiveData<List<TopPointsStatisticsData>>()
     override val gamesPlayedCountStatistics = MutableLiveData<Int>()
 
     init {
-        getMostWins()
-        getPlayerCount()
-        getTopPoints()
-        getGamesPlayed()
+        viewModelScope.launch {
+            getMostWins()
+            getPlayerCount()
+            getTopPoints()
+            getGamesPlayed()
+            showLoading.value = false
+        }
     }
 
     private fun getMostWins() {

@@ -1,15 +1,14 @@
 package com.tobiashehrlein.tobiswizardblock.ui_statistics
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -35,6 +34,23 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
     fun setPlayerCountStatistics(playerCount: Map<Int, Int>?) {
         if (playerCount == null) return
         binding.statisticsPlayerCountChart.apply {
+            val entries: ArrayList<BarEntry> = ArrayList()
+            (2..6).forEach {
+                entries.add(BarEntry(it.toFloat(), playerCount.getOrDefault(it, 0).toFloat()))
+            }
+            val barDataSet = BarDataSet(entries, "").apply {
+                //Changing the color of the bar
+                color = ContextCompat.getColor(context, R.color.color_primary)
+                //Setting the size of the form in the legend
+                formSize = 15f
+                //showing the value of the bar, default true if not set
+                setDrawValues(false)
+                //setting the text size of the value of the bar
+                valueTextSize = 12f
+            }
+            val data = BarData(barDataSet)
+            setData(data)
+
             //hiding the grey background of the chart, default false if not set
             setDrawGridBackground(false)
             //remove the bar shadow, default false if not set
@@ -49,10 +65,10 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
             animateY(1000)
             //setting animation for x-axis, the bar will pop up separately within the time we set
             animateX(1000)
-
+            // disable scaling
             setScaleEnabled(false)
 
-            val xAxis: XAxis = xAxis.apply {
+            xAxis.apply {
                 //change the position of x-axis to the bottom
                 position = XAxis.XAxisPosition.BOTTOM
                 //set the horizontal distance of the grid line
@@ -73,23 +89,29 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                 override fun getAxisLabel(value: Float, axis: AxisBase?): String {
                     return value.toInt().toString()
                 }
-
             }
 
-            val leftAxis: YAxis = axisLeft.apply {
+            axisLeft.apply {
+                removeAllLimitLines()
+                resetAxisMaximum()
+                resetAxisMinimum()
                 //hiding the left y-axis line, default true if not set
                 setDrawAxisLine(false)
                 granularity = 1f
-                valueFormatter = yAxisFormatter
+//                valueFormatter = yAxisFormatter
+                axisMinimum = 0.0f
+                axisMaximum = playerCount.values.maxOf { it }.toFloat()
                 textColor = context.getColorReference(R.attr.colorOnBackground)
+
             }
 
-            val rightAxis: YAxis = axisRight.apply {
+            axisRight.apply {
                 setDrawLabels(false)
                 setDrawAxisLine(false)
+                isEnabled = false
             }
 
-            val legend: Legend = legend.apply {
+            legend.apply {
                 //setting the shape of the legend form to line, default square shape
                 form = Legend.LegendForm.NONE
 
@@ -104,26 +126,6 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                 setDrawInside(false)
             }
 
-            val entries: ArrayList<BarEntry> = ArrayList()
-
-            (2..6).forEach {
-                entries.add(BarEntry(it.toFloat(), playerCount.getOrDefault(it, 0).toFloat()))
-            }
-
-            val barDataSet = BarDataSet(entries, "").apply {
-                //Changing the color of the bar
-                color = Color.parseColor("#304567")
-                //Setting the size of the form in the legend
-                formSize = 15f
-                //showing the value of the bar, default true if not set
-                setDrawValues(false)
-                //setting the text size of the value of the bar
-                valueTextSize = 12f
-
-
-            }
-            val data = BarData(barDataSet)
-            setData(data)
             invalidate()
         }
     }

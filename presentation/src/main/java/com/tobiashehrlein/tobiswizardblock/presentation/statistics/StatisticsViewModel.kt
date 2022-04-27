@@ -7,6 +7,7 @@ import com.tobiashehrlein.tobiswizardblock.presentation.general.BaseToolbarViewM
 
 abstract class StatisticsViewModel : BaseToolbarViewModelImpl() {
 
+    abstract val showLoading: LiveData<Boolean>
     abstract val mostWinStatisticsData: LiveData<List<MostWinStatisticsData>>
     abstract val playerCountStatistics: LiveData<Map<Int, Int>>
     abstract val topPointsStatisticsData: LiveData<List<TopPointsStatisticsData>>
