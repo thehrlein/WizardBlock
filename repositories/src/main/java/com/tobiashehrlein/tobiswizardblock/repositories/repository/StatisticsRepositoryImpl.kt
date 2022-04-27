@@ -25,4 +25,8 @@ class StatisticsRepositoryImpl(
     override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> {
         return gameCache.getGamesPlayedCountStatistics()
     }
+
+    override suspend fun clearStatistics(): AppResult<Unit> {
+        return gameCache.clearStatistics()
+    }
 }

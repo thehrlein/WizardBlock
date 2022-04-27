@@ -35,6 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:ellipsize="none"
+                android:padding="@dimen/space_0"
                 android:visibility="gone"
                 tools:text="Negative"
                 tools:visibility="visible" />
@@ -45,6 +47,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:ellipsize="none"
+                android:padding="@dimen/space_0"
                 android:visibility="gone"
                 tools:text="Neutral"
                 tools:visibility="visible" />
@@ -55,6 +59,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:ellipsize="none"
+                android:padding="@dimen/space_0"
                 android:visibility="gone"
                 tools:text="Positive"
                 tools:visibility="visible" />

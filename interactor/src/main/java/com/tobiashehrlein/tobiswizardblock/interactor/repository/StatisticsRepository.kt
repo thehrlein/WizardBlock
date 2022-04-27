@@ -13,4 +13,6 @@ interface StatisticsRepository {
     suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>>
 
     suspend fun getGamesPlayedCountStatistics(): AppResult<Int>
+
+    suspend fun clearStatistics(): AppResult<Unit>
 }

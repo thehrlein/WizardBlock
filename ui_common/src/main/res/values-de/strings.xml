@@ -141,7 +141,10 @@
     <string name="statistics_player_count_headline">Spieleranzahl</string>
     <string name="statistics_player_count_x_axis_label">Spieler</string>
     <string name="statistics_player_count_frequency">Anzahl</string>
+    <string name="statistics_player_no_data_available">Aktuell noch keine Daten verfügbar</string>
     <string name="statistics_games_played_headline">Anzahl beendeter Spiele</string>
-
+    <string name="statistics_clear_all">Löschen</string>
+    <string name="statistics_clear_all_dialog_title">Statistiken löschen</string>
+    <string name="statistics_clear_all_dialog_message">Möchtest du wirklich alle Statistiken zurücksetzen?\n\nAchtung: Auch all deine gespeicherten Spiele werden hierbei gelöscht!</string>
 
 </resources>

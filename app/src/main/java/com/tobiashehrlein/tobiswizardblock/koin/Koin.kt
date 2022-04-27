@@ -33,11 +33,12 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetLastGa
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.StoreGameInfoUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.player.GetPlayerNamesUseCase
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteAllSavedGamesUseCase
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteSavedGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveAllGamesFromSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveGameFromSavedGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDisplayAlwaysOnUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.ClearStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGamesPlayedCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
@@ -243,12 +244,12 @@ object Koin {
             )
         }
         factory {
-            DeleteSavedGameUseCase(
+            RemoveGameFromSavedGameUseCase(
                 gameRepository = get()
             )
         }
         factory {
-            DeleteAllSavedGamesUseCase(
+            RemoveAllGamesFromSavedGamesUseCase(
                 gameRepository = get()
             )
         }
@@ -294,6 +295,11 @@ object Koin {
         }
         factory {
             GetGamesPlayedCountStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            ClearStatisticsUseCase(
                 statisticsRepository = get()
             )
         }
@@ -368,8 +374,8 @@ object Koin {
         viewModel<SavedGamesViewModel> {
             SavedGamesViewModelImpl(
                 getAllSavedGamesUseCase = get(),
-                deleteSavedGameUseCase = get(),
-                deleteAllSavedGamesUseCase = get()
+                removeGameFromSavedGameUseCase = get(),
+                removeAllGamesFromSavedGamesUseCase = get()
             )
         }
         viewModel<SavedGamesInfoViewModel> { (gameSettings: GameSettings) ->
@@ -388,7 +394,8 @@ object Koin {
                 getMostWinsStatisticsUseCase = get(),
                 getPlayerCountStatisticsUseCase = get(),
                 getTopPointsStatisticsUseCase = get(),
-                getGamesPlayedCountStatisticsUseCase = get()
+                getGamesPlayedCountStatisticsUseCase = get(),
+                clearStatisticsUseCase = get()
             )
         }
     }

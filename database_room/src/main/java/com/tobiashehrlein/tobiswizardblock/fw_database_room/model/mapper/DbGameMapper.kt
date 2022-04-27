@@ -20,8 +20,9 @@ fun GameInfo.mapToDbData() = DbGameInfo(
     gameStartDate = gameStartDate,
     players = players,
     gameName = gameName,
-    gameSettings.mapToDbData(),
-    gameFinished = gameFinished
+    gameSettings =gameSettings.mapToDbData(),
+    gameFinished = gameFinished,
+    removedFromSavedGames = false
 )
 
 fun DbGameInfo.mapToEntity() = GameInfo(

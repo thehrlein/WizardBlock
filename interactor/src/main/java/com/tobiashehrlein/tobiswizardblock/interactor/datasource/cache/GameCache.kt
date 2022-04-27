@@ -24,11 +24,11 @@ interface GameCache {
 
     suspend fun getAllSavedGames(): AppResult<List<Game>>
 
-    suspend fun deleteGame(gameId: Long): AppResult<Unit>
+    suspend fun removeGameFromSavedGames(gameId: Long): AppResult<Unit>
+
+    suspend fun removeAllGamesFromSavedGames(): AppResult<Unit>
 
     suspend fun getGameNameOptions(): AppResult<Set<String>>
-
-    suspend fun deleteALlGames(): AppResult<Unit>
 
     suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>>
 
@@ -37,4 +37,6 @@ interface GameCache {
     suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>>
 
     suspend fun getGamesPlayedCountStatistics(): AppResult<Int>
+
+    suspend fun clearStatistics(): AppResult<Unit>
 }

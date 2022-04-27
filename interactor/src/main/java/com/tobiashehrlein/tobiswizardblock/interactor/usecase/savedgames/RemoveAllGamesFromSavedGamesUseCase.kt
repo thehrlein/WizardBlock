@@ -4,11 +4,11 @@ import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.GameRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.BaseUseCase
 
-class DeleteSavedGameUseCase(
+class RemoveAllGamesFromSavedGamesUseCase(
     private val gameRepository: GameRepository
-) : BaseUseCase<Long, Unit>() {
+) : BaseUseCase<Unit, Unit>() {
 
-    override suspend fun execute(parameters: Long): AppResult<Unit> {
-        return gameRepository.deleteGame(parameters)
+    override suspend fun execute(parameters: Unit): AppResult<Unit> {
+        return gameRepository.removeAllGamesFromSavedGames()
     }
 }

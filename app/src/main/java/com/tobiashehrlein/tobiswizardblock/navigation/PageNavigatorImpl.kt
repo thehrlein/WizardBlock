@@ -42,6 +42,7 @@ class PageNavigatorImpl(
             is Page.Input -> navigateTo(page)
             is Page.SavedGames -> navigateTo(page)
             is Page.Settings -> navigateTo(page)
+            is Page.Statistics -> navigateTo(page)
         }.checkAllMatched
     }
 
@@ -196,6 +197,15 @@ class PageNavigatorImpl(
             is Page.Settings.DialogDisplayAlwaysOn -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.SettingsDisplayAlwaysOn(resourceHelper)
+            )
+        }.checkAllMatched
+    }
+
+    private fun navigateTo(page: Page.Statistics) {
+        when (page) {
+            is Page.Statistics.Clear -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.ClearStatistics(resourceHelper)
             )
         }.checkAllMatched
     }

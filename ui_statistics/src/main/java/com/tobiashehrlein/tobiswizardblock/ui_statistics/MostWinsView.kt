@@ -23,6 +23,7 @@ class MostWinsView @JvmOverloads constructor(
     )
 
     fun setPlayerCountStatistics(mostWins: List<MostWinStatisticsData>?) {
+        binding.statisticsMostWinsList.removeAllViews()
         if (mostWins == null) return
 
         mostWins.map { data ->

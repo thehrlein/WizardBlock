@@ -73,11 +73,16 @@ class GameRepositoryImpl(
         return gameCache.getAllSavedGames()
     }
 
-    override suspend fun deleteGame(gameId: Long): AppResult<Unit> {
-        return gameCache.deleteGame(gameId)
+    override suspend fun removeGameFromSavedGames(gameId: Long): AppResult<Unit> {
+        return gameCache.removeGameFromSavedGames(gameId)
+    }
+
+
+    override suspend fun removeAllGamesFromSavedGames(): AppResult<Unit> {
+        return gameCache.removeAllGamesFromSavedGames()
     }
 
     override suspend fun deleteAllGame(): AppResult<Unit> {
-        return gameCache.deleteALlGames()
+        return gameCache.removeAllGamesFromSavedGames()
     }
 }

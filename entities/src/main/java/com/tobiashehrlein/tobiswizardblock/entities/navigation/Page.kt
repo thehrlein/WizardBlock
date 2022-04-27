@@ -79,4 +79,8 @@ sealed class Page {
     sealed class Settings : Page() {
         object DialogDisplayAlwaysOn : Settings()
     }
+
+    sealed class Statistics : Page() {
+        object Clear : Statistics()
+    }
 }

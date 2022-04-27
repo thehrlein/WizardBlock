@@ -158,6 +158,15 @@ sealed class DialogEntity : Serializable {
         ) {
             override val requestCode: Int = DialogRequestCode.GAME_BLOCK_FINISH_MANUALLY
         }
+
+        class ClearStatistics(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.statistics_clear_all_dialog_title),
+            message = resourceHelper.getString(R.string.statistics_clear_all_dialog_message),
+            positiveButtonText = resourceHelper.getString(R.string.statistics_clear_all),
+            negativeButtonText = resourceHelper.getString(R.string.general_cancel)
+        ) {
+            override val requestCode: Int = DialogRequestCode.CLEAR_STATISTICS
+        }
     }
 
     sealed class Custom(

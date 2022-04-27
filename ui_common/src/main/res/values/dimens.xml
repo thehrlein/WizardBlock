@@ -26,7 +26,7 @@
     <dimen name="font_size_caption">12sp</dimen>
     <dimen name="font_size_overline">13sp</dimen>
     <dimen name="font_size_button">16sp</dimen>
-    <dimen name="font_size_button_2">14sp</dimen>
+    <dimen name="font_size_button_2">13sp</dimen>
     <dimen name="font_size_error">12sp</dimen>
 
     <!--Emphasis modifiers for "on" colors-->

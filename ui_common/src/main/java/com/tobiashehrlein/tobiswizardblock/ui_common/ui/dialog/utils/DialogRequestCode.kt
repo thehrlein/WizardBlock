@@ -16,4 +16,5 @@ object DialogRequestCode {
     const val BLOCK_INPUT_BOMB_PLAYED: Int = 1200
     const val SETTINGS_DISPLAY_ALWAYS_ON: Int = 1300
     const val GAME_BLOCK_FINISH_MANUALLY: Int = 1400
+    const val CLEAR_STATISTICS: Int = 1500
 }

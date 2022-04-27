@@ -50,6 +50,7 @@
             android:layout_marginTop="@dimen/space_2"
             android:textAppearance="?textAppearanceCaption"
             android:textSize="@dimen/chart_axis_label_text_size"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/statistics_player_count_divider"
             app:layout_constraintStart_toStartOf="@id/statistics_player_count_chart" />
 
@@ -60,6 +61,7 @@
             android:text="@string/statistics_player_count_x_axis_label"
             android:textAppearance="?textAppearanceCaption"
             android:textSize="@dimen/chart_axis_label_text_size"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/statistics_player_count_chart"
             app:layout_constraintEnd_toEndOf="@id/statistics_player_count_chart" />
 

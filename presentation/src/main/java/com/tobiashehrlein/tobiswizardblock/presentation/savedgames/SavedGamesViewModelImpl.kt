@@ -8,15 +8,15 @@ import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
 import com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteAllSavedGamesUseCase
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteSavedGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveAllGamesFromSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveGameFromSavedGameUseCase
 import kotlinx.coroutines.launch
 
 class SavedGamesViewModelImpl(
     private val getAllSavedGamesUseCase: GetAllSavedGamesUseCase,
-    private val deleteSavedGameUseCase: DeleteSavedGameUseCase,
-    private val deleteAllSavedGamesUseCase: DeleteAllSavedGamesUseCase
+    private val removeGameFromSavedGameUseCase: RemoveGameFromSavedGameUseCase,
+    private val removeAllGamesFromSavedGamesUseCase: RemoveAllGamesFromSavedGamesUseCase
 ) : SavedGamesViewModel() {
 
     override val loading = MutableLiveData(true)
@@ -60,7 +60,7 @@ class SavedGamesViewModelImpl(
     override fun onGameRemoved(item: SavedGameEntity?) {
         item?.gameId?.let {
             viewModelScope.launch {
-                deleteSavedGameUseCase.invoke(it)
+                removeGameFromSavedGameUseCase.invoke(it)
                 getAllSavedGames()
             }
         }
@@ -80,7 +80,7 @@ class SavedGamesViewModelImpl(
 
     override fun onDeleteGamesConfirmed() {
         viewModelScope.launch {
-            when (val result = deleteAllSavedGamesUseCase.invoke()) {
+            when (val result = removeAllGamesFromSavedGamesUseCase.invoke()) {
                 is AppResult.Success -> getAllSavedGames()
                 is AppResult.Error -> Unit
             }

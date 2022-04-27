@@ -67,18 +67,36 @@ class GameCacheImpl(
     override suspend fun getAllSavedGames(): AppResult<List<Game>> =
         withContext(Dispatchers.IO) {
             safeCall {
-                gameDao.getAllSavedGames().map {
+                gameDao.getAllSavedGames().filter {
+                    !it.gameInfo.removedFromSavedGames
+                }.map {
                     it.mapToEntity()
                 }
             }
         }
 
-    override suspend fun deleteGame(gameId: Long): AppResult<Unit> =
+    override suspend fun removeGameFromSavedGames(gameId: Long): AppResult<Unit> =
         withContext(Dispatchers.IO) {
             safeCall {
-                gameDao.deleteGame(gameId)
+                val gameInfo = gameDao.getGameInfo(gameId).copy(
+                    removedFromSavedGames = true
+                )
+                gameDao.insertGameInfo(gameInfo)
+                Unit
             }
         }
+
+    override suspend fun removeAllGamesFromSavedGames(): AppResult<Unit> = withContext(Dispatchers.IO) {
+        safeCall {
+            val gameInfo = gameDao.getAllGameInfo()?.map {
+                it.copy(
+                    removedFromSavedGames = true
+                )
+            } ?: emptyList()
+            gameDao.insertAllGameInfo(gameInfo)
+            Unit
+        }
+    }
 
     override suspend fun getGameNameOptions(): AppResult<Set<String>> =
         withContext(Dispatchers.IO) {
@@ -86,12 +104,6 @@ class GameCacheImpl(
                 gameDao.getGameNameOptions()?.toSet() ?: emptySet()
             }
         }
-
-    override suspend fun deleteALlGames(): AppResult<Unit> = withContext(Dispatchers.IO) {
-        safeCall {
-            gameDao.deleteAllGames()
-        }
-    }
 
     override suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>> =
         withContext(Dispatchers.IO) {
@@ -164,6 +176,12 @@ class GameCacheImpl(
     override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> = withContext(Dispatchers.IO) {
         safeCall {
             gameDao.getAllFinishedGames().size
+        }
+    }
+
+    override suspend fun clearStatistics(): AppResult<Unit> = withContext(Dispatchers.IO){
+        safeCall {
+            gameDao.clearStatistics()
         }
     }
 }

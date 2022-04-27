@@ -23,6 +23,7 @@ class TopPointsStatisticsView @JvmOverloads constructor(
     )
 
     fun setTopPointsStatistics(topPoints: List<TopPointsStatisticsData>?) {
+        binding.statisticsTopPointsList.removeAllViews()
         if (topPoints == null) return
 
         topPoints.map { data ->

@@ -14,5 +14,6 @@ data class DbGameInfo(
     val gameName: String,
     @Embedded
     val gameSettings: DbGameSettings,
-    val gameFinished: Boolean
+    val gameFinished: Boolean,
+    val removedFromSavedGames: Boolean
 )
