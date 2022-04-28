@@ -161,12 +161,12 @@
     <string name="statistics_top_points_headline">Most points (Top 10)</string>
     <string name="statistics_top_points_header_row_win_count">Points</string>
     <string name="statistics_player_count_headline">Player count</string>
-    <string name="statistics_player_count_x_axis_label">Player</string>
-    <string name="statistics_player_count_frequency">Count</string>
+    <string name="statistics_player_count_frequency">%1$d Player</string>
     <string name="statistics_player_no_data_available">Currently no data available</string>
     <string name="statistics_games_played_headline">Finished game count</string>
     <string name="statistics_clear_all">Clear</string>
     <string name="statistics_clear_all_dialog_title">Clear statistics</string>
     <string name="statistics_clear_all_dialog_message">Do you really want to reset all statistics?\n\nAttention: All your saved games will also be deleted!</string>
+    <string name="statistics_game_day_headline">Game days</string>
 
 </resources>

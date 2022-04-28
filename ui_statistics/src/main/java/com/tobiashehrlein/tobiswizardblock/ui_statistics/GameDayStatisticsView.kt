@@ -13,36 +13,41 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.getColorReference
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.layoutInflater
-import com.tobiashehrlein.tobiswizardblock.ui_statistics.databinding.WidgetStatisticsGamePlayerCountBinding
+import com.tobiashehrlein.tobiswizardblock.ui_statistics.databinding.WidgetStatisticsGameDayBinding
+import java.time.DayOfWeek
+import java.time.format.TextStyle
+import java.util.Locale
 
 
-class PlayerCountStatisticsView @JvmOverloads constructor(
+class GameDayStatisticsView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attributeSet, defStyleAttr) {
 
-    private val binding: WidgetStatisticsGamePlayerCountBinding = DataBindingUtil.inflate(
+    private val binding: WidgetStatisticsGameDayBinding = DataBindingUtil.inflate(
         context.layoutInflater,
-        R.layout.widget_statistics_game_player_count,
+        R.layout.widget_statistics_game_day,
         this,
         true
     )
 
-    fun setPlayerCountStatistics(playerCount: Map<Int, Int>?) {
-        if (playerCount.isNullOrEmpty()) {
-            binding.statisticsPlayerCountChart.apply {
+    fun setGameDayStatistics(gameDayStatisticsData: GameDayStatisticsData?) {
+        if (gameDayStatisticsData == null) {
+            binding.statisticsGameDayChart.apply {
                 setNoDataText(context.getString(R.string.statistics_player_no_data_available))
                 data = null
                 invalidate()
             }
         } else {
-            binding.statisticsPlayerCountChart.apply {
+            binding.statisticsGameDayChart.apply {
                 val entries: ArrayList<BarEntry> = ArrayList()
-                (2..6).forEach {
-                    entries.add(BarEntry(it.toFloat(), playerCount.getOrDefault(it, 0).toFloat()))
+
+                gameDayStatisticsData.gameDays.forEach { entry ->
+                    entries.add(BarEntry(entry.key.value.toFloat(), entry.value.toFloat()))
                 }
                 val barDataSet = BarDataSet(entries, "").apply {
                     //Changing the color of the bar
@@ -58,7 +63,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                 setData(data)
 
                 marker = WizardMarkerView(context) {
-                    context.getString(R.string.statistics_player_count_frequency, it)
+                    DayOfWeek.of(it).getDisplayName(TextStyle.FULL, Locale.getDefault())
                 }
 
                 //hiding the grey background of the chart, default false if not set
@@ -89,7 +94,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                     setDrawGridLines(false)
                     valueFormatter = object : ValueFormatter() {
                         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                            return value.toInt().toString()
+                            return DayOfWeek.of(value.toInt()).getDisplayName(TextStyle.SHORT, Locale.getDefault())
                         }
                     }
                     textColor = context.getColorReference(R.attr.colorOnBackground)
@@ -103,7 +108,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                     setDrawAxisLine(false)
                     granularity = 1f
                     axisMinimum = 0.0f
-                    axisMaximum = playerCount.values.maxOf { it }.toFloat()
+                    axisMaximum = gameDayStatisticsData.gameDays.values.maxOf { it }.toFloat()
                     textColor = context.getColorReference(R.attr.colorOnBackground)
 
                 }

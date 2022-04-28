@@ -5,6 +5,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.GameDao
@@ -12,6 +13,7 @@ import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.mapToDb
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.mapToEntity
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.BaseDatasource
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.cache.GameCache
+import com.tobiashehrlein.tobiswizardblock.old.utils.helper.DateHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -67,7 +69,7 @@ class GameCacheImpl(
     override suspend fun getAllSavedGames(): AppResult<List<Game>> =
         withContext(Dispatchers.IO) {
             safeCall {
-                gameDao.getAllSavedGames().filter {
+                gameDao.getAllGames().filter {
                     !it.gameInfo.removedFromSavedGames
                 }.map {
                     it.mapToEntity()
@@ -141,7 +143,7 @@ class GameCacheImpl(
 
     override suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>> = withContext(Dispatchers.IO) {
         safeCall {
-            gameDao.getAllSavedGames().map { it.mapToEntity() }.map { it.gameInfo.players.size }.groupingBy { it }.eachCount()
+            gameDao.getAllGames().map { it.mapToEntity() }.map { it.gameInfo.players.size }.groupingBy { it }.eachCount()
         }
     }
 
@@ -176,6 +178,21 @@ class GameCacheImpl(
     override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> = withContext(Dispatchers.IO) {
         safeCall {
             gameDao.getAllFinishedGames().size
+        }
+    }
+
+    override suspend fun getGameDayStatistics(): AppResult<GameDayStatisticsData> = withContext(Dispatchers.IO) {
+        safeCall {
+            val gameDays = gameDao.getAllGames()
+                .map { it.mapToEntity() }
+                .map { it.gameInfo.gameStartDate }
+                .map { DateHelper.getDayOfWeek(it) }
+                .groupingBy { it }.eachCount()
+                .toSortedMap()
+
+            GameDayStatisticsData(
+                gameDays = gameDays
+            )
         }
     }
 

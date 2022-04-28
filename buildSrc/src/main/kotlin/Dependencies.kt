@@ -1,5 +1,3 @@
-import org.gradle.api.JavaVersion
-
 object Dependencies {
 
     object AndroidX {
@@ -7,6 +5,7 @@ object Dependencies {
         private const val coreVersion = "1.7.0"
         private const val constraintLayoutVersion = "2.1.3"
         private const val dataStoreVersion = "1.0.0"
+        private const val desugarJdkLibsVersion = "1.1.5"
         private const val recyclerViewVersion = "1.2.1"
         private const val splashScreenVersion = "1.0.0-beta01"
         private const val swipeRefreshVersion = "1.1.0"
@@ -16,11 +15,11 @@ object Dependencies {
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
         const val dataStore = "androidx.datastore:datastore-preferences:$dataStoreVersion"
+        const val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:$desugarJdkLibsVersion"
         const val recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
         const val splashScreen = "androidx.core:core-splashscreen:$splashScreenVersion"
         const val swipeToRefresh =
             "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
-
 
         object LifeCycle {
             private const val lifecycleVersion = "2.4.1"
@@ -203,7 +202,7 @@ object AndroidSdkTools {
 object Others {
 
     const val ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER = "androidx.test.runner.AndroidJUnitRunner"
-    val JVM_TARGET = JavaVersion.VERSION_1_8.toString()
+    val JVM_TARGET = "1.8"
 }
 
 object Module {

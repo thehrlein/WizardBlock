@@ -41,7 +41,7 @@ interface GameDao {
     fun removeRound(gameId: Long, round: Int)
 
     @Query("SELECT * FROM GAME_DATABASE ORDER BY gameStartDate DESC")
-    fun getAllSavedGames(): List<DbGame>
+    fun getAllGames(): List<DbGame>
 
     @Query("SELECT * FROM GAME_DATABASE WHERE gameFinished = 1")
     fun getAllFinishedGames(): List<DbGame>

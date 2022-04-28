@@ -5,6 +5,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 
@@ -37,6 +38,8 @@ interface GameCache {
     suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>>
 
     suspend fun getGamesPlayedCountStatistics(): AppResult<Int>
+
+    suspend fun getGameDayStatistics() : AppResult<GameDayStatisticsData>
 
     suspend fun clearStatistics(): AppResult<Unit>
 }

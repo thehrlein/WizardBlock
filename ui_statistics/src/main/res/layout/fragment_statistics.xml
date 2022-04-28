@@ -26,6 +26,7 @@
                 <com.tobiashehrlein.tobiswizardblock.ui_statistics.MostWinsView
                     android:id="@+id/statistics_most_wins"
                     android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/space_2"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -43,15 +44,6 @@
                     app:layout_constraintTop_toBottomOf="@id/statistics_most_wins"
                     app:topPointsStatistics="@{viewModel.topPointsStatisticsData}" />
 
-                <com.tobiashehrlein.tobiswizardblock.ui_statistics.PlayerCountStatisticsView
-                    android:id="@+id/statistics_player_count_chart"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/statistics_top_points"
-                    app:playerCountStatistics="@{viewModel.playerCountStatistics}" />
-
                 <com.tobiashehrlein.tobiswizardblock.ui_statistics.GamesPlayedStatisticsView
                     android:id="@+id/statistics_games_played"
                     android:layout_width="0dp"
@@ -59,6 +51,24 @@
                     app:gamesPlayedStatistics="@{viewModel.gamesPlayedCountStatistics}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_top_points" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.PlayerCountStatisticsView
+                    android:id="@+id/statistics_player_count_chart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_games_played"
+                    app:playerCountStatistics="@{viewModel.playerCountStatistics}" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.GameDayStatisticsView
+                    android:id="@+id/statistics_game_day_chart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:gameDayStatistics="@{viewModel.gameDayStatisticsData}"
                     app:layout_constraintTop_toBottomOf="@id/statistics_player_count_chart" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
