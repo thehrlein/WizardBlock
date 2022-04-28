@@ -6,6 +6,7 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.GameDao
@@ -88,17 +89,18 @@ class GameCacheImpl(
             }
         }
 
-    override suspend fun removeAllGamesFromSavedGames(): AppResult<Unit> = withContext(Dispatchers.IO) {
-        safeCall {
-            val gameInfo = gameDao.getAllGameInfo()?.map {
-                it.copy(
-                    removedFromSavedGames = true
-                )
-            } ?: emptyList()
-            gameDao.insertAllGameInfo(gameInfo)
-            Unit
+    override suspend fun removeAllGamesFromSavedGames(): AppResult<Unit> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                val gameInfo = gameDao.getAllGameInfo()?.map {
+                    it.copy(
+                        removedFromSavedGames = true
+                    )
+                } ?: emptyList()
+                gameDao.insertAllGameInfo(gameInfo)
+                Unit
+            }
         }
-    }
 
     override suspend fun getGameNameOptions(): AppResult<Set<String>> =
         withContext(Dispatchers.IO) {
@@ -141,62 +143,84 @@ class GameCacheImpl(
             }
         }
 
-    override suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>> = withContext(Dispatchers.IO) {
-        safeCall {
-            gameDao.getAllGames().map { it.mapToEntity() }.map { it.gameInfo.players.size }.groupingBy { it }.eachCount()
-        }
-    }
-
-    override suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>> = withContext(Dispatchers.IO) {
-        safeCall {
-            val totals = gameDao.getAllFinishedGames().map { it.mapToEntity() }.mapNotNull { game ->
-                game.lastCompletedGameRound?.playerResultData?.map { playerResultData ->
-                    playerResultData.total to playerResultData.playerName
-                }
-            }.flatten()
-            val totalsMap = mutableMapOf<Int, MutableList<String>>()
-            totals.forEach { pair ->
-                totalsMap.getOrPut(pair.first) {
-                    mutableListOf()
-                }.add(pair.second)
+    override suspend fun getPlayerCountStatistics(): AppResult<Map<Int, Int>> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                gameDao.getAllGames().map { it.mapToEntity() }.map { it.gameInfo.players.size }
+                    .groupingBy { it }.eachCount()
             }
+        }
 
-            val sortedMap = totalsMap.toSortedMap(compareByDescending { it })
-
-            sortedMap.entries.flatMapIndexed { index, entry ->
-                entry.value.map {
-                    TopPointsStatisticsData(
-                        position = index + 1,
-                        playerName = it,
-                        points = entry.key
-                    )
+    override suspend fun getTopPointsStatistics(): AppResult<List<TopPointsStatisticsData>> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                val totals =
+                    gameDao.getAllFinishedGames().map { it.mapToEntity() }.mapNotNull { game ->
+                        game.lastCompletedGameRound?.playerResultData?.map { playerResultData ->
+                            playerResultData.total to playerResultData.playerName
+                        }
+                    }.flatten()
+                val totalsMap = mutableMapOf<Int, MutableList<String>>()
+                totals.forEach { pair ->
+                    totalsMap.getOrPut(pair.first) {
+                        mutableListOf()
+                    }.add(pair.second)
                 }
-            }.take(10)
+
+                val sortedMap = totalsMap.toSortedMap(compareByDescending { it })
+
+                sortedMap.entries.flatMapIndexed { index, entry ->
+                    entry.value.map {
+                        TopPointsStatisticsData(
+                            position = index + 1,
+                            playerName = it,
+                            points = entry.key
+                        )
+                    }
+                }.take(10)
+            }
         }
-    }
 
-    override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> = withContext(Dispatchers.IO) {
-        safeCall {
-            gameDao.getAllFinishedGames().size
+    override suspend fun getGamesPlayedCountStatistics(): AppResult<Int> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                gameDao.getAllFinishedGames().size
+            }
         }
-    }
 
-    override suspend fun getGameDayStatistics(): AppResult<GameDayStatisticsData> = withContext(Dispatchers.IO) {
-        safeCall {
-            val gameDays = gameDao.getAllGames()
-                .map { it.mapToEntity() }
-                .map { it.gameInfo.gameStartDate }
-                .map { DateHelper.getDayOfWeek(it) }
-                .groupingBy { it }.eachCount()
-                .toSortedMap()
+    override suspend fun getGameDayStatistics(): AppResult<GameDayStatisticsData> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                val gameDays = gameDao.getAllGames()
+                    .map { it.mapToEntity() }
+                    .map { it.gameInfo.gameStartDate }
+                    .map { DateHelper.getDayOfWeek(it) }
+                    .groupingBy { it }.eachCount()
+                    .toSortedMap()
 
-            GameDayStatisticsData(
-                gameDays = gameDays
-            )
+                GameDayStatisticsData(
+                    gameDays = gameDays
+                )
+            }
         }
-    }
 
-    override suspend fun clearStatistics(): AppResult<Unit> = withContext(Dispatchers.IO){
+    override suspend fun getGameRulesStatistics(): AppResult<GameRulesStatisticsData> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                val gameSettings = gameDao.getAllGames()
+                    .map { it.mapToEntity() }
+                    .map { it.gameInfo.gameSettings }
+
+                GameRulesStatisticsData(
+                    noGamesPlayed = gameSettings.isEmpty(),
+                    tipsEqualStitches = gameSettings.count { it.tipsEqualStitches },
+                    tipsEqualStitchesFirstRound = gameSettings.count { it.tipsEqualStitchesFirstRound },
+                    anniversaryVersion = gameSettings.count { it.anniversaryVersion }
+                )
+            }
+        }
+
+    override suspend fun clearStatistics(): AppResult<Unit> = withContext(Dispatchers.IO) {
         safeCall {
             gameDao.clearStatistics()
         }

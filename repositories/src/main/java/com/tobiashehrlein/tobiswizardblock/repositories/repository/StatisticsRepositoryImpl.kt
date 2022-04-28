@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.repositories.repository
 
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.cache.GameCache
@@ -29,6 +30,10 @@ class StatisticsRepositoryImpl(
 
     override suspend fun getGameDayStatistics(): AppResult<GameDayStatisticsData> {
         return gameCache.getGameDayStatistics()
+    }
+
+    override suspend fun getGameRulesStatistics(): AppResult<GameRulesStatisticsData> {
+        return gameCache.getGameRulesStatistics()
     }
 
     override suspend fun clearStatistics(): AppResult<Unit> {

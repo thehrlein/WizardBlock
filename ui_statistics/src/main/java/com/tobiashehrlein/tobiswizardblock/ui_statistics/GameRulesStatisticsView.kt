@@ -13,42 +13,59 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.getColorReference
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.layoutInflater
-import com.tobiashehrlein.tobiswizardblock.ui_statistics.databinding.WidgetStatisticsGameDayBinding
-import java.time.DayOfWeek
-import java.time.format.TextStyle
-import java.util.Locale
+import com.tobiashehrlein.tobiswizardblock.ui_statistics.databinding.WidgetStatisticsGameRulesBinding
+
+private const val TIPS_EQUAL_STITCHES_X_ENTRY = 1
+private const val TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY = 2
+private const val ANNIVERSARY_VERSION_X_ENTRY = 3
 
 
-class GameDayStatisticsView @JvmOverloads constructor(
+class GameRulesStatisticsView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attributeSet, defStyleAttr) {
 
-    private val binding: WidgetStatisticsGameDayBinding = DataBindingUtil.inflate(
+    private val binding: WidgetStatisticsGameRulesBinding = DataBindingUtil.inflate(
         context.layoutInflater,
-        R.layout.widget_statistics_game_day,
+        R.layout.widget_statistics_game_rules,
         this,
         true
     )
 
-    fun setGameDayStatistics(gameDayStatisticsData: GameDayStatisticsData?) {
-        if (gameDayStatisticsData == null || gameDayStatisticsData.gameDays.isNullOrEmpty()) {
-            binding.statisticsGameDayChart.apply {
+    fun setGameRulesStatistics(gameRulesStatisticsData: GameRulesStatisticsData?) {
+        if (gameRulesStatisticsData == null || gameRulesStatisticsData.noGamesPlayed) {
+            binding.statisticsGameRulesChart.apply {
                 setNoDataText(context.getString(R.string.statistics_player_no_data_available))
                 data = null
                 invalidate()
             }
         } else {
-            binding.statisticsGameDayChart.apply {
+            binding.statisticsGameRulesChart.apply {
                 val entries: ArrayList<BarEntry> = ArrayList()
 
-                gameDayStatisticsData.gameDays.forEach { entry ->
-                    entries.add(BarEntry(entry.key.value.toFloat(), entry.value.toFloat()))
-                }
+                entries.add(
+                    BarEntry(
+                        TIPS_EQUAL_STITCHES_X_ENTRY.toFloat(),
+                        gameRulesStatisticsData.tipsEqualStitches.toFloat()
+                    )
+                )
+                entries.add(
+                    BarEntry(
+                        TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY.toFloat(),
+                        gameRulesStatisticsData.tipsEqualStitchesFirstRound.toFloat()
+                    )
+                )
+                entries.add(
+                    BarEntry(
+                        ANNIVERSARY_VERSION_X_ENTRY.toFloat(),
+                        gameRulesStatisticsData.anniversaryVersion.toFloat()
+                    )
+                )
+
                 val barDataSet = BarDataSet(entries, "").apply {
                     //Changing the color of the bar
                     color = ContextCompat.getColor(context, R.color.color_primary)
@@ -63,7 +80,11 @@ class GameDayStatisticsView @JvmOverloads constructor(
                 setData(data)
 
                 marker = WizardMarkerView(context) {
-                    DayOfWeek.of(it).getDisplayName(TextStyle.FULL, Locale.getDefault())
+                    when (it) {
+                        TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_tooltip)
+                        TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_first_round_tooltip)
+                        else -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip)
+                    }
                 }
 
                 //hiding the grey background of the chart, default false if not set
@@ -94,7 +115,11 @@ class GameDayStatisticsView @JvmOverloads constructor(
                     setDrawGridLines(false)
                     valueFormatter = object : ValueFormatter() {
                         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                            return DayOfWeek.of(value.toInt()).getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                            return when (value.toInt()) {
+                                TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_x_label)
+                                TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_first_round_x_label)
+                                else -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_x_label)
+                            }
                         }
                     }
                     textColor = context.getColorReference(R.attr.colorOnBackground)
@@ -108,7 +133,11 @@ class GameDayStatisticsView @JvmOverloads constructor(
                     setDrawAxisLine(false)
                     granularity = 1f
                     axisMinimum = 0.0f
-                    axisMaximum = gameDayStatisticsData.gameDays.values.maxOf { it }.toFloat()
+                    axisMaximum = listOf(
+                        gameRulesStatisticsData.tipsEqualStitches,
+                        gameRulesStatisticsData.tipsEqualStitchesFirstRound,
+                        gameRulesStatisticsData.anniversaryVersion
+                    ).maxOf { it }.takeIf { it > 0 }?.toFloat() ?: 1f
                     textColor = context.getColorReference(R.attr.colorOnBackground)
 
                 }

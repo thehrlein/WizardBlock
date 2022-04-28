@@ -168,5 +168,13 @@
     <string name="statistics_clear_all_dialog_title">Clear statistics</string>
     <string name="statistics_clear_all_dialog_message">Do you really want to reset all statistics?\n\nAttention: All your saved games will also be deleted!</string>
     <string name="statistics_game_day_headline">Game days</string>
+    <string name="statistics_game_rules_headline">Game rules</string>
+    <string name="statistics_game_rules_tips_equal_stitches_x_label">T = S</string>
+    <string name="statistics_game_rules_tips_equal_stitches_tooltip">Tips equal stitches</string>
+    <string name="statistics_game_rules_tips_equal_stitches_first_round_x_label">T = S 1. R</string>
+    <string name="statistics_game_rules_tips_equal_stitches_first_round_tooltip">Tips equal stitches 1. round</string>
+    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_x_label">Anniversary</string>
+    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip">Anniversary option</string>
+
 
 </resources>

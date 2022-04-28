@@ -71,6 +71,15 @@
                     app:gameDayStatistics="@{viewModel.gameDayStatisticsData}"
                     app:layout_constraintTop_toBottomOf="@id/statistics_player_count_chart" />
 
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.GameRulesStatisticsView
+                    android:id="@+id/statistics_game_rules_chart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:gameRulesStatistics="@{viewModel.gameRulesStatisticsData}"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_game_day_chart" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>

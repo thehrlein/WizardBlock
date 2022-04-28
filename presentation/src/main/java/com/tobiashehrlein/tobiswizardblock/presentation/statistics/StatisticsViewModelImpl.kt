@@ -3,15 +3,18 @@ package com.tobiashehrlein.tobiswizardblock.presentation.statistics
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.ClearStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGameDayStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGameRulesStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGamesPlayedCountStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
@@ -19,7 +22,6 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetTopP
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private const val NO_GAMES_FINISHED = 0
 private const val STATISTICS_LOADING_DELAY: Long = 500
 
 class StatisticsViewModelImpl(
@@ -28,6 +30,7 @@ class StatisticsViewModelImpl(
     private val getTopPointsStatisticsUseCase: GetTopPointsStatisticsUseCase,
     private val getGamesPlayedCountStatisticsUseCase: GetGamesPlayedCountStatisticsUseCase,
     private val getGameDayStatisticsUseCase: GetGameDayStatisticsUseCase,
+    private val getGameRulesStatisticsUseCase: GetGameRulesStatisticsUseCase,
     private val clearStatisticsUseCase: ClearStatisticsUseCase
 ) : StatisticsViewModel() {
 
@@ -37,42 +40,9 @@ class StatisticsViewModelImpl(
     override val topPointsStatisticsData = MutableLiveData<List<TopPointsStatisticsData>>()
     override val gamesPlayedCountStatistics = MutableLiveData<Int>()
     override val gameDayStatisticsData = MutableLiveData<GameDayStatisticsData>()
-    override val anyStatisticsAvailable = MediatorLiveData<Boolean>().also { mediator ->
-        mediator.addSource(mostWinStatisticsData) {
-            mediator.value = it.isNotEmpty() ||
-                    playerCountStatistics.value.isNullOrEmpty().not() ||
-                    topPointsStatisticsData.value.isNullOrEmpty().not() ||
-                    (gamesPlayedCountStatistics.value != null && gamesPlayedCountStatistics.value != NO_GAMES_FINISHED) ||
-                    gameDayStatisticsData.value != null
-        }
-        mediator.addSource(playerCountStatistics) {
-            mediator.value = it.isNotEmpty() ||
-                    mostWinStatisticsData.value.isNullOrEmpty().not() ||
-                    topPointsStatisticsData.value.isNullOrEmpty().not() ||
-                    (gamesPlayedCountStatistics.value != null && gamesPlayedCountStatistics.value != NO_GAMES_FINISHED) ||
-                    gameDayStatisticsData.value != null
-        }
-        mediator.addSource(topPointsStatisticsData) {
-            mediator.value = it.isNotEmpty() ||
-                    mostWinStatisticsData.value.isNullOrEmpty().not() ||
-                    playerCountStatistics.value.isNullOrEmpty().not() ||
-                    (gamesPlayedCountStatistics.value != null && gamesPlayedCountStatistics.value != NO_GAMES_FINISHED) ||
-                    gameDayStatisticsData.value != null
-        }
-        mediator.addSource(gamesPlayedCountStatistics) {
-            mediator.value = (it != null && it != NO_GAMES_FINISHED) ||
-                    mostWinStatisticsData.value.isNullOrEmpty().not() ||
-                    playerCountStatistics.value.isNullOrEmpty().not() ||
-                    topPointsStatisticsData.value.isNullOrEmpty().not() ||
-                    gameDayStatisticsData.value != null
-        }
-        mediator.addSource(gameDayStatisticsData) {
-            mediator.value = it != null ||
-                    mostWinStatisticsData.value.isNullOrEmpty().not() ||
-                    playerCountStatistics.value.isNullOrEmpty().not() ||
-                    topPointsStatisticsData.value.isNullOrEmpty().not() ||
-                    (gamesPlayedCountStatistics.value != null && gamesPlayedCountStatistics.value != NO_GAMES_FINISHED)
-        }
+    override val gameRulesStatisticsData = MutableLiveData<GameRulesStatisticsData>()
+    override val anyStatisticsAvailable = playerCountStatistics.map {
+        it.isNotEmpty()
     }
 
     init {
@@ -87,6 +57,7 @@ class StatisticsViewModelImpl(
             getTopPoints()
             getGamesPlayed()
             getGameDayStatistics()
+            getGameRulesStatistics()
             delay(STATISTICS_LOADING_DELAY)
             showLoading.value = false
         }
@@ -132,6 +103,15 @@ class StatisticsViewModelImpl(
         viewModelScope.launch {
             when (val result = getGameDayStatisticsUseCase.invoke()) {
                 is AppResult.Success -> gameDayStatisticsData.value = result.value
+                is AppResult.Error -> Unit
+            }
+        }
+    }
+
+    private fun getGameRulesStatistics() {
+        viewModelScope.launch {
+            when (val result = getGameRulesStatisticsUseCase.invoke()) {
+                is AppResult.Success -> gameRulesStatisticsData.value = result.value
                 is AppResult.Error -> Unit
             }
         }

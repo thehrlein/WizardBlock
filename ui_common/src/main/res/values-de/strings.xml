@@ -146,6 +146,13 @@
     <string name="statistics_clear_all_dialog_title">Statistiken löschen</string>
     <string name="statistics_clear_all_dialog_message">Möchtest du wirklich alle Statistiken zurücksetzen?\n\nAchtung: Auch all deine gespeicherten Spiele werden hierbei gelöscht!</string>
     <string name="statistics_game_day_headline">Spieltage</string>
+    <string name="statistics_game_rules_headline">Spielregeln</string>
+    <string name="statistics_game_rules_tips_equal_stitches_x_label">T = S</string>
+    <string name="statistics_game_rules_tips_equal_stitches_tooltip">Tipps gleich Stiche</string>
+    <string name="statistics_game_rules_tips_equal_stitches_first_round_x_label">T = S 1. R</string>
+    <string name="statistics_game_rules_tips_equal_stitches_first_round_tooltip">Tipps gleich Stiche 1. Runde</string>
+    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_x_label">Jubiläum</string>
+    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip">Jubiläumsversion</string>
 
 
 </resources>
