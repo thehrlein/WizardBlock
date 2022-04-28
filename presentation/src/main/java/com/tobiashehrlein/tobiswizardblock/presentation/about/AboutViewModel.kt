@@ -11,10 +11,8 @@ abstract class AboutViewModel : BaseToolbarViewModelImpl() {
     abstract val openMovieBase: LiveData<Unit>
 
     abstract fun onFabClicked()
-
     abstract fun onWizardBlockClicked()
-
     abstract fun onFahrstuhlBlockClicked()
-
     abstract fun onMovieBaseClicked()
+    abstract fun trackOpenStoreEvent(packageName: String)
 }

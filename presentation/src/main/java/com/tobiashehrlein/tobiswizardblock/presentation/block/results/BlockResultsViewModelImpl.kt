@@ -16,12 +16,15 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.GetGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.StoreRoundUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.GetBlockResultsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.GetGameScoresUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.RemoveRoundUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.StoreGameFinishedUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.presentation.general.SingleLiveEvent
@@ -36,7 +39,8 @@ class BlockResultsViewModelImpl(
     private val storeGameFinishedUseCase: StoreGameFinishedUseCase,
     private val storeRoundUseCase: StoreRoundUseCase,
     private val removeRoundUseCase: RemoveRoundUseCase,
-    private val isShowTrumpDialogEnabledUseCase: IsShowTrumpDialogEnabledUseCase
+    private val isShowTrumpDialogEnabledUseCase: IsShowTrumpDialogEnabledUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 ) : BlockResultsViewModel() {
 
     private val game = MutableLiveData<Game>()
@@ -64,7 +68,7 @@ class BlockResultsViewModelImpl(
     }
     override val columnCount = MutableLiveData<Int>()
     override val blockItems = MutableLiveData<List<BlockItem>>()
-    override val showGameFinishedEvent = SingleLiveEvent<Unit>()
+    override val showGameFinishedEvent = SingleLiveEvent<Int>()
     override val editInputEnabled = MediatorLiveData<Boolean>().also { mediator ->
         mediator.addSource(blockItems) {
             mediator.postValue(
@@ -154,14 +158,15 @@ class BlockResultsViewModelImpl(
     }
 
     private fun onGameFinished(results: List<GameScore>, onFinishedSuccess: (() -> Unit)? = null) {
-        showGameFinishedEvent.value = Unit
+        val winner = results.filter { it.position == WINNER_POSITION }
+        showGameFinishedEvent.value = winner.first().points
         viewModelScope.launch {
             val gameId = game.value?.gameInfo?.gameId ?: return@launch
             when (val result = storeGameFinishedUseCase.invoke(gameId)) {
                 is AppResult.Success -> {
                     navigateTo(
                         Page.Block.GameFinished(
-                            results.filter { it.position == WINNER_POSITION })
+                            winner)
                     )
                     onFinishedSuccess?.invoke()
                 }
@@ -222,8 +227,17 @@ class BlockResultsViewModelImpl(
                 is AppResult.Error -> Unit
             }
 
+            trackDeleteLastInput()
             navigateTo(Page.General.Loading.Hide)
         }
+    }
+
+    private suspend fun trackDeleteLastInput() {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = TrackingEvent.DELETE_LAST_INPUT
+            )
+        )
     }
 
     override fun showExitDialog() {

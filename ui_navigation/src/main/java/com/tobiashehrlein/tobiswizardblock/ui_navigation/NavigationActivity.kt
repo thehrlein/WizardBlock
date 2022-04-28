@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.tobiashehrlein.tobiswizardblock.presentation.navigation.NavigationViewModel
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.BaseActivity
+import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.isUsingDarkMode
 import com.tobiashehrlein.tobiswizardblock.ui_navigation.databinding.ActivityNavigationBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,5 +28,9 @@ class NavigationActivity : BaseActivity<NavigationViewModel, ActivityNavigationB
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        val isDarkMode = isUsingDarkMode()
+        val systemAppearance = getString(if (isDarkMode) R.string.tracking_user_property_system_appearance_dark else R.string.tracking_user_property_system_appearance_light)
+        viewModel.trackSystemAppearanceUserProperty(systemAppearance)
     }
 }

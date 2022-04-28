@@ -32,6 +32,7 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetGameSe
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetLastGameSettingsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.StoreGameInfoUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsUserPropertyUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.player.GetPlayerNamesUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveAllGamesFromSavedGamesUseCase
@@ -270,6 +271,11 @@ object Koin {
             )
         }
         factory {
+            TrackAnalyticsUserPropertyUseCase(
+                wizardRepository = get()
+            )
+        }
+        factory {
             GetDisplayAlwaysOnUseCase(
                 userRepository = get()
             )
@@ -318,7 +324,9 @@ object Koin {
 
     private val viewModel = module {
         viewModel<NavigationViewModel> {
-            NavigationViewModelImpl()
+            NavigationViewModelImpl(
+                trackAnalyticsUserPropertyUseCase = get()
+            )
         }
         viewModel<GameSettingsViewModel> {
             GameSettingsViewModelImpl(
@@ -336,7 +344,8 @@ object Koin {
         viewModel<GameRulesViewModel> {
             GameRulesViewModelImpl(
                 storeGameInfoUseCase = get(),
-                getGameNameOptionsUseCase = get()
+                getGameNameOptionsUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<GameBlockViewModel> { (gameId: Long) ->
@@ -353,7 +362,8 @@ object Koin {
                 storeGameFinishedUseCase = get(),
                 storeRoundUseCase = get(),
                 removeRoundUseCase = get(),
-                isShowTrumpDialogEnabledUseCase = get()
+                isShowTrumpDialogEnabledUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<BlockInputViewModel> { (gameId: Long) ->
@@ -373,7 +383,9 @@ object Koin {
             BlockScoresViewModelImpl()
         }
         viewModel<AboutViewModel> {
-            AboutViewModelImpl()
+            AboutViewModelImpl(
+                trackAnalyticsEventUseCase = get()
+            )
         }
         viewModel<BlockTrumpViewModel> { (selectedTrumpType: TrumpType) ->
             BlockTrumpViewModelImpl(
@@ -386,7 +398,8 @@ object Koin {
             SavedGamesViewModelImpl(
                 getAllSavedGamesUseCase = get(),
                 removeGameFromSavedGameUseCase = get(),
-                removeAllGamesFromSavedGamesUseCase = get()
+                removeAllGamesFromSavedGamesUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<SavedGamesInfoViewModel> { (gameSettings: GameSettings) ->
@@ -397,7 +410,8 @@ object Koin {
         viewModel<SettingsViewModel> {
             SettingsViewModelImpl(
                 getDisplayAlwaysOnUseCase = get(),
-                setDisplayAlwaysOnUseCase = get()
+                setDisplayAlwaysOnUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<StatisticsViewModel> {
@@ -408,7 +422,8 @@ object Koin {
                 getGamesPlayedCountStatisticsUseCase = get(),
                 getGameDayStatisticsUseCase = get(),
                 getGameRulesStatisticsUseCase = get(),
-                clearStatisticsUseCase = get()
+                clearStatisticsUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
     }

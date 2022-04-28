@@ -4,6 +4,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDisplayAlwaysOnUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
@@ -12,8 +16,9 @@ import kotlinx.coroutines.launch
 
 class SettingsViewModelImpl(
     private val getDisplayAlwaysOnUseCase: GetDisplayAlwaysOnUseCase,
-    private val setDisplayAlwaysOnUseCase: SetDisplayAlwaysOnUseCase
-): SettingsViewModel() {
+    private val setDisplayAlwaysOnUseCase: SetDisplayAlwaysOnUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
+) : SettingsViewModel() {
 
     override val displayAlwaysOn = getDisplayAlwaysOnUseCase.invoke().map {
         when (it) {
@@ -29,9 +34,20 @@ class SettingsViewModelImpl(
     override fun onDisplayAlwaysOnChecked(alwaysOn: Boolean) {
         viewModelScope.launch {
             when (val result = setDisplayAlwaysOnUseCase.invoke(alwaysOn)) {
-                is AppResult.Success -> Unit
+                is AppResult.Success -> trackDisplayAlwaysOnEvent(alwaysOn)
                 is AppResult.Error -> Unit
             }
         }
+    }
+
+    private suspend fun trackDisplayAlwaysOnEvent(alwaysOn: Boolean) {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = TrackingEvent.DISPLAY_ALWAYS_ON,
+                params = mapOf(
+                    TrackingParam.ALWAYS_ON to alwaysOn
+                )
+            )
+        )
     }
 }

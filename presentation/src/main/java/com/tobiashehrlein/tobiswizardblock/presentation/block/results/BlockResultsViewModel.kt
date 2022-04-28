@@ -13,7 +13,7 @@ abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsI
     abstract val gameFinished: LiveData<Boolean>
     abstract val columnCount: LiveData<Int>
     abstract val blockItems: LiveData<List<BlockItem>>
-    abstract val showGameFinishedEvent: LiveData<Unit>
+    abstract val showGameFinishedEvent: LiveData<Int>
     abstract val editInputEnabled: LiveData<Boolean>
     abstract val finishManuallyEnabled :LiveData<Boolean>
 

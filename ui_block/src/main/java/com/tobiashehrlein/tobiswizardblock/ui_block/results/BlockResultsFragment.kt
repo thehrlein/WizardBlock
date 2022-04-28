@@ -75,7 +75,7 @@ class BlockResultsFragment :
         viewModel.finishManuallyEnabled.observe(viewLifecycleOwner) {
             requireActivity().invalidateOptionsMenu()
         }
-        viewModel.showGameFinishedEvent.observe(viewLifecycleOwner) {
+        viewModel.showGameFinishedEvent.observe(viewLifecycleOwner) { points ->
             binding.gameBlockKonfetti.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                 .setDirection(KONFETTI_MIN_DEGREES, KONFETTI_MAX_DEGREES)
@@ -107,7 +107,7 @@ class BlockResultsFragment :
                     }
             }
 
-            activityToolbarViewModel.trackGameFinished()
+            activityToolbarViewModel.trackGameFinished(points)
 
             requireActivity().invalidateOptionsMenu()
         }

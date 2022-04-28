@@ -9,4 +9,5 @@ abstract class NavigationViewModel : BaseViewModelImpl() {
     abstract fun onInfoClicked()
     abstract fun onSettingsClicked()
     abstract fun onStatisticsClicked()
+    abstract fun trackSystemAppearanceUserProperty(systemAppearance: String)
 }

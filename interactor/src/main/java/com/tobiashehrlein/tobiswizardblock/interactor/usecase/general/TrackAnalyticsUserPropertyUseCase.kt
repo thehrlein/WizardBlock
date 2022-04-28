@@ -1,15 +1,15 @@
 package com.tobiashehrlein.tobiswizardblock.interactor.usecase.general
 
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockUserProperty
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.WizardRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.BaseUseCase
 
-class TrackAnalyticsEventUseCase(
+class TrackAnalyticsUserPropertyUseCase(
     private val wizardRepository: WizardRepository
-) : BaseUseCase<WizardBlockTrackingEvent, Unit>() {
+) : BaseUseCase<WizardBlockUserProperty, Unit>() {
 
-    override suspend fun execute(parameters: WizardBlockTrackingEvent): AppResult<Unit> {
-        return wizardRepository.trackAnalyticsEvent(parameters)
+    override suspend fun execute(parameters: WizardBlockUserProperty): AppResult<Unit> {
+        return wizardRepository.trackAnalyticsUserProperty(parameters)
     }
 }

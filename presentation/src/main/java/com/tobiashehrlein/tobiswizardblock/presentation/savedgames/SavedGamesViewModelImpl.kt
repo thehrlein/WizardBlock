@@ -7,6 +7,9 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
 import com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveAllGamesFromSavedGamesUseCase
@@ -16,7 +19,8 @@ import kotlinx.coroutines.launch
 class SavedGamesViewModelImpl(
     private val getAllSavedGamesUseCase: GetAllSavedGamesUseCase,
     private val removeGameFromSavedGameUseCase: RemoveGameFromSavedGameUseCase,
-    private val removeAllGamesFromSavedGamesUseCase: RemoveAllGamesFromSavedGamesUseCase
+    private val removeAllGamesFromSavedGamesUseCase: RemoveAllGamesFromSavedGamesUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 ) : SavedGamesViewModel() {
 
     override val loading = MutableLiveData(true)
@@ -62,8 +66,17 @@ class SavedGamesViewModelImpl(
             viewModelScope.launch {
                 removeGameFromSavedGameUseCase.invoke(it)
                 getAllSavedGames()
+                trackGameDeleted(TrackingEvent.GAME_DELETED)
             }
         }
+    }
+
+    private suspend fun trackGameDeleted(gameDeletedEvent: TrackingEvent) {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = gameDeletedEvent
+            )
+        )
     }
 
     override fun onSavedGameClicked(gameId: Long) {
@@ -81,7 +94,10 @@ class SavedGamesViewModelImpl(
     override fun onDeleteGamesConfirmed() {
         viewModelScope.launch {
             when (val result = removeAllGamesFromSavedGamesUseCase.invoke()) {
-                is AppResult.Success -> getAllSavedGames()
+                is AppResult.Success -> {
+                    trackGameDeleted(TrackingEvent.ALL_GAMES_DELETED)
+                    getAllSavedGames()
+                }
                 is AppResult.Error -> Unit
             }
         }

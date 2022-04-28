@@ -11,6 +11,9 @@ import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatistics
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.ClearStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGameDayStatisticsUseCase
@@ -31,7 +34,8 @@ class StatisticsViewModelImpl(
     private val getGamesPlayedCountStatisticsUseCase: GetGamesPlayedCountStatisticsUseCase,
     private val getGameDayStatisticsUseCase: GetGameDayStatisticsUseCase,
     private val getGameRulesStatisticsUseCase: GetGameRulesStatisticsUseCase,
-    private val clearStatisticsUseCase: ClearStatisticsUseCase
+    private val clearStatisticsUseCase: ClearStatisticsUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 ) : StatisticsViewModel() {
 
     override val showLoading = MutableLiveData<Boolean>()
@@ -124,9 +128,20 @@ class StatisticsViewModelImpl(
     override fun onClearStatisticsConfirmed() {
         viewModelScope.launch {
             when (val result = clearStatisticsUseCase.invoke()) {
-                is AppResult.Success -> getStatistics()
+                is AppResult.Success -> {
+                    trackStatisticsCleared()
+                    getStatistics()
+                }
                 is AppResult.Error -> Unit
             }
         }
+    }
+
+    private suspend fun trackStatisticsCleared() {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = TrackingEvent.STATISTICS_CLEARED
+            )
+        )
     }
 }
