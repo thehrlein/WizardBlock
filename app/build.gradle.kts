@@ -20,11 +20,11 @@ val buildNumber = Integer.parseInt(
 android {
     compileSdk = AndroidSdkTools.compileSdk
     defaultConfig {
-        applicationId = AndroidSdkTools.application_id
+        applicationId = AndroidSdkTools.applicationId
         minSdk = AndroidSdkTools.minSdk
         targetSdk = AndroidSdkTools.targetSdk
         versionCode = buildNumber
-        versionName = AndroidSdkTools.version_name
+        versionName = AndroidSdkTools.versionName
         testInstrumentationRunner = Others.ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER
     }
 

@@ -195,8 +195,8 @@ object AndroidSdkTools {
     const val minSdk = 24
     const val targetSdk = 30
     const val compileSdk = 31
-    const val version_name = "3.0.0"
-    const val application_id = "com.tobiashehrlein.tobiswizardblock"
+    const val versionName = "3.0.0"
+    const val applicationId = "com.tobiashehrlein.tobiswizardblock"
 }
 
 object Others {

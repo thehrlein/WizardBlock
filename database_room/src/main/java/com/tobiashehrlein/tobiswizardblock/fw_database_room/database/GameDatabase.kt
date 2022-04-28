@@ -18,7 +18,7 @@ import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbGam
         DbGameInfo::class,
         DbGameRound::class
     ],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(
