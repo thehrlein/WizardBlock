@@ -22,7 +22,7 @@ interface GameDao {
     fun getGameInfo(gameId: Long): DbGameInfo
 
     @Query("SELECT * FROM GAME_DATABASE")
-    fun getAllGameInfo() : List<DbGameInfo>?
+    fun getAllGameInfo() : List<DbGameInfo>
 
     @Query("SELECT * FROM GAME_DATABASE ORDER BY gameId DESC LIMIT 1")
     fun getLastGameInfo(): DbGameInfo?

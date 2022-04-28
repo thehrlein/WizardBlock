@@ -20,6 +20,8 @@ interface GameCache {
 
     suspend fun getGame(gameId: Long): AppResult<Game>
 
+    suspend fun getAllPlayerNames(): AppResult<Set<String>>
+
     suspend fun insertRound(insertRoundData: InsertRoundData): AppResult<Unit>
 
     suspend fun removeRound(deleteRoundData: DeleteRoundData): AppResult<Unit>

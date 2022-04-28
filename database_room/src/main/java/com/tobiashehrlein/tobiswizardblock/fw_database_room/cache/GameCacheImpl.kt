@@ -49,6 +49,14 @@ class GameCacheImpl(
             }
         }
 
+    override suspend fun getAllPlayerNames(): AppResult<Set<String>> = withContext(Dispatchers.IO) {
+        safeCall {
+            gameDao.getAllGameInfo().flatMap {
+                it.players
+            }.toSet()
+        }
+    }
+
     override suspend fun insertRound(insertRoundData: InsertRoundData): AppResult<Unit> =
         withContext(Dispatchers.IO) {
             safeCall {

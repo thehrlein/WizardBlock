@@ -102,7 +102,6 @@ object Koin {
         // repositories
         single<GameSettingsRepository> {
             GameSettingsRepositoryImpl(
-                playerCache = get(),
                 gameCache = get()
             )
         }

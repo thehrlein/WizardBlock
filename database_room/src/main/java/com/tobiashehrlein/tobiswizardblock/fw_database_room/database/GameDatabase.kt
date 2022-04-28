@@ -6,18 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.GameDao
-import com.tobiashehrlein.tobiswizardblock.fw_database_room.dao.PlayerDao
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.classes.DbGameRound
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerListConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerResultDataListConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbPlayerTipDataListConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.converter.DbTrumpTypeConverter
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbGameInfo
-import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbPlayer
 
 @Database(
     entities = [
-        DbPlayer::class,
         DbGameInfo::class,
         DbGameRound::class
     ],
@@ -34,7 +31,6 @@ import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.entities.DbPla
 )
 abstract class GameDatabase : RoomDatabase() {
 
-    abstract fun playerDao(): PlayerDao
     abstract fun gameDao(): GameDao
 
     companion object {
