@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.model.classes.DbPlayerTipData
 import java.lang.reflect.Type
 
-class DbPlayerTippDataListConverter {
+class DbPlayerTipDataListConverter {
 
     @TypeConverter
     fun fromString(value: String?): List<DbPlayerTipData>? {

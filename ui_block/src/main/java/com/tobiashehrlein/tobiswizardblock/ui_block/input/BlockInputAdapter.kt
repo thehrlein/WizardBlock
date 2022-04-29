@@ -39,8 +39,11 @@ object BockInputDiff : DiffUtil.ItemCallback<InputDataItem>() {
 
     override fun areContentsTheSame(oldItem: InputDataItem, newItem: InputDataItem): Boolean {
         return oldItem.player == newItem.player &&
-            oldItem.cards == newItem.cards &&
-            oldItem.currentRound == newItem.currentRound &&
-            oldItem.type == newItem.type
+                oldItem.cards == newItem.cards &&
+                oldItem.currentRound == newItem.currentRound &&
+                oldItem.type == newItem.type &&
+                oldItem.userInput == newItem.userInput &&
+                oldItem.isDealer == newItem.isDealer &&
+                oldItem.cloudCardPlayed == newItem.cloudCardPlayed
     }
 }

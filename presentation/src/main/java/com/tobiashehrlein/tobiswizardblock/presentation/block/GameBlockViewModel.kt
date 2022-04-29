@@ -7,5 +7,5 @@ abstract class GameBlockViewModel : BaseToolbarViewModelImpl() {
     abstract val gameId: LiveData<Long>
 
     abstract fun openMenu()
-    abstract fun trackGameFinished()
+    abstract fun trackGameFinished(points: Int)
 }

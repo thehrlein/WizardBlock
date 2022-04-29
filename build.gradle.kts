@@ -29,8 +29,10 @@ buildscript {
         jcenter()
         mavenCentral()
         google()
+        maven("https://www.jitpack.io")
     }
     dependencies {
+
         classpath(Classpaths.androidGradlePlugin)
         classpath(Classpaths.kotlinGradlePlugin)
         classpath(Classpaths.gradleUpdate)
@@ -48,6 +50,7 @@ allprojects {
         jcenter()
         mavenCentral()
         google()
+        maven("https://www.jitpack.io")
     }
 }
 
@@ -90,9 +93,11 @@ subprojects {
                         testInstrumentationRunnerArguments["clearPackageData"] = "true"
                         // possibility to colorize vector drawable in xml based on color resources (< API 24)
                         vectorDrawables.useSupportLibrary = true
+
                     }
 
                     compileOptions {
+                        isCoreLibraryDesugaringEnabled = true
                         sourceCompatibility = JavaVersion.VERSION_1_8
                         targetCompatibility = JavaVersion.VERSION_1_8
                     }
@@ -100,7 +105,7 @@ subprojects {
                     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
                         kotlinOptions {
                             jvmTarget = Others.JVM_TARGET
-                            freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+                            freeCompilerArgs = freeCompilerArgs + "-opt-in=kotlin.RequiresOptIn"
                         }
                     }
                 }

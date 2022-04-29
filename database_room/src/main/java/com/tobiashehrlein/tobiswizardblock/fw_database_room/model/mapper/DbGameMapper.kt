@@ -20,8 +20,9 @@ fun GameInfo.mapToDbData() = DbGameInfo(
     gameStartDate = gameStartDate,
     players = players,
     gameName = gameName,
-    gameSettings.mapToDbData(),
-    gameFinished = gameFinished
+    gameSettings =gameSettings.mapToDbData(),
+    gameFinished = gameFinished,
+    removedFromSavedGames = false
 )
 
 fun DbGameInfo.mapToEntity() = GameInfo(
@@ -62,12 +63,14 @@ fun DbGameRound.mapToEntity() = GameRound(
 
 fun PlayerTipData.mapToDbData() = DbPlayerTipData(
     playerName = playerName,
-    tipp = tip
+    tip = tip,
+    correctedCauseOfCloudCard = correctedCauseOfCloudCard
 )
 
 fun DbPlayerTipData.mapToEntity() = PlayerTipData(
     playerName = playerName,
-    tip = tipp
+    tip = tip,
+    correctedCauseOfCloudCard = correctedCauseOfCloudCard
 )
 
 fun PlayerResultData.mapToDbData() = DbPlayerResultData(

@@ -8,12 +8,14 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
 import com.tobiashehrlein.tobiswizardblock.fw_database_room.databaseModule
+import com.tobiashehrlein.tobiswizardblock.interactor.datasource.datastore.SettingsDataStore
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.firebase.AnalyticsDatasource
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.BlockInputProcessor
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.processor.BlockResultsProcessor
 import com.tobiashehrlein.tobiswizardblock.interactor.datasource.sharedpref.UserSettingsPersistence
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.GameRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.GameSettingsRepository
+import com.tobiashehrlein.tobiswizardblock.interactor.repository.StatisticsRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.UserRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.repository.WizardRepository
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.GetGameUseCase
@@ -30,10 +32,20 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetGameSe
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetLastGameSettingsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.StoreGameInfoUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsUserPropertyUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.player.GetPlayerNamesUseCase
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteAllSavedGamesUseCase
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteSavedGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveAllGamesFromSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveGameFromSavedGameUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.GetDisplayAlwaysOnUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.settings.SetDisplayAlwaysOnUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.ClearStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGameDayStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGameRulesStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetGamesPlayedCountStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetMostWinsStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetPlayerCountStatisticsUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.statistics.GetTopPointsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.SetShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.navigation.PageNavigatorImpl
@@ -65,12 +77,18 @@ import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.SavedGamesVie
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.SavedGamesViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGamesInfoViewModel
 import com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGamesInfoViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.presentation.settings.SettingsViewModel
+import com.tobiashehrlein.tobiswizardblock.presentation.settings.SettingsViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.presentation.statistics.StatisticsViewModel
+import com.tobiashehrlein.tobiswizardblock.presentation.statistics.StatisticsViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.repositories.datasource.datastore.WizardDataStoreImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.firebase.FirebaseDatasourceImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockInputProcessorImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockResultsProcessorImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.datasource.sharedpref.WizardBlockSharedPreferences
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.GameRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.GameSettingsRepositoryImpl
+import com.tobiashehrlein.tobiswizardblock.repositories.repository.StatisticsRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.UserRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.repositories.repository.WizardRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.ResourceHelper
@@ -85,7 +103,6 @@ object Koin {
         // repositories
         single<GameSettingsRepository> {
             GameSettingsRepositoryImpl(
-                playerCache = get(),
                 gameCache = get()
             )
         }
@@ -98,12 +115,18 @@ object Koin {
         }
         single<UserRepository> {
             UserRepositoryImpl(
-                userSettingsPersistence = get()
+                userSettingsPersistence = get(),
+                settingsDataStore = get()
             )
         }
         single<WizardRepository> {
             WizardRepositoryImpl(
                 analyticsDatasource = get()
+            )
+        }
+        single<StatisticsRepository> {
+            StatisticsRepositoryImpl(
+                gameCache = get()
             )
         }
 
@@ -126,6 +149,11 @@ object Koin {
                 firebaseAnalytics = get()
             )
         } binds (arrayOf(AnalyticsDatasource::class))
+        single {
+            WizardDataStoreImpl(
+                context = get()
+            )
+        } binds (arrayOf(SettingsDataStore::class))
 
         // other
         single { Firebase.analytics }
@@ -218,12 +246,12 @@ object Koin {
             )
         }
         factory {
-            DeleteSavedGameUseCase(
+            RemoveGameFromSavedGameUseCase(
                 gameRepository = get()
             )
         }
         factory {
-            DeleteAllSavedGamesUseCase(
+            RemoveAllGamesFromSavedGamesUseCase(
                 gameRepository = get()
             )
         }
@@ -242,11 +270,63 @@ object Koin {
                 wizardRepository = get()
             )
         }
+        factory {
+            TrackAnalyticsUserPropertyUseCase(
+                wizardRepository = get()
+            )
+        }
+        factory {
+            GetDisplayAlwaysOnUseCase(
+                userRepository = get()
+            )
+        }
+        factory {
+            SetDisplayAlwaysOnUseCase(
+                userRepository = get()
+            )
+        }
+        factory {
+            GetMostWinsStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            GetPlayerCountStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            GetTopPointsStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            GetGamesPlayedCountStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            ClearStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            GetGameDayStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
+        factory {
+            GetGameRulesStatisticsUseCase(
+                statisticsRepository = get()
+            )
+        }
     }
 
     private val viewModel = module {
         viewModel<NavigationViewModel> {
-            NavigationViewModelImpl()
+            NavigationViewModelImpl(
+                trackAnalyticsUserPropertyUseCase = get()
+            )
         }
         viewModel<GameSettingsViewModel> {
             GameSettingsViewModelImpl(
@@ -264,7 +344,8 @@ object Koin {
         viewModel<GameRulesViewModel> {
             GameRulesViewModelImpl(
                 storeGameInfoUseCase = get(),
-                getGameNameOptionsUseCase = get()
+                getGameNameOptionsUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<GameBlockViewModel> { (gameId: Long) ->
@@ -281,7 +362,8 @@ object Koin {
                 storeGameFinishedUseCase = get(),
                 storeRoundUseCase = get(),
                 removeRoundUseCase = get(),
-                isShowTrumpDialogEnabledUseCase = get()
+                isShowTrumpDialogEnabledUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<BlockInputViewModel> { (gameId: Long) ->
@@ -301,7 +383,9 @@ object Koin {
             BlockScoresViewModelImpl()
         }
         viewModel<AboutViewModel> {
-            AboutViewModelImpl()
+            AboutViewModelImpl(
+                trackAnalyticsEventUseCase = get()
+            )
         }
         viewModel<BlockTrumpViewModel> { (selectedTrumpType: TrumpType) ->
             BlockTrumpViewModelImpl(
@@ -313,13 +397,33 @@ object Koin {
         viewModel<SavedGamesViewModel> {
             SavedGamesViewModelImpl(
                 getAllSavedGamesUseCase = get(),
-                deleteSavedGameUseCase = get(),
-                deleteAllSavedGamesUseCase = get()
+                removeGameFromSavedGameUseCase = get(),
+                removeAllGamesFromSavedGamesUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
         viewModel<SavedGamesInfoViewModel> { (gameSettings: GameSettings) ->
             SavedGamesInfoViewModelImpl(
                 gameSettings = gameSettings
+            )
+        }
+        viewModel<SettingsViewModel> {
+            SettingsViewModelImpl(
+                getDisplayAlwaysOnUseCase = get(),
+                setDisplayAlwaysOnUseCase = get(),
+                trackAnalyticsEventUseCase = get()
+            )
+        }
+        viewModel<StatisticsViewModel> {
+            StatisticsViewModelImpl(
+                getMostWinsStatisticsUseCase = get(),
+                getPlayerCountStatisticsUseCase = get(),
+                getTopPointsStatisticsUseCase = get(),
+                getGamesPlayedCountStatisticsUseCase = get(),
+                getGameDayStatisticsUseCase = get(),
+                getGameRulesStatisticsUseCase = get(),
+                clearStatisticsUseCase = get(),
+                trackAnalyticsEventUseCase = get()
             )
         }
     }

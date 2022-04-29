@@ -11,9 +11,12 @@ import androidx.activity.addCallback
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItem
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockName
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockPlaceholder
+import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockResult
+import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockRound
 import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.presentation.block.GameBlockViewModel
 import com.tobiashehrlein.tobiswizardblock.presentation.block.results.BlockResultsViewModel
@@ -33,6 +36,7 @@ import nl.dionsegijn.konfetti.models.Size
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+
 
 private const val KONFETTI_MIN_DEGREES = 0.0
 private const val KONFETTI_MAX_DEGREES = 360.0
@@ -59,7 +63,7 @@ class BlockResultsFragment :
         super.onBindingCreated(savedInstanceState)
 
         viewModel.gameName.observe(viewLifecycleOwner) {
-            activityToolbarViewModel.setTitle(getString(R.string.game_block_toolbar_title, it))
+            activityToolbarViewModel.setTitle(it)
         }
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.None)
         activityToolbarViewModel.gameId.observe(viewLifecycleOwner) {
@@ -68,7 +72,10 @@ class BlockResultsFragment :
         viewModel.editInputEnabled.observe(viewLifecycleOwner) {
             requireActivity().invalidateOptionsMenu()
         }
-        viewModel.showGameFinishedEvent.observe(viewLifecycleOwner) {
+        viewModel.finishManuallyEnabled.observe(viewLifecycleOwner) {
+            requireActivity().invalidateOptionsMenu()
+        }
+        viewModel.showGameFinishedEvent.observe(viewLifecycleOwner) { points ->
             binding.gameBlockKonfetti.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                 .setDirection(KONFETTI_MIN_DEGREES, KONFETTI_MAX_DEGREES)
@@ -100,7 +107,7 @@ class BlockResultsFragment :
                     }
             }
 
-            activityToolbarViewModel.trackGameFinished()
+            activityToolbarViewModel.trackGameFinished(points)
 
             requireActivity().invalidateOptionsMenu()
         }
@@ -138,7 +145,7 @@ class BlockResultsFragment :
                 addHeaderItems(headerItems)
                 setGridSize(columnCount, blockResultAdapter)
                 blockResultAdapter.submitList(gameItems)
-                binding.gameList.scrollToPosition(blockItems.size - 1)
+                binding.gameList.scrollToPosition(blockItems.count { it is BlockRound || it is BlockResult } - 1)
             }
         }
     }
@@ -199,7 +206,18 @@ class BlockResultsFragment :
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        menu.findItem(R.id.action_delete_input).isEnabled = viewModel.editInputEnabled.value == true
+        menu.findItem(R.id.action_delete_input).apply {
+            isEnabled = viewModel.editInputEnabled.value == true
+            title = getString(
+                if (viewModel.inputType.value == InputType.RESULT) {
+                    R.string.game_block_results_menu_delete_last_tip_input
+                } else {
+                    R.string.game_block_results_menu_delete_last_result_input
+                }
+            )
+        }
+
+        menu.findItem(R.id.action_finish_game).isEnabled = viewModel.finishManuallyEnabled.value == true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -209,11 +227,19 @@ class BlockResultsFragment :
                 true
             }
             R.id.action_delete_input -> {
-                viewModel.onDeleteInputClicked()
+                viewModel.onMenuDeleteInputClicked()
+                true
+            }
+            R.id.action_finish_game -> {
+                viewModel.finishGameManuallyClicked()
                 true
             }
             R.id.action_info -> {
-                viewModel.onInfoClicked()
+                viewModel.onMenuInfoClicked()
+                true
+            }
+            R.id.action_settings -> {
+                viewModel.onMenuSettingsClicked()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -226,12 +252,17 @@ class BlockResultsFragment :
                 when (resultCode) {
                     DialogResultCode.POSITIVE -> {
                         (
-                            data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
-                                DialogEntity.Custom.Trump
-                            )?.let {
-                            viewModel.updateTrumpType(it.selectedTrumpType)
-                        }
+                                data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
+                                        DialogEntity.Custom.Trump
+                                )?.let {
+                                viewModel.updateTrumpType(it.selectedTrumpType)
+                            }
                     }
+                }
+            }
+            DialogRequestCode.GAME_BLOCK_FINISH_MANUALLY -> {
+                when (resultCode) {
+                    DialogResultCode.POSITIVE -> viewModel.onFinishGameManuallyConfirmed()
                 }
             }
         }

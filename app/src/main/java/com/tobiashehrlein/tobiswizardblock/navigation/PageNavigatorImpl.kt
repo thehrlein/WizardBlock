@@ -22,6 +22,8 @@ import com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.Play
 import com.tobiashehrlein.tobiswizardblock.ui_navigation.NavigationActivity
 import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesActivity
 import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesInfoDialog
+import com.tobiashehrlein.tobiswizardblock.ui_settings.SettingsActivity
+import com.tobiashehrlein.tobiswizardblock.ui_statistics.StatisticsActivity
 
 class PageNavigatorImpl(
     private val activity: AppCompatActivity,
@@ -39,6 +41,8 @@ class PageNavigatorImpl(
             is Page.Block -> navigateTo(page)
             is Page.Input -> navigateTo(page)
             is Page.SavedGames -> navigateTo(page)
+            is Page.Settings -> navigateTo(page)
+            is Page.Statistics -> navigateTo(page)
         }.checkAllMatched
     }
 
@@ -57,6 +61,8 @@ class PageNavigatorImpl(
             is Page.Navigation.GameSettings -> GameSettingsActivity.start(activity)
             is Page.Navigation.LastGames -> SavedGamesActivity.start(activity)
             is Page.Navigation.Info -> AboutActivity.start(activity)
+            is Page.Navigation.Settings -> SettingsActivity.start(activity)
+            is Page.Navigation.Statistics -> StatisticsActivity.start(activity)
         }.checkAllMatched
     }
 
@@ -114,11 +120,16 @@ class PageNavigatorImpl(
                 activity.supportFragmentManager,
                 DialogEntity.Text.Exit(resourceHelper)
             )
+            is Page.Block.FinishManually -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.FinishGameManually(resourceHelper)
+            )
             is Page.Block.Menu -> NavigationActivity.start(activity)
             is Page.Block.Scores -> navHostController.navigateSafe(
                 BlockResultsFragmentDirections.actionBlockResultsFragmentToBlockScoresFragment(page.gameScoreData)
             )
             is Page.Block.About -> AboutActivity.start(activity)
+            is Page.Block.Settings -> SettingsActivity.start(activity)
             is Page.Block.Trump -> BlockTrumpDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.Trump(page.trumpType, resourceHelper)
@@ -139,6 +150,7 @@ class PageNavigatorImpl(
                 activity.supportFragmentManager,
                 DialogEntity.Text.InputInfo(
                     page.inputType,
+                    page.bombPlayed,
                     page.round,
                     page.gameSettings,
                     resourceHelper
@@ -149,6 +161,12 @@ class PageNavigatorImpl(
                 DialogEntity.Custom.CorrectTipsChoosePlayer(
                     page.playerTipData,
                     page.round,
+                    resourceHelper
+                )
+            )
+            is Page.Input.BombPlayed -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.BlockInputBombPlayed(
                     resourceHelper
                 )
             )
@@ -170,6 +188,24 @@ class PageNavigatorImpl(
             is Page.SavedGames.Delete -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.DeleteSavedGames(resourceHelper)
+            )
+        }.checkAllMatched
+    }
+
+    private fun navigateTo(page: Page.Settings) {
+        when (page) {
+            is Page.Settings.DialogDisplayAlwaysOn -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.SettingsDisplayAlwaysOn(resourceHelper)
+            )
+        }.checkAllMatched
+    }
+
+    private fun navigateTo(page: Page.Statistics) {
+        when (page) {
+            is Page.Statistics.Clear -> SimpleAlertDialogFragment.show(
+                activity.supportFragmentManager,
+                DialogEntity.Text.ClearStatistics(resourceHelper)
             )
         }.checkAllMatched
     }

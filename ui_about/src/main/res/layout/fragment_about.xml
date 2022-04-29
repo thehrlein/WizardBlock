@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/about_feedback"
-                    android:textAppearance="?textAppearanceBody2"
+                    android:textAppearance="?textAppearanceBody1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
                     android:layout_marginTop="@dimen/space_8"
                     android:gravity="center"
                     android:text="@string/about_like_fahrstuhl_block"
-                    android:textAppearance="?textAppearanceBody2"
+                    android:textAppearance="?textAppearanceBody1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_title" />
@@ -68,7 +68,7 @@
                     android:layout_marginTop="@dimen/space_8"
                     android:gravity="center"
                     android:text="@string/about_other_apps"
-                    android:textAppearance="?textAppearanceBody2"
+                    android:textAppearance="?textAppearanceBody1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_app_view_wizard" />

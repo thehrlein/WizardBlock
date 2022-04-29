@@ -15,8 +15,14 @@ interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGameInfo(dbGameInfo: DbGameInfo): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllGameInfo(dbGameInfo: List<DbGameInfo>): List<Long>
+
     @Query("SELECT * FROM GAME_DATABASE WHERE gameId = :gameId")
     fun getGameInfo(gameId: Long): DbGameInfo
+
+    @Query("SELECT * FROM GAME_DATABASE")
+    fun getAllGameInfo() : List<DbGameInfo>
 
     @Query("SELECT * FROM GAME_DATABASE ORDER BY gameId DESC LIMIT 1")
     fun getLastGameInfo(): DbGameInfo?
@@ -35,25 +41,16 @@ interface GameDao {
     fun removeRound(gameId: Long, round: Int)
 
     @Query("SELECT * FROM GAME_DATABASE ORDER BY gameStartDate DESC")
-    fun getAllSavedGames(): List<DbGame>
+    fun getAllGames(): List<DbGame>
 
-    @Transaction
-    fun deleteGame(gameId: Long) {
-        deleteGameInfo(gameId)
-        deleteGameRounds(gameId)
-    }
-
-    @Query("DELETE FROM GAME_DATABASE WHERE gameId = :gameId")
-    fun deleteGameInfo(gameId: Long)
-
-    @Query("DELETE FROM GAME_ROUNDS WHERE gameId = :gameId")
-    fun deleteGameRounds(gameId: Long)
+    @Query("SELECT * FROM GAME_DATABASE WHERE gameFinished = 1")
+    fun getAllFinishedGames(): List<DbGame>
 
     @Query("SELECT gameName from game_database")
     fun getGameNameOptions(): List<String>?
 
     @Transaction
-    fun deleteAllGames() {
+    fun clearStatistics() {
         deleteAllGameInfo()
         deleteAllGameRounds()
     }

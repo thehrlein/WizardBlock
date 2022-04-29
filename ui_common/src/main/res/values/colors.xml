@@ -45,6 +45,7 @@
 
     <!-- Individual colors -->
     <color name="color_divider">#C1C1C1</color>
+    <color name="block_background_color">#EFEDED</color>
     <color name="block_result_positive_difference">#4CAF50</color>
     <color name="block_result_negative_difference">#C11407</color>
     <color name="block_result_leader_gold">#FFEB3B</color>

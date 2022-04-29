@@ -33,7 +33,9 @@ interface GameRepository {
 
     suspend fun getAllSavedGames(): AppResult<List<Game>>
 
-    suspend fun deleteGame(gameId: Long): AppResult<Unit>
+    suspend fun removeGameFromSavedGames(gameId: Long): AppResult<Unit>
+
+    suspend fun removeAllGamesFromSavedGames(): AppResult<Unit>
 
     suspend fun deleteAllGame(): AppResult<Unit>
 }

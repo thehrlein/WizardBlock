@@ -9,6 +9,12 @@
     <string name="general_back">Back</string>
     <string name="general_ok" translatable="false">Ok</string>
     <string name="general_yes">Yes</string>
+    <string name="general_exit">Exit</string>
+    <string name="general_finish">Finish</string>
+
+    <!-- Tracking -->
+    <string name="tracking_user_property_system_appearance_dark" translatable="false">dark</string>
+    <string name="tracking_user_property_system_appearance_light" translatable="false">light</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_info">Info</string>
@@ -23,10 +29,13 @@
     <string name="navigation_button_new_game">New game</string>
     <string name="navigation_button_load_game">Load game</string>
     <string name="navigation_button_info">Info</string>
+    <string name="navigation_button_settings">Settings</string>
+    <string name="navigation_button_statistics">Statistics</string>
 
     <!-- PlayerSelectionFragment -->
     <string name="player_selection_toolbar_title">Player selection</string>
     <string name="player_selection_player_count_hint">Choose player count</string>
+    <string name="player_selection_player_count_two" translatable="false">2</string>
     <string name="player_selection_player_count_three" translatable="false">3</string>
     <string name="player_selection_player_count_four" translatable="false">4</string>
     <string name="player_selection_player_count_five" translatable="false">5</string>
@@ -56,17 +65,20 @@
     <string name="game_rules_info_description">The game starts with one card and is increased by one card each round up to the maximum number. Choose a game name to clearly identify this game. The rules allow you to play according to your preferences.</string>
 
     <!-- GameBlock -->
-    <string name="game_block_toolbar_title">Wizard - %1$s</string>
     <string name="game_block_results_fab_add_prediction">Tipps</string>
     <string name="game_block_results_fab_add_results">Results</string>
-    <string name="game_block_results_fab_exit">Exit</string>
     <string name="game_block_results_is_dealer_hint">(Dealer)</string>
     <string name="game_block_results_winner_title">Congratulations</string>
     <string name="game_block_results_winner_message_singlular">%1$s has won with a total of %2$d points</string>
     <string name="game_block_results_winner_message_plural">%1$s have won with a total of %2$d points</string>
     <string name="game_block_results_menu_trophy_title" translatable="false">Scores</string>
     <string name="game_block_results_menu_about_title" translatable="false">Info</string>
-    <string name="game_block_results_menu_delete_last_input">Delete last input</string>
+    <string name="game_block_results_menu_settings_title">Settings</string>
+    <string name="game_block_results_menu_delete_last_tip_input">Delete last tips</string>
+    <string name="game_block_results_menu_finish_game">Finish game</string>
+    <string name="game_block_results_menu_delete_last_result_input">Delete last results</string>
+    <string name="game_block_finish_manually_title">Finish game?</string>
+    <string name="game_block_finish_manually_message">If you finish this game you can no longer continue playing</string>
 
     <!-- Block input -->
     <string name="block_input_toolbar_title_tips">Tips</string>
@@ -76,7 +88,6 @@
     <string name="block_input_info_tips_can_be_equal_stitches_message">Your combined tips can be equal %1$d</string>
     <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Your combined tips must not be %1$d. The last user must make sure that after his tip the amount of tips is not equal %1$d</string>
     <string name="block_input_info_result_message">Your combined results must be %1$d</string>
-    <string name="block_input_info_result_anniversary_version_message">Your combined results must be %1$d, except if someone played the bomb</string>
     <string name="block_input_enter_tips">Enter tips%1$s</string>
     <string name="block_input_enter_results">Enter results%1$s</string>
     <string name="block_input_summed_inputs" translatable="false">&#160;- %1$d / %2$d</string>
@@ -86,8 +97,12 @@
     <string name="block_input_anniversary_version_cloud_card_button">Correct tips</string>
     <string name="block_input_correct_tips_choose_player_title">Which player must correct his/her tip?</string>
     <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
-    <string name="block_input_correct_tips_count_title">One stitch more or less %1$s?</string>
+    <string name="block_input_correct_tips_count_title">Predict one stitch more or less %1$s?</string>
     <string name="block_input_correct_tips_snackbar_message">The tip of %1$s was corrected to %2$d</string>
+    <string name="block_input_anniversary_version_bomb_played">Bomb was played?</string>
+    <string name="block_input_anniversary_version_bomb_played_dialog_title">Bomb</string>
+    <string name="block_input_anniversary_version_bomb_played_dialog_message">If someone played the bomb, the stitch will be put away and not evaluated. Therefore the amount of stitches must be 1 less.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s changed his/her tip because of the cloud card, so he/she must have made at least 1 stitch.</string>
 
     <!-- Block scores -->
     <string name="block_scores_toolbar_title">Current Scores</string>
@@ -133,6 +148,37 @@
     <string name="saved_game_dialog_info_title">Game settings</string>
     <string name="saved_game_dialog_delete_title">Delete games</string>
     <string name="saved_game_dialog_delete_message">Do you really want to delete all games?</string>
+
+    <!-- Settings -->
+    <string name="settings_toolbar_title">Settings</string>
+    <string name="settings_display_always_active_title">Should the display be active during the game?</string>
+    <string name="settings_display_always_active_dialog_title">Always active</string>
+    <string name="settings_display_always_active_dialog_message">If this option is activated, your smartphone won\'t go into standby but stays active as long as this application is open.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_toolbar_title">Statistics</string>
+    <string name="statistics_most_wins_headline">Most wins (Top 10)</string>
+    <string name="statistics_most_wins_position_placeholder" translatable="false">%1$d.</string>
+    <string name="statistics_most_wins_header_row_position">Position</string>
+    <string name="statistics_most_wins_header_row_name">Name</string>
+    <string name="statistics_most_wins_header_row_win_count">Count</string>
+    <string name="statistics_top_points_headline">Most points (Top 10)</string>
+    <string name="statistics_top_points_header_row_win_count">Points</string>
+    <string name="statistics_player_count_headline">Player count</string>
+    <string name="statistics_player_count_frequency">%1$d Player</string>
+    <string name="statistics_player_no_data_available">Currently no data available</string>
+    <string name="statistics_games_played_headline">Finished game count</string>
+    <string name="statistics_clear_all">Clear</string>
+    <string name="statistics_clear_all_dialog_title">Clear statistics</string>
+    <string name="statistics_clear_all_dialog_message">Do you really want to reset all statistics?\n\nAttention: All your saved games will also be deleted!</string>
+    <string name="statistics_game_day_headline">Game days</string>
+    <string name="statistics_game_rules_headline">Game rules</string>
+    <string name="statistics_game_rules_tips_equal_stitches_x_label">T = S</string>
+    <string name="statistics_game_rules_tips_equal_stitches_tooltip">Tips equal stitches</string>
+    <string name="statistics_game_rules_tips_equal_stitches_first_round_x_label">T = S 1. R</string>
+    <string name="statistics_game_rules_tips_equal_stitches_first_round_tooltip">Tips equal stitches 1. round</string>
+    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_x_label">Anniversary</string>
+    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip">Anniversary option</string>
 
 
 </resources>

@@ -27,3 +27,13 @@ fun Context.getColorReference(resId: Int): Int {
 fun Context.isLandscape() : Boolean {
     return resources?.configuration?.orientation == Configuration.ORIENTATION_LANDSCAPE
 }
+
+fun Context.isUsingDarkMode(): Boolean {
+    return when (resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK) {
+        Configuration.UI_MODE_NIGHT_YES -> true
+        Configuration.UI_MODE_NIGHT_NO -> false
+        Configuration.UI_MODE_NIGHT_UNDEFINED -> false
+        else -> false
+    }
+}

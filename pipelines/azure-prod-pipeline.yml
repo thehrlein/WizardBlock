@@ -82,7 +82,7 @@ steps:
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
       flattenFolders: true
   - task: Gradle@2
-    displayName: 'BundleDebug (AAB)'
+    displayName: 'BundleRelease (AAB)'
     inputs:
       workingDirectory: ''
       gradleWrapperFile: 'gradlew'

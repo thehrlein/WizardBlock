@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
 import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import kotlinx.coroutines.launch
 
@@ -14,19 +16,16 @@ class GameBlockViewModelImpl(
 
     override val gameId = MutableLiveData(gameId)
 
-    init {
-        trackGameStarted()
-    }
-
-    private fun trackGameStarted() {
+    override fun trackGameFinished(points: Int) {
         viewModelScope.launch {
-            trackAnalyticsEventUseCase.invoke(TrackingEvent.NEW_GAME_STARTED)
-        }
-    }
-
-    override fun trackGameFinished() {
-        viewModelScope.launch {
-            trackAnalyticsEventUseCase.invoke(TrackingEvent.GAME_FINISHED)
+            trackAnalyticsEventUseCase.invoke(
+                WizardBlockTrackingEvent(
+                    eventName = TrackingEvent.GAME_FINISHED,
+                    params = mapOf(
+                        TrackingParam.POINTS to points.toString()
+                    )
+                )
+            )
         }
     }
 

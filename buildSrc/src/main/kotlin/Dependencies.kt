@@ -1,11 +1,11 @@
-import org.gradle.api.JavaVersion
-
 object Dependencies {
 
     object AndroidX {
         private const val appCompatVersion = "1.4.1"
         private const val coreVersion = "1.7.0"
         private const val constraintLayoutVersion = "2.1.3"
+        private const val dataStoreVersion = "1.0.0"
+        private const val desugarJdkLibsVersion = "1.1.5"
         private const val recyclerViewVersion = "1.2.1"
         private const val splashScreenVersion = "1.0.0-beta01"
         private const val swipeRefreshVersion = "1.1.0"
@@ -14,6 +14,8 @@ object Dependencies {
         const val coreKtx = "androidx.core:core-ktx:$coreVersion"
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+        const val dataStore = "androidx.datastore:datastore-preferences:$dataStoreVersion"
+        const val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:$desugarJdkLibsVersion"
         const val recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
         const val splashScreen = "androidx.core:core-splashscreen:$splashScreenVersion"
         const val swipeToRefresh =
@@ -101,6 +103,7 @@ object Dependencies {
         private const val jodaVersion = "2.10.12.2"
         private const val konfettiVersion = "1.3.2"
         private const val lottieVersion = "4.2.2"
+        private const val mpAndroidChartVersion = "3.1.0"
         private const val timberVersion = "5.0.1"
 
         const val coil = "io.coil-kt:coil:$coilVersion"
@@ -108,6 +111,7 @@ object Dependencies {
         const val joda = "net.danlew:android.joda:$jodaVersion"
         const val konfetti = "nl.dionsegijn:konfetti:$konfettiVersion"
         const val lottie = "com.airbnb.android:lottie:$lottieVersion"
+        const val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:$mpAndroidChartVersion"
         const val timber = "com.jakewharton.timber:timber:$timberVersion"
     }
 
@@ -191,14 +195,14 @@ object AndroidSdkTools {
     const val minSdk = 24
     const val targetSdk = 30
     const val compileSdk = 31
-    const val version_name = "2.3.0"
-    const val application_id = "com.tobiashehrlein.tobiswizardblock"
+    const val versionName = "3.0.0"
+    const val applicationId = "com.tobiashehrlein.tobiswizardblock"
 }
 
 object Others {
 
     const val ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER = "androidx.test.runner.AndroidJUnitRunner"
-    val JVM_TARGET = JavaVersion.VERSION_1_8.toString()
+    val JVM_TARGET = "1.8"
 }
 
 object Module {
@@ -218,6 +222,8 @@ object Module {
         const val block = ":ui_block"
         const val savedGames = ":ui_saved_games"
         const val about = ":ui_about"
+        const val settings = ":ui_settings"
+        const val statistics = ":ui_statistics"
         const val common = ":ui_common"
     }
 

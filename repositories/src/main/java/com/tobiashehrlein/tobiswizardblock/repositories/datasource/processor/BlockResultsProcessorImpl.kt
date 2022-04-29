@@ -62,13 +62,7 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
             )
             val players = game.gameInfo.players
             val currentRoundNumber = game.currentRoundNumber
-            val lastRoundWithTotal = game.lastPlayedGameRound?.let {
-                when {
-                    it.playerResultData.isNullOrEmpty().not() -> it
-                    it.round >= 2 -> game.gameRounds[game.gameRounds.size - 2]
-                    else -> null
-                }
-            }
+            val lastRoundWithTotal = game.lastCompletedGameRound
             val currentTotals =
                 lastRoundWithTotal?.playerResultData?.sortedByDescending { it.total }
 
@@ -111,31 +105,6 @@ class BlockResultsProcessorImpl : BaseDatasource, BlockResultsProcessor {
                     }
                 )
             }
-
-//            val lastRound = game.lastPlayedGameRound
-//            if (lastRound == null || lastRound.roundCompleted) {
-//                game.currentGameRound?.let { round ->
-//                    blockItems.add(
-//                        BlockRound(
-//                            round = round.round,
-//                            colorized = round.round.isEven()
-//                        )
-//                    )
-//                    players.forEach {
-//                        blockItems.add(
-//                            BlockResult(
-//                                player = it,
-//                                round = round.round,
-//                                tip = null,
-//                                result = null,
-//                                difference = null,
-//                                total = null,
-//                                colorized = round.round.isEven()
-//                            )
-//                        )
-//                    }
-//                }
-//            }
 
             val columnCount = game.gameInfo.players.size * 2 + 1
             BlockItemData(

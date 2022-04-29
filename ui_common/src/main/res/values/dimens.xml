@@ -12,6 +12,8 @@
     <dimen name="space_6">24dp</dimen>
     <dimen name="space_7">28dp</dimen>
     <dimen name="space_8">32dp</dimen>
+    <dimen name="space_9">40dp</dimen>
+    <dimen name="space_10">48dp</dimen>
 
     <!-- Font Size -->
     <dimen name="font_size_headline_4">30sp</dimen>
@@ -24,7 +26,7 @@
     <dimen name="font_size_caption">12sp</dimen>
     <dimen name="font_size_overline">13sp</dimen>
     <dimen name="font_size_button">16sp</dimen>
-    <dimen name="font_size_button_2">14sp</dimen>
+    <dimen name="font_size_button_2">13sp</dimen>
     <dimen name="font_size_error">12sp</dimen>
 
     <!--Emphasis modifiers for "on" colors-->
@@ -34,6 +36,9 @@
 
     <!-- Toolbar -->
     <dimen name="toolbar_icon_width">42dp</dimen>
+
+    <!-- Dialog -->
+    <dimen name="dialog_button_height">56dp</dimen>
 
     <!-- List -->
     <dimen name="list_item_height_small">64dp</dimen>
@@ -68,8 +73,9 @@
     <dimen name="icon_size_big">48dp</dimen>
 
     <!-- Image -->
-    <dimen name="image_size_small">56dp</dimen>
-    <dimen name="image_size_medium">88dp</dimen>
+    <dimen name="image_size_small">40dp</dimen>
+    <dimen name="image_size_medium">80dp</dimen>
+    <dimen name="image_size_big">140dp</dimen>
 
     <!-- Button -->
     <dimen name="button_input_action_min_width">48dp</dimen>
@@ -79,5 +85,8 @@
 
     <!-- Trump -->
     <dimen name="block_trump_item_height">64dp</dimen>
+
+    <!-- Chart -->
+    <dimen name="chart_axis_label_text_size">10sp</dimen>
 
 </resources>

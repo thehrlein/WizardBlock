@@ -4,5 +4,6 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
 
 data class CheckInputValidityData(
     val game: Game,
-    val inputSum: Int
+    val bombPlayed: Boolean,
+    val inputDataItems: List<InputDataItem>
 )

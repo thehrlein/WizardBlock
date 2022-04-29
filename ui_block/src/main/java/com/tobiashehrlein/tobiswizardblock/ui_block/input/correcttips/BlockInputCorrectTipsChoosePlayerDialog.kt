@@ -21,6 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val CHILD_RADIO_GROUP = 0
 private const val CHILD_COUNT = 1
+private const val ZERO_TIP = 0
 
 class BlockInputCorrectTipsChoosePlayerDialog :
     BaseDialogFragment<BlockInputCorrectTipsChoosePlayerViewModel, DialogBlockInputCorrectTipsChoosePlayerBinding>() {
@@ -131,7 +132,8 @@ class BlockInputCorrectTipsChoosePlayerDialog :
                         val selectedPlayerTipData = dialogEntity.playerTipData.first {
                             it.playerName.hashCode() == binding.blockInputCorrectTipsRadioGroup.checkedRadioButtonId
                         }.copy(
-                            tip = binding.correctTipsLayout.seekBar.progress
+                            tip = binding.correctTipsLayout.seekBar.progress,
+                            correctedCauseOfCloudCard = true
                         )
 
                         val updatedPlayerTipData = dialogEntity.playerTipData.map {
@@ -191,6 +193,7 @@ class BlockInputCorrectTipsChoosePlayerDialog :
         }
         showNeutralButton(dialog, true)
         setPositiveButtonEnabled(false)
+        checkButtons(selectedPlayerTipData.tip, selectedPlayerTipData.tip)
     }
 
     private fun checkButtons(initialTip: Int, updatedTip: Int) {
@@ -206,8 +209,10 @@ class BlockInputCorrectTipsChoosePlayerDialog :
                 setPositiveButtonEnabled(true)
             }
             else -> {
-                binding.correctTipsLayout.buttonDecrease.isEnabled = true
-                binding.correctTipsLayout.buttonIncrease.isEnabled = true
+                val zeroTip = initialTip == ZERO_TIP
+                val maxTip = initialTip == dialogEntity.round
+                binding.correctTipsLayout.buttonDecrease.isEnabled = !zeroTip
+                binding.correctTipsLayout.buttonIncrease.isEnabled = !maxTip
                 setPositiveButtonEnabled(false)
             }
         }

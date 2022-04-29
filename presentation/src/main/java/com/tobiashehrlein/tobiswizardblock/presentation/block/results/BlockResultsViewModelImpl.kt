@@ -16,12 +16,15 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.GetGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.StoreRoundUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.GetBlockResultsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.GetGameScoresUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.RemoveRoundUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.results.StoreGameFinishedUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.presentation.general.SingleLiveEvent
@@ -36,7 +39,8 @@ class BlockResultsViewModelImpl(
     private val storeGameFinishedUseCase: StoreGameFinishedUseCase,
     private val storeRoundUseCase: StoreRoundUseCase,
     private val removeRoundUseCase: RemoveRoundUseCase,
-    private val isShowTrumpDialogEnabledUseCase: IsShowTrumpDialogEnabledUseCase
+    private val isShowTrumpDialogEnabledUseCase: IsShowTrumpDialogEnabledUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 ) : BlockResultsViewModel() {
 
     private val game = MutableLiveData<Game>()
@@ -64,7 +68,7 @@ class BlockResultsViewModelImpl(
     }
     override val columnCount = MutableLiveData<Int>()
     override val blockItems = MutableLiveData<List<BlockItem>>()
-    override val showGameFinishedEvent = SingleLiveEvent<Unit>()
+    override val showGameFinishedEvent = SingleLiveEvent<Int>()
     override val editInputEnabled = MediatorLiveData<Boolean>().also { mediator ->
         mediator.addSource(blockItems) {
             mediator.postValue(
@@ -76,6 +80,14 @@ class BlockResultsViewModelImpl(
                 it != true && blockItems.value?.filterIsInstance<BlockResult>()
                     ?.isNotEmpty() == true
             )
+        }
+    }
+    override val finishManuallyEnabled = MediatorLiveData<Boolean>().also { mediator ->
+        mediator.addSource(editInputEnabled) {
+            mediator.value = it && inputType.value == InputType.TIPP
+        }
+        mediator.addSource(inputType) {
+            mediator.value = it == InputType.TIPP && editInputEnabled.value == true
         }
     }
 
@@ -146,12 +158,16 @@ class BlockResultsViewModelImpl(
     }
 
     private fun onGameFinished(results: List<GameScore>, onFinishedSuccess: (() -> Unit)? = null) {
-        showGameFinishedEvent.value = Unit
+        val winner = results.filter { it.position == WINNER_POSITION }
+        showGameFinishedEvent.value = winner.first().points
         viewModelScope.launch {
             val gameId = game.value?.gameInfo?.gameId ?: return@launch
             when (val result = storeGameFinishedUseCase.invoke(gameId)) {
                 is AppResult.Success -> {
-                    navigateTo(Page.Block.GameFinished(results.filter { it.position == WINNER_POSITION }))
+                    navigateTo(
+                        Page.Block.GameFinished(
+                            winner)
+                    )
                     onFinishedSuccess?.invoke()
                 }
                 is AppResult.Error -> Unit
@@ -176,11 +192,15 @@ class BlockResultsViewModelImpl(
         }
     }
 
-    override fun onInfoClicked() {
+    override fun onMenuInfoClicked() {
         navigateTo(Page.Block.About)
     }
 
-    override fun onDeleteInputClicked() {
+    override fun onMenuSettingsClicked() {
+        navigateTo(Page.Block.Settings)
+    }
+
+    override fun onMenuDeleteInputClicked() {
         val game = game.value ?: error("round not initialized - could not set trump type")
         val currentRound = game.currentGameRound ?: return
 
@@ -188,10 +208,15 @@ class BlockResultsViewModelImpl(
             navigateTo(Page.General.Loading.Show(dim = true))
 
             val result = if (currentRound.playerTipData == null) {
-                val round = game.lastPlayedGameRound?.copy(
+                val round = game.lastCompletedGameRound?.copy(
                     playerResultData = null
                 ) ?: return@launch
 
+                // if we previously added a "empty" round by selecting a trump, we have to
+                // delete this round when deleting last completed round's result data
+                game.lastNonCompletedGameRound?.let {
+                    removeRoundUseCase.invoke(DeleteRoundData(game.gameInfo.gameId, it))
+                }
                 storeRoundUseCase.invoke(InsertRoundData(game.gameInfo.gameId, round))
             } else {
                 removeRoundUseCase.invoke(DeleteRoundData(game.gameInfo.gameId, currentRound))
@@ -202,11 +227,32 @@ class BlockResultsViewModelImpl(
                 is AppResult.Error -> Unit
             }
 
+            trackDeleteLastInput()
             navigateTo(Page.General.Loading.Hide)
         }
     }
 
+    private suspend fun trackDeleteLastInput() {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = TrackingEvent.DELETE_LAST_INPUT
+            )
+        )
+    }
+
     override fun showExitDialog() {
         navigateTo(Page.Block.Exit)
+    }
+
+    override fun finishGameManuallyClicked() {
+        navigateTo(Page.Block.FinishManually)
+    }
+
+    override fun onFinishGameManuallyConfirmed() {
+        val gameScores = this.gameScores.value?.results ?: return
+        val gameId = game.value?.gameInfo?.gameId ?: return
+        onGameFinished(gameScores) {
+            setGameId(gameId)
+        }
     }
 }

@@ -22,6 +22,9 @@ import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.Inputs
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.block.input.StoreRoundUseCase
 import kotlinx.coroutines.launch
 
+private const val DEFAULT_BOMB_PLAYED = false
+private const val DEFAULT_CLOUD_PLAYED = false
+
 class BlockInputViewModelImpl(
     private val gameId: Long,
     private val getGameUseCase: GetGameUseCase,
@@ -38,6 +41,8 @@ class BlockInputViewModelImpl(
     override val showAnniversaryOption = MutableLiveData<Boolean>()
     override val summedInputs = MutableLiveData<Int>()
     override val trumpType = MutableLiveData<TrumpType>()
+    override val bombPlayed = MutableLiveData(DEFAULT_BOMB_PLAYED)
+    override val cloudCardPlayed = MutableLiveData(DEFAULT_CLOUD_PLAYED)
     override val playerTipDataCorrectedEvent = MutableLiveData<PlayerTipData>()
     private val round = MutableLiveData<GameRound>()
 
@@ -56,6 +61,9 @@ class BlockInputViewModelImpl(
 
     private fun setInputModels(game: Game) {
         this.game.value = game
+        this.cloudCardPlayed.value = game.lastNonCompletedGameRound?.playerTipData?.any {
+            it.correctedCauseOfCloudCard
+        }
         this.trumpType.value = game.currentGameRound?.trumpType
         viewModelScope.launch {
             when (val result = getBlockInputModelsUseCase.invoke(game)) {
@@ -65,16 +73,36 @@ class BlockInputViewModelImpl(
                     inputModels.value = result.value.inputModels
                     showAnniversaryOption.value = game.gameInfo.gameSettings.anniversaryVersion &&
                         result.value.inputType == InputType.RESULT
+                    checkInputValid()
                 }
                 is AppResult.Error -> Unit
             }
         }
     }
 
-    override fun onInputChanged() {
-        val data = CheckInputValidityData(getGameData(), getInputs().sumOf { it.userInput })
+    override fun onInputChanged(inputDataItem: InputDataItem) {
+        val tmpModels = this.inputModels.value ?: return
+        val updatedModels = mutableListOf<InputDataItem>()
+        tmpModels.forEach {
+            updatedModels.add(
+                if (it.player == inputDataItem.player) {
+                    inputDataItem
+                } else {
+                    it
+                }
+            )
+        }
+        this.inputModels.value = updatedModels
 
-        summedInputs.value = data.inputSum
+        checkInputValid()
+    }
+
+    private fun checkInputValid() {
+        val bombPlayed = this.bombPlayed.value ?: DEFAULT_BOMB_PLAYED
+        val data =
+            CheckInputValidityData(getGameData(), bombPlayed, getInputs())
+
+        summedInputs.value = data.inputDataItems.sumOf { it.userInput }
 
         viewModelScope.launch {
             inputsValid.postValue(
@@ -88,9 +116,11 @@ class BlockInputViewModelImpl(
 
     override fun onInfoIconClicked() {
         val game = getGameData()
+        val bombPlayed = this.bombPlayed.value ?: false
         navigateTo(
             Page.Input.Info(
                 inputType = game.inputType,
+                bombPlayed = bombPlayed,
                 round = game.currentRoundNumber,
                 gameSettings = game.gameInfo.gameSettings
             )
@@ -199,6 +229,15 @@ class BlockInputViewModelImpl(
                 is AppResult.Error -> Unit
             }
         }
+    }
+
+    override fun onBlockInputBombPlayedInfoClicked() {
+        navigateTo(Page.Input.BombPlayed)
+    }
+
+    override fun onBlockPlayedSwitchChanged(bombPlayed: Boolean) {
+        this.bombPlayed.value = bombPlayed
+        checkInputValid()
     }
 
     private fun getGameData() = game.value ?: error("could not determine game")

@@ -6,6 +6,13 @@ plugins {
     kotlin(BuildPlugins.kapt)
 }
 
+android {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = Others.JVM_TARGET
@@ -15,6 +22,9 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
+    // Used to enable Java 8 features for SDK < 26
+    coreLibraryDesugaring(Dependencies.AndroidX.desugarJdkLibs)
+
     // AndroidX
     implementation(Dependencies.AndroidX.coreKtx)
 
@@ -23,6 +33,8 @@ dependencies {
 
     // Logging
     implementation(Dependencies.Other.timber)
+
+    coreLibraryDesugaring(Dependencies.AndroidX.desugarJdkLibs)
 
     // Unit Tests
     testImplementation(Dependencies.Test.junit)

@@ -63,6 +63,7 @@ class AboutFragment :
                 )
             )
         }
+        viewModel.trackOpenStoreEvent(packageName)
     }
 
     private fun sendEmail() {

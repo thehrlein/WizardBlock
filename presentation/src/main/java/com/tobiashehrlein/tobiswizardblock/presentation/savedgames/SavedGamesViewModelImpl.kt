@@ -7,18 +7,23 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
 import com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteAllSavedGamesUseCase
-import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.DeleteSavedGameUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.GetAllSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveAllGamesFromSavedGamesUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.savedgames.RemoveGameFromSavedGameUseCase
 import kotlinx.coroutines.launch
 
 class SavedGamesViewModelImpl(
     private val getAllSavedGamesUseCase: GetAllSavedGamesUseCase,
-    private val deleteSavedGameUseCase: DeleteSavedGameUseCase,
-    private val deleteAllSavedGamesUseCase: DeleteAllSavedGamesUseCase
+    private val removeGameFromSavedGameUseCase: RemoveGameFromSavedGameUseCase,
+    private val removeAllGamesFromSavedGamesUseCase: RemoveAllGamesFromSavedGamesUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 ) : SavedGamesViewModel() {
 
+    override val loading = MutableLiveData(true)
     override val savedGames = MutableLiveData<List<SavedGameEntity>>()
     override val noSavedGames = MutableLiveData<Boolean>()
 
@@ -32,6 +37,8 @@ class SavedGamesViewModelImpl(
                 is AppResult.Success -> convertGames(result.value)
                 is AppResult.Error -> noSavedGames.value = true
             }
+
+            loading.value = false
         }
     }
 
@@ -57,10 +64,19 @@ class SavedGamesViewModelImpl(
     override fun onGameRemoved(item: SavedGameEntity?) {
         item?.gameId?.let {
             viewModelScope.launch {
-                deleteSavedGameUseCase.invoke(it)
+                removeGameFromSavedGameUseCase.invoke(it)
                 getAllSavedGames()
+                trackGameDeleted(TrackingEvent.GAME_DELETED)
             }
         }
+    }
+
+    private suspend fun trackGameDeleted(gameDeletedEvent: TrackingEvent) {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = gameDeletedEvent
+            )
+        )
     }
 
     override fun onSavedGameClicked(gameId: Long) {
@@ -77,8 +93,11 @@ class SavedGamesViewModelImpl(
 
     override fun onDeleteGamesConfirmed() {
         viewModelScope.launch {
-            when (val result = deleteAllSavedGamesUseCase.invoke()) {
-                is AppResult.Success -> getAllSavedGames()
+            when (val result = removeAllGamesFromSavedGamesUseCase.invoke()) {
+                is AppResult.Success -> {
+                    trackGameDeleted(TrackingEvent.ALL_GAMES_DELETED)
+                    getAllSavedGames()
+                }
                 is AppResult.Error -> Unit
             }
         }

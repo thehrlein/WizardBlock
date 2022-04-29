@@ -6,14 +6,19 @@ import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.GetGameNameOptionsUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.gameinfo.StoreGameInfoUseCase
+import com.tobiashehrlein.tobiswizardblock.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.interactor.usecase.invoke
 import kotlinx.coroutines.launch
 
 class GameRulesViewModelImpl(
     private val storeGameInfoUseCase: StoreGameInfoUseCase,
-    private val getGameNameOptionsUseCase: GetGameNameOptionsUseCase
+    private val getGameNameOptionsUseCase: GetGameNameOptionsUseCase,
+    private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
 ) : GameRulesViewModel() {
 
     override val gameNameOptions = MutableLiveData<Set<String>>(emptySet())
@@ -38,8 +43,23 @@ class GameRulesViewModelImpl(
     ) {
         viewModelScope.launch {
             val gameId = storeGameInfo(gameName, playerNames, gameSettings)
+            trackGameStarted(playerNames.size, gameSettings)
             navigateTo(Page.GameRules.Block(gameId))
         }
+    }
+
+    private suspend fun trackGameStarted(playerSize: Int, gameSettings: GameSettings) {
+        trackAnalyticsEventUseCase.invoke(
+            WizardBlockTrackingEvent(
+                eventName = TrackingEvent.GAME_STARTED,
+                params = mapOf(
+                    TrackingParam.PLAYER to playerSize.toString(),
+                    TrackingParam.TIPS_EQUAL_STITCHES to gameSettings.tipsEqualStitches,
+                    TrackingParam.TIPS_EQUAL_STITCHES_FIRST_ROUND to gameSettings.tipsEqualStitchesFirstRound,
+                    TrackingParam.ANNIVERSARY_VERSION to gameSettings.anniversaryVersion,
+                )
+            )
+        )
     }
 
     private suspend fun storeGameInfo(

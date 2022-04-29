@@ -74,9 +74,10 @@
 
         <ImageView
             android:id="@+id/game_settings_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
             android:src="@drawable/wb_ic_info"
+            app:tint="?colorOnBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline_game_settings"
             app:layout_constraintTop_toTopOf="parent" />

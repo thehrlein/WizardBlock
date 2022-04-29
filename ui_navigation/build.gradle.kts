@@ -23,9 +23,10 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    // Modules
+    // Used to enable Java 8 features for SDK < 26
+    coreLibraryDesugaring(Dependencies.AndroidX.desugarJdkLibs)
 
-    implementation(project(Module.Ui.about))
+    // Modules
     implementation(project(Module.Ui.common))
     implementation(project(Module.General.presentation))
     implementation(project(Module.General.interactor))

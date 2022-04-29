@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor
 
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
 import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameRound
+import com.tobiashehrlein.tobiswizardblock.entities.game.general.PlayerTipData
 import com.tobiashehrlein.tobiswizardblock.entities.game.input.CheckInputValidityData
 import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputData
 import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputDataItem
@@ -14,7 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 private const val FIRST_ROUND = 1
-private const val DEFAULT_PLAYER_INPUT = 0
+private const val DEFAULT_PLAYER_TIP = 0
+private const val DEFAULT_MIN_INPUT = 0
+private const val MIN_INPUT_IF_CLOUD_PLAYED = 1
+private const val DEFAULT_PLAYER_INPUT_IF_CLOUD_PLAYED = 1
 
 class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
 
@@ -22,19 +26,30 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
         withContext(Dispatchers.Default) {
             safeCall {
                 val game = inputValidityData.game
+                val anniversaryVersion = game.gameInfo.gameSettings.anniversaryVersion
+                val inputSum = inputValidityData.inputDataItems.sumOf { it.userInput }
                 when (game.inputType) {
                     InputType.TIPP -> {
                         when {
                             game.gameInfo.gameSettings.tipsEqualStitches -> true
                             game.currentRoundNumber == FIRST_ROUND &&
-                                game.gameInfo.gameSettings.tipsEqualStitchesFirstRound -> true
-                            else -> inputValidityData.inputSum != game.currentRoundNumber
+                                    game.gameInfo.gameSettings.tipsEqualStitchesFirstRound -> true
+                            else -> inputSum != game.currentRoundNumber
                         }
                     }
                     InputType.RESULT -> when {
-                        game.gameInfo.gameSettings.anniversaryVersion ->
-                            inputValidityData.inputSum <= game.currentRoundNumber
-                        else -> inputValidityData.inputSum == game.currentRoundNumber
+                        anniversaryVersion -> {
+                            val allMatchingMinInput = inputValidityData.inputDataItems.all {
+                                it.userInput >= it.minInput
+                            }
+                            when {
+                                !allMatchingMinInput -> false
+                                inputValidityData.bombPlayed ->
+                                    inputSum == game.currentRoundNumber - 1
+                                else -> inputSum == game.currentRoundNumber
+                            }
+                        }
+                        else -> inputSum == game.currentRoundNumber
                     }
                 }
             }
@@ -59,6 +74,7 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
         gameRound: GameRound
     ): List<InputDataItem> {
         val inputModels = game.gameInfo.players.mapIndexed { index: Int, name: String ->
+            val playerTipData = gameRound.playerTipData?.firstOrNull { it.playerName == name }
             InputDataItem(
                 type = inputType,
                 player = name,
@@ -70,8 +86,16 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
                 ),
                 currentRound = game.currentRoundNumber,
                 cards = game.currentRoundNumber,
-                userInput = gameRound.playerTipData?.firstOrNull { it.playerName == name }?.tip
-                    ?: DEFAULT_PLAYER_INPUT
+                minInput = if (playerTipData?.correctedCauseOfCloudCard == true) {
+                    MIN_INPUT_IF_CLOUD_PLAYED
+                } else {
+                    DEFAULT_MIN_INPUT
+                },
+                cloudCardPlayed = playerTipData?.correctedCauseOfCloudCard == true,
+                userInput = getUserInput(
+                    playerTipData,
+                    game.gameInfo.gameSettings.anniversaryVersion
+                )
             )
         }
 
@@ -82,5 +106,14 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
         }
 
         return newList
+    }
+
+    private fun getUserInput(playerTipData: PlayerTipData?, anniversaryVersion: Boolean): Int {
+        return when {
+            anniversaryVersion &&
+                    playerTipData?.correctedCauseOfCloudCard == true &&
+                    playerTipData.tip == DEFAULT_PLAYER_TIP -> DEFAULT_PLAYER_INPUT_IF_CLOUD_PLAYED
+            else -> playerTipData?.tip ?: DEFAULT_PLAYER_TIP
+        }
     }
 }

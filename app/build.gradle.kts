@@ -20,11 +20,11 @@ val buildNumber = Integer.parseInt(
 android {
     compileSdk = AndroidSdkTools.compileSdk
     defaultConfig {
-        applicationId = AndroidSdkTools.application_id
+        applicationId = AndroidSdkTools.applicationId
         minSdk = AndroidSdkTools.minSdk
         targetSdk = AndroidSdkTools.targetSdk
         versionCode = buildNumber
-        versionName = AndroidSdkTools.version_name
+        versionName = AndroidSdkTools.versionName
         testInstrumentationRunner = Others.ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER
     }
 
@@ -82,6 +82,10 @@ android {
 }
 
 dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
+    // Used to enable Java 8 features for SDK < 26
+    coreLibraryDesugaring(Dependencies.AndroidX.desugarJdkLibs)
 
     // Modules
     implementation(project(Module.Ui.navigation))
@@ -89,6 +93,8 @@ dependencies {
     implementation(project(Module.Ui.block))
     implementation(project(Module.Ui.savedGames))
     implementation(project(Module.Ui.common))
+    implementation(project(Module.Ui.settings))
+    implementation(project(Module.Ui.statistics))
     implementation(project(Module.Ui.about))
     implementation(project(Module.Framework.repositories))
     implementation(project(Module.Framework.Database.room))

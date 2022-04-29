@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,7 +17,7 @@
         <include
             android:id="@+id/saved_game_header"
             layout="@layout/layout_saved_games_header"
-            android:visibility="@{!viewModel.noSavedGames}" />
+            android:visibility="@{!viewModel.noSavedGames &amp;&amp; !viewModel.loading}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/game_list"
@@ -26,26 +26,36 @@
             android:overScrollMode="never"
             android:visibility="@{!viewModel.noSavedGames}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_saved_game"
-            app:layout_constraintTop_toBottomOf="@id/saved_game_header"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saved_game_header"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_saved_game" />
 
         <TextView
             android:id="@+id/no_saved_games"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.noSavedGames}"
             android:gravity="center"
-            android:textAppearance="?textAppearanceBody1"
-            android:text="@string/saved_game_no_games"
-            app:layout_constraintTop_toTopOf="parent"
             android:padding="@dimen/space_4"
+            android:text="@string/saved_game_no_games"
+            android:textAppearance="?textAppearanceBody1"
+            android:visibility="@{viewModel.noSavedGames}"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/saved_games_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,6 +8,8 @@ include(":ui_game_settings")
 include(":ui_block")
 include(":ui_saved_games")
 include(":ui_about")
+include(":ui_settings")
+include(":ui_statistics")
 include(":ui_common")
 
 // framework modules

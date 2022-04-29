@@ -7,5 +7,5 @@ import com.google.android.material.button.MaterialButtonToggleGroup
 @BindingAdapter("playerCount")
 fun MaterialButtonToggleGroup.setPlayerCount(count: Int?) {
     if (count == null) return
-    (getChildAt(count - 3) as MaterialButton).isChecked = true
+    (getChildAt(count - 2) as MaterialButton).isChecked = true
 }

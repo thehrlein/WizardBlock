@@ -13,14 +13,18 @@ abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsI
     abstract val gameFinished: LiveData<Boolean>
     abstract val columnCount: LiveData<Int>
     abstract val blockItems: LiveData<List<BlockItem>>
-    abstract val showGameFinishedEvent: LiveData<Unit>
+    abstract val showGameFinishedEvent: LiveData<Int>
     abstract val editInputEnabled: LiveData<Boolean>
+    abstract val finishManuallyEnabled :LiveData<Boolean>
 
     abstract fun setGameId(gameId: Long)
     abstract fun onFabClicked()
     abstract fun onTrophyClicked()
     abstract fun updateTrumpType(trumpType: TrumpType)
-    abstract fun onInfoClicked()
+    abstract fun onMenuDeleteInputClicked()
+    abstract fun onMenuInfoClicked()
+    abstract fun onMenuSettingsClicked()
     abstract fun showExitDialog()
-    abstract fun onDeleteInputClicked()
+    abstract fun finishGameManuallyClicked()
+    abstract fun onFinishGameManuallyConfirmed()
 }

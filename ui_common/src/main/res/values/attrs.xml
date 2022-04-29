@@ -33,6 +33,9 @@
     <!-- Toolbar -->
     <attr name="textAppearanceToolbarTitle" format="reference" />
 
+    <!-- Other -->
+    <attr name="colorBlockBackground" format="color" />
+
     <!-- Custom views attributes -->
     <declare-styleable name="BaseToolbar">
         <attr name="android:gravity" />

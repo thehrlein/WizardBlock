@@ -7,4 +7,7 @@ abstract class NavigationViewModel : BaseViewModelImpl() {
     abstract fun onNewGameClicked()
     abstract fun onLoadGamesClicked()
     abstract fun onInfoClicked()
+    abstract fun onSettingsClicked()
+    abstract fun onStatisticsClicked()
+    abstract fun trackSystemAppearanceUserProperty(systemAppearance: String)
 }

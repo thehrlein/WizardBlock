@@ -92,6 +92,7 @@ sealed class DialogEntity : Serializable {
 
         class InputInfo(
             inputType: InputType,
+            bombPlayed: Boolean,
             round: Int,
             gameSettings: GameSettings,
             resourceHelper: ResourceHelper
@@ -112,16 +113,12 @@ sealed class DialogEntity : Serializable {
                             round
                         )
                     }
-                InputType.RESULT -> when {
-                    gameSettings.anniversaryVersion -> resourceHelper.getString(
-                        R.string.block_input_info_result_anniversary_version_message,
-                        round
-                    )
-                    else -> resourceHelper.getString(
+                InputType.RESULT ->
+                    resourceHelper.getString(
                         R.string.block_input_info_result_message,
-                        round
+                        round - if (bombPlayed) 1 else 0
                     )
-                }
+
             },
             neutralButtonText = resourceHelper.getString(R.string.general_ok)
         ) {
@@ -135,6 +132,40 @@ sealed class DialogEntity : Serializable {
             negativeButtonText = resourceHelper.getString(R.string.general_cancel)
         ) {
             override val requestCode: Int = DialogRequestCode.SAVED_GAMES_DELETE
+        }
+
+        class BlockInputBombPlayed(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.block_input_anniversary_version_bomb_played_dialog_title),
+            message = resourceHelper.getString(R.string.block_input_anniversary_version_bomb_played_dialog_message),
+            positiveButtonText = resourceHelper.getString(R.string.general_ok)
+        ) {
+            override val requestCode: Int = DialogRequestCode.BLOCK_INPUT_BOMB_PLAYED
+        }
+
+        class SettingsDisplayAlwaysOn(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.settings_display_always_active_dialog_title),
+            message = resourceHelper.getString(R.string.settings_display_always_active_dialog_message),
+            neutralButtonText = resourceHelper.getString(R.string.general_ok)
+        ) {
+            override val requestCode: Int = DialogRequestCode.SETTINGS_DISPLAY_ALWAYS_ON
+        }
+
+        class FinishGameManually(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.game_block_finish_manually_title),
+            message = resourceHelper.getString(R.string.game_block_finish_manually_message),
+            positiveButtonText = resourceHelper.getString(R.string.general_finish),
+            negativeButtonText = resourceHelper.getString(R.string.general_cancel)
+        ) {
+            override val requestCode: Int = DialogRequestCode.GAME_BLOCK_FINISH_MANUALLY
+        }
+
+        class ClearStatistics(resourceHelper: ResourceHelper) : Text(
+            title = resourceHelper.getString(R.string.statistics_clear_all_dialog_title),
+            message = resourceHelper.getString(R.string.statistics_clear_all_dialog_message),
+            positiveButtonText = resourceHelper.getString(R.string.statistics_clear_all),
+            negativeButtonText = resourceHelper.getString(R.string.general_cancel)
+        ) {
+            override val requestCode: Int = DialogRequestCode.CLEAR_STATISTICS
         }
     }
 
