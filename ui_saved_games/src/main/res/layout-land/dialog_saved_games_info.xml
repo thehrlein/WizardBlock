@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tobiashehrlein.tobiswizardblock.presentation.savedgames.info.SavedGamesInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/space_4"
+        android:paddingVertical="@dimen/space_2">
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
+            android:id="@+id/game_rules_settings_tips_equal_stitches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:checked="@{viewModel.gameSettings.tipsEqualStitches}"
+            app:disableSwitch="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showInfoIcon="@{false}"
+            app:switchText="@{@string/game_rules_stitches_can_be_equal_tips}" />
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
+            android:id="@+id/game_rules_settings_tips_equal_stitches_first_round"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:enabled="@{!viewModel.gameSettings.tipsEqualStitches}"
+            app:checked="@{viewModel.gameSettings.tipsEqualStitchesFirstRound}"
+            app:disableSwitch="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches"
+            app:showInfoIcon="@{false}"
+            app:switchText="@{@string/game_rules_stitches_can_be_equal_in_first_round_text}" />
+
+        <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
+            android:id="@+id/game_rules_settings_anniversary_version"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            app:checked="@{viewModel.gameSettings.anniversaryVersion}"
+            app:disableSwitch="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_rules_settings_tips_equal_stitches_first_round"
+            app:showInfoIcon="@{false}"
+            app:switchText="@{@string/game_rules_anniversary_option_stitches_can_be_less}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

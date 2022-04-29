@@ -1,0 +1,151 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Theme to be used for splash -->
+    <style name="Theme.WizardBlock.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/color_surface</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/wb_app_icon_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.WizardBlock.DayNight</item>
+    </style>
+
+    <!--Top level DayNight theme to be used in AndroidManifest.xml-->
+    <style name="Theme.WizardBlock.DayNight" parent="Base.Theme.WizardBlock" />
+
+    <!--Base custom theme which will be shared between both light and dark theme variants-->
+    <style name="Base.Theme.WizardBlock" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!--Material color attributes -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
+        <item name="colorBackground">@color/color_background</item>
+        <item name="android:colorBackground">?colorBackground</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorError">@color/color_error</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+        <item name="colorOnSecondary">@color/color_on_secondary</item>
+        <item name="colorOnBackground">@color/color_on_background</item>
+        <item name="colorOnSurface">@color/color_on_surface</item>
+        <item name="colorOnError">@color/color_on_error</item>
+        <item name="textColor">@color/text_color</item>
+        <item name="textColorDisabled">@color/text_color_disabled</item>
+        <item name="colorBlockBackground">@color/block_background_color</item>
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.WizardBlock.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.WizardBlock.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.WizardBlock.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.WizardBlock.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.WizardBlock.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.WizardBlock.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.WizardBlock.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.WizardBlock.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.WizardBlock.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.WizardBlock.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.WizardBlock.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.WizardBlock.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.WizardBlock.Overline</item>
+        <item name="textAppearanceError">@style/TextAppearance.WizardBlock.Error</item>
+        <item name="textAppearanceToolbarTitle">@style/TextAppearance.WizardBlock.Toolbar.Title
+        </item>
+
+        <!--Material shape attributes-->
+        <item name="shapeAppearanceSmallComponent">
+            @style/ShapeAppearance.WizardBlock.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.WizardBlock.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">
+            @style/ShapeAppearance.WizardBlock.LargeComponent
+        </item>
+
+        <!-- Alpha -->
+        <item name="alphaEmphasisHigh">@dimen/alpha_emphasis_high</item>
+        <item name="alphaEmphasisMedium">@dimen/alpha_emphasis_medium</item>
+        <item name="alphaEmphasisDisabled">@dimen/alpha_emphasis_disabled</item>
+
+        <!-- Elevation -->
+        <item name="elevationHigh">@dimen/elevation_high</item>
+        <item name="elevationMedium">@dimen/elevation_medium</item>
+        <item name="elevationLow">@dimen/elevation_few</item>
+
+        <!-- Dialog Attributes -->
+        <item name="dialogPreferredPadding">@dimen/space_4</item>
+        <item name="materialAlertDialogTheme">
+            @style/ThemeOverlay.WizardBlock.MaterialAlertDialog
+        </item>
+        <!--Component styles-->
+        <item name="appBarLayoutStyle">@style/Theme.WizardBlock.AppBarOverlay</item>
+        <item name="android:textViewStyle">@style/Widget.WizardBlock.TextView</item>
+        <item name="toolbarStyle">@style/Widget.WizardBlock.Toolbar.PrimarySurface</item>
+        <item name="android:progressBarStyle">@style/Widget.WizardBlock.ProgressBar</item>
+        <item name="materialButtonStyle">@style/Widget.WizardBlock.Button</item>
+        <item name="buttonSecondary">@style/Widget.WizardBlock.Button.Secondary</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.WizardBlock.Button.Outline</item>
+        <item name="borderlessButtonStyle">@style/Widget.WizardBlock.Button.Borderless</item>
+        <item name="textInputStyleOutlined">@style/Widget.WizardBlock.TextInputLayout.OutlinedBox
+        </item>
+        <item name="textInputStyleFilled">@style/Widget.WizardBlock.TextInputLayout.FilledBox</item>
+        <item name="textInputStyleDropdown">@style/Widget.WizardBlock.TextInputLayout.Dropdown
+        </item>
+        <item name="textInputStyleOutlinedExposedDropdown">
+            @style/Widget.WizardBlock.TextInputLayout.OutlinedBox.ExposedDropdownMenu
+        </item>
+        <item name="dividerColor">@color/color_divider</item>
+        <item name="dividerHeight">@dimen/list_item_divider_height</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.WizardBlock.ActionButton.Overflow
+        </item>
+
+        <!-- Action Mode -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">?colorPrimaryVariant</item>
+
+        <!-- Specs -->
+        <item name="listPreferredItemHeightSmall">@dimen/list_item_height_small</item>
+        <item name="listPreferredItemHeight">@dimen/list_item_height_default</item>
+        <item name="listPreferredItemHeightLarge">@dimen/list_item_height_large</item>
+
+        <!-- top system status bar background color -->
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <!-- top system status bar text / icon color, false = white, true = black -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!--Remap legacy AppCompat attributes to MaterialComponent attributes-->
+        <item name="colorPrimaryDark">?colorPrimaryVariant</item>
+        <item name="colorAccent">?colorSecondary</item>
+    </style>
+
+    <style name="Theme.WizardBlock.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- ThemeOverlays -->
+    <style name="ThemeOverlay.WizardBlock.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.WizardBlock</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="materialAlertDialogTitlePanelStyle">
+            @style/MaterialAlertDialog.WizardBlock.Title.Panel
+        </item>
+        <item name="materialAlertDialogTitleIconStyle">
+            @style/MaterialAlertDialog.WizardBlock.Title.Icon
+        </item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/MaterialAlertDialog.WizardBlock.Title.Text
+        </item>
+        <item name="materialAlertDialogBodyTextStyle">
+            @style/MaterialAlertDialog.WizardBlock.Body.Text
+        </item>
+
+        <item name="buttonBarButtonStyle">@style/Widget.WizardBlock.Button.TextButton.Dialog
+        </item>
+        <item name="buttonBarPositiveButtonStyle">
+            @style/Widget.WizardBlock.Button.TextButton.Dialog
+        </item>
+        <item name="buttonBarNegativeButtonStyle">
+            @style/Widget.WizardBlock.Button.TextButton.Dialog.Secondary
+        </item>
+        <item name="buttonBarNeutralButtonStyle">
+            @style/Widget.WizardBlock.Button.TextButton.Dialog.Secondary
+        </item>
+    </style>
+
+</resources>

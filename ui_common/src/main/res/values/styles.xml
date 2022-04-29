@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TextView -->
+    <style name="Widget.WizardBlock.TextView" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+    </style>
+
+    <!-- TextInputLayout -->
+    <style name="Widget.WizardBlock.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="errorTextAppearance">?textAppearanceError</item>
+<!--        <item name="boxStrokeColor">@color/color_text_input_layout_border</item>-->
+        <item name="boxStrokeWidth">@dimen/shape_stroke_width</item>
+        <item name="boxBackgroundColor">?colorSurface</item> <!-- background -->
+        <item name="hintTextColor">?colorPrimary</item> <!-- collapsed hint (active text field) -->
+    </style>
+
+    <style name="Widget.WizardBlock.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    </style>
+
+    <style name="Widget.WizardBlock.TextInputLayout.Dropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="textAppearanceError">?textAppearanceError</item>
+<!--        <item name="boxStrokeColor">@color/color_text_input_layout_border</item>-->
+        <item name="boxStrokeWidth">@dimen/shape_stroke_width</item>
+        <item name="boxBackgroundColor">?colorSurface</item>
+        <item name="hintTextColor">?colorPrimary</item> <!-- collapsed hint (active text field) -->
+    </style>
+
+
+    <style name="Widget.WizardBlock.TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    </style>
+
+    <!-- Button -->
+    <style name="Widget.WizardBlock.Button" parent="@style/Widget.MaterialComponents.Button">
+<!--        <item name="background">@drawable/em_selector_button_primary</item>-->
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.Secondary" parent="@style/Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?colorSecondary</item>
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="android:textColor">?colorOnSecondary</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.Outline" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="strokeColor">@color/color_selector_outline_button</item>
+<!--        <item name="android:textColor">?colorOnBackground</item>-->
+    </style>
+
+    <style name="Widget.WizardBlock.Button.Borderless" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.InputAction">
+        <item name="android:paddingLeft">@dimen/space_2</item>
+        <item name="android:paddingRight">@dimen/space_2</item>
+        <item name="android:minWidth">@dimen/button_input_action_min_width</item>
+        <item name="iconPadding">0dp</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.InputAction.LeftRounded">
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.LeftRounded</item>
+        <item name="iconGravity">textEnd</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.InputAction.RightRounded">
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.RightRounded</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <!-- Progress Bar -->
+    <style name="Widget.WizardBlock.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:minWidth">@dimen/progress_bar_size_medium</item>
+        <item name="android:maxWidth">@dimen/progress_bar_size_medium</item>
+        <item name="android:minHeight">@dimen/progress_bar_size_medium</item>
+        <item name="android:maxHeight">@dimen/progress_bar_size_medium</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="Widget.WizardBlock.Toolbar.PrimarySurface" parent="@style/Widget.MaterialComponents.Toolbar.PrimarySurface">
+        <item name="android:gravity">center</item>
+        <item name="android:buttonTint">?colorOnPrimary</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <!-- Menu -->
+    <style name="Widget.WizardBlock.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/wb_ic_menu_dots</item>
+    </style>
+
+</resources>

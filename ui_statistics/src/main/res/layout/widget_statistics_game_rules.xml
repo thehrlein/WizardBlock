@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/statistics_game_rules_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_4"
+        android:layout_marginVertical="@dimen/space_2"
+        android:background="@drawable/wb_background_border_rounded"
+        android:elevation="?elevationMedium"
+        android:padding="@dimen/space_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/statistics_game_rules_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/statistics_game_rules_headline"
+            android:textAppearance="?textAppearanceSubtitle1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/statistics_game_rules_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statistics_game_rules_title" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/statistics_game_rules_chart"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/space_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statistics_game_rules_divider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

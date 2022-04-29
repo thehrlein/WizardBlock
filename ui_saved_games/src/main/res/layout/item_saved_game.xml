@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_4">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_round"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_game_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textAppearance="?textAppearanceBody2"
+            app:gameStartDate="@{item.gameStartDate}"
+            app:layout_constraintEnd_toStartOf="@id/guideline_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22.10.2020" />
+
+        <TextView
+            android:id="@+id/game_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:layout_marginEnd="@dimen/space_2"
+            android:text="@{item.gameName}"
+            android:textAppearance="?textAppearanceBody2"
+            app:layout_constraintEnd_toStartOf="@id/guideline_round"
+            app:layout_constraintStart_toEndOf="@id/guideline_date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Spieleabend" />
+
+        <TextView
+            android:id="@+id/current_round"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceBody2"
+            app:layout_constraintEnd_toStartOf="@id/guideline_game_settings"
+            app:layout_constraintStart_toEndOf="@id/guideline_round"
+            app:layout_constraintTop_toTopOf="parent"
+            app:round="@{item}"
+            tools:text="13 / 20" />
+
+        <ImageView
+            android:id="@+id/game_settings_icon"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/wb_ic_info"
+            app:tint="?colorOnBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_game_settings"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

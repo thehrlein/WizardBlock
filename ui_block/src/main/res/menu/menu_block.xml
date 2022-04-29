@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_trophy"
+        android:icon="@drawable/wb_ic_trophy"
+        android:title="@string/game_block_results_menu_trophy_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_delete_input"
+        android:enabled="false"
+        android:icon="@null"
+        android:title="@string/game_block_results_menu_delete_last_tip_input"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_finish_game"
+        android:enabled="false"
+        android:icon="@null"
+        android:title="@string/game_block_results_menu_finish_game"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_info"
+        android:icon="@null"
+        android:title="@string/game_block_results_menu_about_title"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@null"
+        android:title="@string/game_block_results_menu_settings_title"
+        app:showAsAction="never" />
+
+</menu>

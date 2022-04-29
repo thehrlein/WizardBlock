@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_player_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <TextView
+            android:id="@+id/position"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintEnd_toStartOf="@id/guideline_position"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1." />
+
+        <TextView
+            android:id="@+id/player_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintEnd_toStartOf="@id/guideline_player_name"
+            app:layout_constraintStart_toEndOf="@id/guideline_position"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Player One" />
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_player_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

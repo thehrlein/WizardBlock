@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/settings_view_switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_4"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintEnd_toStartOf="@id/settings_view_info_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:switchPadding="@dimen/space_4"
+            tools:text="@string/game_rules_stitches_can_be_equal_tips" />
+
+        <ImageView
+            android:id="@+id/settings_view_info_icon"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/wb_ic_info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_divider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

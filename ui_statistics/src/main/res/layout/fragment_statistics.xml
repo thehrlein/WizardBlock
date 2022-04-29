@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tobiashehrlein.tobiswizardblock.presentation.statistics.StatisticsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{!viewModel.showLoading}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.MostWinsView
+                    android:id="@+id/statistics_most_wins"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/space_2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:playerCountStatistics="@{viewModel.mostWinStatisticsData}">
+
+                </com.tobiashehrlein.tobiswizardblock.ui_statistics.MostWinsView>
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.TopPointsStatisticsView
+                    android:id="@+id/statistics_top_points"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_most_wins"
+                    app:topPointsStatistics="@{viewModel.topPointsStatisticsData}" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.GamesPlayedStatisticsView
+                    android:id="@+id/statistics_games_played"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:gamesPlayedStatistics="@{viewModel.gamesPlayedCountStatistics}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_top_points" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.PlayerCountStatisticsView
+                    android:id="@+id/statistics_player_count_chart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_games_played"
+                    app:playerCountStatistics="@{viewModel.playerCountStatistics}" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.GameDayStatisticsView
+                    android:id="@+id/statistics_game_day_chart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:gameDayStatistics="@{viewModel.gameDayStatisticsData}"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_player_count_chart" />
+
+                <com.tobiashehrlein.tobiswizardblock.ui_statistics.GameRulesStatisticsView
+                    android:id="@+id/statistics_game_rules_chart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:gameRulesStatistics="@{viewModel.gameRulesStatisticsData}"
+                    app:layout_constraintTop_toBottomOf="@id/statistics_game_day_chart" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/statistics_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.showLoading}"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

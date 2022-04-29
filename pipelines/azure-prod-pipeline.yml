@@ -14,6 +14,7 @@ variables:
 
 steps:
   - task: PowerShell@2
+    displayName: 'Generate Changelog'
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken)
     inputs:
@@ -35,10 +36,37 @@ steps:
             "* $($change.message)" | Add-Content -Path $changelogPath
           }
   - task: DownloadSecureFile@1
-    name: release_key
+    displayName: 'Download release_key.jks'
+    name: keystore
     inputs:
       secureFile: 'release_key.jks'
+  - task: CopyFiles@2
+    displayName: 'Copy release_key.jks'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '$(keystore.secureFilePath)'
+      TargetFolder: '$(System.DefaultWorkingDirectory)/signing'
+      OverWrite: true
+  - task: DownloadSecureFile@1
+    displayName: 'Download local.properties'
+    name: localProperties
+    inputs:
+      secureFile: 'local.properties'
+  - task: CopyFiles@2
+    displayName: 'Copy local.properties'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '$(localProperties.secureFilePath)'
+      TargetFolder: '$(System.DefaultWorkingDirectory)'
+      OverWrite: true
+  - task: JavaToolInstaller@0
+    displayName: 'Install Java 11'
+    inputs:
+      versionSpec: '11'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
   - task: Gradle@2
+    displayName: 'AssembleDebug (APK)'
     inputs:
       workingDirectory: ''
       gradleWrapperFile: 'gradlew'
@@ -46,22 +74,41 @@ steps:
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'assembleRelease'
-  - task: AndroidSigning@3
-    inputs:
-      apkFiles: '**/*.apk'
-      apksign: true
-      apksignerKeystoreFile: 'release_key.jks'
-      apksignerKeystorePassword: '$(releaseKeyStorePassword)'
-      apksignerKeystoreAlias: '$(releaseAlias)'
-      apksignerKeyPassword: '$(releaseKeyPassword)'
-      zipalign: true
   - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    displayName: 'Copy apk to: $(Build.ArtifactStagingDirectory)'
     inputs:
       SourceFolder: app/build/outputs/apk/
       Contents: '**/*.apk'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
       flattenFolders: true
+  - task: Gradle@2
+    displayName: 'BundleRelease (AAB)'
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      publishJUnitResults: false
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'bundleRelease'
+  - task: CopyFiles@2
+    displayName: 'Copy aab to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      SourceFolder: app/build/outputs/bundle/
+      Contents: '**/*.aab'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      flattenFolders: true
   - task: PublishBuildArtifacts@1
     inputs:
       ArtifactName: buildRelease
+  - task: NodeTool@0
+    displayName: 'Install Node.js'
+    inputs:
+      versionSpec: '12.x'
+  - task: CmdLine@2
+    displayName: 'Install firebase cli'
+    inputs:
+      script: 'npm install -g firebase-tools'
+      workingDirectory: '$(Agent.ToolsDirectory)'
+  - task: CmdLine@2
+    inputs:
+      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.aab --token $(firebase_token) --app $(firebase_app_id_release) --release-notes-file "$(Build.ArtifactStagingDirectory)/changelog" --groups "wizardblock-tester-release"'
