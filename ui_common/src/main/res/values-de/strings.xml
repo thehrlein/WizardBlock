@@ -73,7 +73,7 @@
     <string name="block_input_info_tips_can_be_equal_stitches_message">Die Anzahl eurer Tipps darf %1$d ergeben</string>
     <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Die Anzahl eurer Tipps darf nicht gleich %1$d sein. Der letzte Spieler muss sicherstellen, dass die Anzahl an Tipps nicht gleich %1$d ist</string>
     <string name="block_input_info_result_message">Die Anzahl eurer Ergebnisse muss %1$d ergeben</string>
-    <string name="block_input_enter_tips">Tripps eintragen%1$s</string>
+    <string name="block_input_enter_tips">Tipps eintragen%1$s</string>
     <string name="block_input_enter_results">Ergebnisse eintragen%1$s</string>
     <string name="block_input_action_info_title">Info</string>
     <string name="block_input_action_trump_title">Trumpf</string>
