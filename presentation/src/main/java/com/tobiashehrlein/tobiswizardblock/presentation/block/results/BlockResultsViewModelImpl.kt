@@ -113,16 +113,16 @@ class BlockResultsViewModelImpl(
                 columnCount.value = result.value.columnCount
                 blockItems.value = result.value.items
                 inputType.value = result.value.inputType
-                showTrumpSelectionDialog(result.value)
+                checkIfShowTrumpSelectionDialog(result.value, currentGame.gameFinished)
             }
             is AppResult.Error -> Unit
         }
     }
 
-    private fun showTrumpSelectionDialog(data: BlockItemData) {
+    private fun checkIfShowTrumpSelectionDialog(data: BlockItemData, gameFinished: Boolean) {
         val placeHolderItem =
             data.items.firstOrNull { it is BlockPlaceholder } as? BlockPlaceholder ?: return
-        if (data.inputType == InputType.TIPP && placeHolderItem.trumpType == TrumpType.Unselected) {
+        if (!gameFinished && data.inputType == InputType.TIPP && placeHolderItem.trumpType == TrumpType.Unselected) {
             viewModelScope.launch {
                 when (val result = isShowTrumpDialogEnabledUseCase.invoke()) {
                     is AppResult.Success -> {
@@ -166,7 +166,8 @@ class BlockResultsViewModelImpl(
                 is AppResult.Success -> {
                     navigateTo(
                         Page.Block.GameFinished(
-                            winner)
+                            winner
+                        )
                     )
                     onFinishedSuccess?.invoke()
                 }
