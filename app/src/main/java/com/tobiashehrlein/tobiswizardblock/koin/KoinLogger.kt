@@ -8,7 +8,7 @@ import timber.log.Timber
 
 class KoinLogger : Logger() {
 
-    override fun log(level: Level, msg: MESSAGE) {
+    override fun display(level: Level, msg: MESSAGE) {
         when (level) {
             Level.DEBUG -> Timber.d("$KOIN_TAG $msg")
             Level.INFO -> Timber.i("$KOIN_TAG $msg")

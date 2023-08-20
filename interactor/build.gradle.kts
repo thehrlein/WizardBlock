@@ -4,6 +4,10 @@ plugins {
     kotlin(BuildPlugins.kapt)
 }
 
+android {
+    namespace = "com.tobiashehrlein.tobiswizardblock.interactor"
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = Others.JVM_TARGET

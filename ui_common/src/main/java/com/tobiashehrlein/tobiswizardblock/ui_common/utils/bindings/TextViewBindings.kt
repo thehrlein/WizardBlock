@@ -36,7 +36,7 @@ fun TextView.setDifferenceText(value: Int?) {
 @BindingAdapter("inputTitle")
 fun TextView.setInputTitle(game: Game?) {
     if (game?.currentRoundNumber == null) return
-    text = context.getString(R.string.block_input_general_title, game.currentRoundNumber)
+    text = context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_general_title, game.currentRoundNumber)
 }
 
 @BindingAdapter("bold")
@@ -47,7 +47,7 @@ fun TextView.setBold(bold: Boolean?) {
 @BindingAdapter("position")
 fun TextView.setPosition(pos: Int?) {
     if (pos == null) return
-    text = context.getString(R.string.block_scores_position, pos)
+    text = context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_scores_position, pos)
 }
 
 @BindingAdapter("playerNames")
@@ -58,7 +58,7 @@ fun TextView.setPlayerNames(playerNames: List<String>) {
 @BindingAdapter("round")
 fun TextView.setRound(item: SavedGameEntity) {
     text =
-        if (item.gameFinished) context.getString(R.string.saved_game_finished) else context.getString(
+        if (item.gameFinished) context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.saved_game_finished) else context.getString(
             R.string.saved_game_current_max_round,
             item.currentRound,
             item.maxRound

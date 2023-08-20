@@ -40,11 +40,11 @@ class AboutFragment :
     }
 
     private fun openFahrstuhl() {
-        openInPlayStore(getString(R.string.about_package_name_fahrstuhl_block))
+        openInPlayStore(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_package_name_fahrstuhl_block))
     }
 
     private fun openMoviebase() {
-        openInPlayStore(getString(R.string.about_package_name_moviebase))
+        openInPlayStore(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_package_name_moviebase))
     }
 
     private fun openInPlayStore(packageName: String) {
@@ -52,14 +52,14 @@ class AboutFragment :
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(getString(R.string.about_playstore_prefix, packageName))
+                    Uri.parse(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_playstore_prefix, packageName))
                 )
             )
         } catch (e: ActivityNotFoundException) {
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(getString(R.string.about_playstore_url, packageName))
+                    Uri.parse(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_playstore_url, packageName))
                 )
             )
         }
@@ -67,22 +67,22 @@ class AboutFragment :
     }
 
     private fun sendEmail() {
-        val text = getString(R.string.about_email_text)
-        val email = getString(R.string.about_email)
+        val text = getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_email_text)
+        val email = getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_email)
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
-            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.general_app_name))
+            putExtra(Intent.EXTRA_SUBJECT, getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_app_name))
             putExtra(Intent.EXTRA_TEXT, text)
             putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
         }
 
-        val mailer = Intent.createChooser(intent, getString(R.string.about_email_chooser_title))
+        val mailer = Intent.createChooser(intent, getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_email_chooser_title))
         try {
             startActivity(mailer)
         } catch (ex: ActivityNotFoundException) {
             Toast.makeText(
                 requireContext(),
-                getString(R.string.about_no_email_clients),
+                getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_no_email_clients),
                 Toast.LENGTH_SHORT
             ).show()
         }

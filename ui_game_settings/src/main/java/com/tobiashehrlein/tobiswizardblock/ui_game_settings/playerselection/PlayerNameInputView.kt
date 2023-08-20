@@ -53,7 +53,7 @@ class PlayerNameInputView @JvmOverloads constructor(
         binding.autoCompleteText.setAdapter(
             ArrayAdapter(
                 context,
-                R.layout.widget_auto_complete_text_row,
+                com.tobiashehrlein.tobiswizardblock.ui_common.R.layout.widget_auto_complete_text_row,
                 items.toList()
             )
         )
@@ -74,8 +74,8 @@ class PlayerNameInputView @JvmOverloads constructor(
     fun setPlayerError(errorType: PlayerError?) {
         setError(
             when (errorType) {
-                PlayerError.EMPTY -> context.getString(R.string.player_selection_player_name_empty)
-                PlayerError.DUPLICATE -> context.getString(R.string.player_selection_player_name_duplicate)
+                PlayerError.EMPTY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.player_selection_player_name_empty)
+                PlayerError.DUPLICATE -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.player_selection_player_name_duplicate)
                 else -> null
             }
         )

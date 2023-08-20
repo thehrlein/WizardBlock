@@ -38,7 +38,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
     fun setGameDayStatistics(gameDayStatisticsData: GameDayStatisticsData?) {
         if (gameDayStatisticsData == null || gameDayStatisticsData.gameDays.isNullOrEmpty()) {
             binding.statisticsGameDayChart.apply {
-                setNoDataText(context.getString(R.string.statistics_player_no_data_available))
+                setNoDataText(context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_player_no_data_available))
                 data = null
                 invalidate()
             }
@@ -51,7 +51,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
                 }
                 val barDataSet = BarDataSet(entries, "").apply {
                     //Changing the color of the bar
-                    color = ContextCompat.getColor(context, R.color.color_primary)
+                    color = ContextCompat.getColor(context, com.tobiashehrlein.tobiswizardblock.ui_common.R.color.color_primary)
                     //Setting the size of the form in the legend
                     formSize = 15f
                     //showing the value of the bar, default true if not set
@@ -97,7 +97,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
                             return DayOfWeek.of(value.toInt()).getDisplayName(TextStyle.SHORT, Locale.getDefault())
                         }
                     }
-                    textColor = context.getColorReference(R.attr.colorOnBackground)
+                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
                 }
 
                 axisLeft.apply {
@@ -109,7 +109,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
                     granularity = 1f
                     axisMinimum = 0.0f
                     axisMaximum = gameDayStatisticsData.gameDays.values.maxOf { it }.toFloat()
-                    textColor = context.getColorReference(R.attr.colorOnBackground)
+                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
 
                 }
 

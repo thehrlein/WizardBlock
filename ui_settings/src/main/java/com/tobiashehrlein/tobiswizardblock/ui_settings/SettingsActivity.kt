@@ -16,7 +16,7 @@ class SettingsActivity : BaseToolbarActivity<SettingsViewModel, ActivitySettings
     override val navHostFragment: Int = R.id.activity_settings_nav_host_fragment
     override var toolbarButtonType: ToolbarButtonType = ToolbarButtonType.Back
     override val toolbarTitle: String
-        get() = getString(R.string.settings_toolbar_title)
+        get() = getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.settings_toolbar_title)
     override val contentViewModelResId: Int = BR.viewModel
     override val contentLayoutRes: Int = R.layout.activity_settings
 
@@ -27,6 +27,6 @@ class SettingsActivity : BaseToolbarActivity<SettingsViewModel, ActivitySettings
     }
 
     override fun onDialogResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        supportFragmentManager.dispatchOnDialogResult(requestCode, resultCode, data)
+       supportFragmentManager.dispatchOnDialogResult(requestCode, resultCode, data)
     }
 }

@@ -14,7 +14,7 @@ class SavedGamesActivity : BaseToolbarActivity<SavedGamesViewModel, ActivitySave
 
     override var toolbarButtonType: ToolbarButtonType = ToolbarButtonType.Back
     override val toolbarTitle: String
-        get() = getString(R.string.saved_game_toolbar_title)
+        get() = getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.saved_game_toolbar_title)
     override val contentViewModelResId: Int = BR.viewModel
     override val contentLayoutRes: Int = R.layout.activity_saved_games
     override val viewModel: SavedGamesViewModel by viewModel()

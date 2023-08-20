@@ -19,6 +19,8 @@ val buildNumber = Integer.parseInt(
 
 android {
     compileSdk = AndroidSdkTools.compileSdk
+
+    namespace = AndroidSdkTools.applicationId
     defaultConfig {
         applicationId = AndroidSdkTools.applicationId
         minSdk = AndroidSdkTools.minSdk
@@ -75,9 +77,8 @@ android {
 
     buildFeatures.apply {
         viewBinding = true
-        dataBinding {
-            isEnabled = true
-        }
+        dataBinding = true
+        buildConfig = true
     }
 }
 

@@ -26,7 +26,7 @@ class GameRulesFragment : BaseToolbarFragment<GameRulesViewModel, GameSettingsVi
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
-        activityToolbarViewModel.setTitle(getString(R.string.game_rules_toolbar_title))
+        activityToolbarViewModel.setTitle(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_rules_toolbar_title))
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.Back)
 
         binding.gameRulesSettingsTipsEqualStitches.onCheckedChange {
@@ -56,7 +56,7 @@ class GameRulesFragment : BaseToolbarFragment<GameRulesViewModel, GameSettingsVi
             val playerNames = activityToolbarViewModel.playerNames.value ?: error("playerNames must not be null")
             val gameSettings = activityToolbarViewModel.gameSettings.value ?: error("gameSettings must not be null")
             if (gameName.isNullOrEmpty()) {
-                binding.gameRulesGameName.setError(getString(R.string.game_rules_game_name_must_not_be_empty))
+                binding.gameRulesGameName.setError(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_rules_game_name_must_not_be_empty))
             } else {
                 binding.gameRulesGameName.setError(null)
                 viewModel.onProceedClicked(gameName, playerNames, gameSettings)
@@ -66,10 +66,10 @@ class GameRulesFragment : BaseToolbarFragment<GameRulesViewModel, GameSettingsVi
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_game_rules, menu)
-        menu.findItem(R.id.action_info).icon.setTint(
+        menu.findItem(R.id.action_info).icon?.setTint(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.color_on_primary
+                com.tobiashehrlein.tobiswizardblock.ui_common.R.color.color_on_primary
             )
         )
         super.onCreateOptionsMenu(menu, inflater)
