@@ -4,6 +4,10 @@ plugins {
     kotlin(BuildPlugins.kapt)
 }
 
+android {
+    namespace = "com.tobiashehrlein.tobiswizardblock.entities"
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 

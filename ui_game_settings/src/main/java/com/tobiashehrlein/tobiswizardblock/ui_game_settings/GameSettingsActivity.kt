@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.presentation.gamesettings.GameSettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.BaseToolbarActivity
+import com.tobiashehrlein.tobiswizardblock.ui_common.BR
 import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.utils.DialogInteractor
 import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.dispatchOnDialogResult
 import com.tobiashehrlein.tobiswizardblock.ui_game_settings.databinding.ActivityGameSettingsBinding

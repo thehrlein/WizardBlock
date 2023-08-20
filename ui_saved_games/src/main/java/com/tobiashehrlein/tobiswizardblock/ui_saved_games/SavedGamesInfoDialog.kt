@@ -51,7 +51,7 @@ class SavedGamesInfoDialog : BaseDialogFragment<SavedGamesInfoViewModel, DialogS
         return MaterialAlertDialogBuilder(requireContext())
             .setView(view)
             .setTitle(dialogEntity.title)
-            .setPositiveButton(R.string.general_ok) { _, _ ->
+            .setPositiveButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_ok) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.POSITIVE)
             }
             .create()

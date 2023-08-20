@@ -5,18 +5,18 @@ plugins {
     id(BuildPlugins.safeArgs)
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = Others.JVM_TARGET
+android {
+    namespace = "com.tobiashehrlein.tobiswizardblock.ui_navigation"
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 
-android {
-    buildFeatures {
-        viewBinding = true
-        dataBinding {
-            isEnabled = true
-        }
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = Others.JVM_TARGET
     }
 }
 

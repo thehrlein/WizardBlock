@@ -22,7 +22,7 @@ class TopPointsStatisticsRowView @JvmOverloads constructor(
     )
 
     fun setData(topPointsStatisticsData: TopPointsStatisticsData) {
-        binding.position.text = context.getString(R.string.statistics_most_wins_position_placeholder, topPointsStatisticsData.position)
+        binding.position.text = context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_most_wins_position_placeholder, topPointsStatisticsData.position)
         binding.playerName.text = topPointsStatisticsData.playerName
         binding.points.text = topPointsStatisticsData.points.toString()
     }

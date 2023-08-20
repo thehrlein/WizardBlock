@@ -35,7 +35,7 @@ class TrumpSelectionGroup @JvmOverloads constructor(
 
         binding.groupOne.addView(
             TrumpSelectionItem(context).apply {
-                setItem(Trump(context.getString(R.string.block_trump_type_blue), TrumpType.Selected.Blue)) {
+                setItem(Trump(context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_trump_type_blue), TrumpType.Selected.Blue)) {
                     setTrumpSelected(it)
                 }
             }.also {
@@ -44,7 +44,7 @@ class TrumpSelectionGroup @JvmOverloads constructor(
         )
         binding.groupOne.addView(
             TrumpSelectionItem(context).apply {
-                setItem(Trump(context.getString(R.string.block_trump_type_green), TrumpType.Selected.Green)) {
+                setItem(Trump(context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_trump_type_green), TrumpType.Selected.Green)) {
                     setTrumpSelected(it)
                 }
             }.also {
@@ -53,7 +53,7 @@ class TrumpSelectionGroup @JvmOverloads constructor(
         )
         binding.groupTwo.addView(
             TrumpSelectionItem(context).apply {
-                setItem(Trump(context.getString(R.string.block_trump_type_red), TrumpType.Selected.Red)) {
+                setItem(Trump(context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_trump_type_red), TrumpType.Selected.Red)) {
                     setTrumpSelected(it)
                 }
             }.also {
@@ -64,7 +64,7 @@ class TrumpSelectionGroup @JvmOverloads constructor(
             TrumpSelectionItem(context).apply {
                 setItem(
                     Trump(
-                        context.getString(R.string.block_trump_type_yellow),
+                        context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_trump_type_yellow),
                         TrumpType.Selected.Yellow
                     )
                 ) {

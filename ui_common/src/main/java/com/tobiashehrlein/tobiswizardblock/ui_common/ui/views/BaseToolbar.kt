@@ -18,7 +18,7 @@ import com.tobiashehrlein.tobiswizardblock.ui_common.utils.EllipsizeAttribute
 class BaseToolbar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = R.attr.toolbarStyle,
+    defStyleAttr: Int = com.google.android.material.R.attr.toolbarStyle,
     defStyleRes: Int = 0
 ) : Toolbar(context, attrs, defStyleAttr) {
 

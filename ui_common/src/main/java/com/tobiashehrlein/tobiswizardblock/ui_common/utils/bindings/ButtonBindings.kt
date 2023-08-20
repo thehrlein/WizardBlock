@@ -8,9 +8,9 @@ import com.tobiashehrlein.tobiswizardblock.ui_common.R
 @BindingAdapter("inputType", "summedInputs", "cardCount")
 fun Button.setButtonText(inputType: InputType?, summedInputs: Int?, cardCount: Int?) {
     val suffix = if (summedInputs != null && cardCount != null) {
-        context.getString(R.string.block_input_summed_inputs, summedInputs, cardCount)
+        context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_summed_inputs, summedInputs, cardCount)
     } else {
-        context.getString(R.string.general_empty_string)
+        context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_empty_string)
     }
 
     text = context.getString(

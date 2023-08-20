@@ -60,11 +60,11 @@ class BlockInputCorrectTipsChoosePlayerDialog :
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(view)
             .setTitle(dialogEntity.title)
-            .setPositiveButton(R.string.general_button_proceed, null)
-            .setNegativeButton(R.string.general_cancel) { _, _ ->
+            .setPositiveButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_button_proceed, null)
+            .setNegativeButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_cancel) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.NEGATIVE)
             }
-            .setNeutralButton(R.string.general_back, null)
+            .setNeutralButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_back, null)
             .create()
 
         dialog.setOnShowListener {
@@ -81,18 +81,18 @@ class BlockInputCorrectTipsChoosePlayerDialog :
             val radio = RadioButton(requireContext()).apply {
                 id = data.playerName.hashCode()
                 text = getString(
-                    R.string.block_input_correct_tips_choose_player_name_and_tip,
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_choose_player_name_and_tip,
                     data.playerName,
                     data.tip
                 )
-                setTextAppearance(R.style.TextAppearance_WizardBlock_Body1)
-                val padding = context.getDimen(R.dimen.space_2)
+                setTextAppearance(com.tobiashehrlein.tobiswizardblock.ui_common.R.style.TextAppearance_WizardBlock_Body1)
+                val padding = context.getDimen(com.tobiashehrlein.tobiswizardblock.ui_common.R.dimen.space_2)
                 setPadding(padding, padding, padding, padding)
                 val params = RadioGroup.LayoutParams(
                     RadioGroup.LayoutParams.MATCH_PARENT,
                     RadioGroup.LayoutParams.WRAP_CONTENT
                 )
-                val margin = context.getDimen(R.dimen.space_1)
+                val margin = context.getDimen(com.tobiashehrlein.tobiswizardblock.ui_common.R.dimen.space_1)
                 params.setMargins(margin, margin, margin, margin)
                 layoutParams = params
             }
@@ -165,7 +165,7 @@ class BlockInputCorrectTipsChoosePlayerDialog :
         }
         dialog.setTitle(
             getString(
-                R.string.block_input_correct_tips_count_title,
+                com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_count_title,
                 selectedPlayerTipData.playerName
             )
         )
