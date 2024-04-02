@@ -19,12 +19,13 @@ val releaseKeyStorePassword: String =
         ?: ""
 val showLogging: String = gradleLocalProperties(rootDir).getProperty("showLogging", "false")
 
-project.ext {
+project.extra.apply {
     set("releaseAlias", releaseAlias)
     set("releaseKeyPassword", releaseKeyPassword)
     set("releaseKeyStorePassword", releaseKeyStorePassword)
     set("showLogging", showLogging)
 }
+
 buildscript {
     repositories {
         mavenCentral()

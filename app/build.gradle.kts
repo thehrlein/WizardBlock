@@ -18,9 +18,13 @@ val buildNumber = Integer.parseInt(
 )
 
 android {
-    compileSdk = AndroidSdkTools.compileSdk
+    val releaseAlias : String by project.rootProject.ext
+    val releaseKeyPassword : String by project.rootProject.ext
+    val releaseKeyStorePassword : String by project.rootProject.ext
 
+    compileSdk = AndroidSdkTools.compileSdk
     namespace = AndroidSdkTools.applicationId
+
     defaultConfig {
         applicationId = AndroidSdkTools.applicationId
         minSdk = AndroidSdkTools.minSdk
@@ -32,10 +36,10 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = project.rootProject.ext["releaseAlias"] as? String
-            keyPassword = project.rootProject.ext["releaseKeyPassword"] as? String
+            keyAlias = releaseAlias
+            keyPassword = releaseKeyPassword
             storeFile = file("../signing/release_key.jks")
-            storePassword = project.rootProject.ext["releaseKeyStorePassword"] as? String
+            storePassword = releaseKeyStorePassword
             enableV1Signing = true
             enableV2Signing = true
         }
