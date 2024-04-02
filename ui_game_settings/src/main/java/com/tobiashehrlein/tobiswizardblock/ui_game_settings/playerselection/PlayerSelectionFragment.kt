@@ -23,7 +23,7 @@ class PlayerSelectionFragment :
 
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
-        activityToolbarViewModel.setTitle(getString(R.string.player_selection_toolbar_title))
+        activityToolbarViewModel.setTitle(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.player_selection_toolbar_title))
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.Back)
 
         binding.playerCountChooseButtonGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->

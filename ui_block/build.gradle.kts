@@ -7,18 +7,18 @@ plugins {
     id(BuildPlugins.safeArgs)
 }
 
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = Others.JVM_TARGET
+android {
+    namespace = "com.tobiashehrlein.tobiswizardblock.ui_block"
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 
-android {
-    buildFeatures {
-        viewBinding = true
-        dataBinding {
-            isEnabled = true
-        }
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = Others.JVM_TARGET
     }
 }
 

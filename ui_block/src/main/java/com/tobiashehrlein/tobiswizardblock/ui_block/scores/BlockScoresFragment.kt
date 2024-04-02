@@ -26,7 +26,7 @@ class BlockScoresFragment :
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
-        activityToolbarViewModel.setTitle(getString(R.string.block_scores_toolbar_title))
+        activityToolbarViewModel.setTitle(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_scores_toolbar_title))
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.Back)
 
         initAdapter()

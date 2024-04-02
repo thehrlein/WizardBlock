@@ -30,7 +30,7 @@ class NavigationActivity : BaseActivity<NavigationViewModel, ActivityNavigationB
         super.onCreate(savedInstanceState)
 
         val isDarkMode = isUsingDarkMode()
-        val systemAppearance = getString(if (isDarkMode) R.string.tracking_user_property_system_appearance_dark else R.string.tracking_user_property_system_appearance_light)
+        val systemAppearance = getString(if (isDarkMode) com.tobiashehrlein.tobiswizardblock.ui_common.R.string.tracking_user_property_system_appearance_dark else com.tobiashehrlein.tobiswizardblock.ui_common.R.string.tracking_user_property_system_appearance_light)
         viewModel.trackSystemAppearanceUserProperty(systemAppearance)
     }
 }

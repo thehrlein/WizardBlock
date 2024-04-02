@@ -60,9 +60,9 @@ steps:
       TargetFolder: '$(System.DefaultWorkingDirectory)'
       OverWrite: true
   - task: JavaToolInstaller@0
-    displayName: 'Install Java 11'
+    displayName: 'Install Java 17'
     inputs:
-      versionSpec: '11'
+      versionSpec: '17'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
   - task: Gradle@2
@@ -100,15 +100,15 @@ steps:
   - task: PublishBuildArtifacts@1
     inputs:
       ArtifactName: buildRelease
-  - task: NodeTool@0
-    displayName: 'Install Node.js'
-    inputs:
-      versionSpec: '18.x'
-  - task: CmdLine@2
-    displayName: 'Install firebase cli'
-    inputs:
-      script: 'npm install -g firebase-tools'
-      workingDirectory: '$(Agent.ToolsDirectory)'
-  - task: CmdLine@2
-    inputs:
-      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.aab --token $(firebase_token) --app $(firebase_app_id_release) --release-notes-file "$(Build.ArtifactStagingDirectory)/changelog" --groups "wizardblock-tester-release"'
+#  - task: NodeTool@0
+#    displayName: 'Install Node.js'
+#    inputs:
+#      versionSpec: '18.x'
+#  - task: CmdLine@2
+#    displayName: 'Install firebase cli'
+#    inputs:
+#      script: 'npm install -g firebase-tools'
+#      workingDirectory: '$(Agent.ToolsDirectory)'
+#  - task: CmdLine@2
+#    inputs:
+#      script: 'firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.aab --token $(firebase_token) --app $(firebase_app_id_release) --release-notes-file "$(Build.ArtifactStagingDirectory)/changelog" --groups "wizardblock-tester-release"'

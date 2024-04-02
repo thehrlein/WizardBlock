@@ -2,6 +2,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import java.util.Locale
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 val releaseAlias: String =
@@ -26,7 +27,6 @@ project.ext {
 }
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
         google()
         maven("https://www.jitpack.io")
@@ -47,7 +47,6 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
         mavenCentral()
         google()
         maven("https://www.jitpack.io")
@@ -98,8 +97,8 @@ subprojects {
 
                     compileOptions {
                         isCoreLibraryDesugaringEnabled = true
-                        sourceCompatibility = JavaVersion.VERSION_1_8
-                        targetCompatibility = JavaVersion.VERSION_1_8
+                        sourceCompatibility = JavaVersion.VERSION_17
+                        targetCompatibility = JavaVersion.VERSION_17
                     }
 
                     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -129,7 +128,8 @@ subprojects {
 }
 
 fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase(Locale.getDefault())
+        .contains(it) }
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
     val isStable = stableKeyword || regex.matches(version)
     return isStable.not()
@@ -150,7 +150,9 @@ val detektAllAutocorrect by tasks.registering(Detekt::class) {
     config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
     baseline.set(file("$projectDir/config/detekt/baseline_config.xml"))
     reports {
-        html.enabled = true
+        html {
+            required.set(true)
+        }
     }
     include("**/*.kt")
     include("**/*.kts")
@@ -169,7 +171,9 @@ val detektAll by tasks.registering(Detekt::class) {
     config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
     baseline.set(file("$projectDir/config/detekt/baseline_config.xml"))
     reports {
-        html.enabled = true
+        html {
+            required.set(true)
+        }
     }
     include("**/*.kt")
     include("**/*.kts")

@@ -54,17 +54,17 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(view)
             .setTitle(dialogEntity.title)
-            .setPositiveButton(R.string.general_ok) { _, _ ->
+            .setPositiveButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_ok) { _, _ ->
                 dialogEntity.selectedTrumpType = viewModel.selectedTrump.value ?: TrumpType.Selected.None
                 if (dialogEntity.selectedTrumpType == TrumpType.Unselected) {
                     dialogEntity.selectedTrumpType = TrumpType.Selected.None
                 }
                 sendDialogResult(dialogEntity, DialogResultCode.POSITIVE)
             }
-            .setNegativeButton(R.string.general_cancel) { _, _ ->
+            .setNegativeButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_cancel) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.NEGATIVE)
             }
-            .setNeutralButton(R.string.block_trump_reset_selection, null)
+            .setNeutralButton(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_trump_reset_selection, null)
             .create()
 
         dialog.setOnShowListener {

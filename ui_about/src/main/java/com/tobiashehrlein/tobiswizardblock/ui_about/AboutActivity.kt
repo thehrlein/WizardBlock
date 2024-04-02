@@ -14,7 +14,7 @@ class AboutActivity : BaseToolbarActivity<AboutViewModel, ActivityAboutBinding>(
     override val navHostFragment: Int = R.id.activity_about_nav_host_fragment
     override var toolbarButtonType: ToolbarButtonType = ToolbarButtonType.Back
     override val toolbarTitle: String?
-        get() = getString(R.string.about_toolbar_title)
+        get() = getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.about_toolbar_title)
     override val contentViewModelResId: Int = BR.viewModel
     override val contentLayoutRes: Int = R.layout.activity_about
 

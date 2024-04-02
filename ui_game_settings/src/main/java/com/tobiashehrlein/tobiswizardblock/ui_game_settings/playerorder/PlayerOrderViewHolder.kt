@@ -21,7 +21,7 @@ class PlayerOrderViewHolder(private val binding: ItemPlayerRowBinding) :
         this.notifyDataSetChanged = notifyDataSetChanged
         binding.playerName.text = item
         binding.playerPosition.text =
-            binding.root.context.getString(R.string.player_order_position, absoluteAdapterPosition + 1)
+            binding.root.context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.player_order_position, absoluteAdapterPosition + 1)
         binding.iconDrag.setOnTouchListener { _, event ->
             if (event.actionMasked == MotionEvent.ACTION_DOWN) {
                 onItemTouchListener?.invoke(this)

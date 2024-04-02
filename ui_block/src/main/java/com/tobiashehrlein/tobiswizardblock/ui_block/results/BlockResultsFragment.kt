@@ -125,13 +125,13 @@ class BlockResultsFragment :
                 addItemDecoration(
                     ItemDecoration(
                         LinearLayout.VERTICAL,
-                        AppCompatResources.getDrawable(context, R.drawable.wb_shape_divider)
+                        AppCompatResources.getDrawable(context, com.tobiashehrlein.tobiswizardblock.ui_common.R.drawable.wb_shape_divider)
                     )
                 )
                 addItemDecoration(
                     ItemDecoration(
                         LinearLayout.HORIZONTAL,
-                        AppCompatResources.getDrawable(context, R.drawable.wb_shape_divider)
+                        AppCompatResources.getDrawable(context, com.tobiashehrlein.tobiswizardblock.ui_common.R.drawable.wb_shape_divider)
                     )
                 )
             }
@@ -210,9 +210,9 @@ class BlockResultsFragment :
             isEnabled = viewModel.editInputEnabled.value == true
             title = getString(
                 if (viewModel.inputType.value == InputType.RESULT) {
-                    R.string.game_block_results_menu_delete_last_tip_input
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_block_results_menu_delete_last_tip_input
                 } else {
-                    R.string.game_block_results_menu_delete_last_result_input
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_block_results_menu_delete_last_result_input
                 }
             )
         }

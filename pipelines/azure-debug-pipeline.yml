@@ -35,9 +35,9 @@ steps:
             "* $($change.message)" | Add-Content -Path $changelogPath
           }
   - task: JavaToolInstaller@0
-    displayName: 'Install Java 11'
+    displayName: 'Install Java 17'
     inputs:
-      versionSpec: '11'
+      versionSpec: '17'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
   - task: Gradle@2

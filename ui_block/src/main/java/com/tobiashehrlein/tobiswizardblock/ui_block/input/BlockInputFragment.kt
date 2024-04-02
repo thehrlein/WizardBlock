@@ -57,8 +57,8 @@ class BlockInputFragment :
         activityToolbarViewModel.setTitle(
             getString(
                 when (navArgs.inputType) {
-                    InputType.TIPP -> R.string.block_input_toolbar_title_tips
-                    InputType.RESULT -> R.string.block_input_toolbar_title_results
+                    InputType.TIPP -> com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_toolbar_title_tips
+                    InputType.RESULT -> com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_toolbar_title_results
                     else -> error("could not determine input type")
                 }
             )
@@ -72,7 +72,7 @@ class BlockInputFragment :
             Snackbar.make(
                 binding.blockInputCoordinator,
                 getString(
-                    R.string.block_input_correct_tips_snackbar_message,
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_snackbar_message,
                     it.playerName,
                     it.tip
                 ),
@@ -113,16 +113,16 @@ class BlockInputFragment :
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_input, menu)
-        menu.findItem(R.id.action_info).icon.setTint(
+        menu.findItem(R.id.action_info).icon?.setTint(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.color_on_primary
+                com.tobiashehrlein.tobiswizardblock.ui_common.R.color.color_on_primary
             )
         )
         viewModel.trumpType.value?.let { toolbarIcon ->
             menu.findItem(R.id.action_trump).apply {
                 toolbarIcon.getColorRes()?.let {
-                    icon.setTint(ContextCompat.getColor(requireContext(), it))
+                    icon?.setTint(ContextCompat.getColor(requireContext(), it))
                 }
                 isVisible =
                     toolbarIcon != TrumpType.Unselected && toolbarIcon != TrumpType.Selected.None

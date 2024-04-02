@@ -29,7 +29,7 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
     override fun onBindingCreated(savedInstanceState: Bundle?) {
         super.onBindingCreated(savedInstanceState)
 
-        activityToolbarViewModel.setTitle(getString(R.string.player_order_toolbar_title))
+        activityToolbarViewModel.setTitle(getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.player_order_toolbar_title))
         activityToolbarViewModel.setToolbarButton(ToolbarButtonType.Back)
 
         initAdapter()
@@ -62,10 +62,10 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_player_order, menu)
-        menu.findItem(R.id.action_info).icon.setTint(
+        menu.findItem(R.id.action_info).icon?.setTint(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.color_on_primary
+                com.tobiashehrlein.tobiswizardblock.ui_common.R.color.color_on_primary
             )
         )
         super.onCreateOptionsMenu(menu, inflater)

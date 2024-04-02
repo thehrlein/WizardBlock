@@ -34,7 +34,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
     fun setPlayerCountStatistics(playerCount: Map<Int, Int>?) {
         if (playerCount.isNullOrEmpty()) {
             binding.statisticsPlayerCountChart.apply {
-                setNoDataText(context.getString(R.string.statistics_player_no_data_available))
+                setNoDataText(context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_player_no_data_available))
                 data = null
                 invalidate()
             }
@@ -46,7 +46,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                 }
                 val barDataSet = BarDataSet(entries, "").apply {
                     //Changing the color of the bar
-                    color = ContextCompat.getColor(context, R.color.color_primary)
+                    color = ContextCompat.getColor(context, com.tobiashehrlein.tobiswizardblock.ui_common.R.color.color_primary)
                     //Setting the size of the form in the legend
                     formSize = 15f
                     //showing the value of the bar, default true if not set
@@ -58,7 +58,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                 setData(data)
 
                 marker = WizardMarkerView(context) {
-                    context.getString(R.string.statistics_player_count_frequency, it)
+                    context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_player_count_frequency, it)
                 }
 
                 //hiding the grey background of the chart, default false if not set
@@ -92,7 +92,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                             return value.toInt().toString()
                         }
                     }
-                    textColor = context.getColorReference(R.attr.colorOnBackground)
+                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
                 }
 
                 axisLeft.apply {
@@ -104,7 +104,7 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                     granularity = 1f
                     axisMinimum = 0.0f
                     axisMaximum = playerCount.values.maxOf { it }.toFloat()
-                    textColor = context.getColorReference(R.attr.colorOnBackground)
+                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
 
                 }
 

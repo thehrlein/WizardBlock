@@ -39,7 +39,7 @@ class GameRulesStatisticsView @JvmOverloads constructor(
     fun setGameRulesStatistics(gameRulesStatisticsData: GameRulesStatisticsData?) {
         if (gameRulesStatisticsData == null || gameRulesStatisticsData.noGamesPlayed) {
             binding.statisticsGameRulesChart.apply {
-                setNoDataText(context.getString(R.string.statistics_player_no_data_available))
+                setNoDataText(context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_player_no_data_available))
                 data = null
                 invalidate()
             }
@@ -68,7 +68,7 @@ class GameRulesStatisticsView @JvmOverloads constructor(
 
                 val barDataSet = BarDataSet(entries, "").apply {
                     //Changing the color of the bar
-                    color = ContextCompat.getColor(context, R.color.color_primary)
+                    color = ContextCompat.getColor(context, com.tobiashehrlein.tobiswizardblock.ui_common.R.color.color_primary)
                     //Setting the size of the form in the legend
                     formSize = 15f
                     //showing the value of the bar, default true if not set
@@ -81,9 +81,9 @@ class GameRulesStatisticsView @JvmOverloads constructor(
 
                 marker = WizardMarkerView(context) {
                     when (it) {
-                        TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_tooltip)
-                        TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_first_round_tooltip)
-                        else -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip)
+                        TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_tooltip)
+                        TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_first_round_tooltip)
+                        else -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip)
                     }
                 }
 
@@ -116,13 +116,13 @@ class GameRulesStatisticsView @JvmOverloads constructor(
                     valueFormatter = object : ValueFormatter() {
                         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
                             return when (value.toInt()) {
-                                TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_x_label)
-                                TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_first_round_x_label)
-                                else -> context.getString(R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_x_label)
+                                TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_x_label)
+                                TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_first_round_x_label)
+                                else -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_x_label)
                             }
                         }
                     }
-                    textColor = context.getColorReference(R.attr.colorOnBackground)
+                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
                 }
 
                 axisLeft.apply {
@@ -138,7 +138,7 @@ class GameRulesStatisticsView @JvmOverloads constructor(
                         gameRulesStatisticsData.tipsEqualStitchesFirstRound,
                         gameRulesStatisticsData.anniversaryVersion
                     ).maxOf { it }.takeIf { it > 0 }?.toFloat() ?: 1f
-                    textColor = context.getColorReference(R.attr.colorOnBackground)
+                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
 
                 }
 

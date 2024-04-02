@@ -22,7 +22,7 @@ class MostWinsRowView @JvmOverloads constructor(
     )
 
     fun setData(mostWinStatisticsData: MostWinStatisticsData) {
-        binding.position.text = context.getString(R.string.statistics_most_wins_position_placeholder, mostWinStatisticsData.position)
+        binding.position.text = context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_most_wins_position_placeholder, mostWinStatisticsData.position)
         binding.playerName.text = mostWinStatisticsData.playerName
         binding.wins.text = mostWinStatisticsData.wins.toString()
     }
