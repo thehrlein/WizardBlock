@@ -47,7 +47,7 @@ dependencies {
     implementation(Dependencies.AndroidX.Navigation.ui)
 
     // Google
-    implementation(Dependencies.Google.playRating)
+    implementation(Dependencies.Google.playReview)
 
     // Others
     implementation(Dependencies.Other.konfetti)

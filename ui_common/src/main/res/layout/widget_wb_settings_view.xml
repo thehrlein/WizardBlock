@@ -18,7 +18,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:switchPadding="@dimen/space_4"
-            tools:text="@string/game_rules_stitches_can_be_equal_tips" />
+            tools:text="@string/game_rules_stitches_can_be_equal_bets" />
 
         <ImageView
             android:id="@+id/settings_view_info_icon"

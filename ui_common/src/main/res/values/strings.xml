@@ -54,9 +54,9 @@
     <string name="game_rules_toolbar_title">Game rules</string>
     <string name="game_rules_other_settings_title">General rules</string>
     <string name="game_rules_game_name_hint">Game name</string>
-    <string name="game_rules_stitches_can_be_equal_tips">Tipps can be equal stitches</string>
-    <string name="game_rules_stitches_can_be_equal_tips_info">If enabled, your tipps can be equal possible stitches (e.g. Round 2 = all tipps combined can be 2).\n\nIf not,
-        tipps can not be equal to possible stitches. That means, the last player has to say one tipp more or less, if all tipps combined would be equal to possible stitches.</string>
+    <string name="game_rules_stitches_can_be_equal_bets">Bets can be equal stitches</string>
+    <string name="game_rules_stitches_can_be_equal_bets_info">If enabled, your bets can be equal possible stitches (e.g. Round 2 = all bets combined can be 2).\n\nIf not,
+        bets can not be equal to possible stitches. That means, the last player has to say one bet more or less, if all bets combined would be equal to possible stitches.</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_text">Exception: enable for first round</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_info">If enabled, previous rule is disabled for first round.\n\nThis does not affect all other rounds.</string>
     <string name="game_rules_anniversary_option_stitches_can_be_less">Advanced: anniversary option</string>
@@ -65,7 +65,7 @@
     <string name="game_rules_info_description">The game starts with one card and is increased by one card each round up to the maximum number. Choose a game name to clearly identify this game. The rules allow you to play according to your preferences.</string>
 
     <!-- GameBlock -->
-    <string name="game_block_results_fab_add_prediction">Tipps</string>
+    <string name="game_block_results_fab_add_prediction">Bets</string>
     <string name="game_block_results_fab_add_results">Results</string>
     <string name="game_block_results_is_dealer_hint">(Dealer)</string>
     <string name="game_block_results_winner_title">Congratulations</string>
@@ -74,35 +74,35 @@
     <string name="game_block_results_menu_trophy_title" translatable="false">Scores</string>
     <string name="game_block_results_menu_about_title" translatable="false">Info</string>
     <string name="game_block_results_menu_settings_title">Settings</string>
-    <string name="game_block_results_menu_delete_last_tip_input">Delete last tips</string>
+    <string name="game_block_results_menu_delete_last_bet_input">Delete last bets</string>
     <string name="game_block_results_menu_finish_game">Finish game</string>
     <string name="game_block_results_menu_delete_last_result_input">Delete last results</string>
     <string name="game_block_finish_manually_title">Finish game?</string>
     <string name="game_block_finish_manually_message">If you finish this game you can no longer continue playing</string>
 
     <!-- Block input -->
-    <string name="block_input_toolbar_title_tips">Tips</string>
+    <string name="block_input_toolbar_title_bets">Bets</string>
     <string name="block_input_toolbar_title_results">Results</string>
     <string name="block_input_general_title">Round %1$d</string>
-    <string name="block_input_info_tips_can_be_equal_stitches_message_first_round">Your combined tips can be 1 in the first round</string>
-    <string name="block_input_info_tips_can_be_equal_stitches_message">Your combined tips can be equal %1$d</string>
-    <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Your combined tips must not be %1$d. The last user must make sure that after his tip the amount of tips is not equal %1$d</string>
+    <string name="block_input_info_bets_can_be_equal_stitches_message_first_round">Your combined bets can be 1 in the first round</string>
+    <string name="block_input_info_bets_can_be_equal_stitches_message">Your combined bets can be equal %1$d</string>
+    <string name="block_input_info_bets_bets_must_be_unequal_stitches_message">Your combined bets must not be %1$d. The last user must make sure that after his bet the amount of bets is not equal %1$d</string>
     <string name="block_input_info_result_message">Your combined results must be %1$d</string>
-    <string name="block_input_enter_tips">Enter tips%1$s</string>
+    <string name="block_input_enter_bets">Enter bets%1$s</string>
     <string name="block_input_enter_results">Enter results%1$s</string>
     <string name="block_input_summed_inputs" translatable="false">&#160;- %1$d / %2$d</string>
     <string name="block_input_action_info_title">Info</string>
     <string name="block_input_action_trump_title">Trump</string>
     <string name="block_input_anniversary_version_cloud_card_question">Was there any stitch with the cloud card in this round?</string>
-    <string name="block_input_anniversary_version_cloud_card_button">Correct tips</string>
-    <string name="block_input_correct_tips_choose_player_title">Which player must correct his/her tip?</string>
-    <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
-    <string name="block_input_correct_tips_count_title">Predict one stitch more or less %1$s?</string>
-    <string name="block_input_correct_tips_snackbar_message">The tip of %1$s was corrected to %2$d</string>
+    <string name="block_input_anniversary_version_cloud_card_button">Correct bets</string>
+    <string name="block_input_correct_bets_choose_player_title">Which player must correct his/her bets?</string>
+    <string name="block_input_correct_bets_choose_player_name_and_bet">%1$s (%2$d)</string>
+    <string name="block_input_correct_bets_count_title">Predict one stitch more or less %1$s?</string>
+    <string name="block_input_correct_bets_snackbar_message">The bet of %1$s was corrected to %2$d</string>
     <string name="block_input_anniversary_version_bomb_played">Bomb was played?</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_title">Bomb</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_message">If someone played the bomb, the stitch will be put away and not evaluated. Therefore the amount of stitches must be 1 less.</string>
-    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s changed his/her tip because of the cloud card, so he/she must have made at least 1 stitch.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s changed his/her bet because of the cloud card, so he/she must have made at least 1 stitch.</string>
 
     <!-- Block scores -->
     <string name="block_scores_toolbar_title">Current Scores</string>
@@ -173,12 +173,12 @@
     <string name="statistics_clear_all_dialog_message">Do you really want to reset all statistics?\n\nAttention: All your saved games will also be deleted!</string>
     <string name="statistics_game_day_headline">Game days</string>
     <string name="statistics_game_rules_headline">Game rules</string>
-    <string name="statistics_game_rules_tips_equal_stitches_x_label">T = S</string>
-    <string name="statistics_game_rules_tips_equal_stitches_tooltip">Tips equal stitches</string>
-    <string name="statistics_game_rules_tips_equal_stitches_first_round_x_label">T = S 1. R</string>
-    <string name="statistics_game_rules_tips_equal_stitches_first_round_tooltip">Tips equal stitches 1. round</string>
-    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_x_label">Anniversary</string>
-    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip">Anniversary option</string>
+    <string name="statistics_game_rules_bets_equal_stitches_x_label">T = S</string>
+    <string name="statistics_game_rules_bets_equal_stitches_tooltip">Bets equal stitches</string>
+    <string name="statistics_game_rules_bets_equal_stitches_first_round_x_label">T = S 1. R</string>
+    <string name="statistics_game_rules_bets_equal_stitches_first_round_tooltip">Bets equal stitches 1. round</string>
+    <string name="statistics_game_rules_bets_equal_stitches_anniversary_version_x_label">Anniversary</string>
+    <string name="statistics_game_rules_bets_equal_stitches_anniversary_version_tooltip">Anniversary option</string>
 
 
 </resources>

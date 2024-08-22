@@ -48,7 +48,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/game_rules_game_name"
                 app:onInfoIconClickListener="@{(v) -> viewModel.onSettingsEqualStitchesInfoIconClicked()}"
-                app:switchText="@{@string/game_rules_stitches_can_be_equal_tips}" />
+                app:switchText="@{@string/game_rules_stitches_can_be_equal_bets}" />
 
             <com.tobiashehrlein.tobiswizardblock.ui_common.ui.views.WBSettingsView
                 android:id="@+id/game_rules_settings_tips_equal_stitches_first_round"

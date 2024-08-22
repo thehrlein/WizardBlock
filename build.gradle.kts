@@ -1,5 +1,4 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import java.util.Locale
@@ -36,7 +35,6 @@ buildscript {
 
         classpath(Classpaths.androidGradlePlugin)
         classpath(Classpaths.kotlinGradlePlugin)
-        classpath(Classpaths.gradleUpdate)
         classpath(Classpaths.safeArgs)
         classpath(Classpaths.googleServices)
         classpath(Classpaths.firebaseCrashlytics)
@@ -65,7 +63,6 @@ dependencies {
 subprojects {
 
     apply {
-        plugin(BuildPlugins.gradleUpdater)
         plugin(BuildPlugins.detekt)
         // run ./gradlew app:projectDependencyGraph
         from(BuildPlugins.projectDependencyGraph)
@@ -110,20 +107,6 @@ subprojects {
                     }
                 }
             }
-        }
-    }
-
-    tasks.withType<DependencyUpdatesTask> {
-        // optional parameters
-        group = "WizardBlock"
-        checkForGradleUpdate = true
-        outputFormatter = "json"
-        outputDir = "build/dependencyUpdates"
-        reportfileName = "report"
-
-        // uncomment if you also want to get alpha beta rc versions
-        rejectVersionIf {
-            isNonStable(candidate.version)
         }
     }
 }

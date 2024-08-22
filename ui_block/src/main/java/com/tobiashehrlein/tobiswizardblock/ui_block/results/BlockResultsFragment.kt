@@ -210,7 +210,7 @@ class BlockResultsFragment :
             isEnabled = viewModel.editInputEnabled.value == true
             title = getString(
                 if (viewModel.inputType.value == InputType.RESULT) {
-                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_block_results_menu_delete_last_tip_input
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_block_results_menu_delete_last_bet_input
                 } else {
                     com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_block_results_menu_delete_last_result_input
                 }

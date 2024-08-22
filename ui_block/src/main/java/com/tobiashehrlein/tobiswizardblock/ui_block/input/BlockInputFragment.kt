@@ -57,7 +57,7 @@ class BlockInputFragment :
         activityToolbarViewModel.setTitle(
             getString(
                 when (navArgs.inputType) {
-                    InputType.TIPP -> com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_toolbar_title_tips
+                    InputType.TIPP -> com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_toolbar_title_bets
                     InputType.RESULT -> com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_toolbar_title_results
                     else -> error("could not determine input type")
                 }
@@ -72,7 +72,7 @@ class BlockInputFragment :
             Snackbar.make(
                 binding.blockInputCoordinator,
                 getString(
-                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_snackbar_message,
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_bets_snackbar_message,
                     it.playerName,
                     it.tip
                 ),

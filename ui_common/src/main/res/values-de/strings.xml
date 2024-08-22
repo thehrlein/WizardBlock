@@ -42,8 +42,8 @@
     <string name="game_rules_toolbar_title">Spielregeln</string>
     <string name="game_rules_other_settings_title">Allgemeine Regeln</string>
     <string name="game_rules_game_name_hint">Spielname</string>
-    <string name="game_rules_stitches_can_be_equal_tips">Tipps dürfen gleich möglicher Stiche sein</string>
-    <string name="game_rules_stitches_can_be_equal_tips_info">Wenn du dies aktivierst, können deine Tipps gleich der potenziell möglichen Stiche sein (z.B. Runde 2 = alle Tipps kombiniert dürfen 2 sein).\n\nFalls nicht, dürfen Tipps nicht gleich sein. Das bedeutet, dass der letzte Spieler ein Stich mehr oder weniger ansagen muss, sofern die angesagten Tipps zusammen gleich der potenziell möglichen Stiche ist.</string>
+    <string name="game_rules_stitches_can_be_equal_bets">Tipps dürfen gleich möglicher Stiche sein</string>
+    <string name="game_rules_stitches_can_be_equal_bets_info">Wenn du dies aktivierst, können deine Tipps gleich der potenziell möglichen Stiche sein (z.B. Runde 2 = alle Tipps kombiniert dürfen 2 sein).\n\nFalls nicht, dürfen Tipps nicht gleich sein. Das bedeutet, dass der letzte Spieler ein Stich mehr oder weniger ansagen muss, sofern die angesagten Tipps zusammen gleich der potenziell möglichen Stiche ist.</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_text">Ausnahme: aktiviert für erste Runde</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_info">Wenn du dies aktivierst, ist die vorherige Regel für die erste Runde deaktiviert. Dies hat keinen Einfluss auf alle weiteren Runden.</string>
     <string name="game_rules_anniversary_option_stitches_can_be_less">Erweitert: Jubiläumsversion</string>
@@ -58,7 +58,7 @@
     <string name="game_block_results_winner_title">Glückwunsch</string>
     <string name="game_block_results_winner_message_singlular">%1$s hat mit insgesamt %2$d Punkten gewonnen</string>
     <string name="game_block_results_winner_message_plural">%1$s haben mit insgesamt %2$d Punkten gewonnen</string>
-    <string name="game_block_results_menu_delete_last_tip_input">Letzte Tipps löschen</string>
+    <string name="game_block_results_menu_delete_last_bet_input">Letzte Tipps löschen</string>
     <string name="game_block_results_menu_finish_game">Spiel beenden</string>
     <string name="game_block_results_menu_delete_last_result_input">Letzte Ergebnisse löschen</string>
     <string name="game_block_results_menu_settings_title">Einstellungen</string>
@@ -66,23 +66,23 @@
     <string name="game_block_finish_manually_message">Wenn du dieses Spiel beendest kannst du nicht mehr weiterspielen</string>
 
     <!-- Block input -->
-    <string name="block_input_toolbar_title_tips">Tipps</string>
+    <string name="block_input_toolbar_title_bets">Tipps</string>
     <string name="block_input_toolbar_title_results">Ergebnisse</string>
     <string name="block_input_general_title">Runde %1$d</string>
-    <string name="block_input_info_tips_can_be_equal_stitches_message_first_round">Die Anzahl eurer Tipps darf in der ersten Runde 1 ergeben</string>
-    <string name="block_input_info_tips_can_be_equal_stitches_message">Die Anzahl eurer Tipps darf %1$d ergeben</string>
-    <string name="block_input_info_tips_tips_must_be_unequal_stitches_message">Die Anzahl eurer Tipps darf nicht gleich %1$d sein. Der letzte Spieler muss sicherstellen, dass die Anzahl an Tipps nicht gleich %1$d ist</string>
+    <string name="block_input_info_bets_can_be_equal_stitches_message_first_round">Die Anzahl eurer Tipps darf in der ersten Runde 1 ergeben</string>
+    <string name="block_input_info_bets_can_be_equal_stitches_message">Die Anzahl eurer Tipps darf %1$d ergeben</string>
+    <string name="block_input_info_bets_bets_must_be_unequal_stitches_message">Die Anzahl eurer Tipps darf nicht gleich %1$d sein. Der letzte Spieler muss sicherstellen, dass die Anzahl an Tipps nicht gleich %1$d ist</string>
     <string name="block_input_info_result_message">Die Anzahl eurer Ergebnisse muss %1$d ergeben</string>
-    <string name="block_input_enter_tips">Tipps eintragen%1$s</string>
+    <string name="block_input_enter_bets">Tipps eintragen%1$s</string>
     <string name="block_input_enter_results">Ergebnisse eintragen%1$s</string>
     <string name="block_input_action_info_title">Info</string>
     <string name="block_input_action_trump_title">Trumpf</string>
     <string name="block_input_anniversary_version_cloud_card_question">Gibt es in dieser Runde einen Stich mit der Wolke?</string>
     <string name="block_input_anniversary_version_cloud_card_button">Tipps korrigieren</string>
-    <string name="block_input_correct_tips_choose_player_title">Welcher Spieler muss sein Tipp korrigieren?</string>
-    <string name="block_input_correct_tips_choose_player_name_and_tip">%1$s (%2$d)</string>
-    <string name="block_input_correct_tips_count_title">Ein Stich mehr oder weniger ansagen %1$s?</string>
-    <string name="block_input_correct_tips_snackbar_message">Der Tipp von %1$s wurde auf %2$d korrigiert</string>
+    <string name="block_input_correct_bets_choose_player_title">Welcher Spieler muss sein Tipp korrigieren?</string>
+    <string name="block_input_correct_bets_choose_player_name_and_bet">%1$s (%2$d)</string>
+    <string name="block_input_correct_bets_count_title">Ein Stich mehr oder weniger ansagen %1$s?</string>
+    <string name="block_input_correct_bets_snackbar_message">Der Tipp von %1$s wurde auf %2$d korrigiert</string>
     <string name="block_input_anniversary_version_bomb_played">Wurde die Bombe gespielt?</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_title">Bombe</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_message">Wenn ein Spieler in dieser Runde die Bombe gespielt hat, wird der Stich beiseite gelegt und nicht gewertet. Das bedeutet, dass die Anzahl gemachter Stiche um 1 niedriger sein muss.</string>
@@ -147,12 +147,12 @@
     <string name="statistics_clear_all_dialog_message">Möchtest du wirklich alle Statistiken zurücksetzen?\n\nAchtung: Auch all deine gespeicherten Spiele werden hierbei gelöscht!</string>
     <string name="statistics_game_day_headline">Spieltage</string>
     <string name="statistics_game_rules_headline">Spielregeln</string>
-    <string name="statistics_game_rules_tips_equal_stitches_x_label">T = S</string>
-    <string name="statistics_game_rules_tips_equal_stitches_tooltip">Tipps gleich Stiche</string>
-    <string name="statistics_game_rules_tips_equal_stitches_first_round_x_label">T = S 1. R</string>
-    <string name="statistics_game_rules_tips_equal_stitches_first_round_tooltip">Tipps gleich Stiche 1. Runde</string>
-    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_x_label">Jubiläum</string>
-    <string name="statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip">Jubiläumsversion</string>
+    <string name="statistics_game_rules_bets_equal_stitches_x_label">T = S</string>
+    <string name="statistics_game_rules_bets_equal_stitches_tooltip">Tipps gleich Stiche</string>
+    <string name="statistics_game_rules_bets_equal_stitches_first_round_x_label">T = S 1. R</string>
+    <string name="statistics_game_rules_bets_equal_stitches_first_round_tooltip">Tipps gleich Stiche 1. Runde</string>
+    <string name="statistics_game_rules_bets_equal_stitches_anniversary_version_x_label">Jubiläum</string>
+    <string name="statistics_game_rules_bets_equal_stitches_anniversary_version_tooltip">Jubiläumsversion</string>
 
 
 </resources>

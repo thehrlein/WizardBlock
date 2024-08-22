@@ -81,7 +81,7 @@ class BlockInputCorrectTipsChoosePlayerDialog :
             val radio = RadioButton(requireContext()).apply {
                 id = data.playerName.hashCode()
                 text = getString(
-                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_choose_player_name_and_tip,
+                    com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_bets_choose_player_name_and_bet,
                     data.playerName,
                     data.tip
                 )
@@ -165,7 +165,7 @@ class BlockInputCorrectTipsChoosePlayerDialog :
         }
         dialog.setTitle(
             getString(
-                com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_count_title,
+                com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_bets_count_title,
                 selectedPlayerTipData.playerName
             )
         )
