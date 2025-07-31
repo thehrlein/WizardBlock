@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_settings_graph"
+    app:startDestination="@id/playerSelectionFragment">
+
+    <fragment
+        android:id="@+id/playerSelectionFragment"
+        android:name="com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection.PlayerSelectionFragment"
+        android:label="PlayerSelectionFragment"
+        tools:layout="@layout/fragment_player_selection">
+        <action
+            android:id="@+id/action_playerSelectionFragment_to_playerOrderFragment"
+            app:destination="@id/playerOrderFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/playerOrderFragment"
+        android:name="com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerorder.PlayerOrderFragment"
+        android:label="PlayerOrderFragment"
+        tools:layout="@layout/fragment_player_order">
+        <action
+            android:id="@+id/action_playerOrderFragment_to_gameRulesFragment"
+            app:destination="@id/gameRulesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameRulesFragment"
+        android:name="com.tobiashehrlein.tobiswizardblock.feature.gamesettings.gamerules.GameRulesFragment"
+        android:label="GameRulesFragment"
+        tools:layout="@layout/fragment_game_rules"/>
+
+</navigation>

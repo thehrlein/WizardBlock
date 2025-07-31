@@ -3,12 +3,9 @@ import java.util.Date
 import java.util.Locale
 
 plugins {
-    id(BuildPlugins.androidApplication)
-    kotlin(BuildPlugins.android)
-    kotlin(BuildPlugins.kapt)
-    id(BuildPlugins.firebaseCrashlytics)
-    id(BuildPlugins.googleServices)
-    id(BuildPlugins.safeArgs)
+    alias(libs.plugins.wizard.android.application)
+    alias(libs.plugins.androidx.safeargs)
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 val buildNumber = Integer.parseInt(
@@ -18,20 +15,19 @@ val buildNumber = Integer.parseInt(
 )
 
 android {
-    val releaseAlias : String by project.rootProject.ext
-    val releaseKeyPassword : String by project.rootProject.ext
-    val releaseKeyStorePassword : String by project.rootProject.ext
+    val releaseAlias: String by project.rootProject.ext
+    val releaseKeyPassword: String by project.rootProject.ext
+    val releaseKeyStorePassword: String by project.rootProject.ext
 
-    compileSdk = AndroidSdkTools.compileSdk
-    namespace = AndroidSdkTools.applicationId
+    namespace = AppBuildConfig.applicationId
 
     defaultConfig {
-        applicationId = AndroidSdkTools.applicationId
-        minSdk = AndroidSdkTools.minSdk
-        targetSdk = AndroidSdkTools.targetSdk
+        applicationId = AppBuildConfig.applicationId
+        minSdk = AppBuildConfig.minSdk
+        targetSdk = AppBuildConfig.targetAndCompileSdk
         versionCode = buildNumber
-        versionName = AndroidSdkTools.versionName
-        testInstrumentationRunner = Others.ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER
+        versionName = AppBuildConfig.versionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -87,54 +83,49 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
-    // Used to enable Java 8 features for SDK < 26
-    coreLibraryDesugaring(Dependencies.AndroidX.desugarJdkLibs)
 
     // Modules
-    implementation(project(Module.Ui.navigation))
-    implementation(project(Module.Ui.gameSettings))
-    implementation(project(Module.Ui.block))
-    implementation(project(Module.Ui.savedGames))
-    implementation(project(Module.Ui.common))
-    implementation(project(Module.Ui.settings))
-    implementation(project(Module.Ui.statistics))
-    implementation(project(Module.Ui.about))
-    implementation(project(Module.Framework.repositories))
-    implementation(project(Module.Framework.Database.room))
-    implementation(project(Module.General.presentation))
-    implementation(project(Module.General.interactor))
-    implementation(project(Module.General.entities))
-    implementation(project(Module.General.utils))
+    implementation(projects.feature.navigation)
+    implementation(projects.feature.gamesettings)
+    implementation(projects.feature.block)
+    implementation(projects.feature.savedgames)
+    implementation(projects.feature.common)
+    implementation(projects.feature.settings)
+    implementation(projects.feature.statistics)
+    implementation(projects.feature.about)
+    implementation(projects.core.repositories)
+    implementation(projects.core.databaseroom)
+    implementation(projects.core.presentation)
+    implementation(projects.core.interactor)
+    implementation(projects.core.entities)
+    implementation(projects.core.utils)
+
+    // Used to enable Java 8 features for SDK < 26
+    coreLibraryDesugaring(libs.android.desugaring)
 
     // AndroidX
-    implementation(Dependencies.AndroidX.appCompat)
-    implementation(Dependencies.AndroidX.coreKtx)
-    implementation(Dependencies.AndroidX.constraintLayout)
-    implementation(Dependencies.AndroidX.splashScreen)
-    implementation(Dependencies.AndroidX.swipeToRefresh)
-    implementation(Dependencies.AndroidX.LifeCycle.viewModelExtensions)
-    implementation(Dependencies.AndroidX.LifeCycle.livedataExtensions)
-    implementation(Dependencies.AndroidX.LifeCycle.runtime)
-    implementation(Dependencies.AndroidX.Navigation.fragment)
-    implementation(Dependencies.AndroidX.Navigation.ui)
-    implementation(Dependencies.AndroidX.Room.runtime)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.splash.screen)
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.room.runtime)
 
     // Logging
-    implementation(Dependencies.Other.timber)
+    implementation(libs.timber)
 
     // Google
-    implementation(Dependencies.Google.material)
-    implementation(platform(Dependencies.Google.Firebase.bom))
-    implementation(Dependencies.Google.Firebase.analytics)
-    implementation(Dependencies.Google.Firebase.crashlytics)
-    implementation(Dependencies.Google.Firebase.messaging)
+    implementation(libs.google.material)
+    implementation(platform(libs.google.firebase.bom))
+    implementation(libs.google.firebase.analytics)
+    implementation(libs.google.firebase.crashlytics)
+    implementation(libs.google.firebase.messaging)
 
     // Koin
-    implementation(Dependencies.Koin.android)
-
-    // Testing
-    testImplementation(Dependencies.Test.junit)
-    androidTestImplementation(Dependencies.Test.AndroidX.Espresso.core)
+    implementation(libs.koin)
 }

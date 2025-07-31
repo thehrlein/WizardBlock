@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tobiashehrlein.tobiswizardblock.core.presentation.about.AboutViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?colorBackground">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingBottom="@dimen/list_separator_offset">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_4">
+
+                <TextView
+                    android:id="@+id/about_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/about_feedback"
+                    android:textAppearance="?textAppearanceBody1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/about_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:gravity="center"
+                    android:text="@string/about_like_fahrstuhl_block"
+                    android:textAppearance="?textAppearanceBody1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/about_title" />
+
+                <com.tobiashehrlein.tobiswizardblock.feature.common.ui.views.WBAppView
+                    android:id="@+id/about_app_view_wizard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:onClick="@{() -> viewModel.onWizardBlockClicked()}"
+                    app:appIcon="@{@drawable/wb_app_icon}"
+                    app:appName="@{@string/general_app_name}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/about_description" />
+
+                <TextView
+                    android:id="@+id/about_other_apps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:gravity="center"
+                    android:text="@string/about_other_apps"
+                    android:textAppearance="?textAppearanceBody1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/about_app_view_wizard" />
+
+                <com.tobiashehrlein.tobiswizardblock.feature.common.ui.views.WBAppView
+                    android:id="@+id/about_app_view_fahrstuhl_block"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:onClick="@{() -> viewModel.onFahrstuhlBlockClicked()}"
+                    app:appIcon="@{@drawable/wb_ic_fahrstuhl_block}"
+                    app:appName="@{@string/about_fahrstuhl_block}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/about_other_apps" />
+
+                <com.tobiashehrlein.tobiswizardblock.feature.common.ui.views.WBAppView
+                    android:id="@+id/about_app_view_movie_base"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:onClick="@{() -> viewModel.onMovieBaseClicked()}"
+                    app:appIcon="@{@drawable/wb_image_moviebase}"
+                    app:appName="@{@string/about_moviebase}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/about_app_view_fahrstuhl_block" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_send_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/space_4"
+            android:onClick="@{() -> viewModel.onFabClicked()}"
+            android:src="@drawable/wb_ic_email" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

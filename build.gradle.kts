@@ -1,22 +1,33 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import java.util.Locale
+
+plugins {
+    alias(libs.plugins.wizard.project)
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.androidx.safeargs) apply false
+    alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.google.firebase.crashlytics) apply false
+}
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 val releaseAlias: String =
-    gradleLocalProperties(rootDir).getProperty("releaseAlias")
+    gradleLocalProperties(rootDir, providers).getProperty("releaseAlias")
         ?: System.getenv("RELEASEALIAS")
         ?: ""
 val releaseKeyPassword: String =
-    gradleLocalProperties(rootDir).getProperty("releaseKeyPassword")
+    gradleLocalProperties(rootDir, providers).getProperty("releaseKeyPassword")
         ?: System.getenv("RELEASEKEYPASSWORD")
         ?: ""
 val releaseKeyStorePassword: String =
-    gradleLocalProperties(rootDir).getProperty("releaseKeyStorePassword")
+    gradleLocalProperties(rootDir, providers).getProperty("releaseKeyStorePassword")
         ?: System.getenv("RELEASEKEYSTOREPASSWORD")
         ?: ""
-val showLogging: String = gradleLocalProperties(rootDir).getProperty("showLogging", "false")
+val showLogging: String = gradleLocalProperties(rootDir, providers).getProperty("showLogging", "false")
 
 project.extra.apply {
     set("releaseAlias", releaseAlias)
@@ -25,156 +36,6 @@ project.extra.apply {
     set("showLogging", showLogging)
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-        maven("https://www.jitpack.io")
-    }
-    dependencies {
-
-        classpath(Classpaths.androidGradlePlugin)
-        classpath(Classpaths.kotlinGradlePlugin)
-        classpath(Classpaths.safeArgs)
-        classpath(Classpaths.googleServices)
-        classpath(Classpaths.firebaseCrashlytics)
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        maven("https://www.jitpack.io")
-    }
-}
-
-plugins {
-    id(BuildPlugins.detekt).version(BuildPlugins.detektVersion)
-}
-
-dependencies {
-    detektPlugins(BuildPlugins.detektFormatting)
-}
-
-subprojects {
-
-    apply {
-        plugin(BuildPlugins.detekt)
-        // run ./gradlew app:projectDependencyGraph
-        from(BuildPlugins.projectDependencyGraph)
-    }
-
-    detekt {
-        ignoreFailures = true
-        config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
-        baseline = file("${rootProject.projectDir}/config/detekt/baseline_config.xml")
-    }
-
-    afterEvaluate {
-        if (hasProperty("android")) {
-            (extensions.getByName("android") as com.android.build.gradle.BaseExtension).apply {
-                defaultConfig {
-                    compileSdkVersion(AndroidSdkTools.compileSdk)
-                    defaultConfig {
-                        minSdk = AndroidSdkTools.minSdk
-                        targetSdk = AndroidSdkTools.targetSdk
-                        testInstrumentationRunner = Others.ANDROID_JUNIT_TEST_IMPLEMENTATION_RUNNER
-
-                        // The following argument makes the Android Test Orchestrator run its
-                        // "pm clear" command after each test invocation. This command ensures
-                        // that the app's state is completely cleared between tests.
-                        testInstrumentationRunnerArguments["clearPackageData"] = "true"
-                        // possibility to colorize vector drawable in xml based on color resources (< API 24)
-                        vectorDrawables.useSupportLibrary = true
-
-                    }
-
-                    compileOptions {
-                        isCoreLibraryDesugaringEnabled = true
-                        sourceCompatibility = JavaVersion.VERSION_17
-                        targetCompatibility = JavaVersion.VERSION_17
-                    }
-
-                    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-                        kotlinOptions {
-                            jvmTarget = Others.JVM_TARGET
-                            freeCompilerArgs = freeCompilerArgs + "-opt-in=kotlin.RequiresOptIn"
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase(Locale.getDefault())
-        .contains(it) }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    val isStable = stableKeyword || regex.matches(version)
-    return isStable.not()
-}
-
 tasks.register("clean").configure {
     delete("rootProject.buildDir")
-}
-
-val detektAllAutocorrect by tasks.registering(Detekt::class) {
-    description = "Runs a failfast detekt build on all modules"
-    setSource(file(projectDir))
-    debug = true
-    parallel = true
-    buildUponDefaultConfig = true
-    autoCorrect = true
-    ignoreFailures = true
-    config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
-    baseline.set(file("$projectDir/config/detekt/baseline_config.xml"))
-    reports {
-        html {
-            required.set(true)
-        }
-    }
-    include("**/*.kt")
-    include("**/*.kts")
-    exclude("**/resources/**")
-    exclude("**/build/**")
-}
-
-val detektAll by tasks.registering(Detekt::class) {
-    description = "Runs a detekt build on all modules"
-    setSource(file(projectDir))
-    debug = true
-    parallel = true
-    buildUponDefaultConfig = true
-    autoCorrect = false
-    ignoreFailures = false
-    config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
-    baseline.set(file("$projectDir/config/detekt/baseline_config.xml"))
-    reports {
-        html {
-            required.set(true)
-        }
-    }
-    include("**/*.kt")
-    include("**/*.kts")
-    exclude("**/resources/**")
-    exclude("**/build/**")
-}
-
-val detektProjectBaseline by tasks.registering(DetektCreateBaselineTask::class) {
-    description = "Overrides current baseline."
-    ignoreFailures.set(true)
-    parallel.set(true)
-    buildUponDefaultConfig.set(true)
-    setSource(files(rootDir))
-    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
-    baseline.set(file("$rootDir/config/detekt/baseline_config.xml"))
-    include("**/*.kt")
-    include("**/*.kts")
-    exclude("**/resources/**")
-    exclude("**/build/**")
 }

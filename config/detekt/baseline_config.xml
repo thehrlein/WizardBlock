@@ -2,8 +2,8 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>Filename:com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesViewHolder.kt:1</ID>
-    <ID>Indentation:com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockInputProcessorImpl.kt:30</ID>
+    <ID>Filename:com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesViewHolder.kt:1</ID>
+    <ID>Indentation:com.tobiashehrlein.tobiswizardblock.core.repositories.datasource.processor.BlockInputProcessorImpl.kt:30</ID>
     <ID>LongMethod:BlockResultsProcessorImpl.kt$BlockResultsProcessorImpl$override suspend fun generateBlockResultModels(game: Game): AppResult&lt;BlockItemData&gt;</ID>
     <ID>LongParameterList:BlockResultsViewModelImpl.kt$BlockResultsViewModelImpl$( private val getGameUseCase: GetGameUseCase, private val getBlockResultsUseCase: GetBlockResultsUseCase, private val getGameScoresUseCase: GetGameScoresUseCase, private val storeGameFinishedUseCase: StoreGameFinishedUseCase, private val storeRoundUseCase: StoreRoundUseCase, private val removeRoundUseCase: RemoveRoundUseCase, private val isShowTrumpDialogEnabledUseCase: IsShowTrumpDialogEnabledUseCase )</ID>
     <ID>MagicNumber:DbTrumpType.kt$DbTrumpType.Companion$3</ID>
@@ -25,12 +25,12 @@
     <ID>MaxLineLength:PlayerSelectionFragment.kt$PlayerSelectionFragment$class</ID>
     <ID>MaxLineLength:SwipeToDeleteCallback.kt$SwipeToDeleteCallback$clearCanvas(c, itemView.right + dX, itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat())</ID>
     <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.koin.Koin.kt:135</ID>
-    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.repositories.datasource.processor.BlockResultsProcessorImpl.kt:86</ID>
-    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.ui_common.ui.BaseToolbarFragment.kt:7</ID>
-    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.ui_common.utils.SwipeToDeleteCallback.kt:57</ID>
-    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.ui_game_settings.GameSettingsActivity.kt:13</ID>
-    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerorder.PlayerOrderFragment.kt:21</ID>
-    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerSelectionFragment.kt:14</ID>
+    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.core.repositories.datasource.processor.BlockResultsProcessorImpl.kt:86</ID>
+    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.feature.common.ui.BaseToolbarFragment.kt:7</ID>
+    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.feature.common.utils.SwipeToDeleteCallback.kt:57</ID>
+    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.feature.gamesettings.GameSettingsActivity.kt:13</ID>
+    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerorder.PlayerOrderFragment.kt:21</ID>
+    <ID>MaximumLineLength:com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection.PlayerSelectionFragment.kt:14</ID>
     <ID>MemberNameEqualsClassName:Dependencies.kt$Dependencies.Kotlin$const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"</ID>
     <ID>SerialVersionUIDInSerializableClass:DialogEntity.kt$DialogEntity : Serializable</ID>
     <ID>SerialVersionUIDInSerializableClass:Game.kt$Game : Serializable</ID>
@@ -45,7 +45,7 @@
     <ID>TooGenericExceptionCaught:BaseUseCase.kt$BaseUseCase$e: Exception</ID>
     <ID>TooManyFunctions:BlockInputViewModelImpl.kt$BlockInputViewModelImpl : BlockInputViewModel</ID>
     <ID>TooManyFunctions:BlockResultsViewModelImpl.kt$BlockResultsViewModelImpl : BlockResultsViewModel</ID>
-    <ID>TooManyFunctions:DbGameMapper.kt$com.tobiashehrlein.tobiswizardblock.fw_database_room.model.mapper.DbGameMapper.kt</ID>
+    <ID>TooManyFunctions:DbGameMapper.kt$com.tobiashehrlein.tobiswizardblock.core.databaseroom.model.mapper.DbGameMapper.kt</ID>
     <ID>TooManyFunctions:GameDao.kt$GameDao</ID>
     <ID>TooManyFunctions:GameRepository.kt$GameRepository</ID>
     <ID>TooManyFunctions:GameRepositoryImpl.kt$GameRepositoryImpl : GameRepository</ID>

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.WizardBlock.Splash"
         tools:replace="android:theme">
         <activity
-            android:name=".ui_navigation.NavigationActivity"
+            android:name=".feature.navigation.NavigationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,22 +22,22 @@
         </activity>
 
         <activity
-            android:name=".ui_game_settings.GameSettingsActivity"
+            android:name=".feature.gamesettings.GameSettingsActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
         <activity
-            android:name=".ui_block.GameBlockActivity"
+            android:name=".feature.block.GameBlockActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
         <activity
-            android:name=".ui_saved_games.SavedGamesActivity"
+            android:name=".feature.savedgames.SavedGamesActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
         <activity
-            android:name=".ui_about.AboutActivity"
+            android:name=".feature.about.AboutActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
         <activity
-            android:name=".ui_settings.SettingsActivity"
+            android:name=".feature.settings.SettingsActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
         <activity
-            android:name=".ui_statistics.StatisticsActivity"
+            android:name=".feature.statistics.StatisticsActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
 
     </application>

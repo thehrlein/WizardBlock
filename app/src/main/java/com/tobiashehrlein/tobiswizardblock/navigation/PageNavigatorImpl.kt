@@ -2,28 +2,28 @@ package com.tobiashehrlein.tobiswizardblock.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHostController
-import com.tobiashehrlein.tobiswizardblock.entities.extension.checkAllMatched
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
-import com.tobiashehrlein.tobiswizardblock.ui_about.AboutActivity
-import com.tobiashehrlein.tobiswizardblock.ui_block.GameBlockActivity
-import com.tobiashehrlein.tobiswizardblock.ui_block.input.BlockInputFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_block.input.correcttips.BlockInputCorrectTipsChoosePlayerDialog
-import com.tobiashehrlein.tobiswizardblock.ui_block.results.BlockResultsFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_block.trump.BlockTrumpDialog
-import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.FullscreenLoadingDialogFragment
-import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.SimpleAlertDialogFragment
-import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.entity.DialogEntity
-import com.tobiashehrlein.tobiswizardblock.ui_common.utils.ResourceHelper
-import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.navigateSafe
-import com.tobiashehrlein.tobiswizardblock.ui_game_settings.GameSettingsActivity
-import com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerorder.PlayerOrderFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerSelectionFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_navigation.NavigationActivity
-import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesActivity
-import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesInfoDialog
-import com.tobiashehrlein.tobiswizardblock.ui_settings.SettingsActivity
-import com.tobiashehrlein.tobiswizardblock.ui_statistics.StatisticsActivity
+import com.tobiashehrlein.tobiswizardblock.core.entities.extension.checkAllMatched
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
+import com.tobiashehrlein.tobiswizardblock.feature.about.AboutActivity
+import com.tobiashehrlein.tobiswizardblock.feature.block.GameBlockActivity
+import com.tobiashehrlein.tobiswizardblock.feature.block.input.BlockInputFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.block.input.correcttips.BlockInputCorrectTipsChoosePlayerDialog
+import com.tobiashehrlein.tobiswizardblock.feature.block.results.BlockResultsFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.block.trump.BlockTrumpDialog
+import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.FullscreenLoadingDialogFragment
+import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.SimpleAlertDialogFragment
+import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity.DialogEntity
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelper
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.navigateSafe
+import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.GameSettingsActivity
+import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerorder.PlayerOrderFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection.PlayerSelectionFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.navigation.NavigationActivity
+import com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesActivity
+import com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesInfoDialog
+import com.tobiashehrlein.tobiswizardblock.feature.settings.SettingsActivity
+import com.tobiashehrlein.tobiswizardblock.feature.statistics.StatisticsActivity
 
 class PageNavigatorImpl(
     private val activity: AppCompatActivity,
@@ -176,7 +176,8 @@ class PageNavigatorImpl(
     private fun navigateTo(page: Page.SavedGames) {
         when (page) {
             is Page.SavedGames.ContinueGame -> GameBlockActivity.start(
-                activity, page.gameId
+                activity,
+                page.gameId
             )
             is Page.SavedGames.Info -> SavedGamesInfoDialog.show(
                 activity.supportFragmentManager,

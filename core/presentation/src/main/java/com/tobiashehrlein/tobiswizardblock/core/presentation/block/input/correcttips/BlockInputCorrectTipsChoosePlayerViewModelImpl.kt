@@ -1,0 +1,3 @@
+package com.tobiashehrlein.tobiswizardblock.core.presentation.block.input.correcttips
+
+class BlockInputCorrectTipsChoosePlayerViewModelImpl : BlockInputCorrectTipsChoosePlayerViewModel()
