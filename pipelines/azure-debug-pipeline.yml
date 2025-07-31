@@ -70,6 +70,6 @@ steps:
       GOOGLE_APPLICATION_CREDENTIALS=$(firebaseAppDistributionGoogleServiceAccount.secureFilePath) \
         firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.apk \
         --app "$(firebaseDebugAppId)" \
-        --groups "$(firebaseDebugTestingGroups)" \
+        --groups "$(firebaseDebugTestingGroup)" \
         --release-notes-file "$(Build.ArtifactStagingDirectory)/changelog"
     displayName: "Upload APK to Firebase App Distribution"
