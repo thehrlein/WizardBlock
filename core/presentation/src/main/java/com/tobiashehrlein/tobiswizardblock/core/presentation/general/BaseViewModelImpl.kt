@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.general
 
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
 
 abstract class BaseViewModelImpl : BaseViewModel() {
 

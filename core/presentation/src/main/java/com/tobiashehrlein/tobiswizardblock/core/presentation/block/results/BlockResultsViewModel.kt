@@ -1,9 +1,9 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.block.results
 
 import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItem
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockItem
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseToolbarViewModelImpl
 
 abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsInteractions {

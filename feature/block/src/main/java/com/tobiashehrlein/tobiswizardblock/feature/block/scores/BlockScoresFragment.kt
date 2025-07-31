@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.GameBlockViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.scores.BlockScoresViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.block.BR

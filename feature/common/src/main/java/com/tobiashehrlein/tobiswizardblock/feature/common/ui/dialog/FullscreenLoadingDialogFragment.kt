@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity.DialogEntity
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.getSerializableSafe
 
 class FullscreenLoadingDialogFragment : DialogInteractionFragment() {
 
@@ -36,7 +37,8 @@ class FullscreenLoadingDialogFragment : DialogInteractionFragment() {
     }
 
     private val dialogEntity: DialogEntity.Loading by lazy {
-        requireArguments().getSerializable(DialogEntity.KEY_DIALOG_ENTITY) as DialogEntity.Loading
+        val dialogEntity = requireArguments().getSerializableSafe(DialogEntity.KEY_DIALOG_ENTITY) as? DialogEntity.Loading
+        dialogEntity ?: throw IllegalArgumentException("DialogEntity cannot be null")
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

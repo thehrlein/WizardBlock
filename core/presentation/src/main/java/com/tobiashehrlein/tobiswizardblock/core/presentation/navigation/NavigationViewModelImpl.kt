@@ -1,9 +1,9 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.navigation
 
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.UserProperty
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockUserProperty
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.UserProperty
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockUserProperty
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.general.TrackAnalyticsUserPropertyUseCase
 import kotlinx.coroutines.launch
 

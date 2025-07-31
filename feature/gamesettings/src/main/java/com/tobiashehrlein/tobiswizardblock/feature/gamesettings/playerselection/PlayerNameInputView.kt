@@ -7,7 +7,7 @@ import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
-import com.tobiashehrlein.tobiswizardblock.entities.settings.player.PlayerError
+import com.tobiashehrlein.tobiswizardblock.core.entities.settings.player.PlayerError
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater
 import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.R
 import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.databinding.WidgetPlayerNameInputBinding

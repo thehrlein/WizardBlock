@@ -2,13 +2,13 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.gamer
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameInfo
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.gameinfo.GetGameNameOptionsUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.gameinfo.StoreGameInfoUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.general.TrackAnalyticsEventUseCase

@@ -4,8 +4,8 @@ import android.graphics.Typeface
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
-import com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.Game
+import com.tobiashehrlein.tobiswizardblock.core.entities.savedgames.SavedGameEntity
 import com.tobiashehrlein.tobiswizardblock.old.utils.helper.DateHelper
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 

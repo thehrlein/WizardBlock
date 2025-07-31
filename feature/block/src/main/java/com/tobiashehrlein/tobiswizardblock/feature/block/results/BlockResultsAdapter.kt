@@ -5,9 +5,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItem
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockResult
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockRound
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockItem
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockRound
 import com.tobiashehrlein.tobiswizardblock.feature.block.R
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater
 

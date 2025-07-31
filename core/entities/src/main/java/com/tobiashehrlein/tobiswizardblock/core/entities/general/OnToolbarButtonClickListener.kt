@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.entities.general
+package com.tobiashehrlein.tobiswizardblock.core.entities.general
 
 interface OnToolbarButtonClickListener {
 

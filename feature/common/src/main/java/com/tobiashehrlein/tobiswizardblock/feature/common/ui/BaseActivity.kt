@@ -9,8 +9,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.datastore.SettingsDataStore
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseViewModel
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelperImpl
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.launchAndRepeatWhenStarted
 import kotlinx.coroutines.flow.collectLatest

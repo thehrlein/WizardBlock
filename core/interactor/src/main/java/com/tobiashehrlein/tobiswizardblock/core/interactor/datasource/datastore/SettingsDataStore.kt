@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.datastore
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import kotlinx.coroutines.flow.Flow
 
 interface SettingsDataStore {

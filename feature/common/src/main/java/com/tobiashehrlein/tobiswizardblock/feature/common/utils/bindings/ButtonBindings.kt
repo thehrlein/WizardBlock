@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.feature.common.utils.bindings
 
 import android.widget.Button
 import androidx.databinding.BindingAdapter
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 
 @BindingAdapter("inputType", "summedInputs", "cardCount")

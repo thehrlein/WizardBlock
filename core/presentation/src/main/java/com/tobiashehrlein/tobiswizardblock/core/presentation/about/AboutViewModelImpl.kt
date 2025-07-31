@@ -1,9 +1,9 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.about
 
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.SingleLiveEvent
 import kotlinx.coroutines.launch

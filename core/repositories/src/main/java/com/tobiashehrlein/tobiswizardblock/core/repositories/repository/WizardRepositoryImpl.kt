@@ -1,8 +1,8 @@
 package com.tobiashehrlein.tobiswizardblock.core.repositories.repository
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockUserProperty
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockUserProperty
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.firebase.AnalyticsDatasource
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.WizardRepository
 

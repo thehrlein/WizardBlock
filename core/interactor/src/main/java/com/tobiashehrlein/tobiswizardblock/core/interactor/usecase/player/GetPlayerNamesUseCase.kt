@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.player
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.GameSettingsRepository
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.BaseUseCase
 

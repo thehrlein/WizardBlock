@@ -1,11 +1,11 @@
-package com.tobiashehrlein.tobiswizardblock.entities.navigation
+package com.tobiashehrlein.tobiswizardblock.core.entities.navigation
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.PlayerTipData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScore
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.PlayerTipData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScore
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScoreData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 
 sealed class Page {
 

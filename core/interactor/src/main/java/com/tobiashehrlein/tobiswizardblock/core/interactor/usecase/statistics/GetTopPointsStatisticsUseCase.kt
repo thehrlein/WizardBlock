@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.statistics
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.StatisticsRepository
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.BaseUseCase
 

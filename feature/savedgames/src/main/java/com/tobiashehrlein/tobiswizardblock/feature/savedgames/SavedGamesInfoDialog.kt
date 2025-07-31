@@ -14,7 +14,8 @@ import com.tobiashehrlein.tobiswizardblock.feature.savedgames.databinding.Dialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class SavedGamesInfoDialog : BaseDialogFragment<SavedGamesInfoViewModel, DialogSavedGamesInfoBinding>() {
+class SavedGamesInfoDialog :
+    BaseDialogFragment<SavedGamesInfoViewModel, DialogSavedGamesInfoBinding>() {
 
     override val viewModel: SavedGamesInfoViewModel by viewModel {
         parametersOf(dialogEntity.gameSettings)
@@ -48,12 +49,14 @@ class SavedGamesInfoDialog : BaseDialogFragment<SavedGamesInfoViewModel, DialogS
     }
 
     override fun createDialog(savedInstanceState: Bundle?, view: View): AlertDialog {
-        return MaterialAlertDialogBuilder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(view)
-            .setTitle(dialogEntity.title)
             .setPositiveButton(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.POSITIVE)
             }
-            .create()
+        dialogEntity.title?.let {
+            dialog.setTitle(getString(it))
+        }
+        return dialog.create()
     }
 }

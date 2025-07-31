@@ -1,6 +1,6 @@
-package com.tobiashehrlein.tobiswizardblock.entities.game.input
+package com.tobiashehrlein.tobiswizardblock.core.entities.game.input
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.Game
 
 data class CheckInputValidityData(
     val game: Game,

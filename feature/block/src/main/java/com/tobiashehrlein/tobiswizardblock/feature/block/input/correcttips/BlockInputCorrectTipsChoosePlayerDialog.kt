@@ -59,13 +59,16 @@ class BlockInputCorrectTipsChoosePlayerDialog :
     override fun createDialog(savedInstanceState: Bundle?, view: View): AlertDialog {
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(view)
-            .setTitle(dialogEntity.title)
             .setPositiveButton(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_button_proceed, null)
             .setNegativeButton(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_cancel) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.NEGATIVE)
             }
             .setNeutralButton(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_back, null)
             .create()
+
+        dialogEntity.title?.let {
+            dialog.setTitle(getString(it))
+        }
 
         dialog.setOnShowListener {
             showNeutralButton(dialog, false)

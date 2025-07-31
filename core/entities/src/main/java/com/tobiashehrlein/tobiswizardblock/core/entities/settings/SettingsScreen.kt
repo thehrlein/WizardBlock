@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.entities.settings
+package com.tobiashehrlein.tobiswizardblock.core.entities.settings
 
 enum class SettingsScreen {
 

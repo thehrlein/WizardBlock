@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions
 
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 
 @ColorRes

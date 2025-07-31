@@ -1,3 +1,3 @@
-package com.tobiashehrlein.tobiswizardblock.entities.game.result
+package com.tobiashehrlein.tobiswizardblock.core.entities.game.result
 
 interface BlockItem

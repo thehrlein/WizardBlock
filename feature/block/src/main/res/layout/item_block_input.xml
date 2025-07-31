@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.tobiashehrlein.tobiswizardblock.entities.game.input.InputDataItem" />
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputDataItem" />
 
     </data>
 

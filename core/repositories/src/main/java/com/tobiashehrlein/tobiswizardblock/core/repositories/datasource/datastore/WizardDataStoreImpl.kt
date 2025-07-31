@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.BaseDatasource
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.datastore.SettingsDataStore
 import kotlinx.coroutines.flow.Flow

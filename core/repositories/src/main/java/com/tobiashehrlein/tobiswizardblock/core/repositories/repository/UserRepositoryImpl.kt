@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.repositories.repository
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.datastore.SettingsDataStore
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.sharedpref.UserSettingsPersistence
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.UserRepository

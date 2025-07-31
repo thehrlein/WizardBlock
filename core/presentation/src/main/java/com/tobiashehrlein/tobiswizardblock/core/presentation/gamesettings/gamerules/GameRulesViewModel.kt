@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.gamerules
 
 import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseToolbarViewModelImpl
 
 abstract class GameRulesViewModel : BaseToolbarViewModelImpl() {

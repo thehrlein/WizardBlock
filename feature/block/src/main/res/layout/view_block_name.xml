@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockName" />
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockName" />
 
         <variable
             name="isLastInRow"

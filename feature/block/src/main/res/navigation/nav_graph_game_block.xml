@@ -29,7 +29,7 @@
             app:argType="long" />
         <argument
             android:name="inputType"
-            app:argType="com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType" />
+            app:argType="com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType" />
         <action
             android:id="@+id/action_blockInputFragment_to_gameBlockFragment"
             app:destination="@id/blockResultsFragment"
@@ -45,7 +45,7 @@
 
         <argument
             android:name="gameScores"
-            app:argType="com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData" />
+            app:argType="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScoreData" />
     </fragment>
 
 </navigation>

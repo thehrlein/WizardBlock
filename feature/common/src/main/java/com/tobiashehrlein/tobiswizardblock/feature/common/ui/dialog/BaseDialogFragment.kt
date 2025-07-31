@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelperImpl
 import org.koin.android.ext.android.inject

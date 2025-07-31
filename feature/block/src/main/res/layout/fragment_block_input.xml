@@ -9,7 +9,7 @@
             name="viewModel"
             type="com.tobiashehrlein.tobiswizardblock.core.presentation.block.input.BlockInputViewModel" />
 
-        <import type="com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType" />
+        <import type="com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -2,11 +2,11 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.settings
 
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingEvent
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.general.TrackAnalyticsEventUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.settings.GetDisplayAlwaysOnUseCase

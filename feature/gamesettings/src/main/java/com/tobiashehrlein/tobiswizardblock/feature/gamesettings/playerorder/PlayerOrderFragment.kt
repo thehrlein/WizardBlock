@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.BR

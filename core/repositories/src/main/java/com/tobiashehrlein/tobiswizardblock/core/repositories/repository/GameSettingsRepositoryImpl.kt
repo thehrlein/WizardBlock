@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.core.repositories.repository
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameInfo
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.cache.GameCache
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.GameSettingsRepository
 

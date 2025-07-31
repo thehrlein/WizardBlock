@@ -1,15 +1,15 @@
 package com.tobiashehrlein.tobiswizardblock.core.repositories.repository
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.DeleteRoundData
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.PlayerResultData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.CalculateResultData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.CheckInputValidityData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputData
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockItemData
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScoreData
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.DeleteRoundData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.Game
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.InsertRoundData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.PlayerResultData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.CalculateResultData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.CheckInputValidityData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockItemData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScoreData
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.cache.GameCache
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.processor.BlockInputProcessor
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.processor.BlockResultsProcessor

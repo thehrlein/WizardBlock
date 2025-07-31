@@ -13,7 +13,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameDayStatisticsData
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.getColorReference
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater
 import com.tobiashehrlein.tobiswizardblock.feature.statistics.databinding.WidgetStatisticsGameDayBinding

@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.general
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockUserProperty
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockUserProperty
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.WizardRepository
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.BaseUseCase
 

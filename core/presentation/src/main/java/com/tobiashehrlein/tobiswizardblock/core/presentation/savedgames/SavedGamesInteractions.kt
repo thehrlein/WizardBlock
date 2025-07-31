@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
 
 interface SavedGamesInteractions {
 

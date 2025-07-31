@@ -1,10 +1,10 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.statistics
 
 import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameRulesStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.MostWinStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.TopPointsStatisticsData
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseToolbarViewModelImpl
 
 abstract class StatisticsViewModel : BaseToolbarViewModelImpl() {

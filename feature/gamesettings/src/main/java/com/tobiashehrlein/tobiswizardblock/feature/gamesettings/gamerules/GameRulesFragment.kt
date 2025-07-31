@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.gamerules.GameRulesViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.BaseToolbarFragment

@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.general
 
 import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 
 abstract class BaseToolbarViewModel : BaseViewModelImpl() {
 

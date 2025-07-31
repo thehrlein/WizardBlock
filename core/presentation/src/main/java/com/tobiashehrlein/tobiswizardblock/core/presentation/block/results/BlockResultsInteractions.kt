@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.block.results
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 
 interface BlockResultsInteractions {
 

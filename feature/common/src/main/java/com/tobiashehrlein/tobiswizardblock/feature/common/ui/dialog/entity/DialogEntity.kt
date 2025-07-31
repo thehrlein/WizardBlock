@@ -1,13 +1,11 @@
 package com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.PlayerTipData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.GameScore
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import androidx.annotation.StringRes
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.PlayerTipData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.utils.DialogRequestCode
-import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelper
 import java.io.Serializable
 
 sealed class DialogEntity : Serializable {
@@ -20,266 +18,157 @@ sealed class DialogEntity : Serializable {
     open val isCancelable: Boolean = false
 
     sealed class Text(
-        val title: String? = null,
-        val message: String? = null,
-        val positiveButtonText: String? = null,
-        val negativeButtonText: String? = null,
-        val neutralButtonText: String? = null
-    ) : DialogEntity() {
+        @StringRes val title: Int,
+        @StringRes val message: Int? = null,
+        val messageString: String? = null,
+        @StringRes val positiveButtonText: Int? = null,
+        @StringRes val negativeButtonText: Int? = null,
+        @StringRes val neutralButtonText: Int? = null
+    ) : DialogEntity(), Serializable {
 
-        class Exit(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_attention
-            ),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_exit_message
-            ),
-            positiveButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_exit_button_menu
-            ),
-            negativeButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_exit_button_quit
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_cancel
-            )
-        ) {
+        data object Exit : Text(
+            title = R.string.dialog_title_attention,
+            message = R.string.dialog_exit_message,
+            positiveButtonText = R.string.dialog_exit_button_menu,
+            negativeButtonText = R.string.dialog_exit_button_quit,
+            neutralButtonText = R.string.general_cancel
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.BLOCK_EXIT
         }
 
-        class GameFinished(winners: List<GameScore>, resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_block_results_winner_title
-            ),
-            message = resourceHelper.getPlural(
-                R.plurals.game_winner_message,
-                winners.size,
-                winners.joinToString { it.player },
-                winners.first().points
-            ),
-            positiveButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class GameFinished(message: String) : Text(
+            title = R.string.game_block_results_winner_title,
+            messageString = message,
+            positiveButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.GAME_FINISHED
         }
 
-        class PlayerOrderInfo(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_info),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.player_order_description
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class PlayerOrderInfo() : Text(
+            title = R.string.dialog_title_info,
+            message = R.string.player_order_description,
+            neutralButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.INPUT_INFO
         }
 
-        class GameRulesInfo(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_info),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_rules_info_description
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class GameRulesInfo() : Text(
+            title = R.string.dialog_title_info,
+            message = R.string.game_rules_info_description,
+            neutralButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.INPUT_INFO
         }
 
-        class GameRulesInfoTipsEqualStitches(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_info),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_rules_stitches_can_be_equal_bets_info
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class GameRulesInfoTipsEqualStitches() : Text(
+            title = R.string.dialog_title_info,
+            message = R.string.game_rules_stitches_can_be_equal_bets_info,
+            neutralButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.TIPS_EQUAL_STITCHES
         }
 
-        class GameRulesInfoTipsEqualStitchesFirstRound(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_info),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_rules_stitches_can_be_equal_in_first_round_info
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class GameRulesInfoTipsEqualStitchesFirstRound() : Text(
+            title = R.string.dialog_title_info,
+            message = R.string.game_rules_stitches_can_be_equal_in_first_round_info,
+            neutralButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.TIPS_EQUAL_STITCHES_FIRST_ROUND
         }
 
-        class GameRulesInfoAnniversaryMode(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_info),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_rules_anniversary_option_stitches_can_be_less_info
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class GameRulesInfoAnniversaryMode() : Text(
+            title = R.string.dialog_title_info,
+            message = R.string.game_rules_anniversary_option_stitches_can_be_less_info,
+            neutralButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.ANNIVERSARY_VERSION
         }
 
         class InputInfo(
-            inputType: InputType,
-            bombPlayed: Boolean,
-            round: Int,
-            gameSettings: GameSettings,
-            resourceHelper: ResourceHelper
+            message: String
         ) : Text(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.dialog_title_info),
-            message = when (inputType) {
-                InputType.TIPP ->
-                    when {
-                        gameSettings.tipsEqualStitchesFirstRound && round == 1 -> resourceHelper.getString(
-                            R.string.block_input_info_bets_can_be_equal_stitches_message_first_round
-                        )
-                        gameSettings.tipsEqualStitches -> resourceHelper.getString(
-                            R.string.block_input_info_bets_can_be_equal_stitches_message,
-                            round
-                        )
-                        else -> resourceHelper.getString(
-                            R.string.block_input_info_bets_bets_must_be_unequal_stitches_message,
-                            round
-                        )
-                    }
-                InputType.RESULT ->
-                    resourceHelper.getString(
-                        R.string.block_input_info_result_message,
-                        round - if (bombPlayed) 1 else 0
-                    )
-            },
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+            title = R.string.dialog_title_info,
+            messageString = message,
+            neutralButtonText = R.string.general_ok
+        ), Serializable{
             override val requestCode: Int = DialogRequestCode.INPUT_INFO
         }
 
-        class DeleteSavedGames(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.saved_game_dialog_delete_title
-            ),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.saved_game_dialog_delete_message
-            ),
-            positiveButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_yes
-            ),
-            negativeButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_cancel
-            )
-        ) {
+        class DeleteSavedGames() : Text(
+            title = R.string.saved_game_dialog_delete_title,
+            message = R.string.saved_game_dialog_delete_message,
+            positiveButtonText = R.string.general_yes,
+            negativeButtonText = R.string.general_cancel
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.SAVED_GAMES_DELETE
         }
 
-        class BlockInputBombPlayed(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_input_anniversary_version_bomb_played_dialog_title
-            ),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_input_anniversary_version_bomb_played_dialog_message
-            ),
-            positiveButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class BlockInputBombPlayed() : Text(
+            title = R.string.block_input_anniversary_version_bomb_played_dialog_title,
+            message = R.string.block_input_anniversary_version_bomb_played_dialog_message,
+            positiveButtonText =R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.BLOCK_INPUT_BOMB_PLAYED
         }
 
-        class SettingsDisplayAlwaysOn(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.settings_display_always_active_dialog_title
-            ),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.settings_display_always_active_dialog_message
-            ),
-            neutralButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok
-            )
-        ) {
+        class SettingsDisplayAlwaysOn() : Text(
+            title = R.string.settings_display_always_active_dialog_title,
+            message = R.string.settings_display_always_active_dialog_message,
+            neutralButtonText = R.string.general_ok
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.SETTINGS_DISPLAY_ALWAYS_ON
         }
 
-        class FinishGameManually(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_block_finish_manually_title
-            ),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.game_block_finish_manually_message
-            ),
-            positiveButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_finish
-            ),
-            negativeButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_cancel
-            )
-        ) {
+        class FinishGameManually() : Text(
+            title = R.string.game_block_finish_manually_title,
+            message = R.string.game_block_finish_manually_message,
+            positiveButtonText = R.string.general_finish,
+            negativeButtonText = R.string.general_cancel
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.GAME_BLOCK_FINISH_MANUALLY
         }
 
-        class ClearStatistics(resourceHelper: ResourceHelper) : Text(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.statistics_clear_all_dialog_title
-            ),
-            message = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.statistics_clear_all_dialog_message
-            ),
-            positiveButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.statistics_clear_all
-            ),
-            negativeButtonText = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_cancel
-            )
-        ) {
+        class ClearStatistics() : Text(
+            title = R.string.statistics_clear_all_dialog_title,
+            message = R.string.statistics_clear_all_dialog_message,
+            positiveButtonText = R.string.statistics_clear_all,
+            negativeButtonText = R.string.general_cancel
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.CLEAR_STATISTICS
         }
     }
 
     sealed class Custom(
-        val title: String?,
-        val positiveButtonText: String? = null,
-        val negativeButtonText: String? = null,
-        val neutralButtonText: String? = null
-    ) : DialogEntity() {
+        @StringRes val title: Int?,
+    ) : DialogEntity(), Serializable {
 
-        class Trump(var selectedTrumpType: TrumpType, resourceHelper: ResourceHelper) : Custom(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_trump_title)
-        ) {
+        class Trump(var selectedTrumpType: TrumpType, ) : Custom(
+            title = R.string.block_trump_title
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.CHOOSE_TRUMP
         }
 
         data class CorrectTipsChoosePlayer(
             val playerTipData: List<PlayerTipData>,
             val round: Int,
-            val resourceHelper: ResourceHelper
         ) : Custom(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_input_correct_bets_choose_player_title
-            )
-        ) {
+            title = R.string.block_input_correct_bets_choose_player_title
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.CORRECT_TIPS_CHOOSE_PLAYER
         }
 
         class SavedGamesInfo(
-            val gameSettings: GameSettings,
-            resourceHelper: ResourceHelper
+            val gameSettings: GameSettings
         ) : Custom(
-            title = resourceHelper.getString(
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.string.saved_game_dialog_info_title
-            )
-        ) {
+            title = R.string.saved_game_dialog_info_title
+        ), Serializable {
             override val requestCode: Int = DialogRequestCode.SAVED_GAMES_INFO
         }
     }
 
     class Loading(
         val dimWindow: Boolean
-    ) : DialogEntity() {
+    ) : DialogEntity(), Serializable {
         override val requestCode: Int = DialogRequestCode.DIALOG_LOADING
         override val isCancelable: Boolean = false
     }

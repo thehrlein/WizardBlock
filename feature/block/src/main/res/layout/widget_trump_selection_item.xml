@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.tobiashehrlein.tobiswizardblock.entities.game.result.Trump" />
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.Trump" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.block.trump
 
 import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseViewModelImpl
 
 abstract class BlockTrumpViewModel : BaseViewModelImpl() {

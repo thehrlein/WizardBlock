@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity.DialogEntity
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.utils.DialogResultCode
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.getSerializableSafe
 
 class SimpleAlertDialogFragment : DialogInteractionFragment() {
 
@@ -28,25 +29,40 @@ class SimpleAlertDialogFragment : DialogInteractionFragment() {
     }
 
     private val dialogEntity: DialogEntity.Text by lazy {
-        requireArguments().getSerializable(DialogEntity.KEY_DIALOG_ENTITY) as DialogEntity.Text
+        val dialogEntity =
+            requireArguments().getSerializableSafe(DialogEntity.KEY_DIALOG_ENTITY) as? DialogEntity.Text
+        dialogEntity ?: throw IllegalArgumentException("DialogEntity cannot be null")
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return MaterialAlertDialogBuilder(requireContext())
-            .setTitle(dialogEntity.title)
-            .setMessage(dialogEntity.message)
-            .setNeutralButton(dialogEntity.neutralButtonText) { _, _ ->
+        val builder = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(dialogEntity.title))
+
+        dialogEntity.message?.let {
+            builder.setMessage(getString(it))
+        }
+        dialogEntity.messageString?.let {
+            builder.setMessage(it)
+        }
+        dialogEntity.neutralButtonText?.let {
+            builder.setNeutralButton(it) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.NEUTRAL)
             }
-            .setNegativeButton(dialogEntity.negativeButtonText) { _, _ ->
+        }
+        dialogEntity.negativeButtonText?.let {
+            builder.setNegativeButton(it) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.NEGATIVE)
             }
-            .setPositiveButton(dialogEntity.positiveButtonText) { _, _ ->
+        }
+        dialogEntity.positiveButtonText?.let {
+            builder.setPositiveButton(it) { _, _ ->
                 sendDialogResult(dialogEntity, DialogResultCode.POSITIVE)
             }
-            .create().also {
-                isCancelable = dialogEntity.isCancelable
-            }
+        }
+
+        return builder.create().also {
+            isCancelable = dialogEntity.isCancelable
+        }
     }
 
     override fun onCancel(dialog: DialogInterface) {

@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.settings
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.repository.UserRepository
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.BaseFlowUseCase
 import kotlinx.coroutines.flow.Flow

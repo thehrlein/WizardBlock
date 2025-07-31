@@ -2,8 +2,8 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.block.trump
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.user.SetShowTrumpDialogEnabledUseCase

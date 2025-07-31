@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.feature.savedgames
 
 import androidx.recyclerview.widget.RecyclerView
-import com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity
+import com.tobiashehrlein.tobiswizardblock.core.entities.savedgames.SavedGameEntity
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesInteractions
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.executeAfter
 import com.tobiashehrlein.tobiswizardblock.feature.savedgames.databinding.ItemSavedGameBinding

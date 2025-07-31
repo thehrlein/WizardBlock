@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.entities.settings.player
+package com.tobiashehrlein.tobiswizardblock.core.entities.settings.player
 
 enum class PlayerError {
 

@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.datasource
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 
 interface BaseDatasource {
 

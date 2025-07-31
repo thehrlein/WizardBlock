@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.entities.navigation
+package com.tobiashehrlein.tobiswizardblock.core.entities.navigation
 
 interface PageNavigator {
 

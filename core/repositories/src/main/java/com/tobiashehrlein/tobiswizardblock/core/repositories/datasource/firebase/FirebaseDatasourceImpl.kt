@@ -2,10 +2,10 @@ package com.tobiashehrlein.tobiswizardblock.core.repositories.datasource.firebas
 
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.TrackingParam
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockTrackingEvent
-import com.tobiashehrlein.tobiswizardblock.entities.tracking.WizardBlockUserProperty
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
+import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockUserProperty
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.BaseDatasource
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.firebase.AnalyticsDatasource
 import kotlinx.coroutines.Dispatchers

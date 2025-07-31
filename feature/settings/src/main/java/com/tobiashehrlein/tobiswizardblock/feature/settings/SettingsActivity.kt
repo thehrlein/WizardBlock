@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.feature.settings
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.settings.SettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.BaseToolbarActivity
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.utils.DialogInteractor

@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.GameBlockViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.input.BlockInputViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.block.BR

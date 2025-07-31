@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection
 
 import android.os.Bundle
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.BaseToolbarFragment

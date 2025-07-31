@@ -7,9 +7,9 @@
 
         <variable
             name="item"
-            type="com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockPlaceholder" />
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockPlaceholder" />
 
-        <import type="com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType" />
+        <import type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

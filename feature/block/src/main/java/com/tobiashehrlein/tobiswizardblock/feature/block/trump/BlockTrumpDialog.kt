@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.trump.BlockTrumpViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.block.BR
 import com.tobiashehrlein.tobiswizardblock.feature.block.R
@@ -53,7 +53,6 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
     override fun createDialog(savedInstanceState: Bundle?, view: View): AlertDialog {
         val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(view)
-            .setTitle(dialogEntity.title)
             .setPositiveButton(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.general_ok) { _, _ ->
                 dialogEntity.selectedTrumpType = viewModel.selectedTrump.value ?: TrumpType.Selected.None
                 if (dialogEntity.selectedTrumpType == TrumpType.Unselected) {
@@ -66,6 +65,10 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
             }
             .setNeutralButton(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_trump_reset_selection, null)
             .create()
+
+        dialogEntity.title?.let {
+            dialog.setTitle(it)
+        }
 
         dialog.setOnShowListener {
             (dialog as? AlertDialog)?.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {

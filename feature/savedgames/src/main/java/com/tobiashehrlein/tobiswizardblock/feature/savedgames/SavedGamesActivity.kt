@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.feature.savedgames
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.BaseToolbarActivity
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.utils.DialogInteractor

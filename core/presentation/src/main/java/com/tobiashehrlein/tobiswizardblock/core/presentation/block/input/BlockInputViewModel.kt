@@ -1,11 +1,11 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.block.input
 
 import androidx.lifecycle.LiveData
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.PlayerTipData
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputDataItem
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.Game
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.PlayerTipData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputDataItem
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseViewModelImpl
 
 abstract class BlockInputViewModel : BaseViewModelImpl(), BlockInputInteractions {

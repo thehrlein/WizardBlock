@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputDataItem
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputDataItem
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.input.BlockInputInteractions
 import com.tobiashehrlein.tobiswizardblock.feature.block.R
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater

@@ -9,8 +9,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.DataBindingUtil
 import com.tobiashehrlein.tobiswizardblock.core.entities.extension.checkAllMatched
-import com.tobiashehrlein.tobiswizardblock.entities.general.OnToolbarButtonClickListener
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.OnToolbarButtonClickListener
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 import com.tobiashehrlein.tobiswizardblock.feature.common.databinding.WidgetToolbarBinding
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.EllipsizeAttribute

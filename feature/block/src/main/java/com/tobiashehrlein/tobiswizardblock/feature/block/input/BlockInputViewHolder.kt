@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.feature.block.input
 
 import android.widget.SeekBar
 import androidx.recyclerview.widget.RecyclerView
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputDataItem
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputDataItem
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.input.BlockInputInteractions
 import com.tobiashehrlein.tobiswizardblock.feature.block.databinding.ItemBlockInputBinding
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.executeAfter

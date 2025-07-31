@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tobiashehrlein.tobiswizardblock.utils"
+    namespace = "com.tobiashehrlein.tobiswizardblock.core.utils"
 }
 
 dependencies {

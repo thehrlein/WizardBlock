@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.entities.game.general
+package com.tobiashehrlein.tobiswizardblock.core.entities.game.general
 
 import java.io.Serializable
 

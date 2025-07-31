@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockPlaceholder
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockPlaceholder
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.results.BlockResultsInteractions
 import com.tobiashehrlein.tobiswizardblock.feature.block.R
 import com.tobiashehrlein.tobiswizardblock.feature.block.databinding.ViewBlockPlaceholderBinding

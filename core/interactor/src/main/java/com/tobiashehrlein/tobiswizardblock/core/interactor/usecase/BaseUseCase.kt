@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.usecase
 
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import timber.log.Timber
 
 abstract class BaseUseCase<in P, out R> {

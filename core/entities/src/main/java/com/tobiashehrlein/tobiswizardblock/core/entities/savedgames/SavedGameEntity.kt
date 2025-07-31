@@ -1,6 +1,6 @@
-package com.tobiashehrlein.tobiswizardblock.entities.savedgames
+package com.tobiashehrlein.tobiswizardblock.core.entities.savedgames
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
 
 data class SavedGameEntity(
     val gameId: Long,

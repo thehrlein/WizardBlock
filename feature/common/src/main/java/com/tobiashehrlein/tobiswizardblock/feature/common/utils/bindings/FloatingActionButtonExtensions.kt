@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.feature.common.utils.bindings
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 
 @BindingAdapter("inputType", "gameFinished", requireAll = true)

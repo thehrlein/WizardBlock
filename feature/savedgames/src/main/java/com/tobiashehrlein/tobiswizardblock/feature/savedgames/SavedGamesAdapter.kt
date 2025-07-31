@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.tobiashehrlein.tobiswizardblock.entities.savedgames.SavedGameEntity
+import com.tobiashehrlein.tobiswizardblock.core.entities.savedgames.SavedGameEntity
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesInteractions
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater
 

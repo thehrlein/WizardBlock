@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockRound" />
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockRound" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

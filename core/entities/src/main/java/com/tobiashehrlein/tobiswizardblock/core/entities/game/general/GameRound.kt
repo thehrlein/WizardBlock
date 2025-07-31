@@ -1,7 +1,7 @@
-package com.tobiashehrlein.tobiswizardblock.entities.game.general
+package com.tobiashehrlein.tobiswizardblock.core.entities.game.general
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 
 data class GameRound(
     val round: Int,

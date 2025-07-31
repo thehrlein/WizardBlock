@@ -2,8 +2,8 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameSettings
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.gameinfo.GetLastGameSettingsUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.invoke
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.tobiashehrlein.tobiswizardblock.entities.statistics
+package com.tobiashehrlein.tobiswizardblock.core.entities.statistics
 
 import java.time.DayOfWeek
 

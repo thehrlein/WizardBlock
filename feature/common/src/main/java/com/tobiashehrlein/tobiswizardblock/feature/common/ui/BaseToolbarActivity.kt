@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseToolbarViewModel
-import com.tobiashehrlein.tobiswizardblock.entities.general.ToolbarButtonType
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.feature.common.BR
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
 import com.tobiashehrlein.tobiswizardblock.feature.common.databinding.ActivityBaseToolbarBinding

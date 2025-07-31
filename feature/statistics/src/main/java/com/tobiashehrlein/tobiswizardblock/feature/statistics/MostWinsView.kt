@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.MostWinStatisticsData
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater
 import com.tobiashehrlein.tobiswizardblock.feature.statistics.databinding.WidgetStatisticsMostWinsBinding
 

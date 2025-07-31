@@ -1,7 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.feature.block.results
 
 import androidx.recyclerview.widget.RecyclerView
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.BlockResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockResult
 import com.tobiashehrlein.tobiswizardblock.feature.block.databinding.ItemBlockResultBinding
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.executeAfter
 

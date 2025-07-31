@@ -1,6 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection
 
-import com.tobiashehrlein.tobiswizardblock.entities.settings.player.PlayerError
+import com.tobiashehrlein.tobiswizardblock.core.entities.settings.player.PlayerError
 
 class PlayerSelectionHandler {
 

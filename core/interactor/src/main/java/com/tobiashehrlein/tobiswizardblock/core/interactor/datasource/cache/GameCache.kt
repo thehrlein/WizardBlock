@@ -1,14 +1,14 @@
 package com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.cache
 
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.DeleteRoundData
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.Game
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.GameInfo
-import com.tobiashehrlein.tobiswizardblock.entities.game.general.InsertRoundData
-import com.tobiashehrlein.tobiswizardblock.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameDayStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.GameRulesStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.MostWinStatisticsData
-import com.tobiashehrlein.tobiswizardblock.entities.statistics.TopPointsStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.DeleteRoundData
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.Game
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameInfo
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.InsertRoundData
+import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameDayStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameRulesStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.MostWinStatisticsData
+import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.TopPointsStatisticsData
 
 interface GameCache {
 

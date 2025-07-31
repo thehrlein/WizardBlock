@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.Trump
-import com.tobiashehrlein.tobiswizardblock.entities.game.result.TrumpType
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.Trump
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.feature.block.R
 import com.tobiashehrlein.tobiswizardblock.feature.block.databinding.WidgetTrumpSelectionGroupBinding
 
