@@ -51,11 +51,11 @@ object Dependencies {
     object Google {
         private const val gsonVersion = "2.10.1"
         private const val materialVersion = "1.9.0"
-        private const val playRatingVersion = "1.10.3"
+        private const val playReviewVersion = "2.0.1"
 
         const val gson = "com.google.code.gson:gson:$gsonVersion"
         const val material = "com.google.android.material:material:$materialVersion"
-        const val playRating = "com.google.android.play:core:$playRatingVersion"
+        const val playReview = "com.google.android.play:review-ktx:$playReviewVersion"
 
         object Firebase {
             private const val firebaseVersion = "32.2.2"
@@ -167,7 +167,6 @@ object Classpaths {
     const val firebaseCrashlytics =
         "com.google.firebase:firebase-crashlytics-gradle:$firebaseCrashlyticsVersion"
     const val googleServices = "com.google.gms:google-services:$googleServicesVersion"
-    const val gradleUpdate = "com.github.ben-manes:gradle-versions-plugin:$gradleUpdateVersion"
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Dependencies.Kotlin.kotlinVersion}"
     const val safeArgs =
@@ -183,7 +182,6 @@ object BuildPlugins {
     const val detektFormatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
     const val firebaseCrashlytics = "com.google.firebase.crashlytics"
     const val googleServices = "com.google.gms.google-services"
-    const val gradleUpdater = "com.github.ben-manes.versions"
     const val android = "android"
     const val kapt = "kapt"
     const val projectDependencyGraph =
@@ -195,8 +193,8 @@ object AndroidSdkTools {
 
     const val minSdk = 24
     const val targetSdk = 34
-    const val compileSdk = 33
-    const val versionName = "3.1.0"
+    const val compileSdk = 34
+    const val versionName = "3.1.1"
     const val applicationId = "com.tobiashehrlein.tobiswizardblock"
 }
 

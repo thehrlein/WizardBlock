@@ -120,13 +120,14 @@ class GameCacheImpl(
     override suspend fun getMostWinsStatistics(): AppResult<List<MostWinStatisticsData>> =
         withContext(Dispatchers.IO) {
             safeCall {
-                val winner = gameDao.getAllFinishedGames().map {
+                var winner = gameDao.getAllFinishedGames().map {
                     it.mapToEntity()
                 }.mapNotNull {
                     it.winner
                 }.groupingBy {
                     it
                 }.eachCount()
+                winner = winner.toList().sortedByDescending { (key, value) -> value }.toMap()
 
                 val winnerMap = mutableMapOf<Int, MutableList<String>>()
                 winner.entries.forEach { entry ->

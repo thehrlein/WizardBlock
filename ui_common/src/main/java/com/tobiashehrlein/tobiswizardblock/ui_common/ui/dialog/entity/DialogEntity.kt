@@ -68,7 +68,7 @@ sealed class DialogEntity : Serializable {
 
         class GameRulesInfoTipsEqualStitches(resourceHelper: ResourceHelper) : Text(
             title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.dialog_title_info),
-            message = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_rules_stitches_can_be_equal_tips_info),
+            message = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.game_rules_stitches_can_be_equal_bets_info),
             neutralButtonText = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.general_ok)
         ) {
             override val requestCode: Int = DialogRequestCode.TIPS_EQUAL_STITCHES
@@ -102,14 +102,14 @@ sealed class DialogEntity : Serializable {
                 InputType.TIPP ->
                     when {
                         gameSettings.tipsEqualStitchesFirstRound && round == 1 -> resourceHelper.getString(
-                            R.string.block_input_info_tips_can_be_equal_stitches_message_first_round
+                            R.string.block_input_info_bets_can_be_equal_stitches_message_first_round
                         )
                         gameSettings.tipsEqualStitches -> resourceHelper.getString(
-                            R.string.block_input_info_tips_can_be_equal_stitches_message,
+                            R.string.block_input_info_bets_can_be_equal_stitches_message,
                             round
                         )
                         else -> resourceHelper.getString(
-                            R.string.block_input_info_tips_tips_must_be_unequal_stitches_message,
+                            R.string.block_input_info_bets_bets_must_be_unequal_stitches_message,
                             round
                         )
                     }
@@ -187,7 +187,7 @@ sealed class DialogEntity : Serializable {
             val round: Int,
             val resourceHelper: ResourceHelper
         ) : Custom(
-            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_tips_choose_player_title)
+            title = resourceHelper.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.block_input_correct_bets_choose_player_title)
         ) {
             override val requestCode: Int = DialogRequestCode.CORRECT_TIPS_CHOOSE_PLAYER
         }

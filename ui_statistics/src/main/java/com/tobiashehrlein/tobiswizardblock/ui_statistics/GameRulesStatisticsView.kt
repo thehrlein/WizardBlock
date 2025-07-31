@@ -81,9 +81,9 @@ class GameRulesStatisticsView @JvmOverloads constructor(
 
                 marker = WizardMarkerView(context) {
                     when (it) {
-                        TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_tooltip)
-                        TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_first_round_tooltip)
-                        else -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_tooltip)
+                        TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_bets_equal_stitches_tooltip)
+                        TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_bets_equal_stitches_first_round_tooltip)
+                        else -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_bets_equal_stitches_anniversary_version_tooltip)
                     }
                 }
 
@@ -116,9 +116,9 @@ class GameRulesStatisticsView @JvmOverloads constructor(
                     valueFormatter = object : ValueFormatter() {
                         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
                             return when (value.toInt()) {
-                                TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_x_label)
-                                TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_first_round_x_label)
-                                else -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_tips_equal_stitches_anniversary_version_x_label)
+                                TIPS_EQUAL_STITCHES_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_bets_equal_stitches_x_label)
+                                TIPS_EQUAL_STITCHES_FIRST_ROUND_X_ENTRY -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_bets_equal_stitches_first_round_x_label)
+                                else -> context.getString(com.tobiashehrlein.tobiswizardblock.ui_common.R.string.statistics_game_rules_bets_equal_stitches_anniversary_version_x_label)
                             }
                         }
                     }
