@@ -33,6 +33,12 @@ class AboutFragment :
         viewModel.openMovieBase.observe(viewLifecycleOwner) {
             openMoviebase()
         }
+
+        binding.aboutCredits.text = getString(
+            com.tobiashehrlein.tobiswizardblock.feature.common.R.string.about_app_version,
+            BuildConfig.VERSION_NAME,
+            BuildConfig.VERSION_CODE
+        )
     }
 
     private fun openWizard() {

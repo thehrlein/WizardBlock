@@ -111,6 +111,7 @@
     <string name="about_email_text">Hallo Tobias, \n\n</string>
     <string name="about_no_email_clients">Es wurde kein E-Mail Programm gefunden</string>
     <string name="about_email_chooser_title">Wähle deine E-Mail Programm</string>
+    <string name="about_app_version">Version %1$s (%2$s)</string>
 
     <!-- Saved Games -->
     <string name="saved_game_toolbar_title">Gespeicherte Spiele</string>

@@ -7,9 +7,15 @@ plugins {
 android {
     namespace = "com.tobiashehrlein.tobiswizardblock.feature.about"
 
+    defaultConfig {
+        buildConfigField("String", "VERSION_NAME", "\"${AppBuildConfig.versionName}\"")
+        buildConfigField("String", "VERSION_CODE", "\"${project.property("buildNumber")}\"")
+    }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 
