@@ -8,6 +8,8 @@ android {
 
 dependencies {
 
+    implementation(projects.core.entities)
+
     // Used to enable Java 8 features for SDK < 26
     coreLibraryDesugaring(libs.android.desugaring)
 

@@ -13,6 +13,7 @@ val buildNumber = Integer.parseInt(
         Date()
     )
 )
+project.rootProject.ext.set("buildNumber", buildNumber)
 
 android {
     val releaseAlias: String by project.rootProject.ext
@@ -23,8 +24,6 @@ android {
 
     defaultConfig {
         applicationId = AppBuildConfig.applicationId
-        minSdk = AppBuildConfig.minSdk
-        targetSdk = AppBuildConfig.targetAndCompileSdk
         versionCode = buildNumber
         versionName = AppBuildConfig.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
