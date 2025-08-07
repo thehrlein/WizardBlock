@@ -58,7 +58,7 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
                 binding.root.paddingLeft,
                 binding.root.paddingTop,
                 binding.root.paddingRight,
-                binding.root.paddingBottom + vbInsets.navigationBarHeight
+                vbInsets.navigationBarHeight
             )
         }
     }
