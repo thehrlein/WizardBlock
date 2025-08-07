@@ -14,6 +14,7 @@ val buildNumber = Integer.parseInt(
     )
 )
 project.rootProject.ext.set("buildNumber", buildNumber)
+println("Build number: $buildNumber")
 
 android {
     val releaseAlias: String by project.rootProject.ext
