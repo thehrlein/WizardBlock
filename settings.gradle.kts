@@ -1,23 +1,65 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    includeBuild("build-logic")
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://www.jitpack.io")
+    }
+}
+
+val requiredJavaVersion = JavaVersion.VERSION_21
+check(JavaVersion.current().isCompatibleWith(requiredJavaVersion)) {
+    """
+    AFKCSS requires JDK $requiredJavaVersion+ but it is currently using JDK ${JavaVersion.current()}.
+    Java Home: [${System.getProperty("java.home")}]
+    https://developer.android.com/build/jdks#jdk-config-in-studio
+    """.trimIndent()
+}
+
+buildCache {
+    local {
+        directory = File(rootDir, ".gradle-build-cache")
+    }
+}
+
+// enables to use projects accessors in build.gradle files like implementation(projects.core.model)
+// which make it possible to use auto-completion and faster navigation with CMD/CTRL + click
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "WizardBlock"
 
 include(":app")
 
 // ui
-include(":ui_navigation")
-include(":ui_game_settings")
-include(":ui_block")
-include(":ui_saved_games")
-include(":ui_about")
-include(":ui_settings")
-include(":ui_statistics")
-include(":ui_common")
+include(":feature:navigation")
+include(":feature:gamesettings")
+include(":feature:block")
+include(":feature:savedgames")
+include(":feature:about")
+include(":feature:settings")
+include(":feature:statistics")
+include(":feature:common")
 
 // framework modules
-include(":database_room")
-include(":repositories")
+include(":core:databaseroom")
+include(":core:repositories")
 
 // basic architecture modules
-include(":presentation")
-include(":interactor")
-include(":entities")
-include(":utils")
+include(":core:presentation")
+include(":core:interactor")
+include(":core:entities")
+include(":core:utils")

@@ -2,28 +2,30 @@ package com.tobiashehrlein.tobiswizardblock.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHostController
-import com.tobiashehrlein.tobiswizardblock.entities.extension.checkAllMatched
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.Page
-import com.tobiashehrlein.tobiswizardblock.entities.navigation.PageNavigator
-import com.tobiashehrlein.tobiswizardblock.ui_about.AboutActivity
-import com.tobiashehrlein.tobiswizardblock.ui_block.GameBlockActivity
-import com.tobiashehrlein.tobiswizardblock.ui_block.input.BlockInputFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_block.input.correcttips.BlockInputCorrectTipsChoosePlayerDialog
-import com.tobiashehrlein.tobiswizardblock.ui_block.results.BlockResultsFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_block.trump.BlockTrumpDialog
-import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.FullscreenLoadingDialogFragment
-import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.SimpleAlertDialogFragment
-import com.tobiashehrlein.tobiswizardblock.ui_common.ui.dialog.entity.DialogEntity
-import com.tobiashehrlein.tobiswizardblock.ui_common.utils.ResourceHelper
-import com.tobiashehrlein.tobiswizardblock.ui_common.utils.extensions.navigateSafe
-import com.tobiashehrlein.tobiswizardblock.ui_game_settings.GameSettingsActivity
-import com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerorder.PlayerOrderFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_game_settings.playerselection.PlayerSelectionFragmentDirections
-import com.tobiashehrlein.tobiswizardblock.ui_navigation.NavigationActivity
-import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesActivity
-import com.tobiashehrlein.tobiswizardblock.ui_saved_games.SavedGamesInfoDialog
-import com.tobiashehrlein.tobiswizardblock.ui_settings.SettingsActivity
-import com.tobiashehrlein.tobiswizardblock.ui_statistics.StatisticsActivity
+import com.tobiashehrlein.tobiswizardblock.core.entities.extension.checkAllMatched
+import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
+import com.tobiashehrlein.tobiswizardblock.feature.about.AboutActivity
+import com.tobiashehrlein.tobiswizardblock.feature.block.GameBlockActivity
+import com.tobiashehrlein.tobiswizardblock.feature.block.input.BlockInputFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.block.input.correcttips.BlockInputCorrectTipsChoosePlayerDialog
+import com.tobiashehrlein.tobiswizardblock.feature.block.results.BlockResultsFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.block.trump.BlockTrumpDialog
+import com.tobiashehrlein.tobiswizardblock.feature.common.R
+import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.FullscreenLoadingDialogFragment
+import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.SimpleAlertDialogFragment
+import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity.DialogEntity
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelper
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.navigateSafe
+import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.GameSettingsActivity
+import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerorder.PlayerOrderFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection.PlayerSelectionFragmentDirections
+import com.tobiashehrlein.tobiswizardblock.feature.navigation.NavigationActivity
+import com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesActivity
+import com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesInfoDialog
+import com.tobiashehrlein.tobiswizardblock.feature.settings.SettingsActivity
+import com.tobiashehrlein.tobiswizardblock.feature.statistics.StatisticsActivity
 
 class PageNavigatorImpl(
     private val activity: AppCompatActivity,
@@ -81,7 +83,7 @@ class PageNavigatorImpl(
             )
             is Page.PlayerOrder.Info -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.PlayerOrderInfo(resourceHelper)
+                DialogEntity.Text.PlayerOrderInfo()
             )
         }.checkAllMatched
     }
@@ -91,19 +93,19 @@ class PageNavigatorImpl(
             is Page.GameRules.Block -> GameBlockActivity.start(activity, page.gameId)
             is Page.GameRules.Info -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.GameRulesInfo(resourceHelper)
+                DialogEntity.Text.GameRulesInfo()
             )
             is Page.GameRules.TipsEqualStitchesInfo -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.GameRulesInfoTipsEqualStitches(resourceHelper)
+                DialogEntity.Text.GameRulesInfoTipsEqualStitches()
             )
             is Page.GameRules.TipsEqualStitchesInfoFirstRound -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.GameRulesInfoTipsEqualStitchesFirstRound(resourceHelper)
+                DialogEntity.Text.GameRulesInfoTipsEqualStitchesFirstRound()
             )
             is Page.GameRules.AnniversaryVersion -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.GameRulesInfoAnniversaryMode(resourceHelper)
+                DialogEntity.Text.GameRulesInfoAnniversaryMode()
             )
         }.checkAllMatched
     }
@@ -118,11 +120,11 @@ class PageNavigatorImpl(
             )
             is Page.Block.Exit -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.Exit(resourceHelper)
+                DialogEntity.Text.Exit
             )
             is Page.Block.FinishManually -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.FinishGameManually(resourceHelper)
+                DialogEntity.Text.FinishGameManually()
             )
             is Page.Block.Menu -> NavigationActivity.start(activity)
             is Page.Block.Scores -> navHostController.navigateSafe(
@@ -132,11 +134,19 @@ class PageNavigatorImpl(
             is Page.Block.Settings -> SettingsActivity.start(activity)
             is Page.Block.Trump -> BlockTrumpDialog.show(
                 activity.supportFragmentManager,
-                DialogEntity.Custom.Trump(page.trumpType, resourceHelper)
+                DialogEntity.Custom.Trump(page.trumpType)
             )
             is Page.Block.GameFinished -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.GameFinished(page.winners, resourceHelper)
+                DialogEntity.Text.GameFinished(
+                    message = resourceHelper.getPlural(
+                        R.plurals.game_winner_message,
+                        page.winners.size,
+                        page.winners.joinToString { it.player },
+                        page.winners.first().points
+                    )
+
+                )
             )
         }.checkAllMatched
     }
@@ -149,26 +159,40 @@ class PageNavigatorImpl(
             is Page.Input.Info -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.InputInfo(
-                    page.inputType,
-                    page.bombPlayed,
-                    page.round,
-                    page.gameSettings,
-                    resourceHelper
+                    message = when (page.inputType) {
+                        InputType.TIPP ->
+                            when {
+                                page.gameSettings.tipsEqualStitchesFirstRound && page.round == 1 ->
+                                    resourceHelper.getString(
+                                        R.string.block_input_info_bets_can_be_equal_stitches_message_first_round,
+                                        page.gameSettings.tipsEqualStitches
+                                    )
+                                page.gameSettings.tipsEqualStitches -> resourceHelper.getString(
+                                    R.string.block_input_info_bets_can_be_equal_stitches_message,
+                                    page.round
+                                )
+                                else -> resourceHelper.getString(
+                                    R.string.block_input_info_bets_bets_must_be_unequal_stitches_message,
+                                    page.round
+                                )
+                            }
+                        InputType.RESULT -> resourceHelper.getString(
+                            R.string.block_input_info_result_message,
+                            page.round - if (page.bombPlayed) 1 else 0
+                        )
+                    }
                 )
             )
             is Page.Input.CorrectTipsBecauseOfCloudCard -> BlockInputCorrectTipsChoosePlayerDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.CorrectTipsChoosePlayer(
                     page.playerTipData,
-                    page.round,
-                    resourceHelper
+                    page.round
                 )
             )
             is Page.Input.BombPlayed -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.BlockInputBombPlayed(
-                    resourceHelper
-                )
+                DialogEntity.Text.BlockInputBombPlayed()
             )
         }.checkAllMatched
     }
@@ -176,18 +200,18 @@ class PageNavigatorImpl(
     private fun navigateTo(page: Page.SavedGames) {
         when (page) {
             is Page.SavedGames.ContinueGame -> GameBlockActivity.start(
-                activity, page.gameId
+                activity,
+                page.gameId
             )
             is Page.SavedGames.Info -> SavedGamesInfoDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.SavedGamesInfo(
-                    page.gameSettings,
-                    resourceHelper
+                    page.gameSettings
                 )
             )
             is Page.SavedGames.Delete -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.DeleteSavedGames(resourceHelper)
+                DialogEntity.Text.DeleteSavedGames()
             )
         }.checkAllMatched
     }
@@ -196,7 +220,7 @@ class PageNavigatorImpl(
         when (page) {
             is Page.Settings.DialogDisplayAlwaysOn -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.SettingsDisplayAlwaysOn(resourceHelper)
+                DialogEntity.Text.SettingsDisplayAlwaysOn()
             )
         }.checkAllMatched
     }
@@ -205,7 +229,7 @@ class PageNavigatorImpl(
         when (page) {
             is Page.Statistics.Clear -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
-                DialogEntity.Text.ClearStatistics(resourceHelper)
+                DialogEntity.Text.ClearStatistics()
             )
         }.checkAllMatched
     }

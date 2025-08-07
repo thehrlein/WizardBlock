@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tobiashehrlein.tobiswizardblock.core.presentation.block.input.BlockInputViewModel" />
+
+        <import type="com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/block_input_coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+
+            <ViewSwitcher
+                android:id="@+id/block_input_switcher"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                </RelativeLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/block_input_sheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/space_4">
+
+                    <TextView
+                        android:id="@+id/block_input_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textAppearance="?textAppearanceHeadline5"
+                        app:inputTitle="@{viewModel.game}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Round 1" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/block_input_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_title"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/item_block_input" />
+
+                    <TextView
+                        android:id="@+id/block_input_question_cloud"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:text="@string/block_input_anniversary_version_cloud_card_question"
+                        android:textAppearance="?textAppearanceBody1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_list" />
+
+                    <Button
+                        android:id="@+id/block_input_button_correct_tips"
+                        style="?materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:enabled="@{!viewModel.cloudCardPlayed}"
+                        android:onClick="@{() -> viewModel.onCorrectTipsClicked()}"
+                        android:text="@string/block_input_anniversary_version_cloud_card_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_question_cloud" />
+
+                    <com.tobiashehrlein.tobiswizardblock.feature.common.ui.views.WBSettingsView
+                        android:id="@+id/block_input_bomb_played"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:layout_marginEnd="@dimen/space_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_button_correct_tips"
+                        app:onInfoIconClickListener="@{(v) -> viewModel.onBlockInputBombPlayedInfoClicked()}"
+                        app:switchText="@{@string/block_input_anniversary_version_bomb_played}" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/block_input_anniversary_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.showAnniversaryOption}"
+                        app:constraint_referenced_ids="block_input_question_cloud, block_input_button_correct_tips, block_input_bomb_played" />
+
+                    <Button
+                        android:id="@+id/block_input_button_save"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:enabled="@{viewModel.inputsValid}"
+                        android:onClick="@{() -> viewModel.onSaveClicked()}"
+                        app:cardCount="@{viewModel.game.currentRoundNumber}"
+                        app:inputType="@{viewModel.inputType}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_bomb_played"
+                        app:summedInputs="@{viewModel.summedInputs}" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ViewSwitcher>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

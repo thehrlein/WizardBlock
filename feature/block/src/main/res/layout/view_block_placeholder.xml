@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockPlaceholder" />
+
+        <import type="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/block_cell_height"
+        android:background="@drawable/wb_border_bottom_right"
+        android:padding="@dimen/space_1">
+
+        <ImageView
+            android:id="@+id/card_selected_trump"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectedTrumpType="@{item.trumpType}"
+            android:src="@drawable/wb_ic_circle" />
+
+        <ImageView
+            android:id="@+id/card_blue"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/wb_ic_circle"
+            app:imageTrumpType="@{TrumpType.Selected.Blue.INSTANCE}"
+            app:layout_constraintBottom_toTopOf="@id/card_green"
+            app:layout_constraintEnd_toStartOf="@id/card_red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectedTrumpType="@{item.trumpType}" />
+
+        <ImageView
+            android:id="@+id/card_red"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/wb_ic_circle"
+            app:imageTrumpType="@{TrumpType.Selected.Red.INSTANCE}"
+            app:layout_constraintBottom_toTopOf="@id/card_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectedTrumpType="@{item.trumpType}" />
+
+        <ImageView
+            android:id="@+id/card_green"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/wb_ic_circle"
+            app:imageTrumpType="@{TrumpType.Selected.Green.INSTANCE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/card_yellow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_blue"
+            app:selectedTrumpType="@{item.trumpType}" />
+
+        <ImageView
+            android:id="@+id/card_yellow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/wb_ic_circle"
+            app:imageTrumpType="@{TrumpType.Selected.Yellow.INSTANCE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_green"
+            app:layout_constraintTop_toBottomOf="@id/card_red"
+            app:selectedTrumpType="@{item.trumpType}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

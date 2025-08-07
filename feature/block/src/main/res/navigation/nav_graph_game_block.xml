@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_block_graph"
+    app:startDestination="@id/blockResultsFragment">
+
+    <fragment
+        android:id="@+id/blockResultsFragment"
+        android:name="com.tobiashehrlein.tobiswizardblock.feature.block.results.BlockResultsFragment"
+        android:label="BlockResultsFragment"
+        tools:layout="@layout/fragment_block_results">
+
+        <action
+            android:id="@+id/action_blockResultsFragment_to_blockInputFragment"
+            app:destination="@id/blockInputFragment" />
+        <action
+            android:id="@+id/action_blockResultsFragment_to_blockScoresFragment"
+            app:destination="@id/blockScoresFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blockInputFragment"
+        android:name="com.tobiashehrlein.tobiswizardblock.feature.block.input.BlockInputFragment"
+        android:label="BlockInputFragment"
+        tools:layout="@layout/fragment_block_input">
+        <argument
+            android:name="gameId"
+            app:argType="long" />
+        <argument
+            android:name="inputType"
+            app:argType="com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType" />
+        <action
+            android:id="@+id/action_blockInputFragment_to_gameBlockFragment"
+            app:destination="@id/blockResultsFragment"
+            app:popUpTo="@id/blockResultsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/blockScoresFragment"
+        android:name="com.tobiashehrlein.tobiswizardblock.feature.block.scores.BlockScoresFragment"
+        android:label="BlockScoresFragment"
+        tools:layout="@layout/fragment_block_scores">
+
+        <argument
+            android:name="gameScores"
+            app:argType="com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScoreData" />
+    </fragment>
+
+</navigation>

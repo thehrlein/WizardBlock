@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputDataItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/space_2"
+        android:paddingBottom="@dimen/space_2">
+
+        <LinearLayout
+            android:id="@+id/player_name_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_4"
+            app:layout_constraintEnd_toStartOf="@id/player_input_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.player}"
+                android:textAppearance="?textAppearanceBody1"
+                tools:text="Tobias" />
+
+            <TextView
+                android:id="@+id/dealer_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_2"
+                android:text="@string/game_block_results_is_dealer_hint"
+                android:textAppearance="?textAppearanceCaption"
+                android:visibility="@{item.isDealer}"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/player_input_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(item.userInput)}"
+            app:layout_constraintBottom_toBottomOf="@id/player_name_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/player_name_layout"
+            tools:text="12" />
+
+        <Button
+            android:id="@+id/button_decrease"
+            style="@style/Widget.WizardBlock.Button.InputAction.LeftRounded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            app:icon="@drawable/wb_ic_remove"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/player_name_layout" />
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_2"
+            android:max="@{item.cards}"
+            android:progress="@{item.userInput}"
+            app:layout_constraintBottom_toBottomOf="@id/button_decrease"
+            app:layout_constraintEnd_toStartOf="@id/button_increase"
+            app:layout_constraintStart_toEndOf="@id/button_decrease"
+            app:layout_constraintTop_toTopOf="@id/button_decrease" />
+
+        <Button
+            android:id="@+id/button_increase"
+            style="@style/Widget.WizardBlock.Button.InputAction.RightRounded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/wb_ic_add"
+            app:layout_constraintBottom_toBottomOf="@id/button_decrease"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/button_decrease" />
+
+        <TextView
+            android:id="@+id/cloud_card_played_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:textAppearance="?textAppearanceCaption"
+            android:visibility="@{item.cloudCardPlayed}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_decrease"
+            tools:text="@string/block_input_anniversary_version_cloud_card_played_hint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
