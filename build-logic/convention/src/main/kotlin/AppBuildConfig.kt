@@ -17,6 +17,6 @@ object AppBuildConfig {
     const val targetAndCompileSdk = 36
     const val minSdk = 24
     const val jvmToolchain = 21
-    const val versionName = "3.2.2"
+    const val versionName = "3.2.3"
     const val applicationId = "com.tobiashehrlein.tobiswizardblock"
 }
