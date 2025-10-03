@@ -1,14 +1,14 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder
 
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 
 class PlayerOrderViewModelImpl : PlayerOrderViewModel() {
 
     override fun onProceedClicked() {
-        navigateTo(Page.PlayerOrder.GameRules)
+        navigateTo(BasePage.PlayerOrder.GameRules)
     }
 
     override fun onInfoIconClicked() {
-        navigateTo(Page.PlayerOrder.Info)
+        navigateTo(BasePage.PlayerOrder.Info)
     }
 }

@@ -9,6 +9,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import plugins.config.configureCommonAndroid
 import plugins.config.configureCommonKotlin
+import plugins.config.configureFlavors
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
 
@@ -37,6 +38,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     extensions.getByType<ApplicationAndroidComponentsExtension>()
                 androidComponentsExtension.configureCommonAndroid(commonExtension = this)
                 configureCommonKotlin()
+                configureFlavors(this)
             }
         }
     }

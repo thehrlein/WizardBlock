@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.NavigationViewModel" />
+            type="com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.BaseNavigationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

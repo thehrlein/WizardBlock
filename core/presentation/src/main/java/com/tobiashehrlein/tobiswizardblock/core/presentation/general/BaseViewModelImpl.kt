@@ -1,12 +1,12 @@
 package com.tobiashehrlein.tobiswizardblock.core.presentation.general
 
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 
 abstract class BaseViewModelImpl : BaseViewModel() {
 
-    override val navigationEvent = SingleLiveEvent<Page>()
+    override val navigationEvent = SingleLiveEvent<BasePage>()
 
-    override fun navigateTo(page: Page) {
+    override fun navigateTo(page: BasePage) {
         navigationEvent.value = page
     }
 }

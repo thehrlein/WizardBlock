@@ -1,7 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.old.utils.helper
 
 import android.content.res.Resources
-import android.graphics.Rect
 import android.os.Build
 import android.view.View
 import android.view.Window
@@ -33,9 +32,6 @@ object WindowInsetsHelper {
                 WindowInsetsCompat.CONSUMED
             }
         } else {
-            // For older versions, use a hardcoded value or a custom method to get the status bar height
-            val rectangle = Rect()
-            window.decorView.getWindowVisibleDisplayFrame(rectangle)
             val resources: Resources = view.context.resources
 
             val statusBarResourceId = resources.getIdentifier("status_bar_height", "dimen", "android")

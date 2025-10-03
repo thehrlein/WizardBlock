@@ -2,7 +2,7 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.block
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
@@ -30,6 +30,6 @@ class GameBlockViewModelImpl(
     }
 
     override fun openMenu() {
-        navigateTo(Page.Block.Menu)
+        navigateTo(BasePage.Block.Menu)
     }
 }

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHostController
 import com.tobiashehrlein.tobiswizardblock.core.entities.extension.checkAllMatched
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
 import com.tobiashehrlein.tobiswizardblock.feature.about.AboutActivity
 import com.tobiashehrlein.tobiswizardblock.feature.block.GameBlockActivity
@@ -18,125 +18,114 @@ import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.SimpleAlertD
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity.DialogEntity
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelper
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.navigateSafe
-import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.GameSettingsActivity
 import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerorder.PlayerOrderFragmentDirections
 import com.tobiashehrlein.tobiswizardblock.feature.gamesettings.playerselection.PlayerSelectionFragmentDirections
 import com.tobiashehrlein.tobiswizardblock.feature.navigation.NavigationActivity
-import com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesActivity
 import com.tobiashehrlein.tobiswizardblock.feature.savedgames.SavedGamesInfoDialog
 import com.tobiashehrlein.tobiswizardblock.feature.settings.SettingsActivity
-import com.tobiashehrlein.tobiswizardblock.feature.statistics.StatisticsActivity
 
-class PageNavigatorImpl(
+abstract class BasePageNavigatorImpl(
     private val activity: AppCompatActivity,
     private val navHostController: NavHostController,
     private val resourceHelper: ResourceHelper
 ) : PageNavigator {
 
-    override fun navigateTo(page: Page) {
-        when (page) {
-            is Page.General -> navigateTo(page)
-            is Page.Navigation -> navigateTo(page)
-            is Page.PlayerSelection -> navigateTo(page)
-            is Page.PlayerOrder -> navigateTo(page)
-            is Page.GameRules -> navigateTo(page)
-            is Page.Block -> navigateTo(page)
-            is Page.Input -> navigateTo(page)
-            is Page.SavedGames -> navigateTo(page)
-            is Page.Settings -> navigateTo(page)
-            is Page.Statistics -> navigateTo(page)
+    override fun navigateTo(basePage: BasePage) {
+        when (basePage) {
+            is BasePage.General -> navigateTo(basePage)
+            is BasePage.BaseNavigation -> navigateTo(basePage)
+            is BasePage.PlayerSelection -> navigateTo(basePage)
+            is BasePage.PlayerOrder -> navigateTo(basePage)
+            is BasePage.GameRules -> navigateTo(basePage)
+            is BasePage.Block -> navigateTo(basePage)
+            is BasePage.Input -> navigateTo(basePage)
+            is BasePage.SavedGames -> navigateTo(basePage)
+            is BasePage.Settings -> navigateTo(basePage)
+            is BasePage.Statistics -> navigateTo(basePage)
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.General) {
+    private fun navigateTo(page: BasePage.General) {
         when (page) {
-            is Page.General.Loading.Show -> FullscreenLoadingDialogFragment.show(
+            is BasePage.General.Loading.Show -> FullscreenLoadingDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Loading(page.dim)
             )
-            is Page.General.Loading.Hide -> FullscreenLoadingDialogFragment.hide(activity.supportFragmentManager)
+            is BasePage.General.Loading.Hide -> FullscreenLoadingDialogFragment.hide(activity.supportFragmentManager)
         }
     }
 
-    private fun navigateTo(page: Page.Navigation) {
-        when (page) {
-            is Page.Navigation.GameSettings -> GameSettingsActivity.start(activity)
-            is Page.Navigation.LastGames -> SavedGamesActivity.start(activity)
-            is Page.Navigation.Info -> AboutActivity.start(activity)
-            is Page.Navigation.Settings -> SettingsActivity.start(activity)
-            is Page.Navigation.Statistics -> StatisticsActivity.start(activity)
-        }.checkAllMatched
-    }
+    abstract fun navigateTo(page: BasePage.BaseNavigation)
 
-    private fun navigateTo(page: Page.PlayerSelection) {
+    private fun navigateTo(page: BasePage.PlayerSelection) {
         when (page) {
-            is Page.PlayerSelection.PlayerOrder -> navHostController.navigateSafe(
+            is BasePage.PlayerSelection.PlayerOrder -> navHostController.navigateSafe(
                 PlayerSelectionFragmentDirections.actionPlayerSelectionFragmentToPlayerOrderFragment()
             )
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.PlayerOrder) {
+    private fun navigateTo(page: BasePage.PlayerOrder) {
         when (page) {
-            is Page.PlayerOrder.GameRules -> navHostController.navigateSafe(
+            is BasePage.PlayerOrder.GameRules -> navHostController.navigateSafe(
                 PlayerOrderFragmentDirections.actionPlayerOrderFragmentToGameRulesFragment()
             )
-            is Page.PlayerOrder.Info -> SimpleAlertDialogFragment.show(
+            is BasePage.PlayerOrder.Info -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.PlayerOrderInfo()
             )
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.GameRules) {
+    private fun navigateTo(page: BasePage.GameRules) {
         when (page) {
-            is Page.GameRules.Block -> GameBlockActivity.start(activity, page.gameId)
-            is Page.GameRules.Info -> SimpleAlertDialogFragment.show(
+            is BasePage.GameRules.Block -> GameBlockActivity.start(activity, page.gameId)
+            is BasePage.GameRules.Info -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.GameRulesInfo()
             )
-            is Page.GameRules.TipsEqualStitchesInfo -> SimpleAlertDialogFragment.show(
+            is BasePage.GameRules.TipsEqualStitchesInfo -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.GameRulesInfoTipsEqualStitches()
             )
-            is Page.GameRules.TipsEqualStitchesInfoFirstRound -> SimpleAlertDialogFragment.show(
+            is BasePage.GameRules.TipsEqualStitchesInfoFirstRound -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.GameRulesInfoTipsEqualStitchesFirstRound()
             )
-            is Page.GameRules.AnniversaryVersion -> SimpleAlertDialogFragment.show(
+            is BasePage.GameRules.AnniversaryVersion -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.GameRulesInfoAnniversaryMode()
             )
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.Block) {
+    private fun navigateTo(page: BasePage.Block) {
         when (page) {
-            is Page.Block.Input -> navHostController.navigateSafe(
+            is BasePage.Block.Input -> navHostController.navigateSafe(
                 BlockResultsFragmentDirections.actionBlockResultsFragmentToBlockInputFragment(
                     page.gameId,
                     page.inputType
                 )
             )
-            is Page.Block.Exit -> SimpleAlertDialogFragment.show(
+            is BasePage.Block.Exit -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.Exit
             )
-            is Page.Block.FinishManually -> SimpleAlertDialogFragment.show(
+            is BasePage.Block.FinishManually -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.FinishGameManually()
             )
-            is Page.Block.Menu -> NavigationActivity.start(activity)
-            is Page.Block.Scores -> navHostController.navigateSafe(
+            is BasePage.Block.Menu -> NavigationActivity.start(activity)
+            is BasePage.Block.Scores -> navHostController.navigateSafe(
                 BlockResultsFragmentDirections.actionBlockResultsFragmentToBlockScoresFragment(page.gameScoreData)
             )
-            is Page.Block.About -> AboutActivity.start(activity)
-            is Page.Block.Settings -> SettingsActivity.start(activity)
-            is Page.Block.Trump -> BlockTrumpDialog.show(
+            is BasePage.Block.About -> AboutActivity.start(activity)
+            is BasePage.Block.Settings -> SettingsActivity.start(activity)
+            is BasePage.Block.Trump -> BlockTrumpDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.Trump(page.trumpType)
             )
-            is Page.Block.GameFinished -> SimpleAlertDialogFragment.show(
+            is BasePage.Block.GameFinished -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.GameFinished(
                     message = resourceHelper.getPlural(
@@ -151,12 +140,12 @@ class PageNavigatorImpl(
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.Input) {
+    private fun navigateTo(page: BasePage.Input) {
         when (page) {
-            is Page.Input.Block -> navHostController.navigateSafe(
+            is BasePage.Input.Block -> navHostController.navigateSafe(
                 BlockInputFragmentDirections.actionBlockInputFragmentToGameBlockFragment()
             )
-            is Page.Input.Info -> SimpleAlertDialogFragment.show(
+            is BasePage.Input.Info -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.InputInfo(
                     message = when (page.inputType) {
@@ -183,51 +172,51 @@ class PageNavigatorImpl(
                     }
                 )
             )
-            is Page.Input.CorrectTipsBecauseOfCloudCard -> BlockInputCorrectTipsChoosePlayerDialog.show(
+            is BasePage.Input.CorrectTipsBecauseOfCloudCard -> BlockInputCorrectTipsChoosePlayerDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.CorrectTipsChoosePlayer(
                     page.playerTipData,
                     page.round
                 )
             )
-            is Page.Input.BombPlayed -> SimpleAlertDialogFragment.show(
+            is BasePage.Input.BombPlayed -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.BlockInputBombPlayed()
             )
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.SavedGames) {
+    private fun navigateTo(page: BasePage.SavedGames) {
         when (page) {
-            is Page.SavedGames.ContinueGame -> GameBlockActivity.start(
+            is BasePage.SavedGames.ContinueGame -> GameBlockActivity.start(
                 activity,
                 page.gameId
             )
-            is Page.SavedGames.Info -> SavedGamesInfoDialog.show(
+            is BasePage.SavedGames.Info -> SavedGamesInfoDialog.show(
                 activity.supportFragmentManager,
                 DialogEntity.Custom.SavedGamesInfo(
                     page.gameSettings
                 )
             )
-            is Page.SavedGames.Delete -> SimpleAlertDialogFragment.show(
+            is BasePage.SavedGames.Delete -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.DeleteSavedGames()
             )
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.Settings) {
+    private fun navigateTo(page: BasePage.Settings) {
         when (page) {
-            is Page.Settings.DialogDisplayAlwaysOn -> SimpleAlertDialogFragment.show(
+            is BasePage.Settings.DialogDisplayAlwaysOn -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.SettingsDisplayAlwaysOn()
             )
         }.checkAllMatched
     }
 
-    private fun navigateTo(page: Page.Statistics) {
+    private fun navigateTo(page: BasePage.Statistics) {
         when (page) {
-            is Page.Statistics.Clear -> SimpleAlertDialogFragment.show(
+            is BasePage.Statistics.Clear -> SimpleAlertDialogFragment.show(
                 activity.supportFragmentManager,
                 DialogEntity.Text.ClearStatistics()
             )

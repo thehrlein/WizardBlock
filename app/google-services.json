@@ -3,7 +3,7 @@
     "project_number": "409426723524",
     "firebase_url": "https://wizard-block-8015f.firebaseio.com",
     "project_id": "wizard-block-8015f",
-    "storage_bucket": "wizard-block-8015f.appspot.com"
+    "storage_bucket": "wizard-block-8015f.firebasestorage.app"
   },
   "client": [
     {
@@ -22,6 +22,93 @@
             "certificate_hash": "b341317862e29ac68e65211e0bfb92bd792f0b34"
           }
         },
+        {
+          "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsHJR3C5I-AG5lBgR-ujVlNR2NfgWsz-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409426723524:android:8c3a1352f53dabb7357f91",
+        "android_client_info": {
+          "package_name": "com.tobiashehrlein.tobiswizardblock.automotive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsHJR3C5I-AG5lBgR-ujVlNR2NfgWsz-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409426723524:android:a95a478e6df0c3ee357f91",
+        "android_client_info": {
+          "package_name": "com.tobiashehrlein.tobiswizardblock.automotive.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsHJR3C5I-AG5lBgR-ujVlNR2NfgWsz-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409426723524:android:fbe7fcc653efe0f5357f91",
+        "android_client_info": {
+          "package_name": "com.tobiashehrlein.tobiswizardblock.debug"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "409426723524-8k2qh5ujivvtilvd68rri3adlb6effl2.apps.googleusercontent.com",
           "client_type": 3

@@ -24,7 +24,6 @@ android {
     namespace = AppBuildConfig.applicationId
 
     defaultConfig {
-        applicationId = AppBuildConfig.applicationId
         versionCode = buildNumber
         versionName = AppBuildConfig.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -72,6 +71,14 @@ android {
                 "SHOW_LOGS",
                 project.rootProject.ext.get("showLogging") as String
             )
+        }
+    }
+
+    productFlavors {
+        AppBuildConfig.PlatformFlavorDimension.productFlavors.forEach { flavor ->
+            getByName(flavor.name) {
+                applicationId = flavor.applicationId
+            }
         }
     }
 

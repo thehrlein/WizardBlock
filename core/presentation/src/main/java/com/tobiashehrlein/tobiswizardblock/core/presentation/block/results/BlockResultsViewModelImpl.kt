@@ -15,7 +15,7 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScore
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.block.GetGameUseCase
@@ -127,7 +127,7 @@ class BlockResultsViewModelImpl(
                 when (val result = isShowTrumpDialogEnabledUseCase.invoke()) {
                     is AppResult.Success -> {
                         if (result.value) {
-                            navigateTo(Page.Block.Trump(TrumpType.Unselected))
+                            navigateTo(BasePage.Block.Trump(TrumpType.Unselected))
                         }
                     }
                     is AppResult.Error -> Unit
@@ -138,23 +138,23 @@ class BlockResultsViewModelImpl(
 
     override fun onTrumpClicked(trumpType: TrumpType) {
         if (gameFinished.value == true) return
-        navigateTo(Page.Block.Trump(trumpType))
+        navigateTo(BasePage.Block.Trump(trumpType))
     }
 
     override fun onFabClicked() {
         val gameFinished = gameFinished.value ?: false
         if (gameFinished) {
-            navigateTo(Page.Block.Exit)
+            navigateTo(BasePage.Block.Exit)
         } else {
             val gameId = game.value?.gameInfo?.gameId ?: error("could not determine gameId")
             val inputType = this.inputType.value ?: error("could not determine inputType")
-            navigateTo(Page.Block.Input(gameId, inputType))
+            navigateTo(BasePage.Block.Input(gameId, inputType))
         }
     }
 
     override fun onTrophyClicked() {
         val scores = gameScores.value ?: return
-        navigateTo(Page.Block.Scores(scores))
+        navigateTo(BasePage.Block.Scores(scores))
     }
 
     private fun onGameFinished(results: List<GameScore>, onFinishedSuccess: (() -> Unit)? = null) {
@@ -165,7 +165,7 @@ class BlockResultsViewModelImpl(
             when (val result = storeGameFinishedUseCase.invoke(gameId)) {
                 is AppResult.Success -> {
                     navigateTo(
-                        Page.Block.GameFinished(
+                        BasePage.Block.GameFinished(
                             winner
                         )
                     )
@@ -194,11 +194,11 @@ class BlockResultsViewModelImpl(
     }
 
     override fun onMenuInfoClicked() {
-        navigateTo(Page.Block.About)
+        navigateTo(BasePage.Block.About)
     }
 
     override fun onMenuSettingsClicked() {
-        navigateTo(Page.Block.Settings)
+        navigateTo(BasePage.Block.Settings)
     }
 
     override fun onMenuDeleteInputClicked() {
@@ -206,7 +206,7 @@ class BlockResultsViewModelImpl(
         val currentRound = game.currentGameRound ?: return
 
         viewModelScope.launch {
-            navigateTo(Page.General.Loading.Show(dim = true))
+            navigateTo(BasePage.General.Loading.Show(dim = true))
 
             val result = if (currentRound.playerTipData == null) {
                 val round = game.lastCompletedGameRound?.copy(
@@ -229,7 +229,7 @@ class BlockResultsViewModelImpl(
             }
 
             trackDeleteLastInput()
-            navigateTo(Page.General.Loading.Hide)
+            navigateTo(BasePage.General.Loading.Hide)
         }
     }
 
@@ -242,11 +242,11 @@ class BlockResultsViewModelImpl(
     }
 
     override fun showExitDialog() {
-        navigateTo(Page.Block.Exit)
+        navigateTo(BasePage.Block.Exit)
     }
 
     override fun finishGameManuallyClicked() {
-        navigateTo(Page.Block.FinishManually)
+        navigateTo(BasePage.Block.FinishManually)
     }
 
     override fun onFinishGameManuallyConfirmed() {

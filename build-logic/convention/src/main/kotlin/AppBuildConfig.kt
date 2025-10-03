@@ -1,3 +1,6 @@
+import models.FlavorDimension
+import plugins.PlatformFlavor
+
 /** Info about target & compile sdk
  *  compileSdkVersion
  *  The compileSdkVersion is the version of the API the app is compiled against. This means you can use
@@ -19,4 +22,24 @@ object AppBuildConfig {
     const val jvmToolchain = 21
     const val versionName = "3.2.3"
     const val applicationId = "com.tobiashehrlein.tobiswizardblock"
+
+    val flavorDimensions = setOf<FlavorDimension<*>>(
+        PlatformFlavorDimension,
+    )
+
+    object PlatformFlavorDimension : FlavorDimension<PlatformFlavor> {
+
+        override val name = "platform"
+
+        override val productFlavors = setOf(
+            PlatformFlavor(
+                name = "mobile",
+                applicationId = "com.tobiashehrlein.tobiswizardblock",
+            ),
+            PlatformFlavor(
+                name = "automotive",
+                applicationId = "com.tobiashehrlein.tobiswizardblock.automotive",
+            ),
+        )
+    }
 }

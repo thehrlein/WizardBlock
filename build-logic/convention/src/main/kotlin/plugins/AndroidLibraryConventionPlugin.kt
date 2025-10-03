@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import plugins.config.configureCommonAndroid
 import plugins.config.configureCommonKotlin
+import plugins.config.configureFlavors
 
 open class AndroidLibraryConventionPlugin : Plugin<Project> {
 
@@ -31,6 +32,7 @@ open class AndroidLibraryConventionPlugin : Plugin<Project> {
                 androidResources.enable = true
 
                 configureCommonKotlin()
+                configureFlavors(this)
                 val androidComponentsExtension = extensions.getByType<LibraryAndroidComponentsExtension>()
                 androidComponentsExtension.configureCommonAndroid(commonExtension = this)
             }

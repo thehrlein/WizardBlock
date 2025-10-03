@@ -3,7 +3,7 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.settings
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
@@ -28,7 +28,7 @@ class SettingsViewModelImpl(
     }.asLiveData()
 
     override fun onDisplayAlwaysOnInfoClicked() {
-        navigateTo(Page.Settings.DialogDisplayAlwaysOn)
+        navigateTo(BasePage.Settings.DialogDisplayAlwaysOn)
     }
 
     override fun onDisplayAlwaysOnChecked(alwaysOn: Boolean) {

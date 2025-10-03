@@ -6,15 +6,17 @@ import android.os.Build
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.NavigationViewModel
+import com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.BaseNavigationViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.BaseActivity
+import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ScreenHelper
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.isUsingDarkMode
 import com.tobiashehrlein.tobiswizardblock.feature.navigation.databinding.ActivityNavigationBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
-class NavigationActivity : BaseActivity<NavigationViewModel, ActivityNavigationBinding>() {
+class NavigationActivity : BaseActivity<BaseNavigationViewModel, ActivityNavigationBinding>() {
 
-    override val viewModel: NavigationViewModel by viewModel()
+    override val viewModel: BaseNavigationViewModel by viewModel()
     override val layoutRes: Int = R.layout.activity_navigation
     override val viewModelVariableId: Int = BR.viewModel
     override val navHostFragment: Int = R.id.navigation_nav_host_fragment
@@ -30,6 +32,8 @@ class NavigationActivity : BaseActivity<NavigationViewModel, ActivityNavigationB
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+        val screenSize = ScreenHelper.getScreenSize(this)
+        Timber.d("ScreenSize: $screenSize")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val windowInsetController = WindowCompat.getInsetsController(window, window.decorView)

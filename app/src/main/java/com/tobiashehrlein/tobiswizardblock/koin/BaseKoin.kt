@@ -1,13 +1,10 @@
 package com.tobiashehrlein.tobiswizardblock.koin
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.analytics
+import com.tobiashehrlein.tobiswizardblock.core.databaseroom.databaseModule
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
-import com.tobiashehrlein.tobiswizardblock.core.databaseroom.databaseModule
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.datastore.SettingsDataStore
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.firebase.AnalyticsDatasource
 import com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.processor.BlockInputProcessor
@@ -48,7 +45,6 @@ import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.statistics.Ge
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.statistics.GetTopPointsStatisticsUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.user.IsShowTrumpDialogEnabledUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.user.SetShowTrumpDialogEnabledUseCase
-import com.tobiashehrlein.tobiswizardblock.navigation.PageNavigatorImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.about.AboutViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.about.AboutViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.GameBlockViewModel
@@ -71,8 +67,6 @@ import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.player
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModelImpl
-import com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.NavigationViewModel
-import com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.NavigationViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.info.SavedGamesInfoViewModel
@@ -91,13 +85,12 @@ import com.tobiashehrlein.tobiswizardblock.core.repositories.repository.GameSett
 import com.tobiashehrlein.tobiswizardblock.core.repositories.repository.StatisticsRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.core.repositories.repository.UserRepositoryImpl
 import com.tobiashehrlein.tobiswizardblock.core.repositories.repository.WizardRepositoryImpl
-import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelper
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.binds
 import org.koin.dsl.module
 
-object Koin {
+object BaseKoin {
 
     private val single = module {
         // repositories
@@ -160,15 +153,6 @@ object Koin {
     }
 
     private val factory = module {
-        // navigation handler
-        factory<PageNavigator> { (activity: AppCompatActivity, navHostController: NavHostController, resourceHelper: ResourceHelper) ->
-            PageNavigatorImpl(
-                activity = activity,
-                navHostController = navHostController,
-                resourceHelper = resourceHelper
-            )
-        }
-
         // usecases
         factory {
             GetGameSettingsUseCase(
@@ -323,11 +307,6 @@ object Koin {
     }
 
     private val viewModel = module {
-        viewModel<NavigationViewModel> {
-            NavigationViewModelImpl(
-                trackAnalyticsUserPropertyUseCase = get()
-            )
-        }
         viewModel<GameSettingsViewModel> {
             GameSettingsViewModelImpl(
                 getLastGameSettingsUseCase = get(),

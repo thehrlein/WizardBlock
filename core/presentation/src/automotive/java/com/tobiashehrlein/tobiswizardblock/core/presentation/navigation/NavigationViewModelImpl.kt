@@ -1,0 +1,7 @@
+package com.tobiashehrlein.tobiswizardblock.core.presentation.navigation
+
+import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.general.TrackAnalyticsUserPropertyUseCase
+
+class NavigationViewModelImpl(
+    trackAnalyticsUserPropertyUseCase: TrackAnalyticsUserPropertyUseCase
+) : BaseNavigationViewModelImpl(trackAnalyticsUserPropertyUseCase)

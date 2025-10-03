@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Button -->
+    <style name="Widget.WizardBlock.Button" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:textSize">@dimen/font_size_body_1</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.Secondary" parent="@style/Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?colorSecondary</item>
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="android:textColor">?colorOnSecondary</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:textSize">@dimen/font_size_body_1</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.Outline" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="strokeColor">@color/color_selector_outline_button</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:textSize">@dimen/font_size_body_1</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.Borderless" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAppearance">?textAppearanceButton</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:textSize">@dimen/font_size_body_1</item>
+    </style>
+
+</resources>

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameDayStatisticsData
 import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameRulesStatisticsData
 import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.MostWinStatisticsData
@@ -120,7 +120,7 @@ class StatisticsViewModelImpl(
     }
 
     override fun onClearActionClicked() {
-        navigateTo(Page.Statistics.Clear)
+        navigateTo(BasePage.Statistics.Clear)
     }
 
     override fun onClearStatisticsConfirmed() {

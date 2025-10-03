@@ -81,6 +81,7 @@
         <item name="toolbarStyle">@style/Widget.WizardBlock.Toolbar.PrimarySurface</item>
         <item name="android:progressBarStyle">@style/Widget.WizardBlock.ProgressBar</item>
         <item name="materialButtonStyle">@style/Widget.WizardBlock.Button</item>
+        <item name="buttonStyle">@style/Widget.WizardBlock.Button</item>
         <item name="buttonSecondary">@style/Widget.WizardBlock.Button.Secondary</item>
         <item name="materialButtonOutlinedStyle">@style/Widget.WizardBlock.Button.Outline</item>
         <item name="borderlessButtonStyle">@style/Widget.WizardBlock.Button.Borderless</item>

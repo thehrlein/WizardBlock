@@ -2,6 +2,7 @@ package com.tobiashehrlein.tobiswizardblock
 
 import android.app.Application
 import com.google.firebase.FirebaseApp
+import com.tobiashehrlein.tobiswizardblock.koin.BaseKoin
 import com.tobiashehrlein.tobiswizardblock.koin.Koin
 import com.tobiashehrlein.tobiswizardblock.koin.KoinLogger
 import org.koin.android.ext.koin.androidContext
@@ -27,7 +28,7 @@ abstract class BaseWizardBlockApplication : Application() {
             logger(KoinLogger())
             androidLogger(Level.ERROR)
             androidContext(this@BaseWizardBlockApplication)
-            modules(Koin.modules)
+            modules(BaseKoin.modules + Koin.modules)
         }
     }
 }

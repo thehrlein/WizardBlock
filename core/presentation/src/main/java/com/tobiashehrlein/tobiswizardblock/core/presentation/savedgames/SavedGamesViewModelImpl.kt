@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.Game
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.savedgames.SavedGameEntity
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
@@ -80,15 +80,15 @@ class SavedGamesViewModelImpl(
     }
 
     override fun onSavedGameClicked(gameId: Long) {
-        navigateTo(Page.SavedGames.ContinueGame(gameId))
+        navigateTo(BasePage.SavedGames.ContinueGame(gameId))
     }
 
     override fun onInfoClicked(gameSettings: GameSettings) {
-        navigateTo(Page.SavedGames.Info(gameSettings))
+        navigateTo(BasePage.SavedGames.Info(gameSettings))
     }
 
     override fun onDeleteActionClicked() {
-        navigateTo(Page.SavedGames.Delete)
+        navigateTo(BasePage.SavedGames.Delete)
     }
 
     override fun onDeleteGamesConfirmed() {

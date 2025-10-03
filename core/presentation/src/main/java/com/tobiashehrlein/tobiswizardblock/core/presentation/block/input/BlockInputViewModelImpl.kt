@@ -14,7 +14,7 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputType
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.ResultData
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.block.GetGameUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.block.input.CalculateResultsUseCase
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.block.input.GetBlockInputModelsUseCase
@@ -118,7 +118,7 @@ class BlockInputViewModelImpl(
         val game = getGameData()
         val bombPlayed = this.bombPlayed.value ?: false
         navigateTo(
-            Page.Input.Info(
+            BasePage.Input.Info(
                 inputType = game.inputType,
                 bombPlayed = bombPlayed,
                 round = game.currentRoundNumber,
@@ -131,7 +131,7 @@ class BlockInputViewModelImpl(
         val game = getGameData()
         val playerTipData = game.currentGameRound?.playerTipData ?: error("no tips available")
         val round = game.currentRoundNumber
-        navigateTo(Page.Input.CorrectTipsBecauseOfCloudCard(playerTipData, round))
+        navigateTo(BasePage.Input.CorrectTipsBecauseOfCloudCard(playerTipData, round))
     }
 
     override fun correctPlayerTips(correctedPlayerTipData: List<PlayerTipData>) {
@@ -187,7 +187,7 @@ class BlockInputViewModelImpl(
 
         viewModelScope.launch {
             when (val result = storeRoundUseCase.invoke(round)) {
-                is AppResult.Success -> navigateTo(Page.Input.Block)
+                is AppResult.Success -> navigateTo(BasePage.Input.Block)
                 is AppResult.Error -> Unit
             }
         }
@@ -225,14 +225,14 @@ class BlockInputViewModelImpl(
 
         viewModelScope.launch {
             when (val result = storeRoundUseCase.invoke(round)) {
-                is AppResult.Success -> navigateTo(Page.Input.Block)
+                is AppResult.Success -> navigateTo(BasePage.Input.Block)
                 is AppResult.Error -> Unit
             }
         }
     }
 
     override fun onBlockInputBombPlayedInfoClicked() {
-        navigateTo(Page.Input.BombPlayed)
+        navigateTo(BasePage.Input.BombPlayed)
     }
 
     override fun onBlockPlayedSwitchChanged(bombPlayed: Boolean) {

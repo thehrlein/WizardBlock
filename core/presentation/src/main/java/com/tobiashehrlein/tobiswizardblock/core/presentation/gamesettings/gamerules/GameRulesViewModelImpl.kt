@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameInfo
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.Page
+import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingEvent
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.TrackingParam
 import com.tobiashehrlein.tobiswizardblock.core.entities.tracking.WizardBlockTrackingEvent
@@ -44,7 +44,7 @@ class GameRulesViewModelImpl(
         viewModelScope.launch {
             val gameId = storeGameInfo(gameName, playerNames, gameSettings)
             trackGameStarted(playerNames.size, gameSettings)
-            navigateTo(Page.GameRules.Block(gameId))
+            navigateTo(BasePage.GameRules.Block(gameId))
         }
     }
 
@@ -79,18 +79,18 @@ class GameRulesViewModelImpl(
     }
 
     override fun onInfoIconClicked() {
-        navigateTo(Page.GameRules.Info)
+        navigateTo(BasePage.GameRules.Info)
     }
 
     override fun onSettingsEqualStitchesInfoIconClicked() {
-        navigateTo(Page.GameRules.TipsEqualStitchesInfo)
+        navigateTo(BasePage.GameRules.TipsEqualStitchesInfo)
     }
 
     override fun onSettingsEqualStitchesFirstRoundInfoIconClicked() {
-        navigateTo(Page.GameRules.TipsEqualStitchesInfoFirstRound)
+        navigateTo(BasePage.GameRules.TipsEqualStitchesInfoFirstRound)
     }
 
     override fun onSettingsAnniversaryVersionInfoIconClicked() {
-        navigateTo(Page.GameRules.AnniversaryVersion)
+        navigateTo(BasePage.GameRules.AnniversaryVersion)
     }
 }
