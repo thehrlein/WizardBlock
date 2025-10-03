@@ -35,7 +35,8 @@
     <dimen name="alpha_emphasis_disabled">@dimen/material_emphasis_disabled</dimen>
 
     <!-- Toolbar -->
-    <dimen name="toolbar_icon_width">42dp</dimen>
+    <dimen name="toolbar_height">72dp</dimen>
+    <dimen name="toolbar_icon_size">56dp</dimen>
 
     <!-- Dialog -->
     <dimen name="dialog_button_height">56dp</dimen>

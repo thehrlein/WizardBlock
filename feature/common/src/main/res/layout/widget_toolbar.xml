@@ -5,27 +5,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        tools:layout_height="56dp">
+        android:layout_height="@dimen/toolbar_height"
+        tools:layout_height="@dimen/toolbar_height">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/toolbar_icon_width" />
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/toolbar_icon_width" />
+            app:layout_constraintGuide_end="@dimen/toolbar_height" />
 
         <ImageView
             android:id="@+id/toolbar_icon"
-            android:layout_width="@dimen/toolbar_icon_width"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/toolbar_icon_size"
+            android:layout_height="@dimen/toolbar_icon_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

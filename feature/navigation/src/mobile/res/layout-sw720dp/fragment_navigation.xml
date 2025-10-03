@@ -72,8 +72,8 @@
 
                 <Button
                     android:id="@+id/navigation_button_new_game"
+                    style="?buttonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_6"
                     android:onClick="@{() -> viewModel.onNewGameClicked()}"
                     android:text="@string/navigation_button_new_game"
@@ -83,8 +83,8 @@
 
                 <Button
                     android:id="@+id/navigation_button_load_game"
+                    style="?buttonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
                     android:onClick="@{() -> viewModel.onLoadGamesClicked()}"
                     android:text="@string/navigation_button_load_game"
@@ -104,8 +104,8 @@
 
                 <Button
                     android:id="@+id/navigation_button_info"
+                    style="?buttonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
                     android:onClick="@{() -> viewModel.onInfoClicked()}"
                     android:text="@string/navigation_button_info"
@@ -115,8 +115,8 @@
 
                 <Button
                     android:id="@+id/navigation_button_settings"
+                    style="?buttonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
                     android:onClick="@{() -> viewModel.onSettingsClicked()}"
                     android:text="@string/navigation_button_settings"
@@ -126,8 +126,8 @@
 
                 <Button
                     android:id="@+id/navigation_button_statistics"
+                    style="?buttonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
                     android:onClick="@{() -> viewModel.onStatisticsClicked()}"
                     android:text="@string/navigation_button_statistics"

@@ -72,7 +72,7 @@
 
                 <Button
                     android:id="@+id/navigation_button_new_game"
-                    style="@style/Widget.WizardBlock.Button"
+                    style="?buttonStyle"
                     android:layout_marginTop="@dimen/space_6"
                     android:onClick="@{() -> viewModel.onNewGameClicked()}"
                     android:text="@string/navigation_button_new_game"
@@ -82,7 +82,7 @@
 
                 <Button
                     android:id="@+id/navigation_button_load_game"
-                    style="@style/Widget.WizardBlock.Button.Outline"
+                    style="?materialButtonOutlinedStyle"
                     android:layout_marginStart="@dimen/space_2"
                     android:onClick="@{() -> viewModel.onLoadGamesClicked()}"
                     android:text="@string/navigation_button_load_game"
@@ -92,7 +92,7 @@
 
                 <Button
                     android:id="@+id/navigation_button_statistics"
-                    style="@style/Widget.WizardBlock.Button.Outline"
+                    style="?materialButtonOutlinedStyle"
                     android:layout_marginStart="@dimen/space_2"
                     android:onClick="@{() -> viewModel.onStatisticsClicked()}"
                     android:text="@string/navigation_button_statistics"

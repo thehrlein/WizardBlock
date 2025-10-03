@@ -24,7 +24,7 @@
         <com.tobiashehrlein.tobiswizardblock.feature.common.ui.views.BaseToolbar
             android:id="@+id/base_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="@dimen/toolbar_height"
             app:onToolbarButtonClick="@{() -> toolbarViewModel.toolBarButtonClicked()}"
             app:toolbarButton="@{toolbarViewModel.toolbarButton}"
             app:toolbarTitle="@{toolbarViewModel.toolbarTitle}" />
