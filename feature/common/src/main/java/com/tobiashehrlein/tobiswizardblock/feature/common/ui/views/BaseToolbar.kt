@@ -8,7 +8,6 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.DataBindingUtil
-import com.tobiashehrlein.tobiswizardblock.core.entities.extension.checkAllMatched
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.OnToolbarButtonClickListener
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.feature.common.R
@@ -79,5 +78,5 @@ class BaseToolbar @JvmOverloads constructor(
             ToolbarButtonType.Back -> R.drawable.wb_ic_arrow_back
             ToolbarButtonType.Close -> R.drawable.wb_ic_close
             else -> android.R.color.transparent
-        }.checkAllMatched
+        }
 }

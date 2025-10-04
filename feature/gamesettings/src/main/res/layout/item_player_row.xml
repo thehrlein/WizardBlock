@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_4">
+        android:paddingHorizontal="@dimen/space_4"
+        android:paddingVertical="@dimen/space_2">
 
         <TextView
             android:id="@+id/player_position"

@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
@@ -64,12 +63,13 @@ class PlayerOrderFragment : BaseToolbarFragment<PlayerOrderViewModel, GameSettin
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_player_order, menu)
-        menu.findItem(R.id.action_info).icon?.setTint(
-            ContextCompat.getColor(
-                requireContext(),
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.color.color_on_primary
-            )
-        )
+
+        val menuItem = menu.findItem(R.id.action_info)
+        val actionView = menuItem.actionView
+
+        actionView?.setOnClickListener {
+            onOptionsItemSelected(menuItem)
+        }
         super.onCreateOptionsMenu(menu, inflater)
     }
 

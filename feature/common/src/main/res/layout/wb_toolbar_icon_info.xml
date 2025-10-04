@@ -1,0 +1,14 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/toolbar_icon_size"
+        android:layout_height="@dimen/toolbar_icon_size"
+        android:paddingTop="@dimen/space_1"
+        android:src="@drawable/wb_ic_info"
+        android:layout_gravity="center"
+        app:tint="?colorOnPrimary" />
+
+</FrameLayout>
