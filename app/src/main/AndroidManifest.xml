@@ -31,12 +31,6 @@
             android:name=".feature.savedgames.SavedGamesActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
         <activity
-            android:name=".feature.about.AboutActivity"
-            android:theme="@style/Theme.WizardBlock.DayNight" />
-        <activity
-            android:name=".feature.settings.SettingsActivity"
-            android:theme="@style/Theme.WizardBlock.DayNight" />
-        <activity
             android:name=".feature.statistics.StatisticsActivity"
             android:theme="@style/Theme.WizardBlock.DayNight" />
 

@@ -33,10 +33,6 @@ class PlayerNameInputView @JvmOverloads constructor(
         binding.autoCompleteText.setText(text)
     }
 
-    fun getPlayerName(): String? {
-        return binding.autoCompleteText.text.toString()
-    }
-
     fun setHint(hint: String) {
         binding.textInputLayoutOutlined.hint = hint
     }

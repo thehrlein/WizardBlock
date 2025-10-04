@@ -7,8 +7,7 @@
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/space_2">
+        android:visibility="gone">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_outlined"

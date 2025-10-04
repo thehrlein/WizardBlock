@@ -35,7 +35,7 @@
     <dimen name="alpha_emphasis_disabled">@dimen/material_emphasis_disabled</dimen>
 
     <!-- Toolbar -->
-    <dimen name="toolbar_height">72dp</dimen>
+    <dimen name="toolbar_height">74dp</dimen>
     <dimen name="toolbar_icon_size">56dp</dimen>
 
     <!-- Dialog -->
@@ -66,7 +66,7 @@
     <dimen name="progress_bar_size_large">64dp</dimen>
 
     <!-- Autocomplete TextView -->
-    <dimen name="auto_complete_text_view_height">56dp</dimen>
+    <dimen name="auto_complete_text_view_height">80dp</dimen>
 
     <!-- Icon -->
     <dimen name="icon_size_small">24dp</dimen>
@@ -91,5 +91,8 @@
 
     <!-- Chart -->
     <dimen name="chart_axis_label_text_size">10sp</dimen>
+    
+    <!-- ButtonToggleGroup -->
+    <dimen name="button_toggle_group_button_height">100dp</dimen>
 
 </resources>

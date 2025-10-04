@@ -27,21 +27,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.1"/>
+                    app:layout_constraintGuide_percent="0.1" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.9"/>
+                    app:layout_constraintGuide_percent="0.9" />
 
                 <TextView
                     android:id="@+id/navigation_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginTop="@dimen/space_4"
+                    android:gravity="center"
                     android:text="@string/navigation_title"
                     android:textAppearance="?textAppearanceHeadline4"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end"

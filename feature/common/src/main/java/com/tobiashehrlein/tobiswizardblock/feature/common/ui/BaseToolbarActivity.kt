@@ -52,13 +52,14 @@ abstract class BaseToolbarActivity<Model : BaseToolbarViewModel, Binding : ViewD
     }
 
     private fun adjustStatusBarHeight() {
-        WindowInsetsHelper.getWindowInsets(binding.root, window) { vbInsets ->
-            binding.statusBarBackground.layoutParams.height = vbInsets.statusBarHeight
+        WindowInsetsHelper.getWindowInsets(binding.root, window) { wBInsets ->
+            binding.statusBarBackground.layoutParams.height = wBInsets.statusBarHeight
             binding.root.setPadding(
                 binding.root.paddingLeft,
                 binding.root.paddingTop,
                 binding.root.paddingRight,
-                vbInsets.navigationBarHeight
+                wBInsets.navigationBarHeight + wBInsets.keyboardHeight
+            // TODO check if it break mobile => create dedicated platform activity / fragments
             )
         }
     }

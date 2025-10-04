@@ -23,9 +23,13 @@ object WindowInsetsHelper {
                 val navigationBar = insets?.getInsets(
                     WindowInsetsCompat.Type.navigationBars()
                 )
+                val keyboard = insets?.getInsets(
+                    WindowInsetsCompat.Type.ime()
+                )
                 val wBInsets = WBInsets(
                     statusBarHeight = topBar?.top ?: 0,
-                    navigationBarHeight = navigationBar?.bottom ?: 0
+                    navigationBarHeight = navigationBar?.bottom ?: 0,
+                    keyboardHeight = keyboard?.bottom ?: 0
                 )
 
                 onHeightDetermined(wBInsets)
@@ -50,7 +54,8 @@ object WindowInsetsHelper {
 
             val wBInsets = WBInsets(
                 statusBarHeight = statusBarHeight,
-                navigationBarHeight = navigationBarHeight
+                navigationBarHeight = navigationBarHeight,
+                keyboardHeight = 0
             )
             onHeightDetermined(wBInsets)
         }
