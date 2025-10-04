@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.core.content.ContextCompat
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.gamerules.GameRulesViewModel
@@ -72,12 +71,12 @@ class GameRulesFragment : BaseToolbarFragment<GameRulesViewModel, GameSettingsVi
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_game_rules, menu)
-        menu.findItem(R.id.action_info).icon?.setTint(
-            ContextCompat.getColor(
-                requireContext(),
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.color.color_on_primary
-            )
-        )
+        val menuItem = menu.findItem(R.id.action_info)
+        val actionView = menuItem.actionView
+
+        actionView?.setOnClickListener {
+            onOptionsItemSelected(menuItem)
+        }
         super.onCreateOptionsMenu(menu, inflater)
     }
 

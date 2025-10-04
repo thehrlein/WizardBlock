@@ -6,9 +6,10 @@
     <ImageView
         android:layout_width="@dimen/toolbar_icon_size"
         android:layout_height="@dimen/toolbar_icon_size"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/space_2"
         android:paddingTop="@dimen/space_1"
         android:src="@drawable/wb_ic_info"
-        android:layout_gravity="center"
         app:tint="?colorOnPrimary" />
 
 </FrameLayout>

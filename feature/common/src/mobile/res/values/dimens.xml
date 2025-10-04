@@ -36,7 +36,7 @@
 
     <!-- Toolbar -->
     <dimen name="toolbar_height">56dp</dimen>
-    <dimen name="toolbar_icon_size">42dp</dimen>
+    <dimen name="toolbar_icon_size">32dp</dimen>
 
     <!-- Dialog -->
     <dimen name="dialog_button_height">56dp</dimen>
