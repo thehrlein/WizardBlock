@@ -3,7 +3,7 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playe
 import androidx.lifecycle.LiveData
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseViewModelImpl
 
-abstract class PlayerSelectionViewModel : BaseViewModelImpl() {
+abstract class BasePlayerSelectionViewModel : BaseViewModelImpl() {
 
     abstract val playerNameOptions: LiveData<Set<String>>
 

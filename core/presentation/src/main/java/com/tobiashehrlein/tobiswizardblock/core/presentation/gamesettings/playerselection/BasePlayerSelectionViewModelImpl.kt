@@ -3,14 +3,13 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playe
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.AppResult
-import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.BasePage
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.invoke
 import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.player.GetPlayerNamesUseCase
 import kotlinx.coroutines.launch
 
-class PlayerSelectionViewModelImpl(
+abstract class BasePlayerSelectionViewModelImpl(
     private val getPlayerNamesUseCase: GetPlayerNamesUseCase
-) : PlayerSelectionViewModel() {
+) : BasePlayerSelectionViewModel() {
 
     override val playerNameOptions = MutableLiveData<Set<String>>()
 
@@ -25,9 +24,5 @@ class PlayerSelectionViewModelImpl(
                 is AppResult.Error -> Unit
             }
         }
-    }
-
-    override fun onProceedClicked() {
-        navigateTo(BasePage.PlayerSelection.PlayerOrder)
     }
 }

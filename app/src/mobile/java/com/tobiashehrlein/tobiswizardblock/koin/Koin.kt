@@ -3,6 +3,13 @@ package com.tobiashehrlein.tobiswizardblock.koin
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHostController
 import com.tobiashehrlein.tobiswizardblock.core.entities.navigation.PageNavigator
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.BaseGameSettingsViewModel
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModel
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderViewModel
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderViewModelImpl
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModel
+import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.BaseNavigationViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.navigation.NavigationViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.ResourceHelper
@@ -34,6 +41,22 @@ object Koin {
             NavigationViewModelImpl(
                 trackAnalyticsUserPropertyUseCase = get()
             )
+        }
+
+        viewModel<GameSettingsViewModel> {
+            GameSettingsViewModelImpl(
+                getLastGameSettingsUseCase = get(),
+            )
+        }
+
+        viewModel<PlayerSelectionViewModel> {
+            PlayerSelectionViewModelImpl(
+                getPlayerNamesUseCase = get()
+            )
+        }
+
+        viewModel<PlayerOrderViewModel> {
+            PlayerOrderViewModelImpl()
         }
     }
 

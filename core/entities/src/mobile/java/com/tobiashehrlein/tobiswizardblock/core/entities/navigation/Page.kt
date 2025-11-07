@@ -6,4 +6,13 @@ sealed class Page : BasePage() {
         object Settings: Navigation()
         object Info : Navigation()
     }
+
+    sealed class PlayerSelection : Page() {
+        object PlayerOrder : PlayerSelection()
+    }
+
+    sealed class PlayerOrder : Page() {
+        object GameRules : PlayerOrder()
+        object Info : PlayerOrder()
+    }
 }

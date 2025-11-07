@@ -1,0 +1,6 @@
+package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection
+
+import com.tobiashehrlein.tobiswizardblock.core.interactor.usecase.player.GetPlayerNamesUseCase
+
+abstract class PlayerSelectionViewModel(getPlayerNamesUseCase: GetPlayerNamesUseCase
+) : BasePlayerSelectionViewModelImpl(getPlayerNamesUseCase)

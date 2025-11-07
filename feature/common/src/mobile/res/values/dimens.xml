@@ -80,6 +80,8 @@
 
     <!-- Button -->
     <dimen name="button_input_action_min_width">48dp</dimen>
+    <dimen name="button_small_width">100dp</dimen>>
+    <dimen name="button_small_height">56dp</dimen>
 
     <!-- Block -->
     <dimen name="block_cell_height">50dp</dimen>

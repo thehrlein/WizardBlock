@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/action_trophy"
-        android:icon="@drawable/wb_ic_trophy"
-        android:title="@string/game_block_results_menu_trophy_title"
+        android:title=""
+        app:actionLayout="@layout/wb_toolbar_icon_scores"
         app:showAsAction="ifRoom" />
 
     <item

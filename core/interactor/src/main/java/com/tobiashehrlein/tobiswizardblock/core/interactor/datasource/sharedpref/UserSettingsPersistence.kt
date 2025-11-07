@@ -3,7 +3,7 @@ package com.tobiashehrlein.tobiswizardblock.core.interactor.datasource.sharedpre
 interface UserSettingsPersistence {
 
     companion object {
-        const val DEFAULT_IS_SHOW_TRUMP_DIALOG_ENABLED = true
+        const val DEFAULT_IS_SHOW_TRUMP_DIALOG_ENABLED = false
         const val KEY_IS_SHOW_TRUMP_DIALOG_ENABLED = "key.is_show_trump_dialog_enabled"
     }
 

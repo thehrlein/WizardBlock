@@ -22,15 +22,6 @@ sealed class BasePage {
         object Statistics : BaseNavigation()
     }
 
-    sealed class PlayerSelection : BasePage() {
-        object PlayerOrder : PlayerSelection()
-    }
-
-    sealed class PlayerOrder : BasePage() {
-        object GameRules : PlayerOrder()
-        object Info : PlayerOrder()
-    }
-
     sealed class GameRules : BasePage() {
         class Block(val gameId: Long) : GameRules()
         object Info : GameRules()

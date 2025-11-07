@@ -35,4 +35,17 @@
         <item name="android:textSize">@dimen/font_size_body_1</item>
     </style>
 
+    <style name="Widget.WizardBlock.Button.InputAction.LeftRounded">
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.LeftRounded</item>
+        <item name="iconGravity">textEnd</item>
+        <item name="android:layout_width">@dimen/button_small_width</item>
+        <item name="android:layout_height">@dimen/button_small_height</item>
+    </style>
+
+    <style name="Widget.WizardBlock.Button.InputAction.RightRounded">
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.RightRounded</item>
+        <item name="iconGravity">textStart</item>
+        <item name="android:layout_width">@dimen/button_small_width</item>
+        <item name="android:layout_height">@dimen/button_small_height</item>
+    </style>
 </resources>

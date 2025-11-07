@@ -114,8 +114,8 @@
 
                     <Button
                         android:id="@+id/block_input_button_save"
+                        style="?buttonStyle"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_4"
                         android:enabled="@{viewModel.inputsValid}"
                         android:onClick="@{() -> viewModel.onSaveClicked()}"

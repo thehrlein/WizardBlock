@@ -2,10 +2,9 @@ package com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings
 
 import androidx.lifecycle.LiveData
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.general.GameSettings
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderInteractions
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseToolbarViewModelImpl
 
-abstract class GameSettingsViewModel : BaseToolbarViewModelImpl(), PlayerOrderInteractions {
+abstract class  BaseGameSettingsViewModel : BaseToolbarViewModelImpl() {
 
     abstract val playerNames: LiveData<List<String>>
     abstract val playerCount: LiveData<Int>

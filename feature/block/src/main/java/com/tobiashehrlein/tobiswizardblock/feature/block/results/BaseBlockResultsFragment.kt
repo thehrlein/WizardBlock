@@ -48,7 +48,7 @@ private const val KONFETTI_POSITION_OFFSET = 50f
 private const val KONFETTI_PARTICLES_PER_SECOND = 300
 private const val KONFETTI_EMITTING_TIME = 5000L
 
-class BlockResultsFragment :
+abstract class BaseBlockResultsFragment :
     BaseToolbarFragment<BlockResultsViewModel, GameBlockViewModel, FragmentBlockResultsBinding>(),
     DialogInteractor {
 
@@ -223,6 +223,13 @@ class BlockResultsFragment :
         }
 
         menu.findItem(R.id.action_finish_game).isEnabled = viewModel.finishManuallyEnabled.value == true
+
+        val menuItem = menu.findItem(R.id.action_trophy)
+        val actionView = menuItem.actionView
+
+        actionView?.setOnClickListener {
+            onOptionsItemSelected(menuItem)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -237,14 +244,6 @@ class BlockResultsFragment :
             }
             R.id.action_finish_game -> {
                 viewModel.finishGameManuallyClicked()
-                true
-            }
-            R.id.action_info -> {
-                viewModel.onMenuInfoClicked()
-                true
-            }
-            R.id.action_settings -> {
-                viewModel.onMenuSettingsClicked()
                 true
             }
             else -> super.onOptionsItemSelected(item)

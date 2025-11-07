@@ -4,8 +4,7 @@
 
     <item
         android:id="@+id/action_clear"
-        android:icon="@drawable/wb_ic_delete"
         android:title="@string/general_delete"
+        app:actionLayout="@layout/wb_toolbar_icon_delete"
         app:showAsAction="always" />
-
 </menu>

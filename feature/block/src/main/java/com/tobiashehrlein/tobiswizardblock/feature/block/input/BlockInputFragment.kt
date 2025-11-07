@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
@@ -112,21 +113,27 @@ class BlockInputFragment :
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_input, menu)
-        menu.findItem(R.id.action_info).icon?.setTint(
-            ContextCompat.getColor(
-                requireContext(),
-                com.tobiashehrlein.tobiswizardblock.feature.common.R.color.color_on_primary
-            )
-        )
-        viewModel.trumpType.value?.let { toolbarIcon ->
-            menu.findItem(R.id.action_trump).apply {
-                toolbarIcon.getColorRes()?.let {
-                    icon?.setTint(ContextCompat.getColor(requireContext(), it))
+
+        val infoMenuItem = menu.findItem(R.id.action_info)
+        val infoActionView = infoMenuItem.actionView
+
+        infoActionView?.setOnClickListener {
+            onOptionsItemSelected(infoMenuItem)
+        }
+
+        val trumpMenuItem = menu.findItem(R.id.action_trump)
+        val trumpActionView = trumpMenuItem.actionView
+        viewModel.trumpType.value?.let { trumpType ->
+            trumpActionView?.findViewById<ImageView>(com.tobiashehrlein.tobiswizardblock.feature.common.R.id.imageView)
+                ?.apply {
+                    trumpType.getColorRes()?.let {
+                        imageTintList = ContextCompat.getColorStateList(requireContext(), it)
+                    }
+
+                    trumpMenuItem.title = trumpType.getNameRes()?.let { getString(it) }
+                    trumpMenuItem.isVisible =
+                        trumpType != TrumpType.Unselected && trumpType != TrumpType.Selected.None
                 }
-                isVisible =
-                    toolbarIcon != TrumpType.Unselected && toolbarIcon != TrumpType.Selected.None
-                title = toolbarIcon.getNameRes()?.let { getString(it) }
-            }
         }
 
         super.onCreateOptionsMenu(menu, inflater)
@@ -147,7 +154,7 @@ class BlockInputFragment :
             DialogRequestCode.CORRECT_TIPS_CHOOSE_PLAYER -> when (resultCode) {
                 DialogResultCode.POSITIVE -> {
                     (data?.getSerializableExtra(DialogEntity.KEY_DIALOG_ENTITY) as?
-                        DialogEntity.Custom.CorrectTipsChoosePlayer)?.let {
+                            DialogEntity.Custom.CorrectTipsChoosePlayer)?.let {
                         viewModel.correctPlayerTips(it.playerTipData)
                     }
                 }

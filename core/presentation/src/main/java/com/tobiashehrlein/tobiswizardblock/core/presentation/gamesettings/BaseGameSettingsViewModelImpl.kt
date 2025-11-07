@@ -12,11 +12,11 @@ private const val DEFAULT_PLAYER_COUNT = 3
 private const val MIN_PLAYER_COUNT = 2
 private const val DEFAULT_GAME_NAME = ""
 
-class GameSettingsViewModelImpl(
+abstract class BaseGameSettingsViewModelImpl(
     private val getLastGameSettingsUseCase: GetLastGameSettingsUseCase,
-) : GameSettingsViewModel() {
+) : BaseGameSettingsViewModel() {
 
-    override val playerNames = MutableLiveData<List<String>>()
+    override val playerNames = MutableLiveData<List<String>>(listOf("a", "b", "c")) // TODO remove value
     override val playerCount = MutableLiveData<Int>()
     override val gameName = MutableLiveData<String>()
     override val gameSettings = MutableLiveData<GameSettings>()
@@ -60,11 +60,6 @@ class GameSettingsViewModelImpl(
 
     override fun setPlayerNames(playerNames: List<String>) {
         this.playerNames.value = playerNames
-    }
-
-    // / PlayerOrderFragment
-    override fun onPlayerOrderChanged(names: List<String>) {
-        playerNames.value = names
     }
 
     // GameRulesFragment

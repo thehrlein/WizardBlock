@@ -63,12 +63,18 @@ class SavedGamesFragment : BaseFragment<SavedGamesViewModel, FragmentSavedGamesB
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        menu.findItem(R.id.action_delete).isVisible = viewModel.noSavedGames.value == false
+
+        val menuItem = menu.findItem(R.id.action_clear)
+        val actionView = menuItem.actionView
+
+        actionView?.setOnClickListener {
+            onOptionsItemSelected(menuItem)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_delete -> {
+            R.id.action_clear -> {
                 viewModel.onDeleteActionClicked()
                 true
             }

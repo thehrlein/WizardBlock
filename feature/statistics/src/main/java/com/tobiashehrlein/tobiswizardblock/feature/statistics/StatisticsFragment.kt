@@ -33,7 +33,13 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel, FragmentStatisticsB
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        menu.findItem(R.id.action_clear).isVisible = viewModel.anyStatisticsAvailable.value == true
+
+        val menuItem = menu.findItem(R.id.action_clear)
+        val actionView = menuItem.actionView
+
+        actionView?.setOnClickListener {
+            onOptionsItemSelected(menuItem)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

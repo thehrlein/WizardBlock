@@ -59,14 +59,8 @@ import com.tobiashehrlein.tobiswizardblock.core.presentation.block.scores.BlockS
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.scores.BlockScoresViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.trump.BlockTrumpViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.trump.BlockTrumpViewModelImpl
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModel
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.GameSettingsViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.gamerules.GameRulesViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.gamerules.GameRulesViewModelImpl
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderViewModel
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerorder.PlayerOrderViewModelImpl
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModel
-import com.tobiashehrlein.tobiswizardblock.core.presentation.gamesettings.playerselection.PlayerSelectionViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.SavedGamesViewModelImpl
 import com.tobiashehrlein.tobiswizardblock.core.presentation.savedgames.info.SavedGamesInfoViewModel
@@ -307,19 +301,6 @@ object BaseKoin {
     }
 
     private val viewModel = module {
-        viewModel<GameSettingsViewModel> {
-            GameSettingsViewModelImpl(
-                getLastGameSettingsUseCase = get(),
-            )
-        }
-        viewModel<PlayerSelectionViewModel> {
-            PlayerSelectionViewModelImpl(
-                getPlayerNamesUseCase = get()
-            )
-        }
-        viewModel<PlayerOrderViewModel> {
-            PlayerOrderViewModelImpl()
-        }
         viewModel<GameRulesViewModel> {
             GameRulesViewModelImpl(
                 storeGameInfoUseCase = get(),

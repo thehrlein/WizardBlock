@@ -7,4 +7,10 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScore
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.GameScoreData
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 
-sealed class Page : BasePage()
+sealed class Page : BasePage() {
+
+    sealed class PlayerSelection : BasePage() {
+        object GameRules : PlayerSelection()
+    }
+
+}
