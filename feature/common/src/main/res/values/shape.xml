@@ -37,20 +37,16 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerFamilyTopRight">cut</item>
         <item name="cornerFamilyBottomRight">cut</item>
-        <item name="cornerSizeTopLeft">@dimen/corner_size_big</item>
-        <item name="cornerSizeBottomLeft">@dimen/corner_size_big</item>
         <item name="cornerSizeTopRight">@dimen/corner_size_none</item>
         <item name="cornerSizeBottomRight">@dimen/corner_size_none</item>
     </style>
 
-    <style name="ShapeAppearance.WizardBlock.RightRounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearance.WizardBlock.SmallComponent.RightRounded">
         <item name="cornerFamily">rounded</item>
         <item name="cornerFamilyTopLeft">cut</item>
         <item name="cornerFamilyBottomLeft">cut</item>
         <item name="cornerSizeTopLeft">@dimen/corner_size_none</item>
         <item name="cornerSizeBottomLeft">@dimen/corner_size_none</item>
-        <item name="cornerSizeTopRight">@dimen/corner_size_big</item>
-        <item name="cornerSizeBottomRight">@dimen/corner_size_big</item>
     </style>
 
 </resources>

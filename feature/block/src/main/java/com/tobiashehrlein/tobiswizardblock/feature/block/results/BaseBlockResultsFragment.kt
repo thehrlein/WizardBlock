@@ -17,7 +17,6 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockName
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockPlaceholder
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockResult
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockRound
-import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.GameBlockViewModel
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.results.BlockResultsViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.block.BR
@@ -64,7 +63,6 @@ abstract class BaseBlockResultsFragment :
         viewModel.gameName.observe(viewLifecycleOwner) {
             activityToolbarViewModel.setTitle(it)
         }
-        activityToolbarViewModel.setToolbarButton(ToolbarButtonType.None)
         activityToolbarViewModel.gameId.observe(viewLifecycleOwner) {
             viewModel.setGameId(it)
         }

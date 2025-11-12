@@ -35,6 +35,7 @@ class StatisticsFragment : BaseFragment<StatisticsViewModel, FragmentStatisticsB
         super.onPrepareOptionsMenu(menu)
 
         val menuItem = menu.findItem(R.id.action_clear)
+        menuItem.isVisible = viewModel.anyStatisticsAvailable.value == true
         val actionView = menuItem.actionView
 
         actionView?.setOnClickListener {

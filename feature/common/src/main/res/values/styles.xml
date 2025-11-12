@@ -42,7 +42,7 @@
     </style>
 
     <style name="Widget.WizardBlock.Button.InputAction.RightRounded">
-        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.RightRounded</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.RightRounded</item>
         <item name="iconGravity">textStart</item>
     </style>
 

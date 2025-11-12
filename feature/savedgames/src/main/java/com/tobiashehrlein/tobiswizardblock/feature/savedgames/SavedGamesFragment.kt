@@ -65,8 +65,8 @@ class SavedGamesFragment : BaseFragment<SavedGamesViewModel, FragmentSavedGamesB
         super.onPrepareOptionsMenu(menu)
 
         val menuItem = menu.findItem(R.id.action_clear)
+        menuItem.isVisible = viewModel.noSavedGames.value == false
         val actionView = menuItem.actionView
-
         actionView?.setOnClickListener {
             onOptionsItemSelected(menuItem)
         }

@@ -43,7 +43,7 @@
     </style>
 
     <style name="Widget.WizardBlock.Button.InputAction.RightRounded">
-        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.RightRounded</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.RightRounded</item>
         <item name="iconGravity">textStart</item>
         <item name="android:layout_width">@dimen/button_small_width</item>
         <item name="android:layout_height">@dimen/button_small_height</item>

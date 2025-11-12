@@ -1,7 +1,6 @@
 package com.tobiashehrlein.tobiswizardblock.feature.block
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import com.tobiashehrlein.tobiswizardblock.core.entities.general.ToolbarButtonType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.block.GameBlockViewModel
 import com.tobiashehrlein.tobiswizardblock.feature.block.databinding.ActivityGameBlockBinding
@@ -13,7 +12,7 @@ import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.dispa
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class GameBlockActivity : BaseToolbarActivity<GameBlockViewModel, ActivityGameBlockBinding>(), DialogInteractor {
+abstract class BaseGameBlockActivity : BaseToolbarActivity<GameBlockViewModel, ActivityGameBlockBinding>(), DialogInteractor {
 
     override val viewModel: GameBlockViewModel by viewModel {
         parametersOf(gameId)
@@ -27,17 +26,9 @@ class GameBlockActivity : BaseToolbarActivity<GameBlockViewModel, ActivityGameBl
         get() = intent.getLongExtra(EXTRA_GAME_ID, DEFAULT_GAME_ID).takeIf { it != DEFAULT_GAME_ID }
             ?: error("gameId can not be null or $DEFAULT_GAME_ID")
 
-    companion object {
-        private const val EXTRA_GAME_ID = "extra.game_id"
-        private const val DEFAULT_GAME_ID: Long = -1
-        fun start(activity: AppCompatActivity, gameId: Long) {
-            activity.startActivity(
-                Intent(activity, GameBlockActivity::class.java).apply {
-                    putExtra(EXTRA_GAME_ID, gameId)
-                }
-            )
-            activity.finishAffinity()
-        }
+    companion object Companion {
+        const val EXTRA_GAME_ID = "extra.game_id"
+        const val DEFAULT_GAME_ID: Long = -1
     }
 
     override fun onDialogResult(requestCode: Int, resultCode: Int, data: Intent?) {
