@@ -67,4 +67,7 @@ data class Game(
 
     val winner: String?
         get() = if (gameFinished) lastCompletedGameRound?.playerResultData?.maxByOrNull { it.total }?.playerName else null
+
+    val isLastRound: Boolean
+        get() = currentGameRound?.round == maxRound
 }
