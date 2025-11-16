@@ -30,6 +30,13 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
         true
     )
 
+    private val textSizeLabels: Float
+        get() = if (BuildConfig.FLAVOR == "automotive") {
+            24f
+        } else {
+            12f
+        }
+
     fun setPlayerCountStatistics(playerCount: Map<Int, Int>?) {
         if (playerCount.isNullOrEmpty()) {
             binding.statisticsPlayerCountChart.apply {
@@ -49,19 +56,25 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                 }
                 val barDataSet = BarDataSet(entries, "").apply {
                     // Changing the color of the bar
-                    color = ContextCompat.getColor(context, com.tobiashehrlein.tobiswizardblock.feature.common.R.color.color_primary)
+                    color = ContextCompat.getColor(
+                        context,
+                        com.tobiashehrlein.tobiswizardblock.feature.common.R.color.color_primary
+                    )
                     // Setting the size of the form in the legend
                     formSize = 15f
                     // showing the value of the bar, default true if not set
                     setDrawValues(false)
                     // setting the text size of the value of the bar
-                    valueTextSize = 12f
+                    valueTextSize = textSizeLabels
                 }
                 val data = BarData(barDataSet)
                 setData(data)
 
                 marker = WizardMarkerView(context) {
-                    context.getString(com.tobiashehrlein.tobiswizardblock.feature.common.R.string.statistics_player_count_frequency, it)
+                    context.getString(
+                        com.tobiashehrlein.tobiswizardblock.feature.common.R.string.statistics_player_count_frequency,
+                        it
+                    )
                 }
 
                 // hiding the grey background of the chart, default false if not set
@@ -95,7 +108,9 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                             return value.toInt().toString()
                         }
                     }
-                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textColor =
+                        context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textSize = textSizeLabels
                 }
 
                 axisLeft.apply {
@@ -107,7 +122,9 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                     granularity = 1f
                     axisMinimum = 0.0f
                     axisMaximum = playerCount.values.maxOf { it }.toFloat()
-                    textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textColor =
+                        context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textSize = textSizeLabels
                 }
 
                 axisRight.apply {
@@ -120,8 +137,9 @@ class PlayerCountStatisticsView @JvmOverloads constructor(
                     // setting the shape of the legend form to line, default square shape
                     form = Legend.LegendForm.NONE
 
+                    BuildConfig.FLAVOR
                     // setting the text size of the legend
-                    textSize = 11f
+                    textSize = textSizeLabels
                     // setting the alignment of legend toward the chart
                     verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
                     horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT

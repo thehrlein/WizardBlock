@@ -30,6 +30,6 @@ class GameBlockViewModelImpl(
     }
 
     override fun openMenu() {
-        navigateTo(BasePage.Block.Menu)
+        navigateTo(BasePage.BaseBlock.Menu)
     }
 }

@@ -20,7 +20,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/space_4">
+                android:padding="@dimen/space_8">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_start"
@@ -52,7 +52,7 @@
                     android:id="@+id/navigation_app_image"
                     android:layout_width="@dimen/image_size_big"
                     android:layout_height="@dimen/image_size_big"
-                    android:layout_marginTop="@dimen/space_4"
+                    android:layout_marginTop="@dimen/space_8"
                     android:src="@drawable/wb_app_icon"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end"
                     app:layout_constraintStart_toStartOf="@id/guideline_start"
@@ -62,7 +62,7 @@
                     android:id="@+id/navigation_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_4"
+                    android:layout_marginTop="@dimen/space_8"
                     android:gravity="center"
                     android:text="@string/navigation_subtitle"
                     android:textAppearance="?textAppearanceSubtitle1"
@@ -73,7 +73,7 @@
                 <Button
                     android:id="@+id/navigation_button_new_game"
                     style="?buttonStyle"
-                    android:layout_marginTop="@dimen/space_6"
+                    android:layout_marginTop="@dimen/space_8"
                     android:onClick="@{() -> viewModel.onNewGameClicked()}"
                     android:text="@string/navigation_button_new_game"
                     app:layout_constraintEnd_toStartOf="@id/navigation_button_load_game"

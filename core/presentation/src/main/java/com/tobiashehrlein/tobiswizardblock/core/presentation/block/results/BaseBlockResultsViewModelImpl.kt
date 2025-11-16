@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 
 private const val WINNER_POSITION = 1
 
-class BlockResultsViewModelImpl(
+abstract class BaseBlockResultsViewModelImpl(
     private val getGameUseCase: GetGameUseCase,
     private val getBlockResultsUseCase: GetBlockResultsUseCase,
     private val getGameScoresUseCase: GetGameScoresUseCase,
@@ -41,7 +41,7 @@ class BlockResultsViewModelImpl(
     private val removeRoundUseCase: RemoveRoundUseCase,
     private val isShowTrumpDialogEnabledUseCase: IsShowTrumpDialogEnabledUseCase,
     private val trackAnalyticsEventUseCase: TrackAnalyticsEventUseCase
-) : BlockResultsViewModel() {
+) : BaseBlockResultsViewModel() {
 
     private val game = MutableLiveData<Game>()
     override val gameName = MutableLiveData<String>()
@@ -135,7 +135,7 @@ class BlockResultsViewModelImpl(
                 when (val result = isShowTrumpDialogEnabledUseCase.invoke()) {
                     is AppResult.Success -> {
                         if (result.value) {
-                            navigateTo(BasePage.Block.Trump(TrumpType.Unselected))
+                            navigateTo(BasePage.BaseBlock.Trump(TrumpType.Unselected))
                         }
                     }
                     is AppResult.Error -> Unit
@@ -146,23 +146,23 @@ class BlockResultsViewModelImpl(
 
     override fun onTrumpClicked(trumpType: TrumpType) {
         if (gameFinished.value == true) return
-        navigateTo(BasePage.Block.Trump(trumpType))
+        navigateTo(BasePage.BaseBlock.Trump(trumpType))
     }
 
     override fun onFabClicked() {
         val gameFinished = gameFinished.value ?: false
         if (gameFinished) {
-            navigateTo(BasePage.Block.Exit)
+            navigateTo(BasePage.BaseBlock.Exit)
         } else {
             val gameId = game.value?.gameInfo?.gameId ?: error("could not determine gameId")
             val inputType = this.inputType.value ?: error("could not determine inputType")
-            navigateTo(BasePage.Block.Input(gameId, inputType))
+            navigateTo(BasePage.BaseBlock.Input(gameId, inputType))
         }
     }
 
     override fun onTrophyClicked() {
         val scores = gameScores.value ?: return
-        navigateTo(BasePage.Block.Scores(scores))
+        navigateTo(BasePage.BaseBlock.Scores(scores))
     }
 
     private fun onGameFinished(results: List<GameScore>, onFinishedSuccess: (() -> Unit)? = null) {
@@ -173,7 +173,7 @@ class BlockResultsViewModelImpl(
             when (val result = storeGameFinishedUseCase.invoke(gameId)) {
                 is AppResult.Success -> {
                     navigateTo(
-                        BasePage.Block.GameFinished(
+                        BasePage.BaseBlock.GameFinished(
                             winner
                         )
                     )
@@ -202,11 +202,7 @@ class BlockResultsViewModelImpl(
     }
 
     override fun onMenuInfoClicked() {
-        navigateTo(BasePage.Block.About)
-    }
-
-    override fun onMenuSettingsClicked() {
-        navigateTo(BasePage.Block.Settings)
+        navigateTo(BasePage.BaseBlock.About)
     }
 
     override fun onMenuDeleteInputClicked() {
@@ -250,11 +246,11 @@ class BlockResultsViewModelImpl(
     }
 
     override fun showExitDialog() {
-        navigateTo(BasePage.Block.Exit)
+        navigateTo(BasePage.BaseBlock.Exit)
     }
 
     override fun finishGameManuallyClicked() {
-        navigateTo(BasePage.Block.FinishManually)
+        navigateTo(BasePage.BaseBlock.FinishManually)
     }
 
     override fun onFinishGameManuallyConfirmed() {

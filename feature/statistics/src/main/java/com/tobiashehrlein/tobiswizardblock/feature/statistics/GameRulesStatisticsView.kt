@@ -34,6 +34,12 @@ class GameRulesStatisticsView @JvmOverloads constructor(
         this,
         true
     )
+    private val textSizeLabels: Float
+        get() = if (BuildConfig.FLAVOR == "automotive") {
+            24f
+        } else {
+            12f
+        }
 
     fun setGameRulesStatistics(gameRulesStatisticsData: GameRulesStatisticsData?) {
         if (gameRulesStatisticsData == null || gameRulesStatisticsData.noGamesPlayed) {
@@ -77,7 +83,7 @@ class GameRulesStatisticsView @JvmOverloads constructor(
                     // showing the value of the bar, default true if not set
                     setDrawValues(false)
                     // setting the text size of the value of the bar
-                    valueTextSize = 12f
+                    valueTextSize = textSizeLabels
                 }
                 val data = BarData(barDataSet)
                 setData(data)
@@ -126,6 +132,7 @@ class GameRulesStatisticsView @JvmOverloads constructor(
                         }
                     }
                     textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textSize = textSizeLabels
                 }
 
                 axisLeft.apply {
@@ -142,6 +149,7 @@ class GameRulesStatisticsView @JvmOverloads constructor(
                         gameRulesStatisticsData.anniversaryVersion
                     ).maxOf { it }.takeIf { it > 0 }?.toFloat() ?: 1f
                     textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textSize = textSizeLabels
                 }
 
                 axisRight.apply {

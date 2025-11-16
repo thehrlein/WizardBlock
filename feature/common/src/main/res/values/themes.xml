@@ -97,6 +97,7 @@
         <item name="dividerHeight">@dimen/list_item_divider_height</item>
         <item name="actionOverflowButtonStyle">@style/Widget.WizardBlock.ActionButton.Overflow
         </item>
+        <item name="switchStyle">@style/Widget.WizardBlock.SwitchCompat</item>
 
         <!-- Action Mode -->
         <item name="windowActionModeOverlay">true</item>

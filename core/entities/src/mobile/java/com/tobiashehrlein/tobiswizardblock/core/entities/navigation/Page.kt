@@ -15,4 +15,8 @@ sealed class Page : BasePage() {
         object GameRules : PlayerOrder()
         object Info : PlayerOrder()
     }
+
+    sealed class Block : BaseBlock() {
+        object Settings : Block()
+    }
 }

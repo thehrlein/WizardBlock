@@ -6,7 +6,7 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.BlockItem
 import com.tobiashehrlein.tobiswizardblock.core.entities.game.result.TrumpType
 import com.tobiashehrlein.tobiswizardblock.core.presentation.general.BaseToolbarViewModelImpl
 
-abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsInteractions {
+abstract class BaseBlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsInteractions {
 
     abstract val gameName: LiveData<String>
     abstract val inputType: LiveData<InputType>
@@ -23,7 +23,6 @@ abstract class BlockResultsViewModel : BaseToolbarViewModelImpl(), BlockResultsI
     abstract fun updateTrumpType(trumpType: TrumpType)
     abstract fun onMenuDeleteInputClicked()
     abstract fun onMenuInfoClicked()
-    abstract fun onMenuSettingsClicked()
     abstract fun showExitDialog()
     abstract fun finishGameManuallyClicked()
     abstract fun onFinishGameManuallyConfirmed()

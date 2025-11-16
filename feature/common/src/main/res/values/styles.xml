@@ -14,8 +14,7 @@
         <item name="hintTextColor">?colorPrimary</item> <!-- collapsed hint (active text field) -->
     </style>
 
-    <style name="Widget.WizardBlock.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-    </style>
+    <style name="Widget.WizardBlock.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox"></style>
 
     <style name="Widget.WizardBlock.TextInputLayout.Dropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="textAppearanceError">?textAppearanceError</item>
@@ -25,8 +24,7 @@
     </style>
 
 
-    <style name="Widget.WizardBlock.TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-    </style>
+    <style name="Widget.WizardBlock.TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"></style>
 
     <!-- Button -->
     <style name="Widget.WizardBlock.Button.InputAction">
@@ -37,12 +35,15 @@
     </style>
 
     <style name="Widget.WizardBlock.Button.InputAction.LeftRounded">
-        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.LeftRounded</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.LeftRounded
+        </item>
         <item name="iconGravity">textEnd</item>
     </style>
 
     <style name="Widget.WizardBlock.Button.InputAction.RightRounded">
-        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.RightRounded</item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.WizardBlock.SmallComponent.RightRounded
+        </item>
         <item name="iconGravity">textStart</item>
     </style>
 
@@ -66,6 +67,15 @@
     <!-- Menu -->
     <style name="Widget.WizardBlock.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/wb_ic_menu_dots</item>
+    </style>
+
+    <style name="Widget.WizardBlock.SwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch">
+        <!-- Custom thumb and track drawables -->
+        <item name="android:thumb">@drawable/wb_switch_thumb</item>
+        <item name="android:track">@drawable/wb_switch_track</item>
+
+        <!-- Optional: padding to ensure touch target compliance -->
+        <item name="android:padding">@dimen/space_4</item>
     </style>
 
 </resources>

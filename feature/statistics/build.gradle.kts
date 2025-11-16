@@ -6,6 +6,10 @@ plugins {
 
 android {
     namespace = "com.tobiashehrlein.tobiswizardblock.feature.statistics"
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {

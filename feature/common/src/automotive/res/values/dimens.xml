@@ -70,9 +70,9 @@
     <dimen name="auto_complete_text_view_height">80dp</dimen>
 
     <!-- Icon -->
-    <dimen name="icon_size_small">24dp</dimen>
-    <dimen name="icon_size_medium">32dp</dimen>
-    <dimen name="icon_size_big">48dp</dimen>
+    <dimen name="icon_size_small">48dp</dimen>
+    <dimen name="icon_size_medium">64dp</dimen>
+    <dimen name="icon_size_big">96dp</dimen>
 
     <!-- Image -->
     <dimen name="image_size_small">40dp</dimen>

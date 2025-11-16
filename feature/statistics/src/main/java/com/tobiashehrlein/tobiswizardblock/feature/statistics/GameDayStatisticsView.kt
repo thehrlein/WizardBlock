@@ -33,6 +33,12 @@ class GameDayStatisticsView @JvmOverloads constructor(
         this,
         true
     )
+    private val textSizeLabels: Float
+        get() = if (BuildConfig.FLAVOR == "automotive") {
+            24f
+        } else {
+            12f
+        }
 
     fun setGameDayStatistics(gameDayStatisticsData: GameDayStatisticsData?) {
         if (gameDayStatisticsData == null || gameDayStatisticsData.gameDays.isNullOrEmpty()) {
@@ -60,7 +66,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
                     // showing the value of the bar, default true if not set
                     setDrawValues(false)
                     // setting the text size of the value of the bar
-                    valueTextSize = 12f
+                    valueTextSize = textSizeLabels
                 }
                 val data = BarData(barDataSet)
                 setData(data)
@@ -101,6 +107,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
                         }
                     }
                     textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textSize = textSizeLabels
                 }
 
                 axisLeft.apply {
@@ -113,6 +120,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
                     axisMinimum = 0.0f
                     axisMaximum = gameDayStatisticsData.gameDays.values.maxOf { it }.toFloat()
                     textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
+                    textSize = textSizeLabels
                 }
 
                 axisRight.apply {

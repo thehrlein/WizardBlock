@@ -30,16 +30,15 @@ sealed class BasePage {
         object AnniversaryVersion : GameRules()
     }
 
-    sealed class Block : BasePage() {
-        class Input(val gameId: Long, val inputType: InputType) : Block()
-        object Exit : Block()
-        object FinishManually : Block()
-        object Menu : Block()
-        object About : Block()
-        object Settings : Block()
-        class Trump(val trumpType: TrumpType) : Block()
-        class Scores(val gameScoreData: GameScoreData) : Block()
-        class GameFinished(val winners: List<GameScore>) : Block()
+    sealed class BaseBlock : BasePage() {
+        class Input(val gameId: Long, val inputType: InputType) : BaseBlock()
+        object Exit : BaseBlock()
+        object FinishManually : BaseBlock()
+        object Menu : BaseBlock()
+        object About : BaseBlock()
+        class Trump(val trumpType: TrumpType) : BaseBlock()
+        class Scores(val gameScoreData: GameScoreData) : BaseBlock()
+        class GameFinished(val winners: List<GameScore>) : BaseBlock()
     }
 
     sealed class Input : BasePage() {

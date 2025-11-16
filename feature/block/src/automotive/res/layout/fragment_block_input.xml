@@ -83,8 +83,6 @@
                     <Button
                         android:id="@+id/block_input_button_correct_tips"
                         style="?materialButtonOutlinedStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_2"
                         android:enabled="@{!viewModel.cloudCardPlayed}"
                         android:onClick="@{() -> viewModel.onCorrectTipsClicked()}"
