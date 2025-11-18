@@ -16,7 +16,7 @@
         android:minHeight="@dimen/block_trump_item_height"
         android:padding="@dimen/space_1">
 
-        <RadioButton
+        <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/radio_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

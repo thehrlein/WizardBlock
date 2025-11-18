@@ -98,6 +98,7 @@
         <item name="actionOverflowButtonStyle">@style/Widget.WizardBlock.ActionButton.Overflow
         </item>
         <item name="switchStyle">@style/Widget.WizardBlock.SwitchCompat</item>
+        <item name="radioButtonStyle">@style/Widget.WizardBlock.RadioButton</item>
 
         <!-- Action Mode -->
         <item name="windowActionModeOverlay">true</item>

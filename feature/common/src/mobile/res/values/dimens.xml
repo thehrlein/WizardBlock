@@ -92,4 +92,8 @@
     <!-- Chart -->
     <dimen name="chart_axis_label_text_size">10sp</dimen>
 
+    <!-- RadioButton -->
+    <dimen name="radio_button_size">24dp</dimen>
+    <dimen name="radio_button_size_selected">20dp</dimen>
+
 </resources>

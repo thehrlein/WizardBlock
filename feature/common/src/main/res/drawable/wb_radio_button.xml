@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- Background gray circle -->
+            <item>
+                <shape android:shape="oval">
+                    <size android:width="@dimen/radio_button_size" android:height="@dimen/radio_button_size"/>
+                    <solid android:color="@android:color/darker_gray"/>
+                </shape>
+            </item>
+
+            <!-- Smaller blue circle centered -->
+            <item  android:gravity="center">
+                <shape android:shape="oval">
+                    <size android:width="@dimen/radio_button_size_selected" android:height="@dimen/radio_button_size_selected"/>
+                    <solid android:color="?colorPrimary"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <size android:width="@dimen/radio_button_size" android:height="@dimen/radio_button_size"/>
+            <solid android:color="@android:color/darker_gray"/>
+        </shape>
+    </item>
+</selector>
