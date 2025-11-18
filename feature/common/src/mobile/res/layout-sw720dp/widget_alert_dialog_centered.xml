@@ -78,13 +78,6 @@
             android:layout_height="wrap_content"/>
     </FrameLayout>
 
-    <View
-        android:id="@+id/navigation_divider_info"
-        android:layout_width="match_parent"
-        android:layout_height="?dividerHeight"
-        android:layout_marginTop="@dimen/space_4"
-        android:background="?dividerColor" />
-
     <include layout="@layout/widget_alert_dialog_actions_centered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

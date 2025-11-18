@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
-                    android:layout_marginBottom="@dimen/space_4"
+                    android:layout_marginBottom="@dimen/space_2"
                     android:paddingLeft="?attr/dialogPreferredPadding"
                     android:paddingRight="?attr/dialogPreferredPadding"
                     tools:text="Message" />
@@ -90,14 +90,6 @@
             android:layout_height="wrap_content" />
 
     </FrameLayout>
-
-    <View
-        android:id="@+id/navigation_divider_info"
-        android:layout_width="match_parent"
-        android:layout_height="?dividerHeight"
-        android:layout_marginTop="@dimen/space_4"
-        android:background="?dividerColor" />
-
 
     <include layout="@layout/widget_alert_dialog_actions_centered" />
 

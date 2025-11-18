@@ -117,7 +117,7 @@
     <string name="block_trump_type_blue">Blue (Humans)</string>
     <string name="block_trump_type_green">Green (Elves)</string>
     <string name="block_trump_type_yellow">Yellow (Giants)</string>
-    <string name="block_trump_disable_auto_show_dialog">Show this dialog automatically for each round (optional)</string>
+    <string name="block_trump_disable_auto_show_dialog">Show this dialog automatically for each round</string>
     <string name="block_trump_reset_selection">Reset</string>
 
     <!-- About -->

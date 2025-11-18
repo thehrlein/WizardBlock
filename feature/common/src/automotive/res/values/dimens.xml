@@ -3,17 +3,22 @@
     <!--
     space refers to the space between UI elements, measured in increments of 8dp or 4dp.
     -->
-    <dimen name="space_0">2dp</dimen>
-    <dimen name="space_1">4dp</dimen>
-    <dimen name="space_2">8dp</dimen>
-    <dimen name="space_3">12dp</dimen>
-    <dimen name="space_4">16dp</dimen>
-    <dimen name="space_5">20dp</dimen>
-    <dimen name="space_6">24dp</dimen>
-    <dimen name="space_7">28dp</dimen>
-    <dimen name="space_8">32dp</dimen>
-    <dimen name="space_9">40dp</dimen>
-    <dimen name="space_10">48dp</dimen>
+    <dimen name="space_0">3dp</dimen>
+    <dimen name="space_1">6dp</dimen>
+    <dimen name="space_2">12dp</dimen>
+    <dimen name="space_3">18dp</dimen>
+    <dimen name="space_4">24dp</dimen>
+    <dimen name="space_5">30dp</dimen>
+    <dimen name="space_6">36dp</dimen>
+    <dimen name="space_7">42dp</dimen>
+    <dimen name="space_8">48dp</dimen>
+    <dimen name="space_9">60dp</dimen>
+    <dimen name="space_10">72dp</dimen>
+    <dimen name="space_11">84dp</dimen>
+    <dimen name="space_12">96dp</dimen>
+    <dimen name="space_13">108dp</dimen>
+    <dimen name="space_14">120dp</dimen>
+
 
     <!-- Font Size -->
     <dimen name="font_size_headline_4">60sp</dimen>
@@ -81,9 +86,10 @@
 
     <!-- Button -->
     <dimen name="button_input_action_min_width">48dp</dimen>
-    <dimen name="button_width">300dp</dimen>
+    <dimen name="button_min_width">300dp</dimen>
+    <dimen name="button_max_width">500dp</dimen>
     <dimen name="button_height">150dp</dimen>
-    <dimen name="button_small_width">120dp</dimen>>
+    <dimen name="button_small_width">120dp</dimen>
     <dimen name="button_small_height">80dp</dimen>
     <dimen name="button_floating_action_min_height">80dp</dimen>
 

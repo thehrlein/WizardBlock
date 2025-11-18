@@ -14,6 +14,10 @@
     <dimen name="space_8">32dp</dimen>
     <dimen name="space_9">40dp</dimen>
     <dimen name="space_10">48dp</dimen>
+    <dimen name="space_11">56dp</dimen>
+    <dimen name="space_12">64dp</dimen>
+    <dimen name="space_13">72dp</dimen>
+    <dimen name="space_14">80dp</dimen>
 
     <!-- Font Size -->
     <dimen name="font_size_headline_4">30sp</dimen>

@@ -96,7 +96,7 @@
 
     <!-- Trump -->
     <string name="block_trump_title">Trumpffarbe</string>
-    <string name="block_trump_disable_auto_show_dialog">Diesen Dialog automatisch für jede Runde anzeigen (optional)</string>
+    <string name="block_trump_disable_auto_show_dialog">Diesen Dialog automatisch für jede Runde anzeigen</string>
     <string name="block_trump_type_red">Rot (Zwerge)</string>
     <string name="block_trump_type_blue">Blau (Menschen)</string>
     <string name="block_trump_type_green">Grün (Elfen)</string>

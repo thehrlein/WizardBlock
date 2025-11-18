@@ -71,7 +71,7 @@ class BlockTrumpDialog : BaseDialogFragment<BlockTrumpViewModel, DialogBlockTrum
         }
 
         dialog.setOnShowListener {
-            (dialog as? AlertDialog)?.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {
+            dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {
                 binding.trumpSelectionGroup.reset()
                 viewModel.setSelectedTrump(TrumpType.Selected.None)
             }

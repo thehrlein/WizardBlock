@@ -6,16 +6,20 @@
         <item name="android:textAppearance">?textAppearanceButton</item>
         <item name="android:textColor">?colorOnPrimary</item>
         <item name="android:layout_height">@dimen/button_height</item>
-        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">@dimen/button_min_width</item>
+        <item name="android:maxWidth">@dimen/button_max_width</item>
         <item name="android:textSize">@dimen/font_size_body_1</item>
-    </style>
+   </style>
 
     <style name="Widget.WizardBlock.Button.Secondary" parent="@style/Widget.MaterialComponents.Button">
         <item name="backgroundTint">?colorSecondary</item>
         <item name="android:textAppearance">?textAppearanceButton</item>
         <item name="android:textColor">?colorOnSecondary</item>
         <item name="android:layout_height">@dimen/button_height</item>
-        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">@dimen/button_min_width</item>
+        <item name="android:maxWidth">@dimen/button_max_width</item>
         <item name="android:textSize">@dimen/font_size_body_1</item>
     </style>
 
@@ -23,7 +27,9 @@
         <item name="android:textAppearance">?textAppearanceButton</item>
         <item name="strokeColor">@color/color_selector_outline_button</item>
         <item name="android:layout_height">@dimen/button_height</item>
-        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">@dimen/button_min_width</item>
+        <item name="android:maxWidth">@dimen/button_max_width</item>
         <item name="android:textSize">@dimen/font_size_body_1</item>
     </style>
 
@@ -31,19 +37,24 @@
         <item name="android:textAppearance">?textAppearanceButton</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_height">@dimen/button_height</item>
-        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">@dimen/button_min_width</item>
+        <item name="android:maxWidth">@dimen/button_max_width</item>
         <item name="android:textSize">@dimen/font_size_body_1</item>
     </style>
 
     <style name="Widget.WizardBlock.Button.InputAction.LeftRounded">
-        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.LeftRounded</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.LeftRounded
+        </item>
         <item name="iconGravity">textEnd</item>
         <item name="android:layout_width">@dimen/button_small_width</item>
         <item name="android:layout_height">@dimen/button_small_height</item>
     </style>
 
     <style name="Widget.WizardBlock.Button.InputAction.RightRounded">
-        <item name="shapeAppearance">@style/ShapeAppearance.WizardBlock.SmallComponent.RightRounded</item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.WizardBlock.SmallComponent.RightRounded
+        </item>
         <item name="iconGravity">textStart</item>
         <item name="android:layout_width">@dimen/button_small_width</item>
         <item name="android:layout_height">@dimen/button_small_height</item>
