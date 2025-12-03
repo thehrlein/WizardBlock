@@ -39,7 +39,7 @@
                 android:id="@+id/game_rules_game_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4"
+                android:layout_marginTop="@dimen/space_2"
                 app:adapter="@{viewModel.gameNameOptions}"
                 app:hint="@{@string/game_rules_game_name_hint}"
                 app:layout_constraintEnd_toStartOf="@id/guideline_center"
