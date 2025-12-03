@@ -95,7 +95,7 @@
                         android:id="@+id/block_input_bomb_played"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_4"
+                        android:layout_marginTop="@dimen/space_2"
                         android:layout_marginEnd="@dimen/space_2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                     <Button
                         style="?buttonStyle"
                         android:id="@+id/block_input_button_save"
-                        android:layout_marginTop="@dimen/space_4"
+                        android:layout_marginTop="@dimen/space_2"
                         android:enabled="@{viewModel.inputsValid}"
                         android:onClick="@{() -> viewModel.onSaveClicked()}"
                         app:cardCount="@{viewModel.game.currentRoundNumber}"

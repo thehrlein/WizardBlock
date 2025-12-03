@@ -60,7 +60,8 @@
             android:onClick="@{() -> viewModel.onFabClicked()}"
             app:gameFinished="@{viewModel.gameFinished}"
             app:icon="@drawable/wb_ic_add"
-            app:inputType="@{viewModel.inputType}" />
+            app:inputType="@{viewModel.inputType}"
+            app:iconSize="@dimen/icon_size_small" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
