@@ -14,6 +14,8 @@
             style="?textInputStyleOutlinedExposedDropdown"
             app:hintTextAppearance="?textAppearanceSubtitle2"
             app:errorTextAppearance="?textAppearanceCaption"
+            app:endIconMinSize="@dimen/text_input_layout_end_icon_min_size"
+            app:endIconScaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_2"

@@ -74,6 +74,9 @@
     <!-- Autocomplete TextView -->
     <dimen name="auto_complete_text_view_height">80dp</dimen>
 
+    <!-- TextInputLayout -->
+    <dimen name="text_input_layout_end_icon_min_size">48dp</dimen>
+
     <!-- Icon -->
     <dimen name="icon_size_small">48dp</dimen>
     <dimen name="icon_size_medium">64dp</dimen>
