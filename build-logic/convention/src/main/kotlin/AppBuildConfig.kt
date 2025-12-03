@@ -38,7 +38,7 @@ object AppBuildConfig {
             ),
             PlatformFlavor(
                 name = "automotive",
-                applicationId = "com.tobiashehrlein.tobiswizardblock.automotive",
+                applicationId = "com.tobiashehrlein.tobiswizardblock",
             ),
         )
     }
