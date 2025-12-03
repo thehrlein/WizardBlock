@@ -66,14 +66,14 @@ steps:
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
   - task: Gradle@2
-    displayName: 'AssembleMobileRelease (APK)'
+    displayName: 'AssembleAutomotiveRelease (APK)'
     inputs:
       workingDirectory: ''
       gradleWrapperFile: 'gradlew'
       gradleOptions: '-Xmx3072m'
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
-      tasks: 'assembleMobileRelease'
+      tasks: 'assembleAutomotiveRelease'
   - task: CopyFiles@2
     displayName: 'Copy apk to: $(Build.ArtifactStagingDirectory)'
     inputs:
@@ -82,14 +82,14 @@ steps:
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
       flattenFolders: true
   - task: Gradle@2
-    displayName: 'BundleMobileRelease (AAB)'
+    displayName: 'BundleAutomotiveRelease (AAB)'
     inputs:
       workingDirectory: ''
       gradleWrapperFile: 'gradlew'
       gradleOptions: '-Xmx3072m'
       publishJUnitResults: false
       testResultsFiles: '**/TEST-*.xml'
-      tasks: 'bundleMobileRelease'
+      tasks: 'bundleAutomotiveRelease'
   - task: CopyFiles@2
     displayName: 'Copy aab to: $(Build.ArtifactStagingDirectory)'
     inputs:
@@ -111,7 +111,7 @@ steps:
       
       GOOGLE_APPLICATION_CREDENTIALS=$(firebaseAppDistributionGoogleServiceAccount.secureFilePath) \
         firebase appdistribution:distribute $(Build.ArtifactStagingDirectory)/*.aab \
-        --app "$(firebaseReleaseAppId)" \
-        --groups "$(firebaseReleaseTestingGroup)" \
+        --app "$(firebaseReleaseAutomotiveAppId)" \
+        --groups "$(firebaseReleaseAutomotiveTestingGroup)" \
         --release-notes-file "$(Build.ArtifactStagingDirectory)/changelog"
     displayName: "Upload APK to Firebase App Distribution"

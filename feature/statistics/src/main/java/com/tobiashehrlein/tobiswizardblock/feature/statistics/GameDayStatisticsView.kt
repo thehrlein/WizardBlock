@@ -1,6 +1,7 @@
 package com.tobiashehrlein.tobiswizardblock.feature.statistics
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
@@ -17,6 +18,7 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.statistics.GameDayStati
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.getColorReference
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.layoutInflater
 import com.tobiashehrlein.tobiswizardblock.feature.statistics.databinding.WidgetStatisticsGameDayBinding
+import java.text.DateFormatSymbols
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
@@ -41,7 +43,7 @@ class GameDayStatisticsView @JvmOverloads constructor(
         }
 
     fun setGameDayStatistics(gameDayStatisticsData: GameDayStatisticsData?) {
-        if (gameDayStatisticsData == null || gameDayStatisticsData.gameDays.isNullOrEmpty()) {
+        if (gameDayStatisticsData == null || gameDayStatisticsData.gameDays.isEmpty()) {
             binding.statisticsGameDayChart.apply {
                 setNoDataText(
                     context.getString(
@@ -56,7 +58,9 @@ class GameDayStatisticsView @JvmOverloads constructor(
                 val entries: ArrayList<BarEntry> = ArrayList()
 
                 gameDayStatisticsData.gameDays.forEach { entry ->
-                    entries.add(BarEntry(entry.key.value.toFloat(), entry.value.toFloat()))
+                    // Use ordinal+1 (MONDAY.ordinal==0) to get 1..7 without calling DayOfWeek.getValue (API 26)
+                    val dayIndex = entry.key.ordinal + 1
+                    entries.add(BarEntry(dayIndex.toFloat(), entry.value.toFloat()))
                 }
                 val barDataSet = BarDataSet(entries, "").apply {
                     // Changing the color of the bar
@@ -71,8 +75,9 @@ class GameDayStatisticsView @JvmOverloads constructor(
                 val data = BarData(barDataSet)
                 setData(data)
 
-                marker = WizardMarkerView(context) {
-                    DayOfWeek.of(it).getDisplayName(TextStyle.FULL, Locale.getDefault())
+                // Use a marker that shows the full weekday name. Use helper for API compatibility.
+                marker = WizardMarkerView(context) { dayValue ->
+                    getDayNameFull(dayValue)
                 }
 
                 // hiding the grey background of the chart, default false if not set
@@ -103,7 +108,9 @@ class GameDayStatisticsView @JvmOverloads constructor(
                     setDrawGridLines(false)
                     valueFormatter = object : ValueFormatter() {
                         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                            return DayOfWeek.of(value.toInt()).getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                            // value is expected to be 1..7 (DayOfWeek.value where MONDAY=1)
+                            val dayInt = value.toInt().coerceIn(1, 7)
+                            return getDayNameShort(dayInt)
                         }
                     }
                     textColor = context.getColorReference(com.google.android.material.R.attr.colorOnBackground)
@@ -146,6 +153,32 @@ class GameDayStatisticsView @JvmOverloads constructor(
 
                 invalidate()
             }
+        }
+    }
+
+    // Helper: returns the localized short weekday name for a DayOfWeek-like integer (1=MON ... 7=SUN)
+    private fun getDayNameShort(dayValue: Int): String {
+        val day = dayValue.coerceIn(1, 7)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DayOfWeek.of(day).getDisplayName(TextStyle.SHORT, Locale.getDefault())
+        } else {
+            // DateFormatSymbols.shortWeekdays is indexed by Calendar (1=Sunday ... 7=Saturday)
+            val shortWeekdays = DateFormatSymbols.getInstance(Locale.getDefault()).shortWeekdays
+            // Map DayOfWeek value (1=Mon .. 7=Sun) to Calendar index: index = (day % 7) + 1
+            val idx = (day % 7) + 1
+            shortWeekdays.getOrNull(idx) ?: day.toString()
+        }
+    }
+
+    // Helper: returns the localized full weekday name for a DayOfWeek-like integer (1=MON ... 7=SUN)
+    private fun getDayNameFull(dayValue: Int): String {
+        val day = dayValue.coerceIn(1, 7)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DayOfWeek.of(day).getDisplayName(TextStyle.FULL, Locale.getDefault())
+        } else {
+            val weekdays = DateFormatSymbols.getInstance(Locale.getDefault()).weekdays
+            val idx = (day % 7) + 1
+            weekdays.getOrNull(idx) ?: day.toString()
         }
     }
 }
