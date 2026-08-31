@@ -81,12 +81,14 @@
     <string name="block_input_anniversary_version_cloud_card_button">Tipps korrigieren</string>
     <string name="block_input_correct_bets_choose_player_title">Welcher Spieler muss sein Tipp korrigieren?</string>
     <string name="block_input_correct_bets_choose_player_name_and_bet">%1$s (%2$d)</string>
-    <string name="block_input_correct_bets_count_title">Ein Stich mehr oder weniger ansagen %1$s?</string>
+    <string name="block_input_correct_bets_count_title">Wie viele Stiche mehr oder weniger möchte %1$s ansagen?</string>
     <string name="block_input_correct_bets_snackbar_message">Der Tipp von %1$s wurde auf %2$d korrigiert</string>
     <string name="block_input_anniversary_version_bomb_played">Wurde die Bombe gespielt?</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_title">Bombe</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_message">Wenn ein Spieler in dieser Runde die Bombe gespielt hat, wird der Stich beiseite gelegt und nicht gewertet. Das bedeutet, dass die Anzahl gemachter Stiche um 1 niedriger sein muss.</string>
-    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s hat seine/ihre Tipps anhand der Wolke verändert und muss dementsprechend mindestens 1 Stich gemacht haben.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint_singular">%1$s hat den Tipp wegen der Wolke einmal korrigiert und muss mindestens 1 Stich gemacht haben.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint_plural">%1$s hat den Tipp wegen der Wolke zweimal korrigiert und muss mindestens 1 Stich gemacht haben.</string>
+    <string name="block_input_anniversary_version_cloud_card_undo">Letzte Korrektur rückgängig</string>
 
     <!-- Block scores -->
     <string name="block_scores_toolbar_title">Aktueller Stand</string>
