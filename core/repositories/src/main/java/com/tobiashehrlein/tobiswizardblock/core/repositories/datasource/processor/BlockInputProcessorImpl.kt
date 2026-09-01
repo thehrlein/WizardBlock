@@ -92,6 +92,8 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
                     DEFAULT_MIN_INPUT
                 },
                 cloudCardPlayed = playerTipData?.correctedCauseOfCloudCard == true,
+                cloudCardCorrectionCount = playerTipData?.effectiveCloudCardCorrectionCount ?: 0,
+                canUndoCloudCardCorrection = playerTipData?.cloudCardCorrectionSteps?.isNotEmpty() == true,
                 userInput = getUserInput(
                     playerTipData,
                     game.gameInfo.gameSettings.anniversaryVersion
