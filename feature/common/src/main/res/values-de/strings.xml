@@ -46,8 +46,8 @@
     <string name="game_rules_stitches_can_be_equal_bets_info">Wenn du dies aktivierst, können deine Tipps gleich der potenziell möglichen Stiche sein (z.B. Runde 2 = alle Tipps kombiniert dürfen 2 sein).\n\nFalls nicht, dürfen Tipps nicht gleich sein. Das bedeutet, dass der letzte Spieler ein Stich mehr oder weniger ansagen muss, sofern die angesagten Tipps zusammen gleich der potenziell möglichen Stiche ist.</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_text">Ausnahme: aktiviert für erste Runde</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_info">Wenn du dies aktivierst, ist die vorherige Regel für die erste Runde deaktiviert. Dies hat keinen Einfluss auf alle weiteren Runden.</string>
-    <string name="game_rules_anniversary_option_stitches_can_be_less">Erweitert: Jubiläumsversion</string>
-    <string name="game_rules_anniversary_option_stitches_can_be_less_info">Wenn du dies aktivierst, kannst du mit der Jubiläumsversion spielen. Das bedeuted, dass du weniger Stiche eingeben kannst, als potenziell möglich sind.\n\nIn der Jubiläumsversion gibt es mehr Karten (z.B. Drache, Bombe).</string>
+    <string name="game_rules_anniversary_option_stitches_can_be_less">30-Jahre-Edition</string>
+    <string name="game_rules_anniversary_option_stitches_can_be_less_info">Wenn du dies aktivierst, kannst du mit der 30-Jahre-Jubiläumsedition spielen. Das bedeuted, dass du weniger Stiche eingeben kannst, als potenziell möglich sind.\n\nIn der Jubiläumsversion gibt es mehr Karten (z. B. Drache, Bombe, Hexe).</string>
     <string name="game_rules_game_name_must_not_be_empty">Spielname darf nicht leer sein</string>
     <string name="game_rules_info_description">Das Spiel beginnt mit einer Karte und wird jede Runde um eine Karte bis zur Maximalanzahl erhöht. Wähle ein Spielname, um dieses Spiel eindeutig zu identifizieren. Anhand der Regeln kannst du ganz deinen Vorlieben spielen.</string>
 
@@ -78,6 +78,7 @@
     <string name="block_input_action_info_title">Info</string>
     <string name="block_input_action_trump_title">Trumpf</string>
     <string name="block_input_anniversary_version_cloud_card_question">Gibt es in dieser Runde einen Stich mit der Wolke?</string>
+    <string name="block_input_anniversary_version_second_cloud_card_question">Gibt es in dieser Runde einen zweiten Stich mit der Wolke?</string>
     <string name="block_input_anniversary_version_cloud_card_button">Tipps korrigieren</string>
     <string name="block_input_correct_bets_choose_player_title">Welcher Spieler muss sein Tipp korrigieren?</string>
     <string name="block_input_correct_bets_choose_player_name_and_bet">%1$s (%2$d)</string>

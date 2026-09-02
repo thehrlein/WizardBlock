@@ -214,7 +214,8 @@ class BlockInputCorrectTipsChoosePlayerDialog :
     }
 
     private fun checkButtons(initialTip: Int, updatedTip: Int) {
-        val availableCorrections = MAX_CLOUD_CARD_CORRECTIONS -
+        val maximumCorrections = minOf(MAX_CLOUD_CARD_CORRECTIONS, dialogEntity.round)
+        val availableCorrections = maximumCorrections -
             dialogEntity.playerTipData.sumOf { it.effectiveCloudCardCorrectionCount }
         val minimumTip = maxOf(0, initialTip - availableCorrections)
         val maximumTip = minOf(dialogEntity.round, initialTip + availableCorrections)

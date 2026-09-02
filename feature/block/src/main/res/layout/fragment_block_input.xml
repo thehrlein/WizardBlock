@@ -74,7 +74,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_4"
-                        android:text="@string/block_input_anniversary_version_cloud_card_question"
+                        android:text="@{viewModel.cloudCardCorrectionCount > 0 ? @string/block_input_anniversary_version_second_cloud_card_question : @string/block_input_anniversary_version_cloud_card_question}"
                         android:textAppearance="?textAppearanceBody1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
