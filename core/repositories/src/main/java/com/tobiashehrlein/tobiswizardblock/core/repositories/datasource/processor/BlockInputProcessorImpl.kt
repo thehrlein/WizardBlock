@@ -19,6 +19,7 @@ private const val DEFAULT_PLAYER_TIP = 0
 private const val DEFAULT_MIN_INPUT = 0
 private const val MIN_INPUT_IF_CLOUD_PLAYED = 1
 private const val DEFAULT_PLAYER_INPUT_IF_CLOUD_PLAYED = 1
+private const val MAX_BOMB_PLAYED_COUNT = 2
 
 class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
 
@@ -42,11 +43,16 @@ class BlockInputProcessorImpl : BaseDatasource, BlockInputProcessor {
                             val allMatchingMinInput = inputValidityData.inputDataItems.all {
                                 it.userInput >= it.minInput
                             }
+                            val maximumBombPlayedCount = minOf(
+                                MAX_BOMB_PLAYED_COUNT,
+                                game.currentRoundNumber
+                            )
                             when {
+                                inputValidityData.bombPlayedCount !in 0..maximumBombPlayedCount ->
+                                    false
                                 !allMatchingMinInput -> false
-                                inputValidityData.bombPlayed ->
-                                    inputSum == game.currentRoundNumber - 1
-                                else -> inputSum == game.currentRoundNumber
+                                else -> inputSum ==
+                                    game.currentRoundNumber - inputValidityData.bombPlayedCount
                             }
                         }
                         else -> inputSum == game.currentRoundNumber

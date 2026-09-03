@@ -17,7 +17,7 @@ abstract class BlockInputViewModel : BaseViewModelImpl(), BlockInputInteractions
     abstract val showAnniversaryOption: LiveData<Boolean>
     abstract val summedInputs: LiveData<Int>
     abstract val trumpType: LiveData<TrumpType>
-    abstract val bombPlayed: LiveData<Boolean>
+    abstract val bombPlayedCount: LiveData<Int>
     abstract val cloudCardPlayed: LiveData<Boolean>
     abstract val cloudCardCorrectionCount: LiveData<Int>
     abstract val playerTipDataCorrectedEvent: LiveData<PlayerTipData>
@@ -27,5 +27,6 @@ abstract class BlockInputViewModel : BaseViewModelImpl(), BlockInputInteractions
     abstract fun onBlockInputBombPlayedInfoClicked()
     abstract fun correctPlayerTips(correctedPlayerTipData: List<PlayerTipData>)
     abstract fun onSaveClicked()
-    abstract fun onBlockPlayedSwitchChanged(bombPlayed: Boolean)
+    abstract fun onBombPlayedSwitchChanged(bombPlayed: Boolean)
+    abstract fun onSecondBombPlayedSwitchChanged(bombPlayed: Boolean)
 }

@@ -178,7 +178,7 @@ class PageNavigatorImpl(
                             }
                         InputType.RESULT -> resourceHelper.getString(
                             R.string.block_input_info_result_message,
-                            page.round - if (page.bombPlayed) 1 else 0
+                            page.round - page.bombPlayedCount
                         )
                     }
                 )
