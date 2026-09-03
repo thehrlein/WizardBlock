@@ -59,8 +59,8 @@
         bets can not be equal to possible stitches. That means, the last player has to say one bet more or less, if all bets combined would be equal to possible stitches.</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_text">Exception: enable for first round</string>
     <string name="game_rules_stitches_can_be_equal_in_first_round_info">If enabled, previous rule is disabled for first round.\n\nThis does not affect all other rounds.</string>
-    <string name="game_rules_anniversary_option_stitches_can_be_less">Advanced: anniversary option</string>
-    <string name="game_rules_anniversary_option_stitches_can_be_less_info">If enabled, you can play with the anniversary version, which means, your stitches combined can be less than possible stitches.\n\nIn anniversary version, you have more cards than usual (e.g. dragon, bomb).</string>
+    <string name="game_rules_anniversary_option_stitches_can_be_less">30th Anniversary Edition</string>
+    <string name="game_rules_anniversary_option_stitches_can_be_less_info">If enabled, you can play with the 30th Anniversary Edition, which means, your stitches combined can be less than possible stitches.\n\nIn anniversary version, you have more cards than usual (e.g. dragon, bomb, witch).</string>
     <string name="game_rules_game_name_must_not_be_empty">Game name must not be empty</string>
     <string name="game_rules_info_description">The game starts with one card and is increased by one card each round up to the maximum number. Choose a game name to clearly identify this game. The rules allow you to play according to your preferences.</string>
 
@@ -94,15 +94,18 @@
     <string name="block_input_action_info_title">Info</string>
     <string name="block_input_action_trump_title">Trump</string>
     <string name="block_input_anniversary_version_cloud_card_question">Was there any stitch with the cloud card in this round?</string>
+    <string name="block_input_anniversary_version_second_cloud_card_question">Was there a second stitch with the cloud card in this round?</string>
     <string name="block_input_anniversary_version_cloud_card_button">Correct bets</string>
     <string name="block_input_correct_bets_choose_player_title">Which player must correct his/her bets?</string>
     <string name="block_input_correct_bets_choose_player_name_and_bet">%1$s (%2$d)</string>
-    <string name="block_input_correct_bets_count_title">Predict one stitch more or less %1$s?</string>
+    <string name="block_input_correct_bets_count_title">How many stitches more or less does %1$s want to predict?</string>
     <string name="block_input_correct_bets_snackbar_message">The bet of %1$s was corrected to %2$d</string>
     <string name="block_input_anniversary_version_bomb_played">Bomb was played?</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_title">Bomb</string>
     <string name="block_input_anniversary_version_bomb_played_dialog_message">If someone played the bomb, the stitch will be put away and not evaluated. Therefore the amount of stitches must be 1 less.</string>
-    <string name="block_input_anniversary_version_cloud_card_played_hint">%1$s changed his/her bet because of the cloud card, so he/she must have made at least 1 stitch.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint_singular">%1$s corrected the bet once because of the cloud card and must have made at least 1 stitch.</string>
+    <string name="block_input_anniversary_version_cloud_card_played_hint_plural">%1$s corrected the bet twice because of the cloud card and must have made at least 1 stitch.</string>
+    <string name="block_input_anniversary_version_cloud_card_undo">Undo last correction</string>
 
     <!-- Block scores -->
     <string name="block_scores_toolbar_title">Current Scores</string>

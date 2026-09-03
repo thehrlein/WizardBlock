@@ -52,6 +52,10 @@ class BlockInputViewHolder(private val binding: ItemBlockInputBinding) :
                 interactions.onInputChanged(inputDataItem)
             }
         }
+
+        binding.buttonUndoCloudCardCorrection.setOnClickListener {
+            interactions.onUndoTipCorrectionClicked(inputDataItem.player)
+        }
     }
 
     fun bindInputData(inputDataItem: InputDataItem) {
@@ -61,8 +65,13 @@ class BlockInputViewHolder(private val binding: ItemBlockInputBinding) :
 
         binding.buttonDecrease.isEnabled = inputDataItem.userInput > inputDataItem.minInput
         binding.buttonIncrease.isEnabled = inputDataItem.userInput != inputDataItem.currentRound
+        val cloudCardHint = if (inputDataItem.cloudCardCorrectionCount == 1) {
+            com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_input_anniversary_version_cloud_card_played_hint_singular
+        } else {
+            com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_input_anniversary_version_cloud_card_played_hint_plural
+        }
         binding.cloudCardPlayedHint.text = binding.root.context.getString(
-            com.tobiashehrlein.tobiswizardblock.feature.common.R.string.block_input_anniversary_version_cloud_card_played_hint,
+            cloudCardHint,
             inputDataItem.player
         )
     }

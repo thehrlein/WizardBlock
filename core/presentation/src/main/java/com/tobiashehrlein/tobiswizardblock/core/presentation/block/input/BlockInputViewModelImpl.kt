@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 
 private const val DEFAULT_BOMB_PLAYED = false
 private const val DEFAULT_CLOUD_PLAYED = false
+private const val MAX_CLOUD_CARD_CORRECTIONS = 2
 
 class BlockInputViewModelImpl(
     private val gameId: Long,
@@ -43,6 +44,7 @@ class BlockInputViewModelImpl(
     override val trumpType = MutableLiveData<TrumpType>()
     override val bombPlayed = MutableLiveData(DEFAULT_BOMB_PLAYED)
     override val cloudCardPlayed = MutableLiveData(DEFAULT_CLOUD_PLAYED)
+    override val cloudCardCorrectionCount = MutableLiveData(0)
     override val playerTipDataCorrectedEvent = MutableLiveData<PlayerTipData>()
     private val round = MutableLiveData<GameRound>()
 
@@ -61,9 +63,14 @@ class BlockInputViewModelImpl(
 
     private fun setInputModels(game: Game) {
         this.game.value = game
-        this.cloudCardPlayed.value = game.lastNonCompletedGameRound?.playerTipData?.any {
-            it.correctedCauseOfCloudCard
-        }
+        val cloudCardCorrectionCount = game.lastNonCompletedGameRound?.playerTipData
+            ?.sumOf { it.effectiveCloudCardCorrectionCount } ?: 0
+        val maximumCloudCardCorrections = minOf(
+            MAX_CLOUD_CARD_CORRECTIONS,
+            game.currentRoundNumber
+        )
+        this.cloudCardCorrectionCount.value = cloudCardCorrectionCount
+        this.cloudCardPlayed.value = cloudCardCorrectionCount >= maximumCloudCardCorrections
         this.trumpType.value = game.currentGameRound?.trumpType
         viewModelScope.launch {
             when (val result = getBlockInputModelsUseCase.invoke(game)) {
@@ -136,6 +143,37 @@ class BlockInputViewModelImpl(
 
     override fun correctPlayerTips(correctedPlayerTipData: List<PlayerTipData>) {
         val currentRound = round.value ?: error("could not determine round")
+        val oldPlayerTipData = currentRound.playerTipData
+        val correctPlayer = correctedPlayerTipData.firstOrNull { corrected ->
+            oldPlayerTipData?.firstOrNull { it.playerName == corrected.playerName && it.tip != corrected.tip } != null
+        } ?: error("no change detected")
+        storeCorrectedPlayerTips(correctedPlayerTipData, correctPlayer)
+    }
+
+    override fun onUndoTipCorrectionClicked(playerName: String) {
+        val currentRound = round.value ?: error("could not determine round")
+        val currentPlayerTipData = currentRound.playerTipData ?: error("no tips available")
+        val updatedPlayerTipData = currentPlayerTipData.map { playerTipData ->
+            if (playerTipData.playerName != playerName) return@map playerTipData
+
+            val correctionStep = playerTipData.cloudCardCorrectionSteps.lastOrNull()
+                ?: return@map playerTipData
+            val updatedCorrectionCount = playerTipData.effectiveCloudCardCorrectionCount - 1
+            playerTipData.copy(
+                tip = playerTipData.tip - correctionStep,
+                correctedCauseOfCloudCard = updatedCorrectionCount > 0,
+                cloudCardCorrectionCount = updatedCorrectionCount,
+                cloudCardCorrectionSteps = playerTipData.cloudCardCorrectionSteps.dropLast(1)
+            )
+        }
+        storeCorrectedPlayerTips(updatedPlayerTipData)
+    }
+
+    private fun storeCorrectedPlayerTips(
+        correctedPlayerTipData: List<PlayerTipData>,
+        correctedPlayer: PlayerTipData? = null
+    ) {
+        val currentRound = round.value ?: error("could not determine round")
         val round = InsertRoundData(
             gameId,
             currentRound.copy(
@@ -143,16 +181,11 @@ class BlockInputViewModelImpl(
             )
         )
 
-        val oldPlayerTipData = currentRound.playerTipData
-        val correctPlayer = correctedPlayerTipData.firstOrNull { corrected ->
-            oldPlayerTipData?.firstOrNull { it.playerName == corrected.playerName && it.tip != corrected.tip } != null
-        } ?: error("no change detected")
-
         viewModelScope.launch {
             when (val result = storeRoundUseCase.invoke(round)) {
                 is AppResult.Success -> {
                     getCurrentGame()
-                    playerTipDataCorrectedEvent.value = correctPlayer
+                    correctedPlayer?.let { playerTipDataCorrectedEvent.value = it }
                 }
                 is AppResult.Error -> Unit
             }
