@@ -44,6 +44,7 @@ class BlockInputViewModelImpl(
     override val trumpType = MutableLiveData<TrumpType>()
     override val bombPlayed = MutableLiveData(DEFAULT_BOMB_PLAYED)
     override val cloudCardPlayed = MutableLiveData(DEFAULT_CLOUD_PLAYED)
+    override val cloudCardCorrectionCount = MutableLiveData(0)
     override val playerTipDataCorrectedEvent = MutableLiveData<PlayerTipData>()
     private val round = MutableLiveData<GameRound>()
 
@@ -62,9 +63,14 @@ class BlockInputViewModelImpl(
 
     private fun setInputModels(game: Game) {
         this.game.value = game
-        this.cloudCardPlayed.value = game.lastNonCompletedGameRound?.playerTipData
-            ?.sumOf { it.effectiveCloudCardCorrectionCount }
-            ?.let { it >= MAX_CLOUD_CARD_CORRECTIONS } == true
+        val cloudCardCorrectionCount = game.lastNonCompletedGameRound?.playerTipData
+            ?.sumOf { it.effectiveCloudCardCorrectionCount } ?: 0
+        val maximumCloudCardCorrections = minOf(
+            MAX_CLOUD_CARD_CORRECTIONS,
+            game.currentRoundNumber
+        )
+        this.cloudCardCorrectionCount.value = cloudCardCorrectionCount
+        this.cloudCardPlayed.value = cloudCardCorrectionCount >= maximumCloudCardCorrections
         this.trumpType.value = game.currentGameRound?.trumpType
         viewModelScope.launch {
             when (val result = getBlockInputModelsUseCase.invoke(game)) {
