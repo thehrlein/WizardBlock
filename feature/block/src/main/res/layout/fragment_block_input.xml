@@ -105,6 +105,19 @@
                         app:onInfoIconClickListener="@{(v) -> viewModel.onBlockInputBombPlayedInfoClicked()}"
                         app:switchText="@{@string/block_input_anniversary_version_bomb_played}" />
 
+                    <com.tobiashehrlein.tobiswizardblock.feature.common.ui.views.WBSettingsView
+                        android:id="@+id/block_input_second_bomb_played"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:layout_marginEnd="@dimen/space_2"
+                        android:visibility="@{viewModel.showAnniversaryOption &amp;&amp; viewModel.game.currentRoundNumber > 1}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_bomb_played"
+                        app:showInfoIcon="@{false}"
+                        app:switchText="@{@string/block_input_anniversary_version_second_bomb_played}" />
+
                     <androidx.constraintlayout.widget.Group
                         android:id="@+id/block_input_anniversary_group"
                         android:layout_width="match_parent"
@@ -123,7 +136,7 @@
                         app:inputType="@{viewModel.inputType}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/block_input_bomb_played"
+                        app:layout_constraintTop_toBottomOf="@id/block_input_second_bomb_played"
                         app:summedInputs="@{viewModel.summedInputs}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

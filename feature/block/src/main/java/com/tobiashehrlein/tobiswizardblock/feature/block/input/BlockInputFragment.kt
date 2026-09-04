@@ -80,7 +80,21 @@ class BlockInputFragment :
         }
 
         binding.blockInputBombPlayed.onCheckedChange {
-            viewModel.onBlockPlayedSwitchChanged(it)
+            viewModel.onBombPlayedSwitchChanged(it)
+        }
+        binding.blockInputSecondBombPlayed.onCheckedChange {
+            viewModel.onSecondBombPlayedSwitchChanged(it)
+        }
+        viewModel.bombPlayedCount.observe(viewLifecycleOwner) { bombPlayedCount ->
+            val firstBombPlayed = bombPlayedCount >= 1
+            val secondBombPlayed = bombPlayedCount >= 2
+            if (binding.blockInputBombPlayed.isChecked() != firstBombPlayed) {
+                binding.blockInputBombPlayed.setChecked(firstBombPlayed)
+            }
+            if (binding.blockInputSecondBombPlayed.isChecked() != secondBombPlayed) {
+                binding.blockInputSecondBombPlayed.setChecked(secondBombPlayed)
+            }
+            binding.blockInputSecondBombPlayed.isEnabled = firstBombPlayed
         }
 
         initAdapter()
