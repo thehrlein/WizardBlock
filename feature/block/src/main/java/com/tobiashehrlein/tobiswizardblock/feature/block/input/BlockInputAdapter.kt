@@ -44,6 +44,8 @@ object BockInputDiff : DiffUtil.ItemCallback<InputDataItem>() {
             oldItem.type == newItem.type &&
             oldItem.userInput == newItem.userInput &&
             oldItem.isDealer == newItem.isDealer &&
-            oldItem.cloudCardPlayed == newItem.cloudCardPlayed
+            oldItem.cloudCardPlayed == newItem.cloudCardPlayed &&
+            oldItem.cloudCardCorrectionCount == newItem.cloudCardCorrectionCount &&
+            oldItem.canUndoCloudCardCorrection == newItem.canUndoCloudCardCorrection
     }
 }

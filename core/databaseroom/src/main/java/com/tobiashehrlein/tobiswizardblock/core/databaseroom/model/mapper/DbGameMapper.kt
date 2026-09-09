@@ -64,13 +64,18 @@ fun DbGameRound.mapToEntity() = GameRound(
 fun PlayerTipData.mapToDbData() = DbPlayerTipData(
     playerName = playerName,
     tip = tip,
-    correctedCauseOfCloudCard = correctedCauseOfCloudCard
+    correctedCauseOfCloudCard = correctedCauseOfCloudCard,
+    cloudCardCorrectionCount = cloudCardCorrectionCount,
+    cloudCardCorrectionSteps = cloudCardCorrectionSteps
 )
 
 fun DbPlayerTipData.mapToEntity() = PlayerTipData(
     playerName = playerName,
     tip = tip,
-    correctedCauseOfCloudCard = correctedCauseOfCloudCard
+    correctedCauseOfCloudCard = correctedCauseOfCloudCard,
+    cloudCardCorrectionCount = cloudCardCorrectionCount.takeIf { it > 0 }
+        ?: if (correctedCauseOfCloudCard) 1 else 0,
+    cloudCardCorrectionSteps = cloudCardCorrectionSteps.orEmpty()
 )
 
 fun PlayerResultData.mapToDbData() = DbPlayerResultData(

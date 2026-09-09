@@ -5,4 +5,5 @@ import com.tobiashehrlein.tobiswizardblock.core.entities.game.input.InputDataIte
 interface BlockInputInteractions {
 
     fun onInputChanged(inputDataItem: InputDataItem)
+    fun onUndoTipCorrectionClicked(playerName: String)
 }

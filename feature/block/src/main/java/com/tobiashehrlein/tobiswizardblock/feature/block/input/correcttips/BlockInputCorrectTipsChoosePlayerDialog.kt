@@ -18,10 +18,11 @@ import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.entity.Dialo
 import com.tobiashehrlein.tobiswizardblock.feature.common.ui.dialog.utils.DialogResultCode
 import com.tobiashehrlein.tobiswizardblock.feature.common.utils.extensions.getDimen
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.abs
 
 private const val CHILD_RADIO_GROUP = 0
 private const val CHILD_COUNT = 1
-private const val ZERO_TIP = 0
+private const val MAX_CLOUD_CARD_CORRECTIONS = 2
 
 class BlockInputCorrectTipsChoosePlayerDialog :
     BaseDialogFragment<BlockInputCorrectTipsChoosePlayerViewModel, DialogBlockInputCorrectTipsChoosePlayerBinding>() {
@@ -136,10 +137,21 @@ class BlockInputCorrectTipsChoosePlayerDialog :
                     } else {
                         val selectedPlayerTipData = dialogEntity.playerTipData.first {
                             it.playerName.hashCode() == binding.blockInputCorrectTipsRadioGroup.checkedRadioButtonId
-                        }.copy(
-                            tip = binding.correctTipsLayout.seekBar.progress,
-                            correctedCauseOfCloudCard = true
-                        )
+                        }.let { selectedPlayerTipData ->
+                            val correctionDelta = binding.correctTipsLayout.seekBar.progress -
+                                selectedPlayerTipData.tip
+                            val correctionStep = if (correctionDelta > 0) 1 else -1
+                            selectedPlayerTipData.copy(
+                                tip = binding.correctTipsLayout.seekBar.progress,
+                                correctedCauseOfCloudCard = true,
+                                cloudCardCorrectionCount =
+                                    selectedPlayerTipData.effectiveCloudCardCorrectionCount +
+                                    abs(correctionDelta),
+                                cloudCardCorrectionSteps =
+                                    selectedPlayerTipData.cloudCardCorrectionSteps +
+                                    List(abs(correctionDelta)) { correctionStep }
+                            )
+                        }
 
                         val updatedPlayerTipData = dialogEntity.playerTipData.map {
                             if (it.playerName == selectedPlayerTipData.playerName) {
@@ -202,24 +214,14 @@ class BlockInputCorrectTipsChoosePlayerDialog :
     }
 
     private fun checkButtons(initialTip: Int, updatedTip: Int) {
-        when {
-            updatedTip < initialTip -> {
-                binding.correctTipsLayout.buttonDecrease.isEnabled = false
-                binding.correctTipsLayout.buttonIncrease.isEnabled = true
-                setPositiveButtonEnabled(true)
-            }
-            updatedTip > initialTip -> {
-                binding.correctTipsLayout.buttonDecrease.isEnabled = true
-                binding.correctTipsLayout.buttonIncrease.isEnabled = false
-                setPositiveButtonEnabled(true)
-            }
-            else -> {
-                val zeroTip = initialTip == ZERO_TIP
-                val maxTip = initialTip == dialogEntity.round
-                binding.correctTipsLayout.buttonDecrease.isEnabled = !zeroTip
-                binding.correctTipsLayout.buttonIncrease.isEnabled = !maxTip
-                setPositiveButtonEnabled(false)
-            }
-        }
+        val maximumCorrections = minOf(MAX_CLOUD_CARD_CORRECTIONS, dialogEntity.round)
+        val availableCorrections = maximumCorrections -
+            dialogEntity.playerTipData.sumOf { it.effectiveCloudCardCorrectionCount }
+        val minimumTip = maxOf(0, initialTip - availableCorrections)
+        val maximumTip = minOf(dialogEntity.round, initialTip + availableCorrections)
+
+        binding.correctTipsLayout.buttonDecrease.isEnabled = updatedTip > minimumTip
+        binding.correctTipsLayout.buttonIncrease.isEnabled = updatedTip < maximumTip
+        setPositiveButtonEnabled(updatedTip != initialTip)
     }
 }

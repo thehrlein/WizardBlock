@@ -1,15 +1,17 @@
-# WizardBlock
+# Wizard Block
 
-https://play.google.com/store/apps/details?id=com.tobiashehrlein.tobiswizardblock
+Wizard Block is a simple utility app for keeping track of your games of Wizard.
 
-Utility-App zum Aufschreibenund automatischen Errechnen der Scores für das Kartenspiel Wizard.
+## Features
+- Enter the announced tips for each round
+- Record the actual stitches taken
+- Automatically calculate the score
+- Keep track of the game without pen and paper
+- Designed for quick and easy use during a game
 
-Meine erste im AppStore veröffentliche Android App (Version 1.0: September 2016)
+Wizard Block helps you focus on the game while taking care of the calculations.
 
+## Contributors
+@Steinente — added 30th-Anniversary Edition support
 
-## Tools
-- Java
-- Realm Datenbank
-- Firebase Messaging
-
-
+Many thanks to everyone who contributes to Wizard Block!
